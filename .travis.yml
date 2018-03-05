@@ -1,6 +1,5 @@
 language: ruby
 rvm:
- - 2.3.3
+  - 2.4.2
 script:
-  - bundle exec rake jasmine:ci
-  - ./create-test-site.sh
+  - bundle exec rake

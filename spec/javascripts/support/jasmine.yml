@@ -11,22 +11,8 @@
 #   - 'dist/**/*.js'
 #
 src_files:
-  - template/source/javascripts/_vendor/jquery.js
-  - template/source/javascripts/**/*.js
-
-# stylesheets
-#
-# Return an array of stylesheet filepaths relative to src_dir to include before jasmine specs.
-# Default: []
-#
-# EXAMPLE:
-#
-# stylesheets:
-#   - css/style.css
-#   - 'stylesheets/*.css'
-#
-stylesheets:
-  - template/source/stylesheets/**/*.css
+  - lib/assets/javascripts/_vendor/jquery.js
+  - lib/assets/javascripts/**/*.js
 
 # helpers
 #

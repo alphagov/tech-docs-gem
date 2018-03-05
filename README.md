@@ -1,50 +1,31 @@
-# Tech Docs Template
+# Tech Docs Template - gem
 
-The Tech Docs Template is a [middleman][mm] [template][mmt] that
-you can use to build technical documentation using a GOV.UK style.
+This repo is part of the [tech-docs-template](https://github.com/alphagov/tech-docs-template).
 
-![Screenshot of Example Documentation](/screenshots/composite.png)
+## Usage
 
-## Prerequisites
+To [generate a new site with the template](https://github.com/alphagov/tech-docs-template#creating-a-new-documentation-project), see the tech-docs-template repo.
 
-- You'll need [middleman][mm] installed, and its dependencies (Ruby). If you have Ruby v2.2.2 or newer installed you _should_ just be able to run `gem install middleman`. Installing or updating Ruby is outside the scope of this README.
+## Developing locally
 
-## Creating a new documentation project
+There are 2 ways to develop with this gem.
 
-From the command line run the following commands, substituting `my-new-project`
-for the name of your new project:
+The first is to point your site's Gemfile to your local checkout, and use it normally. This is good for if you want to see what effect your changes have to the actual site.
 
-```bash
-middleman init my-new-project -T alphagov/tech-docs-template
+```rb
+gem 'govuk_tech_docs', path: '../tech-docs-gem'
 ```
 
-This will run an interactive prompt where you can set basic configuration for
-your project.
-
-Once your project has been created, avoid editing any of the following:
-
-- `source/images/*`
-- `source/javascripts/*`
-- `source/layouts/*`
-- `source/stylesheets/*`
-- `source/favicon.ico`
-
-as this will make it a lot harder to stay up to date with any changes made
-to the template.
-
-In order to configure things like the header, edit `config/tech-docs.yml`.
-
-## Updating a project to use the latest template
-
-From your project folder, run:
+The second is to use the example app in this repo. You can start it by
 
 ```
-middleman init . -T alphagov/tech-docs-template
+git clone git@github.com:alphagov/tech-docs-gem.git
+cd tech-docs-gem/example
+bundle install
+bundle exec middleman serve
 ```
 
-If you have made any changes to the layout or any of the assets you will be
-prompted to resolve any conflicts, at which point you can view a diff between
-your version and the latest version.
+Your site will appear on <http://localhost:4567>.
 
 ## Tests
 
@@ -59,20 +40,8 @@ To run the tests on your machine:
 
 Or, on the command line, run `bundle exec rake jasmine:ci`.
 
-## Local development
+## License
 
-If you make changes to the template you can create a test site with this command.
-Make sure that you've committed your changes first, because Middleman works with Git.
+The gem is available as open source under the terms of the [MIT License](LICENSE.md).
 
-```
-bundle install
-bundle exec middleman init tmp/test-run -T file://$(pwd)
-cd tmp/test-run
-bundle exec middleman server
-```
-
-Your generated site should appear on <http://localhost:4567>.
-
-[mm]: https://middlemanapp.com/
-[mmt]: https://middlemanapp.com/advanced/project_templates/
 [jas]: https://jasmine.github.io/
