@@ -26,7 +26,7 @@ show_govuk_logo: true
 
 ## `service_name`
 
-Your service name
+The service name in the header.
 
 Example:
 
@@ -35,6 +35,8 @@ service_name: "Platform as a Service"
 ```
 
 ## `service_link`
+
+What the service name in the header links to.
 
 default: '/'
 
