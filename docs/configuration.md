@@ -84,3 +84,11 @@ Table of contents depth – how many levels to include in the table of contents.
 ```yaml
 max_toc_heading_level: 6
 ```
+
+## `google_site_verification`
+
+Adds a [Google Site Verification code](https://support.google.com/webmasters/answer/35179?hl=en) to the meta tags.
+
+```yaml
+google_site_verification: TvDTuyvdstyusadrCSDrctyd
+```
