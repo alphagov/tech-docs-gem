@@ -26,11 +26,17 @@ $ie-version: 8;
 
 echo "require 'govuk_tech_docs'
 
-TechDocs.configure(self)" > config.rb
+GovukTechDocs.configure(self)" > config.rb
 
 echo "source 'https://rubygems.org'
 
-gem 'govuk_tech_docs', path: '../govuk_tech_docs'" > Gemfile
+# For faster file watcher updates on Windows:
+gem 'wdm', '~> 0.1.0', platforms: [:mswin, :mingw]
+
+# Windows does not come with time zone data
+gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
+
+gem 'govuk_tech_docs'" > Gemfile
 
 bundle install
 ```
