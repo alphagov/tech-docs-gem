@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.0
+
+You can now specify `google_site_verification` in tech-docs.yml. You can use
+this to verify your site in Google Webmaster tools.
+
+https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#google_site_verification 
+
 ## 1.0.0
 
 The first release of the template as a gem. Most CSS, JS, images and layouts are
