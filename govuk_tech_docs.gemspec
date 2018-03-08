@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.email         = ["govuk-dev@digital.cabinet-office.gov.uk"]
 
   spec.summary       = %q{Gem to distribute the GOV.UK Tech Docs Template}
-  spec.description   = %q{Gem to distribute the GOV.UK Tech Docs Template. See https://github.com/alphagov/govuk-tech-docs for the project.}
-  spec.homepage      = "https://github.com/alphagov/govuk-tech-docs"
+  spec.description   = %q{Gem to distribute the GOV.UK Tech Docs Template. See https://github.com/alphagov/tech-docs-gem for the project.}
+  spec.homepage      = "https://github.com/alphagov/tech-docs-gem"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
