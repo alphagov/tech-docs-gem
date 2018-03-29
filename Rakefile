@@ -6,4 +6,8 @@ RSpec::Core::RakeTask.new(:spec)
 
 load 'jasmine/tasks/jasmine.rake'
 
-task default: ['spec', 'jasmine:ci']
+task :lint do
+  sh "govuk-lint-ruby example lib spec Rakefile"
+end
+
+task default: ['lint', 'spec', 'jasmine:ci']
