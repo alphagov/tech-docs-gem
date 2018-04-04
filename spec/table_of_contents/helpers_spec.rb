@@ -73,5 +73,13 @@ describe GovukTechDocs::TableOfContents::Helpers do
 
       expect(subject.table_of_contents(html).strip).to eq(expected_table_of_contents.strip)
     end
+
+    it 'builds a table of contents from HTML without an h1' do
+      html = %{
+        <h2 id="apples">Apples</h3>
+      }
+
+      expect { subject.table_of_contents(html).strip }.to raise_error(RuntimeError)
+    end
   end
 end
