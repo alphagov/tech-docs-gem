@@ -23,3 +23,7 @@ max_toc_heading_level: 6
 prevent_indexing: false
 
 google_site_verification: dstbao8TVS^DRVDS&rv76
+
+show_contribution_banner: true
+
+github_repo: alphagov/example-repo

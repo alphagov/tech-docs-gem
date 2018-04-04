@@ -9,6 +9,7 @@ require 'middleman-syntax'
 require 'nokogiri'
 
 require 'govuk_tech_docs/table_of_contents/helpers'
+require 'govuk_tech_docs/contribution_banner'
 require 'govuk_tech_docs/tech_docs_html_renderer'
 require 'govuk_tech_docs/unique_identifier_extension'
 require 'govuk_tech_docs/unique_identifier_generator'
@@ -45,6 +46,7 @@ module GovukTechDocs
 
     context.helpers do
       include GovukTechDocs::TableOfContents::Helpers
+      include GovukTechDocs::ContributionBanner
     end
 
     context.page '/*.xml', layout: false

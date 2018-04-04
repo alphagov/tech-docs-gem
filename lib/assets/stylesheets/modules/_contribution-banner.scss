@@ -1,0 +1,22 @@
+.contribution-banner {
+  padding: 0;
+  max-width: 40em;
+  margin-top: $gutter * 2;
+  margin-left: $gutter-half;
+  margin-right: $gutter-half;
+
+  @include media(tablet) {
+    margin-left: $gutter + 2px;
+    margin-right: $gutter + 2px;
+  }
+
+  a {
+    margin-right: $gutter-half;
+  }
+
+  li {
+    display: inline-block;
+    list-style: none;
+    margin: 2px 0;
+  }
+}
