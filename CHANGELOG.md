@@ -1,11 +1,18 @@
 # Changelog
 
+## Unreleased
+
+New feature: you can now show a block at the bottom of the page that links to
+the page source on GitHub, so readers can easily contribute back to the documentation.
+
+https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#show_contribution_banner
+
 ## 1.1.0
 
 You can now specify `google_site_verification` in tech-docs.yml. You can use
 this to verify your site in Google Webmaster tools.
 
-https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#google_site_verification 
+https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#google_site_verification
 
 ## 1.0.0
 

@@ -92,3 +92,24 @@ Adds a [Google Site Verification code](https://support.google.com/webmasters/ans
 ```yaml
 google_site_verification: TvDTuyvdstyusadrCSDrctyd
 ```
+
+## `show_contribution_banner`
+
+Show a block at the bottom of the page that links to the page source, so readers
+can easily contribute back to the documentation. If turned on `github_repo` is
+required.
+
+Off by default.
+
+```yaml
+show_contribution_banner: true
+github_repo: alphagov/example-repo
+```
+
+## `github_repo`
+
+Your repository. Required if `show_contribution_banner` is true.
+
+```yaml
+github_repo: alphagov/example-repo
+```
