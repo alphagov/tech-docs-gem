@@ -8,12 +8,9 @@ module GovukTechDocs
   module TableOfContents
     module Helpers
       def table_of_contents(html, max_level: nil)
-        HeadingTreeRenderer.new(
-          HeadingTreeBuilder.new(
-            HeadingsBuilder.new(html).headings
-          ).tree,
-          max_level: max_level
-        ).html
+        headings = HeadingsBuilder.new(html).headings
+        tree = HeadingTreeBuilder.new(headings).tree
+        HeadingTreeRenderer.new(tree, max_level: max_level).html
       end
     end
   end
