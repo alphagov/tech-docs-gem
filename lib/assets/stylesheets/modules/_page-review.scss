@@ -1,0 +1,34 @@
+.page-expiry--not-expired {
+  padding: $gutter-half;
+  margin-top: $gutter;
+  margin-bottom: $gutter;
+  background-color: $govuk-blue;
+  color: $page-colour;
+
+  @include media(tablet) {
+    padding: $gutter;
+  }
+
+  a:link,
+  a:visited {
+    color: inherit;
+  }
+
+  a:hover {
+    color: $link-hover-colour;
+  }
+
+  a:active {
+    color: $link-active-colour;
+  }
+}
+
+.page-expiry--expired {
+  display: none;
+
+  padding: $gutter-half;
+  margin-top: $gutter * 2;
+  background-color: $error-background;
+  border: 1px solid $error-colour;
+  color: $error-colour;
+}

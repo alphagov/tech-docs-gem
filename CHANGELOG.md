@@ -20,6 +20,15 @@ the page source on GitHub, so readers can easily contribute back to the document
 
 https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#show_contribution_banner
 
+### New feature: page review system
+
+An optional page review system to make sure documentation stays up to date.
+
+More info:
+
+- https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#last_reviewed_on
+- https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#owner_slack
+
 ## 1.1.0
 
 You can now specify `google_site_verification` in tech-docs.yml. You can use

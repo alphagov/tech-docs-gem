@@ -3,3 +3,6 @@ Layout/IndentHeredoc:
 
 Naming/HeredocDelimiterNaming:
   Enabled: false
+
+Lint/NestedMethodDefinition:
+  Enabled: false

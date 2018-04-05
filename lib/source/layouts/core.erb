@@ -51,6 +51,7 @@
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
             <%= yield %>
+            <%= partial "layouts/page_review" %>
           </main>
 
           <% if config[:tech_docs][:show_contribution_banner] %>
