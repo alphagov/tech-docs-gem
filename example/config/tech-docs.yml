@@ -27,3 +27,6 @@ google_site_verification: dstbao8TVS^DRVDS&rv76
 show_contribution_banner: true
 
 github_repo: alphagov/example-repo
+
+redirects:
+  /something/old.html: /index.html

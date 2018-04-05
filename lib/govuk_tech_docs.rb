@@ -8,6 +8,7 @@ require 'middleman-syntax'
 
 require 'nokogiri'
 
+require 'govuk_tech_docs/redirects'
 require 'govuk_tech_docs/table_of_contents/helpers'
 require 'govuk_tech_docs/contribution_banner'
 require 'govuk_tech_docs/tech_docs_html_renderer'
@@ -52,5 +53,13 @@ module GovukTechDocs
     context.page '/*.xml', layout: false
     context.page '/*.json', layout: false
     context.page '/*.txt', layout: false
+
+    context.ready do
+      redirects = GovukTechDocs::Redirects.new(context).redirects
+
+      redirects.each do |from, to|
+        context.redirect from, to
+      end
+    end
   end
 end
