@@ -116,10 +116,11 @@ github_repo: alphagov/example-repo
 
 ## `redirects`
 
-A list of redirects, from old to new location.
+A list of redirects, from old to new location. Use this to set up external
+redirects or if [setting `old_paths` in the frontmatter](docs/frontmatter.md#old_paths) doesn't work.
 
 ```yaml
 redirects:
-  /old-page.html: /new-page.html
+  /old-page.html: https://example.org/something-else.html
   /another/old-page.html: /another/new-page.html
 ```
