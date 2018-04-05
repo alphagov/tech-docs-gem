@@ -113,3 +113,13 @@ Your repository. Required if `show_contribution_banner` is true.
 ```yaml
 github_repo: alphagov/example-repo
 ```
+
+## `redirects`
+
+A list of redirects, from old to new location.
+
+```yaml
+redirects:
+  /old-page.html: /new-page.html
+  /another/old-page.html: /another/new-page.html
+```

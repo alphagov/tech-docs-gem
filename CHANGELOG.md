@@ -2,7 +2,20 @@
 
 ## Unreleased
 
-New feature: you can now show a block at the bottom of the page that links to
+### New feature: redirects
+
+You can now specify redirects in the frontmatter and `config/tech-docs.yml`.
+
+You can use this when you change a page URL.
+
+More info:
+
+- https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#redirects
+- https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#old_paths
+
+### New feature: contribution banner
+
+You can now show a block at the bottom of the page that links to
 the page source on GitHub, so readers can easily contribute back to the documentation.
 
 https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#show_contribution_banner

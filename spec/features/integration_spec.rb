@@ -12,6 +12,9 @@ RSpec.describe "The tech docs template" do
     then_there_is_a_heading
     then_there_is_a_source_footer
 
+    and_redirects_are_working
+    and_frontmatter_redirects_are_working
+
     when_i_view_a_proxied_page
     then_there_is_another_source_footer
   end
@@ -48,5 +51,15 @@ RSpec.describe "The tech docs template" do
     ].each do |url|
       expect(page).to have_link(nil, href: url)
     end
+  end
+
+  def and_redirects_are_working
+    visit '/something/old.html'
+    expect(page.body).to match '<link rel="canonical" href="/" />'
+  end
+
+  def and_frontmatter_redirects_are_working
+    visit '/something/old-as-well.html'
+    expect(page.body).to match '<link rel="canonical" href="/" />'
   end
 end
