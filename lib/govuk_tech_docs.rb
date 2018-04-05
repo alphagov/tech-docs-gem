@@ -13,6 +13,7 @@ require 'active_support/all'
 require 'govuk_tech_docs/redirects'
 require 'govuk_tech_docs/table_of_contents/helpers'
 require 'govuk_tech_docs/contribution_banner'
+require 'govuk_tech_docs/meta_tags'
 require 'govuk_tech_docs/page_review'
 require 'govuk_tech_docs/pages'
 require 'govuk_tech_docs/tech_docs_html_renderer'
@@ -52,6 +53,10 @@ module GovukTechDocs
     context.helpers do
       include GovukTechDocs::TableOfContents::Helpers
       include GovukTechDocs::ContributionBanner
+
+      def meta_tags
+        @meta_tags ||= GovukTechDocs::MetaTags.new(config, current_page)
+      end
 
       def current_page_review
         @current_page_review ||= GovukTechDocs::PageReview.new(current_page)

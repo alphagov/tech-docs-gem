@@ -29,6 +29,11 @@ More info:
 - https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#last_reviewed_on
 - https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#owner_slack
 
+
+### Better meta tags
+
+Pages now include better meta tags for search engines, Twitter, Facebook and Slack to pick up.
+
 ## 1.1.0
 
 You can now specify `google_site_verification` in tech-docs.yml. You can use
