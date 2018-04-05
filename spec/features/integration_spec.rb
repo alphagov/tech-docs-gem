@@ -12,6 +12,7 @@ RSpec.describe "The tech docs template" do
     then_there_is_a_heading
     then_there_is_a_source_footer
 
+    and_there_are_proper_meta_tags
     and_redirects_are_working
     and_frontmatter_redirects_are_working
 
@@ -29,6 +30,11 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_a_heading
     expect(page).to have_css 'h1', text: 'Hello, World!'
+  end
+
+  def and_there_are_proper_meta_tags
+    expect(page).to have_title 'GOV.UK Documentation Example | My First Service'
+    expect(page).to have_css 'meta[property="og:site_name"]', visible: false
   end
 
   def then_there_is_a_source_footer
