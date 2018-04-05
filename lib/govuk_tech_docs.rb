@@ -7,10 +7,14 @@ require 'middleman-livereload'
 require 'middleman-syntax'
 
 require 'nokogiri'
+require 'chronic'
+require 'active_support/all'
 
 require 'govuk_tech_docs/redirects'
 require 'govuk_tech_docs/table_of_contents/helpers'
 require 'govuk_tech_docs/contribution_banner'
+require 'govuk_tech_docs/page_review'
+require 'govuk_tech_docs/pages'
 require 'govuk_tech_docs/tech_docs_html_renderer'
 require 'govuk_tech_docs/unique_identifier_extension'
 require 'govuk_tech_docs/unique_identifier_generator'
@@ -48,6 +52,14 @@ module GovukTechDocs
     context.helpers do
       include GovukTechDocs::TableOfContents::Helpers
       include GovukTechDocs::ContributionBanner
+
+      def current_page_review
+        @current_page_review ||= GovukTechDocs::PageReview.new(current_page)
+      end
+
+      def format_date(date)
+        date.strftime('%-e %B %Y')
+      end
     end
 
     context.page '/*.xml', layout: false
