@@ -29,6 +29,12 @@ You can use this in combination with [owner_slack](#owner-slack) to set an owner
 
 The layout of the page. See the [layout documentation](layouts.md) for the options.
 
+```yaml
+---
+layout: core
+---
+```
+
 ## `old_paths`
 
 Any paths of pages that should redirect to this page.
@@ -55,5 +61,11 @@ owner_slack: "#operations-teams"
 ## `title`
 
 The browser title of the page.
+
+```yaml
+---
+title: My beautiful page 
+---
+```
 
 [mm]: https://middlemanapp.com/basics/frontmatter
