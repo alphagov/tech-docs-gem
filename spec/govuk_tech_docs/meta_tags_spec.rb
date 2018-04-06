@@ -1,4 +1,36 @@
 RSpec.describe GovukTechDocs::MetaTags do
+  describe '#browser_title' do
+    it 'combines the page title and service name' do
+      browser_title = generate_title(site_name: "Test Site", page_title: "The Title")
+
+      expect(browser_title).to eql("The Title | Test Site")
+    end
+
+    it 'does not duplicate the page title' do
+      browser_title = generate_title(site_name: "My documentation site", page_title: "My documentation site")
+
+      expect(browser_title).to eql("My documentation site")
+    end
+
+    it 'does not show an empty page title' do
+      browser_title = generate_title(site_name: "My documentation site", page_title: nil)
+
+      expect(browser_title).to eql("My documentation site")
+    end
+
+    def generate_title(site_name:, page_title:)
+      config = generate_config(
+        service_name: site_name,
+      )
+
+      current_page = double("current_page",
+        data: double("page_frontmatter", description: "The description.", title: page_title),
+        metadata: { locals: {} })
+
+      GovukTechDocs::MetaTags.new(config, current_page).browser_title
+    end
+  end
+
   describe '#tags' do
     it 'returns all the extra meta tags' do
       config = generate_config(
@@ -48,14 +80,14 @@ RSpec.describe GovukTechDocs::MetaTags do
 
       expect(tags["og:title"]).to eql("The local variable title.")
     end
+  end
 
-    def generate_config(config = {})
-      {
-        tech_docs: {
-          host: "https://www.example.org",
-          service_name: "Test Site",
-        }.merge(config)
-      }
-    end
+  def generate_config(config = {})
+    {
+      tech_docs: {
+        host: "https://www.example.org",
+        service_name: "Test Site",
+      }.merge(config)
+    }
   end
 end
