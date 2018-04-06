@@ -51,3 +51,7 @@ owner_slack: "#operations-teams"
 ## `layout`
 
 The layout of the page. See the [layout documentation](layouts.md) for the options.
+
+## `title`
+
+The browser title of the page.
