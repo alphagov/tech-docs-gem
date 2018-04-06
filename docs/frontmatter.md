@@ -47,3 +47,7 @@ The Slack username or channel of the page owner. This can be used to appoint an 
 owner_slack: "#operations-teams"
 ---
 ```
+
+## `layout`
+
+The layout of the page. See the [layout documentation](layouts.md) for the options.
