@@ -1,5 +1,9 @@
 # Available frontmatter
 
+"Frontmatter" allows page-specific variables to be included at the top of a template using YAML.
+
+For a general introduction on frontmatter, see the [Middleman frontmatter docs][mm].
+
 ## `old_paths`
 
 Any paths of pages that should redirect to this page.
@@ -55,3 +59,5 @@ The layout of the page. See the [layout documentation](layouts.md) for the optio
 ## `title`
 
 The browser title of the page.
+
+[mm]: https://middlemanapp.com/basics/frontmatter
