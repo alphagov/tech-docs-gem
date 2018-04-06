@@ -4,19 +4,6 @@
 
 For a general introduction on frontmatter, see the [Middleman frontmatter docs][mm].
 
-## `old_paths`
-
-Any paths of pages that should redirect to this page.
-
-Example:
-
-```yaml
----
-old_paths:
-  - /some-old-page.html
----
-```
-
 ## `last_reviewed_on`
 
 And `review_in`.
@@ -42,6 +29,23 @@ review_in: 6 weeks
 
 You can use this in combination with `owner_slack` to set an owner for the page.
 
+## `layout`
+
+The layout of the page. See the [layout documentation](layouts.md) for the options.
+
+## `old_paths`
+
+Any paths of pages that should redirect to this page.
+
+Example:
+
+```yaml
+---
+old_paths:
+  - /some-old-page.html
+---
+```
+
 ## `owner_slack`
 
 The Slack username or channel of the page owner. This can be used to appoint an individual or team as responsible for keeping the page up to date.
@@ -51,10 +55,6 @@ The Slack username or channel of the page owner. This can be used to appoint an 
 owner_slack: "#operations-teams"
 ---
 ```
-
-## `layout`
-
-The layout of the page. See the [layout documentation](layouts.md) for the options.
 
 ## `title`
 
