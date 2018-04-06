@@ -42,6 +42,6 @@ Or, on the command line, run `bundle exec rake jasmine:ci`.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](LICENSE.md).
+The gem is available as open source under the terms of the [MIT License](LICENSE).
 
 [jas]: https://jasmine.github.io/
