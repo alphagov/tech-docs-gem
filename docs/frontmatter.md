@@ -1,14 +1,10 @@
 # Available frontmatter
 
-"Frontmatter" allows page-specific variables to be included at the top of a template using YAML.
+"Frontmatter" allows page-specific variables to be included at the top of a template using YAML. For a general introduction on frontmatter, see the [Middleman frontmatter docs][mm].
 
-For a general introduction on frontmatter, see the [Middleman frontmatter docs][mm].
+## `last_reviewed_on` and `review_in`
 
-## `last_reviewed_on`
-
-And `review_in`.
-
-These 2 attributes determine the date when the page needs to be reviewed next.
+These attributes determine the date when the page needs to be reviewed next.
 
 If the page doesn't need to be reviewed, we show a blue box with the last-reviewed date, when it needs review again, and the owner.
 
@@ -27,7 +23,7 @@ review_in: 6 weeks
 ---
 ```
 
-You can use this in combination with `owner_slack` to set an owner for the page.
+You can use this in combination with [owner_slack](#owner-slack) to set an owner for the page.
 
 ## `layout`
 

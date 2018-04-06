@@ -14,7 +14,7 @@ ga_tracking_id: UA-XXXX-Y
 
 ## `github_repo`
 
-Your repository. Required if `show_contribution_banner` is true.
+Your repository. Required if [show_contribution_banner](#show-contribution-banner) is true.
 
 ```yaml
 github_repo: alphagov/example-repo
@@ -105,7 +105,7 @@ service_link: "/"
 ## `show_contribution_banner`
 
 Show a block at the bottom of the page that links to the page source, so readers
-can easily contribute back to the documentation. If turned on `github_repo` is
+can easily contribute back to the documentation. If turned on [github_repo](#github-repo) is
 required.
 
 Off by default.
