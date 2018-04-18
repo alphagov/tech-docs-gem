@@ -80,6 +80,19 @@ RSpec.describe GovukTechDocs::MetaTags do
 
       expect(tags["og:title"]).to eql("The local variable title.")
     end
+
+    it 'works even when no config is set' do
+      current_page = double("current_page",
+        data: double("page_frontmatter", description: "The description.", title: "The Title"),
+        url: "/foo.html",
+        metadata: { locals: { title: "The local variable title." } })
+
+      config = { tech_docs: {} }
+
+      tags = GovukTechDocs::MetaTags.new(config, current_page).tags
+
+      expect(tags).to be_a(Hash)
+    end
   end
 
   def generate_config(config = {})
