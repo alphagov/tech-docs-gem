@@ -21,7 +21,12 @@ require 'govuk_tech_docs/unique_identifier_extension'
 require 'govuk_tech_docs/unique_identifier_generator'
 
 module GovukTechDocs
-  def self.configure(context)
+  # Configure the tech docs template
+  #
+  # @param options [Hash]
+  # @option options [Hash] livereload Options to pass to the `livereload`
+  #   extension. Hash with symbols as keys.
+  def self.configure(context, options = {})
     context.activate :autoprefixer
     context.activate :sprockets
     context.activate :syntax
@@ -39,7 +44,7 @@ module GovukTechDocs
 
     # Reload the browser automatically whenever files change
     context.configure :development do
-      activate :livereload
+      activate :livereload, options[:livereload].to_h
     end
 
     context.configure :build do
