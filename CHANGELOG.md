@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+You can now pass options into `GovukTechDocs.configure` for the `livereload`
+extension.
+
+```rb
+GovukTechDocs.configure(self, livereload: { js_host: 'localhost' })
+```
+
 ## 1.2.0
 
 ### New feature: redirects
