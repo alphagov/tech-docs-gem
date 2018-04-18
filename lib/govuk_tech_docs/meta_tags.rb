@@ -53,7 +53,7 @@ module GovukTechDocs
     end
 
     def host
-      config[:tech_docs][:host]
+      config[:tech_docs][:host].to_s
     end
 
     def locals
