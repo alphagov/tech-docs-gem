@@ -110,4 +110,14 @@ title: My beautiful page
 ---
 ```
 
+## `parent`
+
+The page that should be highlighted as ‘active’ in the navigation.
+
+```yaml
+---
+parent: shaving-yaks.html
+---
+```
+
 [mm]: https://middlemanapp.com/basics/frontmatter
