@@ -34,6 +34,8 @@ $desktop-breakpoint: 992px !default;
 @import "accessibility";
 
 html, body {
+  color: $text-colour;
+  background-color: $page-colour;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
