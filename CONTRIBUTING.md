@@ -6,3 +6,4 @@ Everybody is encouraged to contribute to this project. If you're part of the [al
 - If you add a new option to `config/tech-docs.yml`, make sure you [document the option in docs/configuration.md](docs/configuration.md)
 - If you add a new option the page frontmatter, make sure you [document the option in docs/frontmatter.md](docs/configuration.md)
 - You can test your contribution using [unit tests](spec/govuk_tech_docs), [javascript tests](spec/javascripts) or [integration tests](spec/features)
+- If your change is relevant to the users of the gem, add something to [CHANGELOG](CHANGELOG.md). You don't have to do this if it's just refactoring. Make sure that you include any upgrade instructions.
