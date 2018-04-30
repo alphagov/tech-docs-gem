@@ -6,6 +6,10 @@ This repo is part of the [tech-docs-template](https://github.com/alphagov/tech-d
 
 To [generate a new site with the template](https://github.com/alphagov/tech-docs-template#creating-a-new-documentation-project), see the tech-docs-template repo.
 
+## Contributing
+
+👉 [See CONTRIBUTING.md](CONTRIBUTING.md)
+
 ## Developing locally
 
 There are 2 ways to develop with this gem.
