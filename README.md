@@ -23,8 +23,7 @@ gem 'govuk_tech_docs', path: '../tech-docs-gem'
 The second is to use the example app in this repo. You can start it by
 
 ```
-git clone git@github.com:alphagov/tech-docs-gem.git
-cd tech-docs-gem/example
+cd example
 bundle install
 bundle exec middleman serve
 ```
