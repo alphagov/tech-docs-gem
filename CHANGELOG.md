@@ -9,6 +9,18 @@ extension.
 GovukTechDocs.configure(self, livereload: { js_host: 'localhost' })
 ```
 
+## 1.3.0
+
+### New feature: page parents
+
+You can now specify a page’s parent in its frontmatter. This affects
+which item is selected in the navigation.
+
+More info:
+
+- https://github.com/alphagov/tech-docs-gem/pull/19
+- https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#parent
+
 ## 1.2.0
 
 ### New feature: redirects
