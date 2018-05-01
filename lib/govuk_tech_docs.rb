@@ -70,6 +70,14 @@ module GovukTechDocs
       def format_date(date)
         date.strftime('%-e %B %Y')
       end
+
+      def active_page(page_path)
+        [
+          page_path == "/" && current_page.path == "index.html",
+          ("/" + current_page.path) == page_path,
+          current_page.data.parent != nil && ("/" + current_page.data.parent.to_s) == page_path,
+        ].any?
+      end
     end
 
     context.page '/*.xml', layout: false
