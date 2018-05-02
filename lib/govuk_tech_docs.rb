@@ -75,7 +75,7 @@ module GovukTechDocs
         [
           page_path == "/" && current_page.path == "index.html",
           ("/" + current_page.path) == page_path,
-          current_page.data.parent != nil && ("/" + current_page.data.parent.to_s) == page_path,
+          current_page.data.parent != nil && current_page.data.parent.to_s == page_path,
         ].any?
       end
     end
