@@ -1,6 +1,6 @@
 ---
 title: This is a child of expired page
-parent: expired-page.html
+parent: /expired-page.html
 ---
 
 # This is a child of expired page
