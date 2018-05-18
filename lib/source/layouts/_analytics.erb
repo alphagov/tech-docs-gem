@@ -9,6 +9,7 @@
   ga('set', 'anonymizeIp', true);
   ga('set', 'displayFeaturesTask', null);
   ga('set', 'transport', 'beacon');
+  ga('set', 'page', location.pathname+location.search+location.hash);
   ga('send', 'pageview');
   </script>
 <% end %>
