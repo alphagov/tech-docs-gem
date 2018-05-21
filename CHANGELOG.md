@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.1
+
+Minor update to Google Analytics tracking
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/25
+
 ## 1.3.0
 
 Version 1.3.0 contains accessibility fixes (#20) and a fix to make the
