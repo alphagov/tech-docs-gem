@@ -53,6 +53,7 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
+            <h1><%= current_page.data.title %></h1>
             <%= yield %>
             <%= partial "layouts/page_review" %>
           </main>
