@@ -1,10 +1,11 @@
 module GovukTechDocs
   module TableOfContents
     class Heading
-      def initialize(element_name:, text:, attributes:)
+      def initialize(element_name:, text:, attributes:, page_url:)
         @element_name = element_name
         @text = text
         @attributes = attributes
+        @page_url = page_url
       end
 
       def size
@@ -12,7 +13,11 @@ module GovukTechDocs
       end
 
       def href
-        '#' + @attributes['id']
+        if @element_name == 'h1'
+          @page_url
+        else
+          @page_url + '#' + @attributes['id']
+        end
       end
 
       def title

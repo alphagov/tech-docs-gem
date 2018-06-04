@@ -5,7 +5,20 @@ wrap_layout :core do
   content_for(:toc_module, "in-page-navigation")
 
   content_for :sidebar do
-    partial "layouts/sidebar"
+  %>
+    <% sitemap.resources.each do |resource| %>
+      <%if resource.path.end_with?('.html') && resource.data.title %>
+          <% content = resource.render({layout: false}) %>
+          <%=
+          table_of_contents(
+            content,
+            url: resource.url,
+            max_level: config[:tech_docs][:max_toc_heading_level]
+          ) %>
+      <% end %>
+    <% end %>
+
+  <%
   end
 
   html

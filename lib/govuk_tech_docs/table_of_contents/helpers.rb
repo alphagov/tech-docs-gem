@@ -7,8 +7,9 @@ require 'govuk_tech_docs/table_of_contents/headings_builder'
 module GovukTechDocs
   module TableOfContents
     module Helpers
-      def table_of_contents(html, max_level: nil)
-        headings = HeadingsBuilder.new(html).headings
+      def table_of_contents(html, url: '', max_level: nil)
+        print url + html
+        headings = HeadingsBuilder.new(html, url).headings
 
         if headings.none? { |heading| heading.size == 1 }
           raise "No H1 tag found. You have to at least add one H1 heading to the page."

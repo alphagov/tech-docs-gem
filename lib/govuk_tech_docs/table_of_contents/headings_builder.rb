@@ -1,8 +1,9 @@
 module GovukTechDocs
   module TableOfContents
     class HeadingsBuilder
-      def initialize(html)
+      def initialize(html, url)
         @html = html
+        @url = url
       end
 
       def headings
@@ -10,7 +11,8 @@ module GovukTechDocs
           Heading.new(
             element_name: element.node_name,
             text: element.content,
-            attributes: convert_nokogiri_attr_objects_to_hashes(element.attributes)
+            attributes: convert_nokogiri_attr_objects_to_hashes(element.attributes),
+            page_url: @url
           )
         end
       end
