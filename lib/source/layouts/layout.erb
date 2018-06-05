@@ -6,7 +6,7 @@ wrap_layout :core do
 
   content_for :sidebar do
   %>
-    <% sitemap.resources.select{ |r| r.path.end_with?('.html')}.sort_by{ |r| r.data.weight }.each do |resource| %>
+    <% sitemap.resources.select{ |r| r.path.end_with?('.html')}.sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] }.each do |resource| %>
         <% content = resource.render({layout: false}) %>
         <%=
         table_of_contents(
