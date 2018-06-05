@@ -5,9 +5,17 @@ wrap_layout :core do
   content_for(:toc_module, "in-page-navigation")
 
   content_for :sidebar do
-  %>
-    <% sitemap.resources.select{ |r| r.path.end_with?('.html')}.sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] }.each do |resource| %>
-        <% content = resource.render({layout: false}) %>
+
+    sitemap.resources.select{ |r| r.path.end_with?('.html')}.sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] }.each do |resource|
+
+        # Reuse the generated content for the active page
+        # If we generate it twice it increments the heading ids
+        if active_page(resource.url)
+            content = html
+          else
+            content = resource.render({layout: false})
+        end
+        %>
         <%=
         table_of_contents(
           content,
