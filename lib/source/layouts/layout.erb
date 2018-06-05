@@ -6,16 +6,14 @@ wrap_layout :core do
 
   content_for :sidebar do
   %>
-    <% sitemap.resources.each do |resource| %>
-      <%if resource.path.end_with?('.html') && resource.data.title %>
-          <% content = resource.render({layout: false}) %>
-          <%=
-          table_of_contents(
-            content,
-            url: resource.url,
-            max_level: config[:tech_docs][:max_toc_heading_level]
-          ) %>
-      <% end %>
+    <% sitemap.resources.select{ |r| r.path.end_with?('.html')}.sort_by{ |r| r.data.weight }.each do |resource| %>
+        <% content = resource.render({layout: false}) %>
+        <%=
+        table_of_contents(
+          content,
+          url: resource.url,
+          max_level: config[:tech_docs][:max_toc_heading_level]
+        ) %>
     <% end %>
 
   <%
