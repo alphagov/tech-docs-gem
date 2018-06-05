@@ -8,7 +8,6 @@ module GovukTechDocs
   module TableOfContents
     module Helpers
       def table_of_contents(html, url: '', max_level: nil)
-        print url + html
         headings = HeadingsBuilder.new(html, url).headings
 
         if headings.none? { |heading| heading.size == 1 }

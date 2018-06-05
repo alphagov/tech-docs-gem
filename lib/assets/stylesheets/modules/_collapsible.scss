@@ -1,0 +1,10 @@
+// Collapsible JS component styling, made for the navigation tree.
+// These classes are added in table-of-contents.js.
+// They should not be applied without the JS.
+
+.collapsible__body {
+  display: none;
+  .collapsible.is-open & {
+    display: block
+  }
+}
