@@ -13,11 +13,7 @@ module GovukTechDocs
       end
 
       def href
-        if @element_name == 'h1'
-          @page_url
-        else
-          @page_url + '#' + @attributes['id']
-        end
+        @page_url + '#' + @attributes['id']
       end
 
       def title
