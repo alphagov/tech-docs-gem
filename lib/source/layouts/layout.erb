@@ -6,8 +6,16 @@ wrap_layout :core do
 
   content_for :sidebar do
 
-    sitemap.resources.select{ |r| r.path.end_with?('.html')}.sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] }.each do |resource|
+    # Only use html files
+    # Only use top level pages (index.html + it's children)
+    # Sorted by weight frontmatter
+    resources = sitemap.resources
+    .select { |r|
+      r.path.end_with?('.html') && ( r.parent.nil? || r.parent.path.include?('index.html') )
+    }
+    .sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] }
 
+    resources.each do |resource|
         # Reuse the generated content for the active page
         # If we generate it twice it increments the heading ids
         if active_page(resource.url)
@@ -17,6 +25,7 @@ wrap_layout :core do
         end
         %>
         <%=
+        # Parse the headings structure of every page
         table_of_contents(
           content,
           url: resource.url,
