@@ -110,6 +110,17 @@ title: My beautiful page
 ---
 ```
 
+## `weight`
+
+Affects the order a page is displayed in the sidebar navigation tree. Lower
+weights float to the top. Higher weights sink to the bottom.
+
+```yaml
+---
+weight: 20
+---
+```
+
 ## `parent`
 
 The page that should be highlighted as ‘active’ in the navigation.
