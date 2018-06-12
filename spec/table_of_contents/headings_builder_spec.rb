@@ -9,8 +9,9 @@ describe GovukTechDocs::TableOfContents::HeadingsBuilder do
       <p>Get some apples..</p>
       <h1 id="pears">Pears</h1>
     }
+    url = ''
 
-    headings = described_class.new(html).headings
+    headings = described_class.new(html, url).headings
 
     expect(headings).to eq([
       GovukTechDocs::TableOfContents::Heading.new(element_name: 'h1', text: 'Apples', attributes: { 'id' => 'apples' }),

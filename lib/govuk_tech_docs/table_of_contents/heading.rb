@@ -1,7 +1,7 @@
 module GovukTechDocs
   module TableOfContents
     class Heading
-      def initialize(element_name:, text:, attributes:, page_url:)
+      def initialize(element_name:, text:, attributes:, page_url: '')
         @element_name = element_name
         @text = text
         @attributes = attributes
