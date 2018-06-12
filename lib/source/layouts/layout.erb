@@ -11,7 +11,7 @@ wrap_layout :core do
     # Sorted by weight frontmatter
     resources = sitemap.resources
     .select { |r|
-      r.path.end_with?('.html') && ( r.parent.nil? || r.parent.path.include?('index.html') )
+      r.path.end_with?(".html") && ( r.parent.nil? || r.parent.path.include?("index.html") )
     }
     .sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] }
 
@@ -23,9 +23,11 @@ wrap_layout :core do
           else
             content = resource.render({layout: false})
         end
+
+        # Avoid redirect pages
+        next if content.include? "http-equiv=refresh"
         %>
         <%=
-        # Parse the headings structure of every page
         table_of_contents(
           content,
           url: resource.url,

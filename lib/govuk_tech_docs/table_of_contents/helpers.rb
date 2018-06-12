@@ -11,7 +11,7 @@ module GovukTechDocs
         headings = HeadingsBuilder.new(html, url).headings
 
         if headings.none? { |heading| heading.size == 1 }
-          raise "No H1 tag found. You have to at least add one H1 heading to the page."
+          raise "No H1 tag found. You have to at least add one H1 heading to the page: " + url
         end
 
         tree = HeadingTreeBuilder.new(headings).tree
