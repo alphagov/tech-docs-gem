@@ -15,7 +15,7 @@ wrap_layout :core do
     }
     .sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] } %>
 
-    <%= multi_page_table_of_contents(resources, html) %>
+    <%= multi_page_table_of_contents(resources, current_page, config, html) %>
 
   <%
   end

@@ -18,14 +18,14 @@ module GovukTechDocs
         HeadingTreeRenderer.new(tree, max_level: max_level).html
       end
 
-      def multi_page_table_of_contents(resources, active_page_html)
+      def multi_page_table_of_contents(resources, current_page, config, current_page_html = nil)
         output = '';
         resources.each do |resource|
           # Reuse the generated content for the active page
           # If we generate it twice it increments the heading ids
           content =
-            if active_page(resource.url)
-              active_page_html
+            if current_page.url == resource.url && current_page_html
+              current_page_html
             else
               resource.render(layout: false)
             end
