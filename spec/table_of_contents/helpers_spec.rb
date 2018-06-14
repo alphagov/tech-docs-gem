@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe GovukTechDocs::TableOfContents::Helpers do
-  describe '#table_of_contents' do
+  describe '#single_page_table_of_contents' do
     class Subject
       include GovukTechDocs::TableOfContents::Helpers
     end
@@ -17,7 +17,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
         <p>Get some apples..</p>
       }
 
-      expected_table_of_contents = %{
+      expected_single_page_table_of_contents = %{
 <ul>
   <li>
     <a href="#fruit">Fruit</a>
@@ -33,7 +33,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
 </ul>
       }
 
-      expect(subject.table_of_contents(html).strip).to eq(expected_table_of_contents.strip)
+      expect(subject.single_page_table_of_contents(html).strip).to eq(expected_single_page_table_of_contents.strip)
     end
 
     it 'builds a table of contents from html when headings suddenly change by more than one size' do
@@ -46,7 +46,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
         <h1 id="bread">Bread</h1>
       }
 
-      expected_table_of_contents = %{
+      expected_single_page_table_of_contents = %{
 <ul>
   <li>
     <a href="#fruit">Fruit</a>
@@ -71,7 +71,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
 </ul>
       }
 
-      expect(subject.table_of_contents(html).strip).to eq(expected_table_of_contents.strip)
+      expect(subject.single_page_table_of_contents(html).strip).to eq(expected_single_page_table_of_contents.strip)
     end
 
     it 'builds a table of contents from HTML without an h1' do
@@ -79,7 +79,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
         <h2 id="apples">Apples</h3>
       }
 
-      expect { subject.table_of_contents(html).strip }.to raise_error(RuntimeError)
+      expect { subject.single_page_table_of_contents(html).strip }.to raise_error(RuntimeError)
     end
   end
 end

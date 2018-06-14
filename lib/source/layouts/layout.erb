@@ -13,27 +13,9 @@ wrap_layout :core do
     .select { |r|
       r.path.end_with?(".html") && ( r.parent.nil? || r.parent.path.include?("index.html") )
     }
-    .sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] }
+    .sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] } %>
 
-    resources.each do |resource|
-        # Reuse the generated content for the active page
-        # If we generate it twice it increments the heading ids
-        if active_page(resource.url)
-            content = html
-          else
-            content = resource.render({layout: false})
-        end
-
-        # Avoid redirect pages
-        next if content.include? "http-equiv=refresh"
-        %>
-        <%=
-        table_of_contents(
-          content,
-          url: resource.url,
-          max_level: config[:tech_docs][:max_toc_heading_level]
-        ) %>
-    <% end %>
+    <%= multi_page_table_of_contents(resources, html) %>
 
   <%
   end
