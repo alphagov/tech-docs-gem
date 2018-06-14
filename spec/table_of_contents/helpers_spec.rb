@@ -156,5 +156,54 @@ describe GovukTechDocs::TableOfContents::Helpers do
 
       expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
     end
+
+    it 'builds a table of contents from a single page resources' do
+      resources = []
+      resources.push FakeResource.new('/index.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>');
+
+      current_page = double("current_page",
+        data: double("page_frontmatter", description: "The description.", title: "The Title"),
+        url: "/index.html",
+        metadata: { locals: {} })
+
+      current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
+
+      config = {
+        tech_docs: {
+          max_toc_heading_level: 3
+        }
+      }
+
+      expected_multi_page_table_of_contents = %{
+<ul>
+  <li>
+    <a href="/index.html#heading-one">Heading one</a>
+    <ul>
+      <li>
+        <a href="/index.html#heading-two">Heading two</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/index.html#heading-one">Heading one</a>
+    <ul>
+      <li>
+        <a href="/index.html#heading-two">Heading two</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/index.html#heading-one">Heading one</a>
+    <ul>
+      <li>
+        <a href="/index.html#heading-two">Heading two</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+      }
+
+      expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
+    end
   end
 end
