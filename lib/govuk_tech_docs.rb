@@ -95,11 +95,11 @@ module GovukTechDocs
 
     context.activate :search do |search|
 
-      search.resources = ['index.html']
+      search.resources = ['']
 
       search.fields = {
         title:   {boost: 100, store: true, required: true},
-        content: {boost: 50},
+        content: {boost: 50, store: true},
         url:     {index: false, store: true},
       }
     end
