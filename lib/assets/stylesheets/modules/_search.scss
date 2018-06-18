@@ -1,0 +1,58 @@
+@include screen {
+  .page-title + .search {
+    margin-top: $gutter;
+  }
+
+  .search {
+    @include core-16;
+    margin-bottom: $gutter-half;
+    height: 40px;
+    .search__label {
+      position: absolute;
+      left: -9999em;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden
+    }
+    .form-control {
+      @include box-sizing(border-box);
+      @include core-19;
+      width: 100%;
+      padding: 5px 4px 2px;
+      border: 2px solid $text-colour;
+      -webkit-appearance: none;
+
+      &:focus {
+        outline: 3px solid $focus-colour;
+        outline-offset: 0;
+      }
+    }
+  }
+}
+
+@include print {
+  .search {
+    display: none;
+  }
+}
+
+@include media(tablet) {
+  .search-results {
+    position: absolute;
+    // The width of the sidebar + the padding of the main content area.
+    left: 360px;
+    top: 22px;
+    right: 0;
+    z-index: 600;
+  }
+  .search-results__inner {
+    background: $white;
+    border: 1px solid $grey-2;    
+    max-width: 40rem;
+    padding: 27px 200px 50px 40px;
+  }
+  .search-results__title {
+    @include core-24;
+  }
+}

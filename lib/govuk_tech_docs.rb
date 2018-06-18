@@ -5,6 +5,7 @@ require 'middleman-autoprefixer'
 require 'middleman-sprockets'
 require 'middleman-livereload'
 require 'middleman-syntax'
+require 'middleman-search'
 
 require 'nokogiri'
 require 'chronic'
@@ -90,6 +91,17 @@ module GovukTechDocs
       redirects.each do |from, to|
         context.redirect from, to
       end
+    end
+
+    context.activate :search do |search|
+
+      search.resources = ['index.html']
+
+      search.fields = {
+        title:   {boost: 100, store: true, required: true},
+        content: {boost: 50},
+        url:     {index: false, store: true},
+      }
     end
   end
 end
