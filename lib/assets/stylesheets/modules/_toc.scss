@@ -27,7 +27,7 @@
 
       a:link, a:visited {
         display: block;
-        padding: 8px $gutter-half;
+        padding: 8px $gutter 8px $gutter-half;
         margin: 0 $gutter-half * -1;
         border-left: 5px solid transparent;
 
