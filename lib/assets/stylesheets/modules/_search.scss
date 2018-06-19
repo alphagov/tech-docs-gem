@@ -13,7 +13,7 @@
       top: auto;
       width: 1px;
       height: 1px;
-      overflow: hidden
+      overflow: hidden;
     }
     .form-control {
       @include box-sizing(border-box);
@@ -21,7 +21,7 @@
       width: 100%;
       padding: 5px 4px 2px;
       border: 2px solid $text-colour;
-      -webkit-appearance: none;
+      appearance: none;
 
       &:focus {
         outline: 3px solid $focus-colour;
@@ -70,6 +70,7 @@ html.has-search-results-open {
     }
   }
   .search-results__inner {
+    position: relative;
     background: $white;
     border: 1px solid $grey-2;    
     max-width: 40rem;
@@ -79,6 +80,35 @@ html.has-search-results-open {
     @include bold-27;
     margin-bottom: $gutter;
   }
+}
+.search-results__close {
+  @include core-16;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  &::after {
+    content: '';
+    float: right;
+    padding-left: 8px;
+    height: 18px;
+    width: 18px;
+    background: no-repeat file-url('govuk-icn-close.png') center right;
+    @include device-pixel-ratio {
+      background-image: file-url('govuk-icn-close@2x.png');
+    }
+    background-size: contain;
+  }
+}
+.search-results__close-label {
+  position: absolute;
+  left: -9999em;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 .search-results__content.is-loading-index::before {
   content: 'Loading index...';
