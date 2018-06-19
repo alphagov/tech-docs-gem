@@ -49,6 +49,14 @@ Example:
 host: https://docs.cloud.service.gov.uk
 ```
 
+## `multipage_nav`
+
+Enable multipage navigation in the sidebar. Defaults to false;
+
+```yaml
+multipage_nav: true
+```
+
 ## `max_toc_heading_level`
 
 Table of contents depth – how many levels to include in the table of contents. If your ToC is too long, reduce this number and we'll only show higher-level headings.

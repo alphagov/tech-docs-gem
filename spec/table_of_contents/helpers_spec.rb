@@ -170,8 +170,9 @@ describe GovukTechDocs::TableOfContents::Helpers do
 
       config = {
         tech_docs: {
-          max_toc_heading_level: 3
-        }
+          max_toc_heading_level: 3,
+          multipage_nav: true
+        },
       }
 
       expected_multi_page_table_of_contents = %{

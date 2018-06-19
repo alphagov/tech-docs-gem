@@ -5,18 +5,22 @@ wrap_layout :core do
   content_for(:toc_module, "in-page-navigation")
 
   content_for :sidebar do
+    if config[:tech_docs][:multipage_nav]
+      # Multipage navigation
+      # Only parse html files
+      # Only parse top level pages (index.html + it's children)
+      # Sorted by weight frontmatter
+      resources = sitemap.resources
+      .select { |r|
+        r.path.end_with?(".html") && ( r.parent.nil? || r.parent.path.include?("index.html") )
+      }
+      .sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] } %>
 
-    # Only use html files
-    # Only use top level pages (index.html + it's children)
-    # Sorted by weight frontmatter
-    resources = sitemap.resources
-    .select { |r|
-      r.path.end_with?(".html") && ( r.parent.nil? || r.parent.path.include?("index.html") )
-    }
-    .sort_by{ |r| [r.data.weight ? 0 : 1,r.data.weight || 0] } %>
-
-    <%= multi_page_table_of_contents(resources, current_page, config, html) %>
-
+      <%= multi_page_table_of_contents(resources, current_page, config, html) %>
+    <% else %>
+    
+      <%= single_page_table_of_contents(html, max_level: config[:tech_docs][:max_toc_heading_level]) %>
+    <% end %>
   <%
   end
 
