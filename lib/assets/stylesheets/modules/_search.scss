@@ -58,15 +58,25 @@ html.has-search-results-open {
     top: 22px;
     right: 0;
     z-index: 600;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: -8px;
+      width: 10px;
+      height: 20px;
+      background: no-repeat file-url('search-result-caret.svg') center right;
+      background-size: contain;
+    }
   }
   .search-results__inner {
     background: $white;
     border: 1px solid $grey-2;    
     max-width: 40rem;
-    padding: 27px 200px 50px 40px;
+    padding: 15px 200px 50px 40px;
   }
   .search-results__title {
-    @include heading-27;
+    @include bold-27;
     margin-bottom: $gutter;
   }
 }
