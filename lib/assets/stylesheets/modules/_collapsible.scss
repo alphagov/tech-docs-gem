@@ -32,16 +32,14 @@
   top: 0;
   right: 30px;
   &::after {
-    text-indent: 0;
-    content: '+';
+    content: '';
     display: block;
-    font-size: 30px;
-    line-height: 35px;
-    font-weight: normal;
-    text-align: center;
+    background: no-repeat file-url('arrow-down.svg') center center;
+    background-size: 18px auto;
+    width: 20px;
+    height: 40px;
   }
   .collapsible.is-open &::after {
-    content: '-';
-    padding-right: .1em;
+    background-image: file-url('arrow-up.svg');
   }
 }
