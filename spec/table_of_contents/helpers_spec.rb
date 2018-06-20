@@ -88,15 +88,36 @@ describe GovukTechDocs::TableOfContents::Helpers do
       include GovukTechDocs::TableOfContents::Helpers
     end
 
+    class FakeData
+      attr_reader :weight
+      def initialize(weight = nil)
+        @weight = weight
+      end
+    end
+
     class FakeResource
       attr_reader :url
-      def initialize(url, html)
+      attr_reader :data
+      attr_reader :parent
+      attr_reader :children
+      def initialize(url, html, weight = nil, parent = nil, children = [])
         @url = url
         @html = html
+        @parent = parent
+        @children = children
+        @data = FakeData.new(weight)
+      end
+
+      def path
+        @url
       end
 
       def render(_layout)
         @html
+      end
+
+      def add_children(children)
+        @children.concat children
       end
     end
 
@@ -104,9 +125,10 @@ describe GovukTechDocs::TableOfContents::Helpers do
 
     it 'builds a table of contents from several page resources' do
       resources = []
-      resources.push FakeResource.new('/index.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>');
-      resources.push FakeResource.new('/a.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>');
-      resources.push FakeResource.new('/b.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>');
+      resources[0] = FakeResource.new('/index.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10);
+      resources[1] = FakeResource.new('/a.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, resources[0]);
+      resources[2] = FakeResource.new('/b.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 20, resources[0]);
+      resources[0].add_children [resources[1], resources[2]]
 
       current_page = double("current_page",
         data: double("page_frontmatter", description: "The description.", title: "The Title"),

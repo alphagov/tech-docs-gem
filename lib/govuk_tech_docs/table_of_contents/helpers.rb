@@ -19,6 +19,12 @@ module GovukTechDocs
       end
 
       def multi_page_table_of_contents(resources, current_page, config, current_page_html = nil)
+        # Only parse top level html files
+        # Sorted by weight frontmatter
+        resources = resources
+        .select { |r| r.path.end_with?(".html") && (r.parent.nil? || r.parent.path.include?("index.html")) }
+        .sort_by { |r| [r.data.weight ? 0 : 1, r.data.weight || 0] }
+
         output = '';
         resources.each do |resource|
           # Reuse the generated content for the active page
