@@ -22,9 +22,16 @@ module GovukTechDocs
         # Only parse top level html files
         # Sorted by weight frontmatter
         resources = resources
-        .select { |r| r.path.end_with?(".html") && (r.parent.nil? || r.parent.path.include?("index.html")) }
+        .select { |r| r.path.end_with?(".html") && (r.parent.nil? || r.parent.url == "/") }
         .sort_by { |r| [r.data.weight ? 0 : 1, r.data.weight || 0] }
 
+        render_page_tree(resources, current_page, config, current_page_html)
+      end
+
+      def render_page_tree(resources, current_page, config, current_page_html)
+        # Sort by weight frontmatter
+        resources = resources
+        .sort_by { |r| [r.data.weight ? 0 : 1, r.data.weight || 0] }
         output = '';
         resources.each do |resource|
           # Reuse the generated content for the active page
@@ -35,15 +42,26 @@ module GovukTechDocs
             else
               resource.render(layout: false)
             end
-
           # Avoid redirect pages
           next if content.include? "http-equiv=refresh"
-          output <<
-            single_page_table_of_contents(
-              content,
-              url: resource.url,
-              max_level: config[:tech_docs][:max_toc_heading_level]
-            )
+          
+          # If this page has children, just print the title and recursively 
+          # render the children.
+          # If not, print the heading structure.
+          # We avoid printing the children of the root index.html as it is the
+          # parent of every other top level file.
+          if resource.children.any? && resource.url != "/"
+            output += %{<ul><li><a href="#{resource.url}">#{resource.data.title}</a>\n}
+            output += render_page_tree(resource.children, current_page, config, current_page_html)
+            output += '</li></ul>'
+          else
+            output +=
+              single_page_table_of_contents(
+                content,
+                url: resource.url,
+                max_level: config[:tech_docs][:max_toc_heading_level]
+              )
+          end            
         end
         output
       end

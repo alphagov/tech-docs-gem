@@ -46,11 +46,6 @@
       }
 
       @include media(tablet) {
-        // Level 2
-        > ul > li > ul {
-          margin-bottom: 20px;
-        }
-
         // Level 3
         li li li {
           a:link, a:visited {
