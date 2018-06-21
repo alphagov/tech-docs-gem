@@ -89,6 +89,10 @@ html.has-search-results-open {
   appearance: none;
   border: 0;
   padding: 0;
+  &:focus {
+    outline: 3px solid $focus-colour;;
+    outline-offset: 0;
+  }
   &::after {
     content: '';
     float: right;
