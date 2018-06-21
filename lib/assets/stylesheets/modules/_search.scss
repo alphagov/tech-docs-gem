@@ -37,10 +37,6 @@
   }
 }
 
-html.has-search-results-open {
-  overflow: hidden;
-}
-
 .search-results {
   opacity: 0;
   pointer-events: none;
@@ -117,7 +113,11 @@ html.has-search-results-open {
 .search-results__content.is-loading-index::before {
   content: 'Loading index...';
 }
-
 .search-result {
   margin-bottom: $gutter;
+}
+.search-result mark {
+  background-color: transparent;
+  color: inherit;
+  font-weight: bold;
 }
