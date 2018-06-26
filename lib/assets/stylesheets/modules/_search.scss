@@ -121,9 +121,6 @@ html.has-search-results-open {
   height: 1px;
   overflow: hidden;
 }
-.search-results__content.is-loading-index::before {
-  content: 'Loading index...';
-}
 .search-result {
   margin-bottom: $gutter;
 }
