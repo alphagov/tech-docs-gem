@@ -52,26 +52,32 @@ html.has-search-results-open {
   }
 }
 
-@include media(tablet) {
-  .search-results {
+.search-results {
     position: absolute;
-    // The width of the sidebar
-    left: 330px;
-    top: 0;
+    top: 60px;
+    left: 0;
     right: 0;
     bottom: 0;
-    padding: 22px 20px 0 30px;
     z-index: 600;
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
+    @include media(tablet) {
+      padding: 22px 20px 0 30px;
+      top: 0;
+      // The width of the sidebar
+      left: 330px;      
+    }
   }
-  .search-results__inner {
-    position: relative;
-    background: $white;
-    border: 1px solid $grey-2;    
-    max-width: 40rem;
+.search-results__inner {
+  position: relative;
+  background: $white;
+  border-top: 1px solid $grey-2;    
+  max-width: 40rem;
+  padding: 15px;
+  @include media(tablet) {
     padding: 15px 200px 50px 40px;
+    border: 1px solid $grey-2;
     &::after {
       content: '';
       position: absolute;
@@ -81,19 +87,20 @@ html.has-search-results-open {
       height: 20px;
       background: no-repeat file-url('search-result-caret.svg') center right;
       background-size: contain;
-    }
+    }    
   }
-  .search-results__title {
-    @include bold-27;
-    margin-bottom: $gutter;
-  }
+}
+.search-results__title {
+  @include bold-27;
+  margin-bottom: $gutter;
 }
 .search-results__close {
   @include core-16;
   position: absolute;
-  top: 20px;
+  top: 18px;
   right: 20px;
   appearance: none;
+  background: none;
   border: 0;
   padding: 0;
   &:focus {
@@ -102,7 +109,8 @@ html.has-search-results-open {
   }
   &::after {
     content: '';
-    float: right;
+    display: inline-block;
+    vertical-align: middle;
     padding-left: 8px;
     height: 18px;
     width: 18px;
