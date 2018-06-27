@@ -49,6 +49,14 @@ Example:
 host: https://docs.cloud.service.gov.uk
 ```
 
+## `collapsible_nav`
+
+Enable collapsible navigation in the sidebar. Defaults to false;
+
+```yaml
+collapsible_nav: true
+```
+
 ## `multipage_nav`
 
 Enable multipage navigation in the sidebar. Defaults to false;
