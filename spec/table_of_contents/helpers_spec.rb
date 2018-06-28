@@ -90,8 +90,10 @@ describe GovukTechDocs::TableOfContents::Helpers do
 
     class FakeData
       attr_reader :weight
-      def initialize(weight = nil)
+      attr_reader :title
+      def initialize(weight = nil, title = nil)
         @weight = weight
+        @title = title
       end
     end
 
@@ -100,12 +102,12 @@ describe GovukTechDocs::TableOfContents::Helpers do
       attr_reader :data
       attr_reader :parent
       attr_reader :children
-      def initialize(url, html, weight = nil, parent = nil, children = [])
+      def initialize(url, html, weight = nil, title = nil, parent = nil, children = [])
         @url = url
         @html = html
         @parent = parent
         @children = children
-        @data = FakeData.new(weight)
+        @data = FakeData.new(weight, title)
       end
 
       def path
@@ -125,9 +127,9 @@ describe GovukTechDocs::TableOfContents::Helpers do
 
     it 'builds a table of contents from several page resources' do
       resources = []
-      resources[0] = FakeResource.new('/index.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10);
-      resources[1] = FakeResource.new('/a.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, resources[0]);
-      resources[2] = FakeResource.new('/b.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 20, resources[0]);
+      resources[0] = FakeResource.new('/index.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, 'Index');
+      resources[1] = FakeResource.new('/a.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, 'Sub page A', resources[0]);
+      resources[2] = FakeResource.new('/b.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 20, 'Sub page B', resources[0]);
       resources[0].add_children [resources[1], resources[2]]
 
       current_page = double("current_page",
@@ -144,16 +146,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_multi_page_table_of_contents = %{
-<ul>
-  <li>
-    <a href="/index.html#heading-one">Heading one</a>
-    <ul>
-      <li>
-        <a href="/index.html#heading-two">Heading two</a>
-      </li>
-    </ul>
-  </li>
-</ul>
+<ul><li><a href="/index.html">Index</a>
 <ul>
   <li>
     <a href="/a.html#heading-one">Heading one</a>
@@ -174,6 +167,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
     </ul>
   </li>
 </ul>
+</li></ul>
       }
 
       expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)

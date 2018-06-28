@@ -44,8 +44,7 @@ module GovukTechDocs
             end
           # Avoid redirect pages
           next if content.include? "http-equiv=refresh"
-          
-          # If this page has children, just print the title and recursively 
+          # If this page has children, just print the title and recursively
           # render the children.
           # If not, print the heading structure.
           # We avoid printing the children of the root index.html as it is the
@@ -61,7 +60,7 @@ module GovukTechDocs
                 url: resource.url,
                 max_level: config[:tech_docs][:max_toc_heading_level]
               )
-          end            
+          end
         end
         output
       end
