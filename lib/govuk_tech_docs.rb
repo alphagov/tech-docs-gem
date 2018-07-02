@@ -94,13 +94,12 @@ module GovukTechDocs
     end
 
     context.activate :search do |search|
-
       search.resources = ['']
 
       search.fields = {
-        title:   {boost: 100, store: true, required: true},
-        content: {boost: 50, store: true},
-        url:     {index: false, store: true},
+        title:   { boost: 100, store: true, required: true },
+        content: { boost: 50, store: true },
+        url:     { index: false, store: true },
       }
     end
   end
