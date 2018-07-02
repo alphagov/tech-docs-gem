@@ -28,6 +28,14 @@ Adds a [Google Site Verification code](https://support.google.com/webmasters/ans
 google_site_verification: TvDTuyvdstyusadrCSDrctyd
 ```
 
+## `search`
+
+Enables search functionality. This indexes pages only and is not recommended for single-page sites.
+
+```yaml
+search: true
+```
+
 ## `header_links`
 
 Right hand side navigation.
