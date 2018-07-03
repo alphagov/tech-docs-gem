@@ -1,30 +1,20 @@
 module GovukTechDocs
-  # Helper included
-  module ApiReferenceHelper
-    def api_reference
-      ApiReference.new(config)
-    end
-  end
-
   class ApiReference
-    attr_reader :config
-
-    def initialize(config)
-      # @text = text
-      @config = config
-
-      print config
-    end
-
     def api(text)
-      # @TODO Need to grab the config object.
-      #
-      # @TODO if no text then output everything
+      # Need to grab the config object.
+      config = YAML.load_file('config/tech-docs.yml')
+
+      # If no api path then just return the text.
+      if config["api_path"].to_s.empty?
+        return text
+      end
 
       # @TODO I think this is overkill at the moment.
       map = {
           "api&gt;" => ""
       }
+
+      # @TODO if there is just api> then print everything
 
       regexp = map.map { |k, _| Regexp.escape(k) }.join("|")
 
