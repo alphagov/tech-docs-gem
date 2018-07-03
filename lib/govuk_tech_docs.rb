@@ -36,7 +36,8 @@ module GovukTechDocs
     context.set :markdown_engine, :redcarpet
     context.set :markdown,
         renderer: TechDocsHTMLRenderer.new(
-          with_toc_data: true
+          with_toc_data: true,
+          api: true
         ),
         fenced_code_blocks: true,
         tables: true,

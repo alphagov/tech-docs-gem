@@ -1,8 +1,13 @@
 require 'middleman-core/renderers/redcarpet'
+require 'govuk_tech_docs/api_reference'
 
 module GovukTechDocs
   class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     include Redcarpet::Render::SmartyPants
+
+    def paragraph(text)
+      ApiReference.new.api("<p>#{text.strip}</p>\n")
+    end
 
     def header(text, level)
       anchor = UniqueIdentifierGenerator.instance.create(text, level)
