@@ -27,7 +27,7 @@ prevent_indexing: false
 
 google_site_verification: dstbao8TVS^DRVDS&rv76
 
-search: true
+enable_search: true
 
 show_contribution_banner: true
 

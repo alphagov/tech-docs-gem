@@ -93,7 +93,7 @@ module GovukTechDocs
       end
     end
 
-    if context.config[:tech_docs][:search]
+    if context.config[:tech_docs][:enable_search]
       context.activate :search do |search|
         search.resources = ['']
 
