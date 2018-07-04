@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0
+
+Adds multiple page navigation support and collapsible top level navigation
+items. When enabled the table of contents will display other pages on the site.
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/27
+
 ## 1.3.1
 
 Minor update to Google Analytics tracking

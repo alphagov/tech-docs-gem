@@ -13,6 +13,7 @@ RSpec.describe "The tech docs template" do
     then_there_is_a_search_form
     then_there_is_a_source_footer
     then_the_page_highlighted_in_the_navigation_is("Documentation")
+    then_there_are_navigation_headings_from_other_pages
 
     and_there_are_proper_meta_tags
     and_redirects_are_working
@@ -63,6 +64,10 @@ RSpec.describe "The tech docs template" do
 
   def then_the_page_highlighted_in_the_navigation_is(link_label)
     expect(page.find('li.active a').text).to eq(link_label)
+  end
+
+  def then_there_are_navigation_headings_from_other_pages
+    expect(page).to have_css '.toc__list a', text: 'A subheader'
   end
 
   def when_i_view_a_proxied_page
