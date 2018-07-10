@@ -1,33 +1,62 @@
+require 'openapi3_parser'
+
 module GovukTechDocs
   class ApiReference
-    def api(text)
+    def initialize
       # Need to grab the config object.
-      config = YAML.load_file('config/tech-docs.yml')
+      @config = YAML.load_file('config/tech-docs.yml')
 
-      # If no api path then just return the text.
-      if config["api_path"].to_s.empty?
-        return text
+      # If no api path then just return.
+      if @config["api_path"].to_s.empty?
+        # @TODO Throw a middleman error?
+        return
       end
 
-      # @TODO I think this is overkill at the moment.
-      map = {
-          "api&gt;" => ""
-      }
+      # Load api file and set existence flag.
+      if File.exists?(@config["api_path"])
+        @api_parser = true
 
-      # @TODO if there is just api> then print everything
+        @document = Openapi3Parser.load_file(@config["api_path"])
+      else
+        # @TODO Throw a middleman error?
+        @api_parser = false
+      end
+    end
 
-      regexp = map.map { |k, _| Regexp.escape(k) }.join("|")
+    def api(text)
+      if @api_parser == true
 
-      if md = text.match(/^<p>(#{regexp})/)
-        key = md.captures[0]
-        text.gsub!(/#{Regexp.escape(key)}\s+?/, "")
+        map = {
+            "api&gt;" => ""
+        }
 
-        # @TODO This should be a template file.
-        return <<-EOH.gsub(/^ {8}/, "")
-        <div class="api-builder">
-        <pre>#{text} </pre>
-        </div>
-        EOH
+        # @TODO if there is just api> then print everything
+
+        regexp = map.map {|k, _| Regexp.escape(k)}.join("|")
+
+        if md = text.match(/^<p>(#{regexp})/)
+          key = md.captures[0]
+          text.gsub!(/#{Regexp.escape(key)}\s+?/, "")
+
+          # Strip paragraph tags from text
+          text = text.gsub(/<\/?[^>]*>/, "")
+          text = text.strip
+
+          # Call api parser on text
+          api_data = @document.paths[text]
+
+          # @TODO This should be a template file.
+          return <<-EOH.gsub(/^ {8}/, "")
+          <div class="api-builder">
+            <pre>#{text}
+              #{api_data.node_data}
+            </pre>
+          </div>
+          EOH
+        else
+          return text
+        end
+
       else
         return text
       end
