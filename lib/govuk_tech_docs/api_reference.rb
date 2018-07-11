@@ -1,3 +1,4 @@
+require 'erb'
 require 'openapi3_parser'
 
 module GovukTechDocs
@@ -45,14 +46,10 @@ module GovukTechDocs
           # Call api parser on text
           api_data = @document.paths[text]
 
-          # @TODO This should be a template file.
-          return <<-EOH.gsub(/^ {8}/, "")
-          <div class="api-builder">
-            <pre>#{text}
-              #{api_data.node_data}
-            </pre>
-          </div>
-          EOH
+          template_path = File.join( File.dirname(__FILE__), 'api_reference.html.erb')
+          template = File.open(template_path, 'r').read
+          renderer = ERB.new(template)
+          return renderer.result(binding)
         else
           return text
         end
