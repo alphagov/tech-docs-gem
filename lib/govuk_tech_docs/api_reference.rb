@@ -59,12 +59,13 @@ module GovukTechDocs
           text = text.strip
 
           # Call api parser on text
-          api_data = @document.paths[text]
+          path = @document.paths[text]
 
-          template_path = File.join( File.dirname(__FILE__), 'api_reference.html.erb')
+          template_path = File.join( File.dirname(__FILE__), 'path.html.erb')
           template = File.open(template_path, 'r').read
           renderer = ERB.new(template)
-          return renderer.result(binding)
+          output = renderer.result(binding)
+          return output
         else
           return text
         end
