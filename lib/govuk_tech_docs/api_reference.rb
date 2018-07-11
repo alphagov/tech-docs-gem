@@ -1,5 +1,6 @@
 require 'erb'
 require 'openapi3_parser'
+require 'uri'
 
 module GovukTechDocs
   class ApiReference
@@ -13,15 +14,31 @@ module GovukTechDocs
         return
       end
 
-      # Load api file and set existence flag.
-      if File.exists?(@config["api_path"])
+      # Is the api_path a url or path?
+      if uri?@config["api_path"]
         @api_parser = true
 
-        @document = Openapi3Parser.load_file(@config["api_path"])
+        @document = Openapi3Parser.load_url(@config["api_path"])
       else
-        # @TODO Throw a middleman error?
-        @api_parser = false
+        # Load api file and set existence flag.
+        if File.exists?(@config["api_path"])
+          @api_parser = true
+
+          @document = Openapi3Parser.load_file(@config["api_path"])
+        else
+          # @TODO Throw a middleman error?
+          @api_parser = false
+        end
       end
+    end
+
+    def uri?(string)
+      uri = URI.parse(string)
+      %w( http https ).include?(uri.scheme)
+    rescue URI::BadURIError
+      false
+    rescue URI::InvalidURIError
+      false
     end
 
     def api(text)
@@ -30,8 +47,6 @@ module GovukTechDocs
         map = {
             "api&gt;" => ""
         }
-
-        # @TODO if there is just api> then print everything
 
         regexp = map.map {|k, _| Regexp.escape(k)}.join("|")
 
