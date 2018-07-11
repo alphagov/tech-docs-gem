@@ -10,5 +10,24 @@
 <% if operation.description %>
   <p><%= operation.description %></p>
 <% end %>
+<% if operation.parameters.any? %>
+<h3 id="test-2">Parameters</h3>
+<table>
+<thead>
+<tr><th>Name</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<% operation.parameters.each do |parameter| %>
+<tr>
+<td><%= parameter.name %></td>
+<td><%= parameter.in %></td>
+<td><%= parameter.schema.type %></td>
+<td><%= parameter.required? %></td>
+<td><%= parameter.description %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<% end %>
 <% end %>
 </div>
