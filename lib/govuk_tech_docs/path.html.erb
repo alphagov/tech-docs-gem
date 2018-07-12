@@ -3,7 +3,8 @@
 
 <% operations = {'get' => path.get, 'put' => path.put, 'post' => path.post, 'delete' => path.delete, 'patch' => path.patch} %>
 <% operations.compact.each do |key,operation| %>
-<h2 id="test"><%= key.upcase %> <%= text %></h2>
+<% id = key + text; %>
+<h2 id="<%=  id.parameterize %>"><%= key.upcase %> <%= text %></h2>
 <% if operation.summary %>
   <p><em><%= operation.summary %></em></p>
 <% end %>
@@ -12,7 +13,7 @@
 <% end %>
 
 <% if operation.parameters.any? %>
-<h3 id="test-2">Parameters</h3>
+<h3 id="<%= pid = id + '-parameters'; pid.parameterize %>">Parameters</h3>
 <table>
 <thead>
 <tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
@@ -32,7 +33,7 @@
 <% end %>
 
 <% if operation.responses.any? %>
-<h3 id="test-3">Responses</h3>
+<h3 id="<%= rid = id + '-responses'; rid.parameterize %>">Responses</h3>
 <table>
 <thead>
 <tr><th>Status</th><th>Description</th><th>Schema</th></tr>
