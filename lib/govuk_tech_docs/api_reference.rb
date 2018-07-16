@@ -58,14 +58,19 @@ module GovukTechDocs
           text = text.gsub(/<\/?[^>]*>/, "")
           text = text.strip
 
-          # Call api parser on text
-          path = @document.paths[text]
+          if text == 'api&gt;'
+            return api_full
+          else
+            # Call api parser on text
+            path = @document.paths[text]
 
-          template_path = File.join( File.dirname(__FILE__), 'path.html.erb')
-          template = File.open(template_path, 'r').read
-          renderer = ERB.new(template)
-          output = renderer.result(binding)
-          return output
+            template_path = File.join( File.dirname(__FILE__), 'path.html.erb')
+            template = File.open(template_path, 'r').read
+            renderer = ERB.new(template)
+            output = renderer.result(binding)
+            return output
+          end
+
         else
           return text
         end
@@ -73,6 +78,22 @@ module GovukTechDocs
       else
         return text
       end
+    end
+
+    def api_full
+      info = api_info
+
+      paths = @document.paths.node_data
+
+      template_path = File.join( File.dirname(__FILE__), 'api_reference_full.html.erb')
+      template = File.open(template_path, 'r').read
+      renderer = ERB.new(template)
+      output = renderer.result(binding)
+      return output
+    end
+
+    def api_info
+      return @document.info.node_data
     end
   end
 end
