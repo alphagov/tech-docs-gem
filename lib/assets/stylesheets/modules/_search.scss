@@ -1,0 +1,137 @@
+@include screen {
+  .page-title + .search {
+    margin-top: $gutter;
+  }
+
+  .search {
+    @include core-16;
+    margin-bottom: $gutter-half;
+    height: 40px;
+    .search__label {
+      position: absolute;
+      left: -9999em;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    .form-control {
+      @include box-sizing(border-box);
+      @include core-19;
+      width: 100%;
+      padding: 5px 4px 2px;
+      border: 2px solid $text-colour;
+      appearance: none;
+
+      &:focus {
+        outline: 3px solid $focus-colour;
+        outline-offset: 0;
+      }
+    }
+  }
+}
+
+@include print {
+  .search {
+    display: none;
+  }
+}
+
+html.has-search-results-open {
+  overflow: hidden;
+  .app-pane__content {
+    overflow: hidden;
+  }
+}
+.search-results {
+  display: none;
+  &.is-open {
+    display: block;
+  }
+}
+
+.search-results {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 600;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    @include media(tablet) {
+      padding: 22px 20px 0 30px;
+      top: 0;
+      // The width of the sidebar
+      left: 330px;
+    }
+  }
+.search-results__inner {
+  position: relative;
+  background: $white;
+  border-top: 1px solid $grey-2;
+  max-width: 40rem;
+  padding: 15px;
+  @include media(tablet) {
+    padding: 15px 200px 50px 40px;
+    border: 1px solid $grey-2;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: -9px;
+      width: 10px;
+      height: 20px;
+      background: no-repeat file-url('search-result-caret.svg') center right;
+      background-size: contain;
+    }
+  }
+}
+.search-results__title {
+  @include bold-27;
+  margin-bottom: $gutter;
+}
+.search-results__close {
+  @include core-16;
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  &:focus {
+    outline: 3px solid $focus-colour;;
+    outline-offset: 0;
+  }
+  &::after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 8px;
+    height: 18px;
+    width: 18px;
+    background: no-repeat file-url('govuk-icn-close.png') center right;
+    @include device-pixel-ratio {
+      background-image: file-url('govuk-icn-close@2x.png');
+    }
+    background-size: contain;
+  }
+}
+.search-results__close-label {
+  position: absolute;
+  left: -9999em;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.search-result {
+  margin-bottom: $gutter;
+}
+.search-result mark {
+  background-color: transparent;
+  color: inherit;
+  font-weight: bold;
+}
