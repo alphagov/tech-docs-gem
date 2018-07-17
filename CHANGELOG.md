@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.5.0
+
+### New feature: Search
+
+Adds search functionality. This indexes pages only and is not recommended for single-page sites. To enable write `enable_search: true` in in tech-docs.yml.
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/28
+
+### Google Analytics tracking for old headings
+
+An event category 'Broken fragment ID' will be pushed to Google Analytics when a user lands on a page with a URL that points to a fragment ID that does not exist on the page.
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/30
+
 ## 1.4.0
 
 Adds multiple page navigation support and collapsible top level navigation
