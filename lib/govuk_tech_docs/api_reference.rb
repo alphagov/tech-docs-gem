@@ -30,6 +30,10 @@ module GovukTechDocs
           @api_parser = false
         end
       end
+
+      # Load template files
+      @render_api_full = get_renderer('api_reference_full.html.erb')
+      @render_path = get_renderer('path.html.erb')
     end
 
     def uri?(string)
@@ -64,10 +68,7 @@ module GovukTechDocs
             # Call api parser on text
             path = @document.paths[text]
 
-            template_path = File.join( File.dirname(__FILE__), 'path.html.erb')
-            template = File.open(template_path, 'r').read
-            renderer = ERB.new(template)
-            output = renderer.result(binding)
+            output = @render_path.result(binding)
             return output
           end
 
@@ -83,17 +84,27 @@ module GovukTechDocs
     def api_full
       info = api_info
 
-      paths = @document.paths.node_data
-
-      template_path = File.join( File.dirname(__FILE__), 'api_reference_full.html.erb')
-      template = File.open(template_path, 'r').read
-      renderer = ERB.new(template)
-      output = renderer.result(binding)
+      paths = ''
+      paths_data = @document.paths
+      paths_data.each do |path_data|
+        # For some reason paths.each returns an array of arrays [title, object]
+        # instead of an array of objects
+        text = path_data[0]
+        path = path_data[1]
+        paths += @render_path.result(binding)
+      end
+      output = @render_api_full.result(binding)
       return output
     end
 
     def api_info
       return @document.info.node_data
+    end
+
+    def get_renderer(file)
+      template_path = File.join( File.dirname(__FILE__), file)
+      template = File.open(template_path, 'r').read
+      return ERB.new(template)
     end
   end
 end

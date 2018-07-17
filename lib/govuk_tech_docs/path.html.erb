@@ -1,10 +1,12 @@
 <div class="api-builder">
-  <pre><%= path.node_data %></pre>
-
 <% operations = {'get' => path.get, 'put' => path.put, 'post' => path.post, 'delete' => path.delete, 'patch' => path.patch} %>
 <% operations.compact.each do |key,operation| %>
+
+<% if text %>
 <% id = key + text; %>
 <h2 id="<%=  id.parameterize %>"><%= key.upcase %> <%= text %></h2>
+<% end %>
+
 <% if operation.summary %>
   <p><em><%= operation.summary %></em></p>
 <% end %>
@@ -43,7 +45,7 @@
 <tr>
 <td><%= key %></td>
 <td><%= response.description %></td>
-<td><%= response.content['application/json'].schema.node_context.source_location %></td>
+<td><%= response.content['application/json'].schema.node_context.source_location if response.content['application/json'] %></td>
 </tr>
 <% end %>
 </tbody>
