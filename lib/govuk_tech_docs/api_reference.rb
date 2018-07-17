@@ -23,7 +23,6 @@ module GovukTechDocs
         # Load api file and set existence flag.
         if File.exists?(@config["api_path"])
           @api_parser = true
-
           @document = Openapi3Parser.load_file(@config["api_path"])
         else
           # @TODO Throw a middleman error?
@@ -83,6 +82,7 @@ module GovukTechDocs
 
     def api_full
       info = api_info
+      server = api_server
 
       paths = ''
       paths_data = @document.paths
@@ -98,7 +98,11 @@ module GovukTechDocs
     end
 
     def api_info
-      return @document.info.node_data
+      return @document.info
+    end
+
+    def api_server
+      return @document.server
     end
 
     def get_renderer(file)

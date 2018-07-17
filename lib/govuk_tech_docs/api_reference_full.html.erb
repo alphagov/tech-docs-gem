@@ -1,6 +1,5 @@
-<div class="api-builder">
-  <pre>
-    <%= info %>
-  </pre>
-  <%= paths %>
-</div>
+<h1 id="<%=  info.title.parameterize %>"><%= info.title %> v<%= info.version %></h1>
+<%= info.description %>
+<h2 id="base-url">Base URL</h2>
+<p><strong><%= server.url %></strong></p>
+<%= paths %>
