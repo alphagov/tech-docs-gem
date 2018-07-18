@@ -1,5 +1,7 @@
 <h1 id="<%=  info.title.parameterize %>"><%= info.title %> v<%= info.version %></h1>
 <%= info.description %>
+<% if server %>
 <h2 id="base-url">Base URL</h2>
 <p><strong><%= server.url %></strong></p>
+<% end %>
 <%= paths %>
