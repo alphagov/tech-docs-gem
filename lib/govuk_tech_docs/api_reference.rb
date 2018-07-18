@@ -34,6 +34,7 @@ module GovukTechDocs
       # Load template files
       @render_api_full = get_renderer('api_reference_full.html.erb')
       @render_path = get_renderer('path.html.erb')
+      @render_schema = get_renderer('schema.html.erb')
     end
 
     def uri?(string)
@@ -67,7 +68,6 @@ module GovukTechDocs
           else
             # Call api parser on text
             path = @document.paths[text]
-            binding.pry
             output = @render_path.result(binding)
             return output
           end
@@ -94,6 +94,14 @@ module GovukTechDocs
         path = path_data[1]
         paths += @render_path.result(binding)
       end
+      schemas = ''
+      schemas_data = @document.components.schemas
+      schemas_data.each do |schema_data|
+        title = schema_data[0]
+        schema = schema_data[1]
+        # binding.pry
+        schemas += @render_schema.result(binding)
+      end
       output = @render_api_full.result(binding)
       return output
     end
@@ -110,8 +118,7 @@ module GovukTechDocs
       # Schema dictates that it's always components['schemas']
       text = text = text.gsub(/#\/components\/schemas\//, "")
 
-      components = @document.components['schemas'][text].node_data
-
+      components = @document.components['schemas'][text]
       return components
     end
 
