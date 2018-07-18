@@ -11,6 +11,10 @@
     display: block
   }
 }
+.collapsible__heading,
+.toc__list > ul > li > a:link.collapsible__heading {
+  margin-right: 30px;
+}
 .collapsible__toggle {
   position: absolute;
   top: 0;
