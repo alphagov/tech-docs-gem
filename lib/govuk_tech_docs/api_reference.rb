@@ -102,7 +102,7 @@ module GovukTechDocs
     end
 
     def api_server
-      return @document.server
+      return @document.servers
     end
 
     def get_renderer(file)
