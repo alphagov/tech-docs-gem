@@ -105,6 +105,15 @@ module GovukTechDocs
       return @document.servers[0]
     end
 
+    def api_components(text)
+      # Schema dictates that it's always components['schemas']
+      text = text = text.gsub(/#\/components\/schemas\//, "")
+
+      components = @document.components['schemas'][text].node_data
+
+      return components
+    end
+
     def get_renderer(file)
       template_path = File.join( File.dirname(__FILE__), file)
       template = File.open(template_path, 'r').read
