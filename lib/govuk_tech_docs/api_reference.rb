@@ -1,6 +1,7 @@
 require 'erb'
 require 'openapi3_parser'
 require 'uri'
+require 'pry'
 
 module GovukTechDocs
   class ApiReference
@@ -66,7 +67,7 @@ module GovukTechDocs
           else
             # Call api parser on text
             path = @document.paths[text]
-
+            binding.pry
             output = @render_path.result(binding)
             return output
           end
