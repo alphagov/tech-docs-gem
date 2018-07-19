@@ -1,5 +1,5 @@
 <div class="api-builder">
-<% operations = {'get' => path.get, 'put' => path.put, 'post' => path.post, 'delete' => path.delete, 'patch' => path.patch} %>
+<% operations = get_operations(path) %>
 <% operations.compact.each do |key,operation| %>
 
 <% if text %>

@@ -123,6 +123,16 @@ module GovukTechDocs
       return name
     end
 
+    def get_operations(path)
+      operations = {}
+      operations['get'] = path.get if defined? path.get
+      operations['put'] = path.put if defined? path.put
+      operations['post'] = path.post if defined? path.post
+      operations['delete'] = path.delete if defined? path.delete
+      operations['patch'] = path.patch if defined? path.patch
+      return operations
+    end
+
     def get_renderer(file)
       template_path = File.join( File.dirname(__FILE__), file)
       template = File.open(template_path, 'r').read
