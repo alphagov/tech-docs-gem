@@ -8,7 +8,7 @@
 </thead>
 <tbody>
 <% schema.properties.each do |property| %>
-<tr><% binding.pry %>
+<tr>
 <td><%= property[0] %></td>
 <td><%= property[1].type %></td>
 <td><%= property[1].required.present? %></td>
