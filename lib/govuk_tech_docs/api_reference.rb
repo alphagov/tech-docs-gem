@@ -99,7 +99,6 @@ module GovukTechDocs
       schemas_data.each do |schema_data|
         title = schema_data[0]
         schema = schema_data[1]
-        # binding.pry
         schemas += @render_schema.result(binding)
       end
       output = @render_api_full.result(binding)
@@ -114,12 +113,14 @@ module GovukTechDocs
       return @document.servers[0]
     end
 
-    def api_components(text)
+    def get_schema_name(text)
+      if !text.is_a?(String)
+        return nil
+      end
       # Schema dictates that it's always components['schemas']
-      text = text = text.gsub(/#\/components\/schemas\//, "")
+      name = text.gsub(/#\/components\/schemas\//, "")
 
-      components = @document.components['schemas'][text]
-      return components
+      return name
     end
 
     def get_renderer(file)
