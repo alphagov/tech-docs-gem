@@ -1,8 +1,8 @@
 @include screen {
   .toc {
 
-    @include core-16;
-    padding: $gutter-half;
+    @include govuk-font(16);
+    padding: $govuk-gutter-half;
 
     ul {
       list-style: none;
@@ -16,7 +16,7 @@
 
     a:link, a:visited {
       text-decoration: none;
-      color: $link-colour;
+      color: govuk-colour("blue");
     }
 
     a:hover {
@@ -27,50 +27,50 @@
 
       a:link, a:visited {
         display: block;
-        padding: 8px 40px 8px $gutter-half;
-        margin: 0 $gutter-half * -1;
+        padding: 8px 40px 8px $govuk-gutter-half;
+        margin: 0 $govuk-gutter-half * -1;
         border-left: 5px solid transparent;
 
-        @include media(tablet) {
+        @include govuk-media-query($from: tablet) {
           &.toc-link--in-view {
-            color: $link-active-colour;
-            border-left-color: $link-active-colour;
-            background-color: $grey-4;
+            color: govuk-colour("light-blue");
+            border-left-color: govuk-colour("light-blue");
+            background-color: govuk-colour("grey-4");
           }
         }
       }
 
       // Top level
       > ul > li > a:link {
-        @include bold-19;
+        @include govuk-font(19, $weight: bold);
       }
 
-      @include media(tablet) {
+      @include govuk-media-query($from: tablet) {
         // Level 3
         li li li {
           a:link, a:visited {
-            padding-left: $gutter-half * 2;
+            padding-left: $govuk-gutter-half * 2;
           }
         }
 
         // Level 4
         li li li li {
           a:link, a:visited {
-            padding-left: $gutter-half * 4;
+            padding-left: $govuk-gutter-half * 4;
           }
         }
 
         // Level 5
         li li li li li {
           a:link, a:visited {
-            padding-left: $gutter-half * 5;
+            padding-left: $govuk-gutter-half * 5;
           }
         }
 
         // Level 6
         li li li li li li {
           a:link, a:visited {
-            padding-left: $gutter-half * 6;
+            padding-left: $govuk-gutter-half * 6;
           }
         }
       }
@@ -81,9 +81,9 @@
     display: none;
   }
 
-  @include media(tablet) {
+  @include govuk-media-query($from: tablet) {
     .toc {
-      padding: 22px $gutter $gutter-half;
+      padding: 22px $govuk-gutter $govuk-gutter-half;
     }
 
     // Prevent the fixedsticky spacer from appearing if the browser is resized
@@ -93,7 +93,7 @@
     }
   }
 
-  @include media(mobile) {
+  @include govuk-media-query($until: tablet) {
     .js {
       .toc {
         display: none;
@@ -117,16 +117,16 @@
           position: relative;
           z-index: 10;
 
-          padding: $gutter-half $gutter-half 10px;
+          padding: $govuk-gutter-half $govuk-gutter-half 10px;
 
-          background: $grey-4;
+          background: govuk-colour("grey-4");
           @supports(backdrop-filter: blur(2px)) {
-            background: transparentize($grey-4, 0.05);
+            background: transparentize(govuk-colour("grey-4"), 0.05);
             backdrop-filter: blur(2px);
           }
-          border-bottom: 1px solid $grey-2;
+          border-bottom: 1px solid govuk-colour("grey-2");
           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-          color: $text-colour;
+          color: $govuk-text-colour;
           text-decoration: none;
         }
 
@@ -135,19 +135,19 @@
           height: 20px;
           float: right;
 
-          background-image: file-url('govuk-icn-numbered-list.png');
+          background-image: govuk-image-url('govuk-icn-numbered-list.png');
           background-repeat: no-repeat;
           background-position: left center;
 
-          @include device-pixel-ratio {
-            background-image: file-url('govuk-icn-numbered-list@2x.png');
+          @include govuk-device-pixel-ratio {
+            background-image: govuk-image-url('govuk-icn-numbered-list@2x.png');
             background-size: 20px 20px;
           }
         }
       }
 
       .toc__list {
-        margin-right: $gutter * 1.5;
+        margin-right: $govuk-gutter * 1.5;
       }
 
       .toc__close {
@@ -160,12 +160,12 @@
         width: 20px;
         height: 20px;
 
-        background-image: file-url('govuk-icn-close.png');
+        background-image: govuk-image-url('govuk-icn-close.png');
         background-repeat: no-repeat;
         background-position: left center;
 
-        @include device-pixel-ratio {
-          background-image: file-url('govuk-icn-close@2x.png');
+        @include govuk-device-pixel-ratio {
+          background-image: govuk-image-url('govuk-icn-close@2x.png');
           background-size: 20px 20px;
         }
       }
@@ -198,9 +198,9 @@
           -webkit-overflow-scrolling: touch;
           -ms-overflow-style: none;
 
-          background: $white;
+          background: govuk-colour("white");
           @supports(backdrop-filter: blur(2px)) {
-            background: transparentize($white, 0.05);
+            background: transparentize(govuk-colour("white"), 0.05);
             backdrop-filter: blur(2px);
           }
         }

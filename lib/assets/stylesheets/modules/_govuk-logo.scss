@@ -22,17 +22,22 @@
   display: inline-block;
 
   @include screen {
-    background-image: file-url('/images/gov.uk_logotype_crown.png');
+    background-image: govuk-image-url('gov.uk_logotype_crown.png');
     background-repeat: no-repeat;
 
-    @include device-pixel-ratio {
-      background-image: file-url('/images/gov.uk_logotype_crown-2x.png');
+    @include govuk-device-pixel-ratio {
+      background-image: govuk-image-url('gov.uk_logotype_crown-2x.png');
       background-size: 36px 32px;
     }
 
-    @include media(tablet) {
+    @include govuk-media-query($from: tablet) {
       margin-right: 8px;
       background-position: 0 1px;
+    }
+
+    svg {
+      display: inline-block;
+      margin-bottom: -3px;
     }
   }
 }

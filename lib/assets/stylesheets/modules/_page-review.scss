@@ -1,12 +1,12 @@
 .page-expiry--not-expired {
-  padding: $gutter-half;
-  margin-top: $gutter;
-  margin-bottom: $gutter;
-  background-color: $govuk-blue;
-  color: $page-colour;
+  padding: $govuk-gutter-half;
+  margin-top: $govuk-gutter;
+  margin-bottom: $govuk-gutter;
+  background-color: govuk-colour("blue");
+  color: govuk-colour("white");
 
-  @include media(tablet) {
-    padding: $gutter;
+  @include govuk-media-query($from: tablet) {
+    padding: $govuk-gutter;
   }
 
   a:link,
@@ -15,20 +15,20 @@
   }
 
   a:hover {
-    color: $link-hover-colour;
+    color: govuk-colour("light-blue");
   }
 
   a:active {
-    color: $link-active-colour;
+    color: govuk-colour("light-blue");
   }
 }
 
 .page-expiry--expired {
   display: none;
 
-  padding: $gutter-half;
-  margin-top: $gutter * 2;
-  background-color: $error-background;
-  border: 1px solid $error-colour;
-  color: $error-colour;
+  padding: $govuk-gutter-half;
+  margin-top: $govuk-gutter * 2;
+  background-color: govuk-colour("grey-4");
+  border: 1px solid $govuk-error-colour;
+  color: $govuk-error-colour;
 }

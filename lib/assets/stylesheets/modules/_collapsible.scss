@@ -14,7 +14,7 @@
 .collapsible__toggle {
   position: absolute;
   top: 0;
-  right: -25px;
+  right: $govuk-gutter-half * -1;
   width: 50px;
   height: 40px;
   overflow: hidden;
@@ -24,7 +24,7 @@
   color: inherit;
   padding: 0;
   &:focus {
-    outline: 3px solid $focus-colour;
+    outline: 3px solid $govuk-focus-colour;
   }
 }
 .collapsible__toggle-icon {
@@ -34,12 +34,12 @@
   &::after {
     content: '';
     display: block;
-    background: no-repeat file-url('arrow-down.svg') center center;
+    background: govuk-image-url('arrow-down.svg') no-repeat center center;
     background-size: 18px auto;
     width: 20px;
     height: 40px;
   }
   .collapsible.is-open &::after {
-    background-image: file-url('arrow-up.svg');
+    background-image: govuk-image-url('arrow-up.svg');
   }
 }

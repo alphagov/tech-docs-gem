@@ -1,11 +1,11 @@
 @include screen {
   .page-title + .search {
-    margin-top: $gutter;
+    margin-top: $govuk-gutter;
   }
 
   .search {
-    @include core-16;
-    margin-bottom: $gutter-half;
+    @include govuk-font(16);
+    margin-bottom: $govuk-gutter-half;
     height: 40px;
     .search__label {
       position: absolute;
@@ -16,15 +16,15 @@
       overflow: hidden;
     }
     .form-control {
-      @include box-sizing(border-box);
-      @include core-19;
+      box-sizing: border-box;
+      @include govuk-font(19);
       width: 100%;
       padding: 5px 4px 2px;
-      border: 2px solid $text-colour;
+      border: 2px solid $govuk-text-colour;
       appearance: none;
 
       &:focus {
-        outline: 3px solid $focus-colour;
+        outline: 3px solid $govuk-focus-colour;
         outline-offset: 0;
       }
     }
@@ -60,7 +60,7 @@ html.has-search-results-open {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
-    @include media(tablet) {
+    @include govuk-media-query($from: tablet) {
       padding: 22px 20px 0 30px;
       top: 0;
       // The width of the sidebar
@@ -69,13 +69,13 @@ html.has-search-results-open {
   }
 .search-results__inner {
   position: relative;
-  background: $white;
-  border-top: 1px solid $grey-2;
+  background: govuk-colour("white");
+  border-top: 1px solid govuk-colour("grey-2");
   max-width: 40rem;
   padding: 15px;
-  @include media(tablet) {
+  @include govuk-media-query($from: tablet) {
     padding: 15px 200px 50px 40px;
-    border: 1px solid $grey-2;
+    border: 1px solid govuk-colour("grey-2");
     &::after {
       content: '';
       position: absolute;
@@ -83,17 +83,18 @@ html.has-search-results-open {
       left: -9px;
       width: 10px;
       height: 20px;
-      background: no-repeat file-url('search-result-caret.svg') center right;
+      background: no-repeat govuk-image-url('search-result-caret.svg') center right;
       background-size: contain;
     }
   }
 }
 .search-results__title {
-  @include bold-27;
-  margin-bottom: $gutter;
+  @include govuk-font(27, $weight: bold);
+  margin-bottom: $govuk-gutter;
 }
 .search-results__close {
-  @include core-16;
+  cursor: pointer;
+  @include govuk-font(16);
   position: absolute;
   top: 18px;
   right: 20px;
@@ -102,7 +103,7 @@ html.has-search-results-open {
   border: 0;
   padding: 0;
   &:focus {
-    outline: 3px solid $focus-colour;;
+    outline: 3px solid $govuk-focus-colour;;
     outline-offset: 0;
   }
   &::after {
@@ -112,9 +113,9 @@ html.has-search-results-open {
     padding-left: 8px;
     height: 18px;
     width: 18px;
-    background: no-repeat file-url('govuk-icn-close.png') center right;
-    @include device-pixel-ratio {
-      background-image: file-url('govuk-icn-close@2x.png');
+    background: no-repeat govuk-image-url('govuk-icn-close.png') center right;
+    @include govuk-device-pixel-ratio {
+      background-image: govuk-image-url('govuk-icn-close@2x.png');
     }
     background-size: contain;
   }
@@ -128,7 +129,7 @@ html.has-search-results-open {
   overflow: hidden;
 }
 .search-result {
-  margin-bottom: $gutter;
+  margin-bottom: $govuk-gutter;
 }
 .search-result mark {
   background-color: transparent;

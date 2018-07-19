@@ -1,5 +1,5 @@
 @include screen {
-  @include media(tablet) {
+  @include govuk-media-query($from: tablet) {
     $toc-width: 330px;
 
     .flexbox, .flexboxtweener {
@@ -41,7 +41,7 @@
       .app-pane__toc {
         flex: 0 0 auto;
         width: $toc-width;
-        border-right: 1px solid $grey-2;
+        border-right: 1px solid govuk-colour("grey-2");
       }
 
       .app-pane__content {

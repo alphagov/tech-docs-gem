@@ -42,24 +42,24 @@
 $active-nav-color: #1d8feb;
 
 .header {
-  @extend %contain-floats;
+  @include govuk-clearfix;
 
   @include screen {
-    background: $black;
-    color: $white;
-    border-bottom: 10px solid $white;
+    background: govuk-colour("black");
+    color: govuk-colour("white");
+    border-bottom: 10px solid govuk-colour("white");
   }
 }
 
 .header__container {
-  @extend %site-width-container;
-  @extend %contain-floats;
+  @include govuk-width-container;
+  @include govuk-clearfix;
   zoom: 1;
 
   padding: 9px 0 6px;
 
   @include screen {
-    border-bottom: 10px solid $mainstream-brand;
+    border-bottom: 10px solid govuk-colour("blue");
     margin-bottom: -10px;
   }
 }
@@ -68,17 +68,17 @@ $active-nav-color: #1d8feb;
   margin-bottom: 0;
 
   @include screen {
-    border-bottom: 10px solid $mainstream-brand;
+    border-bottom: 10px solid govuk-colour("blue");
   }
 
   .header__container {
     border-bottom: none;
     width: auto;
     max-width: none;
-    margin: 0 $gutter-half;
+    margin: 0 $govuk-gutter-half;
 
-    @include media(tablet) {
-      margin: 0 $gutter;
+    @include govuk-media-query($from: tablet) {
+      margin: 0 $govuk-gutter;
     }
   }
 }
@@ -95,7 +95,7 @@ $active-nav-color: #1d8feb;
 
 .header__brand {
   font-size: 30px;
-  
+
   // Give brand focus outline on mobile
   &:after {
     content: ".";
@@ -118,14 +118,14 @@ $active-nav-color: #1d8feb;
 
   @include screen {
     a:link, a:visited {
-      color: $white;
+      color: govuk-colour("white");
     }
 
     a:focus {
       background-color: inherit;
     }
 
-    @include media(tablet) {
+    @include govuk-media-query($from: tablet) {
       float: left;
 
       .govuk-logo {
@@ -134,25 +134,25 @@ $active-nav-color: #1d8feb;
 
       a:hover {
         text-decoration: none;
-        border-bottom: 1px solid $white;
+        border-bottom: 1px solid govuk-colour("white");
       }
     }
   }
 
   @include print {
     a:link, a:visited {
-      color: $black;
+      color: govuk-colour("black");
     }
   }
 }
 
 .header__title {
-  @include core-24;
+  @include govuk-font(24);
   display: block;
   float: left;
   clear: left;
 
-  @include media(tablet) {
+  @include govuk-media-query($from: tablet) {
     display: inherit;
     float: none;
     clear: none;
@@ -167,21 +167,22 @@ $active-nav-color: #1d8feb;
   @include screen {
 
     // We want the same font size on mobile as tablet, so we can't use bold-16.
-    @include _core-font-generator(
-      $font-size: 16px,
-      $font-size-640: 16px,
-      $font-size-print: 12pt,
-      $line-height: (20 / 16),
-      $line-height-640: (20 / 16),
-      $font-weight: 700
-    );
+    // @include _core-font-generator(
+    //   $font-size: 16px,
+    //   $font-size-640: 16px,
+    //   $font-size-print: 12pt,
+    //   $line-height: (20 / 16),
+    //   $line-height-640: (20 / 16),
+    //   $font-weight: 700
+    // );
+    @include govuk-font(16, $weight: bold);
 
     clear: both;
 
     padding-top: 10px;
 
     a:link, a:visited {
-      color: $white;
+      color: govuk-colour("white");
       text-decoration: none;
       padding: 8px 0;
       display: inline-block;
@@ -192,7 +193,7 @@ $active-nav-color: #1d8feb;
     }
 
     a:focus, .active a:focus {
-      color: $black;
+      color: govuk-colour("black");
     }
 
     a:hover, a:active {
@@ -200,7 +201,7 @@ $active-nav-color: #1d8feb;
     }
 
     ul {
-      border-top: 1px solid $grey-1;
+      border-top: 1px solid govuk-colour("grey-1");
       margin: 0;
       padding: 8px 0 0;
     }
@@ -210,7 +211,7 @@ $active-nav-color: #1d8feb;
       margin: 2px 0;
     }
 
-    @include media(tablet) {
+    @include govuk-media-query($from: tablet) {
       display: block;
       clear: none;
       padding-top: 2px;
@@ -228,7 +229,7 @@ $active-nav-color: #1d8feb;
 
       li {
         float: left;
-        margin: 12px 0 0 $gutter-half;
+        margin: 12px 0 0 $govuk-gutter-half;
       }
     }
   }
@@ -245,8 +246,8 @@ $active-nav-color: #1d8feb;
 .js {
   .header__navigation {
     display: none;
-    
-    @include media(tablet) {
+
+    @include govuk-media-query($from: tablet) {
       display: block;
     }
   }
@@ -254,9 +255,9 @@ $active-nav-color: #1d8feb;
   .header__navigation-toggle {
     display: block;
     float: right;
-    color: $white;
+    color: govuk-colour("white");
     background: transparent;
-    border: 1px solid $grey-1;
+    border: 1px solid govuk-colour("grey-1");
     border-radius: 3px;
     padding: 2px 6px 1px;
     font-size: 80%;
@@ -266,7 +267,7 @@ $active-nav-color: #1d8feb;
       display: none;
     }
 
-    @include media(tablet) {
+    @include govuk-media-query($from: tablet) {
       display: none;
     }
 

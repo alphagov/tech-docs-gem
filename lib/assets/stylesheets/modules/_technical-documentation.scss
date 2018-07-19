@@ -3,37 +3,41 @@
 @mixin heading-offset($tabletTopMargin) {
   // Scale margins with font size on mobile (16/19ths)
   $mobileTopMargin: ceil($tabletTopMargin * (16 / 19));
-  
+
   // Offset headings down on mobile so that linking to anchors they appear after
   // the sticky 'table of contents' element
-  $stickyTocOffset: 20px + $gutter-half + 10px + 1px;
-  
-  // Pad the heading so that when linking to an anchor there is at most a
-  // $gutter-half (mobile) or $gutter (tablet and above) sized gap between the
-  // top of the viewport and the heading.
-  padding-top: min($mobileTopMargin, $gutter-half) + $stickyTocOffset;
-  margin-top: max(0, $mobileTopMargin - $gutter-half) - $stickyTocOffset;
+  $stickyTocOffset: 20px + $govuk-gutter-half + 10px + 1px;
 
-  @include media(tablet) {
-    padding-top: min($tabletTopMargin, $gutter);
-    margin-top: max(0, $tabletTopMargin - $gutter);
+  // Pad the heading so that when linking to an anchor there is at most a
+  // $govuk-gutter-half (mobile) or $govuk-gutter (tablet and above) sized gap between the
+  // top of the viewport and the heading.
+  padding-top: min($mobileTopMargin, $govuk-gutter-half) + $stickyTocOffset;
+  margin-top: max(0, $mobileTopMargin - $govuk-gutter-half) - $stickyTocOffset;
+
+  @include govuk-media-query($from: tablet) {
+    padding-top: min($tabletTopMargin, $govuk-gutter);
+    margin-top: max(0, $tabletTopMargin - $govuk-gutter);
   }
 }
+
+// TODO: Bring this into the new world
+$govuk-gutter-one-third: $govuk-gutter / 3;
+$govuk-gutter-two-thirds: ($govuk-gutter / 3) * 2;
 
 .technical-documentation {
   // Required for IE11 to render <main> correctly
   display: block;
-  margin: 0 $gutter-half 10px;
+  margin: 0 $govuk-gutter-half 10px;
   max-width: 40em;
-  
-  line-height: 1.4;
-  
-  color: $text-colour;
 
-  @include media(tablet) {
+  line-height: 1.4;
+
+  color: $govuk-text-colour;
+
+  @include govuk-media-query($from: tablet) {
     // We add 2 pixels to the gutter here to ensure there's sufficient spacing between
     // an anchor link (see _anchored-heading.scss) on a heading and the left-hand pane.
-    margin: 0 ($gutter + 2px) $gutter;
+    margin: 0 ($govuk-gutter + 2px) $govuk-gutter;
   }
 
   .has-search-results-open & {
@@ -42,53 +46,53 @@
 
   // Headings
   h1 {
-    @include bold-48;
-    @include heading-offset($gutter * 2);
-    border-top: 5px solid $text-colour;
-    
+    @include govuk-font(48, $weight: bold);
+    @include heading-offset($govuk-gutter * 2);
+    border-top: 5px solid $govuk-text-colour;
+
     &:first-of-type {
-      @include heading-offset($gutter);
+      @include heading-offset($govuk-gutter);
       border-top: none;
     }
   }
 
-  h2 {    
-    @include bold-36;
-    @include heading-offset($gutter * 1.5);
+  h2 {
+    @include govuk-font(36, $weight: bold);
+    @include heading-offset($govuk-gutter * 1.5);
   }
 
   h3, h4, h5, h6 {
-    @include heading-offset($gutter);
+    @include heading-offset($govuk-gutter);
   }
 
   h3 {
-    @include bold-24;
+    @include govuk-font(24, $weight: bold);
   }
 
   h4 {
-    @include bold-19;
+    @include govuk-font(19, $weight: bold);
   }
 
   h5 {
-    @include bold-19;
-    color: $secondary-text-colour;
+    @include govuk-font(19, $weight: bold);
+    color: govuk-colour("grey-1");
   }
 
   h6 {
-    @include core-19;
-    color: $secondary-text-colour;
+    @include govuk-font(19);
+    color: govuk-colour("grey-1");
   }
 
   // Expand margin when h1 followed directly by paragraph
   h1 + p {
-    @include media(tablet) {
-      margin-top: $gutter * 1.5;
+    @include govuk-media-query($from: tablet) {
+      margin-top: $govuk-gutter * 1.5;
     }
   }
 
   // Tighten up margins where headings follow each other
   h1 + h2 {
-    @include heading-offset($gutter);
+    @include heading-offset($govuk-gutter);
   }
 
   h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
@@ -96,11 +100,11 @@
   }
 
   p {
-    margin-top: ceil($gutter-half * (16 / 19));
+    margin-top: ceil($govuk-gutter-half * (16 / 19));
     margin-bottom: 0;
 
-    @include media(tablet) {
-      margin-top: $gutter-half;
+    @include govuk-media-query($from: tablet) {
+      margin-top: $govuk-gutter-half;
     }
   }
 
@@ -111,7 +115,7 @@
   }
 
   ol, ul {
-    margin: $gutter-half 0 0;
+    margin: $govuk-gutter-half 0 0;
     padding-left: 20px;
   }
 
@@ -124,18 +128,18 @@
   }
 
   ol + p, ul + p, .table-container + p {
-    margin-top: ceil($gutter * (16 / 19));
-    
-    @include media(tablet) {
-      margin-top: $gutter;
+    margin-top: ceil($govuk-gutter * (16 / 19));
+
+    @include govuk-media-query($from: tablet) {
+      margin-top: $govuk-gutter;
     }
   }
 
   blockquote {
-    background: $grey-4;
-    padding: $gutter-half;
-    margin: $gutter-half;
-    border-left: 5px solid $grey-3;
+    background: govuk-colour("grey-4");
+    padding: $govuk-gutter-half;
+    margin: $govuk-gutter-half;
+    border-left: 5px solid govuk-colour("grey-3");
   }
 
   pre {
@@ -156,12 +160,12 @@
     background: $code-01;
     padding: 3px 5px;
     border-radius: 1px;
-    
+
     font-family: monaco, Consolas, "Lucida Console", monospace;
     font-size: 15px;
     color: $code-0E;
-    
-    @include media(tablet) {
+
+    @include govuk-media-query($from: tablet) {
       font-size: 16px;
     }
 
@@ -181,7 +185,7 @@
   h1, h2, h3, h4, h5, h6 {
     code {
       font-size: inherit;
-      color: $text-colour;
+      color: $govuk-text-colour;
       background: none;
       padding: 0;
     }
@@ -191,11 +195,11 @@
     display: block;
     max-width: 100%;
     overflow-x: auto;
-    
-    margin-top: $gutter-half;
+
+    margin-top: $govuk-gutter-half;
   }
 
-  table {    
+  table {
     width: 100%;
 
     border-collapse: collapse;
@@ -203,13 +207,13 @@
   }
 
   th, td {
-    padding: $gutter-one-third $gutter-two-thirds $gutter-one-third 0;
+    padding: $govuk-gutter-one-third $govuk-gutter-two-thirds $govuk-gutter-one-third 0;
 
     background-color: transparent;
-    border-bottom: 1px solid $border-colour;
+    border-bottom: 1px solid $govuk-border-colour;
     border-width: 0 0 1px 0;
 
-    @include core-16;
+    @include govuk-font(16);
     vertical-align: top;
     text-align: left;
   }
@@ -225,16 +229,16 @@
     p+p, p+ul, p+ol,
     ul+p, ul+ol,
     ol+p {
-      margin-top: $gutter-one-third;
+      margin-top: $govuk-gutter-one-third;
     }
   }
 
   hr {
     height: 1px;
     border: none;
-    margin-top: $gutter - 1px;
-    margin-bottom: $gutter;
-    background-color: $border-colour;
-    color: $border-colour;
+    margin-top: $govuk-gutter - 1px;
+    margin-bottom: $govuk-gutter;
+    background-color: $govuk-border-colour;
+    color: $govuk-border-colour;
   }
 }

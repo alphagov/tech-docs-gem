@@ -9,14 +9,14 @@
  */
 
 .phase-banner {
-  @include bold-14;
+  @include govuk-font(14, $weight: bold);
   padding: 2px 5px 0;
   text-transform: uppercase;
   letter-spacing: 1px;
   vertical-align: middle;
 
   @include screen {
-    background: $govuk-blue;
-    color: $white;
+    background: govuk-colour("blue");
+    color: govuk-colour("white");
   }
 }
