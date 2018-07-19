@@ -1,5 +1,5 @@
 require 'middleman-core/renderers/redcarpet'
-require 'govuk_tech_docs/api_reference'
+require 'govuk_tech_docs/api_reference/api_reference'
 
 module GovukTechDocs
   class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
