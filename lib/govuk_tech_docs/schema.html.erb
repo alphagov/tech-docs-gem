@@ -1,3 +1,20 @@
-<% id = 'schema-' + title %>
-<h3 id="<%= id.parameterize %>"><%= title %></h3>
+<h3 id="<%= id = 'schema-' + title; id.parameterize %>"><%= title %></h3>
 <%= schema.description %>
+<% if schema.properties.any? %>
+<h4 id="<%= pid = id + '-propertoes'; pid.parameterize %>">Properties</h3>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<% schema.properties.each do |property| %>
+<tr><% binding.pry %>
+<td><%= property[0] %></td>
+<td><%= property[1].type %></td>
+<td><%= property[1].required.present? %></td>
+<td><%= property[1].description %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<% end %>
