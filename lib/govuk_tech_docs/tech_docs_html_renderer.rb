@@ -1,12 +1,17 @@
 require 'middleman-core/renderers/redcarpet'
-require 'govuk_tech_docs/api_reference/api_reference'
 
 module GovukTechDocs
   class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     include Redcarpet::Render::SmartyPants
 
+    def initialize(options={})
+      @local_options = options.dup
+      @app = @local_options[:context].app
+      super
+    end
+
     def paragraph(text)
-      ApiReference.new.api("<p>#{text.strip}</p>\n")
+      @app.api("<p>#{text.strip}</p>\n")
     end
 
     def header(text, level)

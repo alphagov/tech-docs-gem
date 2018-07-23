@@ -11,7 +11,7 @@
   <p><em><%= operation.summary %></em></p>
 <% end %>
 <% if operation.description %>
-  <p><%= operation.description %></p>
+  <p><%= render_markdown(operation.description) %></p>
 <% end %>
 
 <% if operation.parameters.any? %>
@@ -27,7 +27,7 @@
 <td><%= parameter.in %></td>
 <td><%= parameter.schema.type %></td>
 <td><%= parameter.required? %></td>
-<td><%= parameter.description %></td>
+<td><%= render_markdown(parameter.description) %></td>
 </tr>
 <% end %>
 </tbody>

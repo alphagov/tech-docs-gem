@@ -19,6 +19,7 @@ require 'govuk_tech_docs/pages'
 require 'govuk_tech_docs/tech_docs_html_renderer'
 require 'govuk_tech_docs/unique_identifier_extension'
 require 'govuk_tech_docs/unique_identifier_generator'
+require 'govuk_tech_docs/api_reference/api_reference'
 
 module GovukTechDocs
   # Configure the tech docs template
@@ -37,7 +38,8 @@ module GovukTechDocs
     context.set :markdown,
         renderer: TechDocsHTMLRenderer.new(
           with_toc_data: true,
-          api: true
+          api: true,
+          context: context
         ),
         fenced_code_blocks: true,
         tables: true,
@@ -55,6 +57,8 @@ module GovukTechDocs
 
     context.config[:tech_docs] = YAML.load_file('config/tech-docs.yml').with_indifferent_access
     context.activate :unique_identifier
+
+    context.activate :api_reference
 
     context.helpers do
       include GovukTechDocs::TableOfContents::Helpers

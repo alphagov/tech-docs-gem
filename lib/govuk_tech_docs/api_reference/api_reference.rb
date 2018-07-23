@@ -2,12 +2,15 @@ require 'erb'
 require 'openapi3_parser'
 require 'uri'
 require 'pry'
-
 module GovukTechDocs
-  class ApiReference
-    def initialize
-      # Need to grab the config object.
-      @config = YAML.load_file('config/tech-docs.yml')
+  class ApiReference < Middleman::Extension
+    expose_to_application api: :api
+
+    def initialize(app, options_hash={}, &block)
+      super
+
+      @app = app
+      @config = @app.config[:tech_docs]
 
       # If no api path then just return.
       if @config["api_path"].to_s.empty?
@@ -105,6 +108,29 @@ module GovukTechDocs
       return output
     end
 
+
+    def render_markdown(text)
+      return Tilt['markdown'].new(context: @app){ text }.render
+    end
+
+    private
+
+    def get_renderer(file)
+      template_path = File.join( File.dirname(__FILE__), 'templates/' + file)
+      template = File.open(template_path, 'r').read
+      return ERB.new(template)
+    end
+
+    def get_operations(path)
+      operations = {}
+      operations['get'] = path.get if defined? path.get
+      operations['put'] = path.put if defined? path.put
+      operations['post'] = path.post if defined? path.post
+      operations['delete'] = path.delete if defined? path.delete
+      operations['patch'] = path.patch if defined? path.patch
+      return operations
+    end
+
     def api_info
       return @document.info
     end
@@ -123,20 +149,7 @@ module GovukTechDocs
       return name
     end
 
-    def get_operations(path)
-      operations = {}
-      operations['get'] = path.get if defined? path.get
-      operations['put'] = path.put if defined? path.put
-      operations['post'] = path.post if defined? path.post
-      operations['delete'] = path.delete if defined? path.delete
-      operations['patch'] = path.patch if defined? path.patch
-      return operations
-    end
-
-    def get_renderer(file)
-      template_path = File.join( File.dirname(__FILE__), 'templates/' + file)
-      template = File.open(template_path, 'r').read
-      return ERB.new(template)
-    end
   end
 end
+
+::Middleman::Extensions.register(:api_reference, GovukTechDocs::ApiReference)
