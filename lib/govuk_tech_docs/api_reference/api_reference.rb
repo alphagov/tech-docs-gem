@@ -10,21 +10,21 @@ module GovukTechDocs
       @config = YAML.load_file('config/tech-docs.yml')
 
       # If no api path then just return.
-      if @config["api_path"].to_s.empty?
+      if @config['api_path'].to_s.empty?
         # @TODO Throw a middleman error?
         return
       end
 
       # Is the api_path a url or path?
-      if uri?@config["api_path"]
+      if uri?@config['api_path']
         @api_parser = true
 
-        @document = Openapi3Parser.load_url(@config["api_path"])
+        @document = Openapi3Parser.load_url(@config['api_path'])
       else
         # Load api file and set existence flag.
-        if File.exists?(@config["api_path"])
+        if File.exist?(@config['api_path'])
           @api_parser = true
-          @document = Openapi3Parser.load_file(@config["api_path"])
+          @document = Openapi3Parser.load_file(@config['api_path'])
         else
           # @TODO Throw a middleman error?
           @api_parser = false
@@ -50,17 +50,17 @@ module GovukTechDocs
       if @api_parser == true
 
         map = {
-            "api&gt;" => ""
+          'api&gt;' => ''
         }
 
-        regexp = map.map {|k, _| Regexp.escape(k)}.join("|")
+        regexp = map.map { |k, _| Regexp.escape(k) }.join('|')
 
         if md = text.match(/^<p>(#{regexp})/)
           key = md.captures[0]
-          text.gsub!(/#{Regexp.escape(key)}\s+?/, "")
+          text.gsub!(/#{ Regexp.escape(key) }\s+?/, '')
 
           # Strip paragraph tags from text
-          text = text.gsub(/<\/?[^>]*>/, "")
+          text = text.gsub(/<\/?[^>]*>/, '')
           text = text.strip
 
           if text == 'api&gt;'
@@ -114,11 +114,11 @@ module GovukTechDocs
     end
 
     def get_schema_name(text)
-      if !text.is_a?(String)
+      unless text.is_a?(String)
         return nil
       end
       # Schema dictates that it's always components['schemas']
-      name = text.gsub(/#\/components\/schemas\//, "")
+      name = text.gsub(/#\/components\/schemas\//, '')
 
       return name
     end
@@ -134,7 +134,7 @@ module GovukTechDocs
     end
 
     def get_renderer(file)
-      template_path = File.join( File.dirname(__FILE__), 'templates/' + file)
+      template_path = File.join(File.dirname(__FILE__), 'templates/' + file)
       template = File.open(template_path, 'r').read
       return ERB.new(template)
     end
