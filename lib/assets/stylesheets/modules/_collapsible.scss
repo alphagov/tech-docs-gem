@@ -38,12 +38,15 @@
   &::after {
     content: '';
     display: block;
-    background: no-repeat file-url('arrow-down.svg') center center;
-    background-size: 18px auto;
-    width: 20px;
-    height: 40px;
+    border: 2px solid $black;
+    border-width: 2px 2px 0 0;
+    transform: rotate(135deg);
+    width: 10px;
+    height: 10px;
+    margin-top: 10px;
   }
   .collapsible.is-open &::after {
-    background-image: file-url('arrow-up.svg');
+    transform: rotate(315deg);
+    margin-top: 18px;
   }
 }
