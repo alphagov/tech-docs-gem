@@ -111,6 +111,8 @@ RSpec.describe "The tech docs template" do
 
   def when_i_view_the_search_index
     visit '/search.json'
+  end
+
   def when_i_view_an_api_reference_page
     visit '/api-reference.html'
   end
