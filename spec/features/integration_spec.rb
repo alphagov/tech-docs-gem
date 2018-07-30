@@ -146,5 +146,7 @@ RSpec.describe "The tech docs template" do
   def then_there_is_correct_api_schema_content
     # Schema title
     expect(page).to have_css('h3#schema-pet', text: 'Pet')
+    # Schema parameters
+    expect(page).to have_css('table', text: /\b(tag )\b/)
   end
 end
