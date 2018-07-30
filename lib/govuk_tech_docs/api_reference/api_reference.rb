@@ -2,11 +2,12 @@ require 'erb'
 require 'openapi3_parser'
 require 'uri'
 require 'pry'
+
 module GovukTechDocs
   class ApiReference < Middleman::Extension
     expose_to_application api: :api
 
-    def initialize(app, options_hash={}, &block)
+    def initialize(app, options_hash = {}, &block)
       super
 
       @app = app
@@ -42,7 +43,7 @@ module GovukTechDocs
 
     def uri?(string)
       uri = URI.parse(string)
-      %w( http https ).include?(uri.scheme)
+      %w(http https).include?(uri.scheme)
     rescue URI::BadURIError
       false
     rescue URI::InvalidURIError
@@ -58,7 +59,8 @@ module GovukTechDocs
 
         regexp = map.map { |k, _| Regexp.escape(k) }.join('|')
 
-        if md = text.match(/^<p>(#{regexp})/)
+        md = text.match(/^<p>(#{regexp})/)
+        if md
           key = md.captures[0]
           text.gsub!(/#{ Regexp.escape(key) }\s+?/, '')
 
@@ -104,23 +106,21 @@ module GovukTechDocs
         schema = schema_data[1]
         schemas += @render_schema.result(binding)
       end
-      output = @render_api_full.result(binding)
-      return output
+      @render_api_full.result(binding)
     end
-
 
     def render_markdown(text)
       if text
-        return Tilt['markdown'].new(context: @app){ text }.render
+        Tilt['markdown'].new(context: @app) { text }.render
       end
     end
 
-    private
+  private
 
     def get_renderer(file)
-      template_path = File.join( File.dirname(__FILE__), 'templates/' + file)
+      template_path = File.join(File.dirname(__FILE__), 'templates/' + file)
       template = File.open(template_path, 'r').read
-      return ERB.new(template)
+      ERB.new(template)
     end
 
     def get_operations(path)
@@ -134,11 +134,11 @@ module GovukTechDocs
     end
 
     def api_info
-      return @document.info
+      @document.info
     end
 
     def api_server
-      return @document.servers[0]
+      @document.servers[0]
     end
 
     def get_schema_name(text)
@@ -146,9 +146,7 @@ module GovukTechDocs
         return nil
       end
       # Schema dictates that it's always components['schemas']
-      name = text.gsub(/#\/components\/schemas\//, '')
-
-      return name
+      text.gsub(%r{/#\/components\/schemas\//}, '')
     end
   end
 end
