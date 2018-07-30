@@ -4,7 +4,7 @@ module GovukTechDocs
   class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     include Redcarpet::Render::SmartyPants
 
-    def initialize(options={})
+    def initialize(options = {})
       @local_options = options.dup
       @app = @local_options[:context].app
       super

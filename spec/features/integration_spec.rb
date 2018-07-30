@@ -127,24 +127,24 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_correct_api_info_content
     # Title
-    expect(page).to have_css('h1', :text => 'Swagger Petstore v1.0.0')
+    expect(page).to have_css('h1', text: 'Swagger Petstore v1.0.0')
     # Description
-    expect(page).to have_css('p', :text => 'A sample API that uses a petstore as an example to demonstrate features in the OpenAPI 3.0 specification')
+    expect(page).to have_css('p', text: 'A sample API that uses a petstore as an example to demonstrate features in the OpenAPI 3.0 specification')
     # Base URL
-    expect(page).to have_css('strong', :text => 'http://petstore.swagger.io/v1')
+    expect(page).to have_css('strong', text: 'http://petstore.swagger.io/v1')
   end
 
   def then_there_is_correct_api_path_content
     # Path title
-    expect(page).to have_css('h2#get-pets', :text => 'GET /pets')
+    expect(page).to have_css('h2#get-pets', text: 'GET /pets')
     # Path parameters
-    expect(page).to have_css('table', :text => /\b(How many items to return at one time)\b/)
+    expect(page).to have_css('table', text: /\b(How many items to return at one time)\b/)
     # Link to schema
     expect(page).to have_css('table a[href="#schema-error"]')
   end
 
   def then_there_is_correct_api_schema_content
     # Schema title
-    expect(page).to have_css('h3#schema-pet', :text => 'Pet')
+    expect(page).to have_css('h3#schema-pet', text: 'Pet')
   end
 end

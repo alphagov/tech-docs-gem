@@ -22,17 +22,14 @@ module GovukTechDocs
       # Is the api_path a url or path?
       if uri?@config['api_path']
         @api_parser = true
-
         @document = Openapi3Parser.load_url(@config['api_path'])
-      else
+      elsif File.exist?(@config['api_path'])
         # Load api file and set existence flag.
-        if File.exist?(@config['api_path'])
-          @api_parser = true
-          @document = Openapi3Parser.load_file(@config['api_path'])
-        else
-          # @TODO Throw a middleman error?
-          @api_parser = false
-        end
+        @api_parser = true
+        @document = Openapi3Parser.load_file(@config['api_path'])
+      else
+        # @TODO Throw a middleman error?
+        @api_parser = false
       end
 
       # Load template files
@@ -80,9 +77,8 @@ module GovukTechDocs
         else
           return text
         end
-
       else
-        return text
+        text
       end
     end
 
@@ -130,7 +126,7 @@ module GovukTechDocs
       operations['post'] = path.post if defined? path.post
       operations['delete'] = path.delete if defined? path.delete
       operations['patch'] = path.patch if defined? path.patch
-      return operations
+      operations
     end
 
     def api_info
@@ -146,7 +142,7 @@ module GovukTechDocs
         return nil
       end
       # Schema dictates that it's always components['schemas']
-      text.gsub(%r{/#\/components\/schemas\//}, '')
+      text.gsub(/#\/components\/schemas\//, '')
     end
   end
 end
