@@ -3,7 +3,7 @@ host: https://docs.example.com
 
 # Header-related options
 show_govuk_logo: true
-service_name: API Reference Test
+service_name: My First Service
 service_link: /
 phase: Beta
 
@@ -40,8 +40,4 @@ github_repo: alphagov/example-repo
 redirects:
   /something/old.html: /index.html
 
-api_path: https://raw.githubusercontent.com/Nexmo/oas_parser/master/spec/fixtures/petstore-expanded.yml
-
-#api_path: https://raw.githubusercontent.com/alphagov/content-store/deployed-to-production/openapi.yaml
-
-#api_path: source/api/api.yml
+api_path: source/pets.yml
