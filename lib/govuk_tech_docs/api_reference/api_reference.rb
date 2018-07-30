@@ -110,7 +110,9 @@ module GovukTechDocs
 
 
     def render_markdown(text)
-      return Tilt['markdown'].new(context: @app){ text }.render
+      if text
+        return Tilt['markdown'].new(context: @app){ text }.render
+      end
     end
 
     private
