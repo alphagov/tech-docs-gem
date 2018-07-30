@@ -1,0 +1,45 @@
+// Collapsible JS component styling, made for the navigation tree.
+// These classes are added in table-of-contents.js.
+// They should not be applied without the JS.
+
+.collapsible {
+  position: relative;
+}
+.collapsible__body {
+  display: none;
+  .collapsible.is-open & {
+    display: block
+  }
+}
+.collapsible__toggle {
+  position: absolute;
+  top: 0;
+  right: -25px;
+  width: 50px;
+  height: 40px;
+  overflow: hidden;
+  text-indent: -999em;
+  border: 0;
+  background: 0;
+  color: inherit;
+  padding: 0;
+  &:focus {
+    outline: 3px solid $focus-colour;
+  }
+}
+.collapsible__toggle-icon {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  &::after {
+    content: '';
+    display: block;
+    background: no-repeat file-url('arrow-down.svg') center center;
+    background-size: 18px auto;
+    width: 20px;
+    height: 40px;
+  }
+  .collapsible.is-open &::after {
+    background-image: file-url('arrow-up.svg');
+  }
+}

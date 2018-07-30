@@ -44,11 +44,9 @@ html.has-search-results-open {
   }
 }
 .search-results {
-  opacity: 0;
-  pointer-events: none;
+  display: none;
   &.is-open {
-    opacity: 1; 
-    pointer-events: auto;
+    display: block;
   }
 }
 
@@ -66,13 +64,13 @@ html.has-search-results-open {
       padding: 22px 20px 0 30px;
       top: 0;
       // The width of the sidebar
-      left: 330px;      
+      left: 330px;
     }
   }
 .search-results__inner {
   position: relative;
   background: $white;
-  border-top: 1px solid $grey-2;    
+  border-top: 1px solid $grey-2;
   max-width: 40rem;
   padding: 15px;
   @include media(tablet) {
@@ -87,7 +85,7 @@ html.has-search-results-open {
       height: 20px;
       background: no-repeat file-url('search-result-caret.svg') center right;
       background-size: contain;
-    }    
+    }
   }
 }
 .search-results__title {

@@ -1,3 +1,4 @@
 source 'https://rubygems.org'
 
 gem 'govuk_tech_docs', path: '..'
+gem 'middleman-search', git: 'git://github.com/alphagov/middleman-search.git'
