@@ -36,6 +36,10 @@
     margin: 0 ($gutter + 2px) $gutter;
   }
 
+  .has-search-results-open & {
+    visibility: hidden;
+  }
+
   // Headings
   h1 {
     @include bold-48;

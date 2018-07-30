@@ -29,10 +29,12 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-sprockets", "~> 4.0.0"
   spec.add_dependency "middleman-syntax", "~> 3.0.0"
+  spec.add_dependency "middleman-search"
   spec.add_dependency "nokogiri"
   spec.add_dependency "redcarpet", "~> 3.3.2"
   spec.add_dependency "openapi3_parser"
   spec.add_dependency "pry"
+
 
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"

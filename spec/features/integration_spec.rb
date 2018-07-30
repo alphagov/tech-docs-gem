@@ -10,6 +10,7 @@ RSpec.describe "The tech docs template" do
     when_the_site_is_created
     and_i_visit_the_homepage
     then_there_is_a_heading
+    then_there_is_a_search_form
     then_there_is_a_source_footer
     then_the_page_highlighted_in_the_navigation_is("Documentation")
     then_there_are_navigation_headings_from_other_pages
@@ -26,6 +27,9 @@ RSpec.describe "The tech docs template" do
 
     when_i_view_child_of_expired_page
     then_the_page_highlighted_in_the_navigation_is("Expired page")
+
+    when_i_view_the_search_index
+    then_there_is_indexed_content
 
     when_i_view_an_api_reference_page
     then_there_is_correct_api_info_content
@@ -46,6 +50,10 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_a_heading
     expect(page).to have_css 'h1', text: 'Hello, World!'
+  end
+
+  def then_there_is_a_search_form
+    expect(page).to have_css 'input#search'
   end
 
   def and_there_are_proper_meta_tags
@@ -101,8 +109,14 @@ RSpec.describe "The tech docs template" do
     visit '/child-of-expired-page.html'
   end
 
+  def when_i_view_the_search_index
+    visit '/search.json'
   def when_i_view_an_api_reference_page
     visit '/api-reference.html'
+  end
+
+  def then_there_is_indexed_content
+    expect(page).to have_content 'troubleshoot'
   end
 
   def when_i_view_an_single_path_api_reference_page
