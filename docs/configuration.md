@@ -148,3 +148,11 @@ default: `true`
 ```yaml
 show_govuk_logo: true
 ```
+
+## `api_path`
+
+Define a path to an Open API V3 spec file. This can be a relative file path or a URI to a raw file.
+
+```yaml
+api_path: ./source/pets.yml
+```
