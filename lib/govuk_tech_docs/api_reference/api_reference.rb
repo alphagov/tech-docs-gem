@@ -2,6 +2,7 @@ require 'erb'
 require 'openapi3_parser'
 require 'uri'
 require 'pry'
+
 module GovukTechDocs
   class ApiReference < Middleman::Extension
     expose_to_application api: :api
@@ -42,7 +43,7 @@ module GovukTechDocs
 
     def uri?(string)
       uri = URI.parse(string)
-      %w( http https ).include?(uri.scheme)
+      %w(http https).include?(uri.scheme)
     rescue URI::BadURIError
       false
     rescue URI::InvalidURIError
@@ -99,10 +100,12 @@ module GovukTechDocs
       end
       schemas = ''
       schemas_data = @document.components.schemas
-      schemas_data.each do |schema_data|
-        title = schema_data[0]
-        schema = schema_data[1]
-        schemas += @render_schema.result(binding)
+      if schemas_data.nil?
+        schemas_data.each do |schema_data|
+          title = schema_data[0]
+          schema = schema_data[1]
+          schemas += @render_schema.result(binding)
+        end
       end
       output = @render_api_full.result(binding)
       return output
