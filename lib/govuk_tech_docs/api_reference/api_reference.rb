@@ -98,12 +98,11 @@ module GovukTechDocs
       schemas_data = @document.components.schemas
       schemas_data.each do |schema_data|
         if schema_data[0] == text
-          title = schema_data[0]
-          schema = schema_data[1]
-          output = @render_schema.result(binding)
-          return output
+          print schema_data[0]
+          print schema_data[1]
         end
       end
+      return text
     end
 
     def api_full
@@ -119,7 +118,13 @@ module GovukTechDocs
         path = path_data[1]
         paths += @render_path.result(binding)
       end
-      schemas = api_schema_render('')
+      schemas = ''
+      schemas_data = @document.components.schemas
+      schemas_data.each do |schema_data|
+        title = schema_data[0]
+        schema = schema_data[1]
+        schemas += @render_schema.result(binding)
+      end
       @render_api_full.result(binding)
     end
 
