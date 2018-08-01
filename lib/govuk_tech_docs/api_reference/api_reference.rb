@@ -15,8 +15,7 @@ module GovukTechDocs
 
       # If no api path then just return.
       if @config['api_path'].to_s.empty?
-        # @TODO Throw a middleman error?
-        return
+        raise 'No api path defined in tech-docs.yml'
       end
 
       # Is the api_path a url or path?
@@ -28,8 +27,8 @@ module GovukTechDocs
         @api_parser = true
         @document = Openapi3Parser.load_file(@config['api_path'])
       else
-        # @TODO Throw a middleman error?
         @api_parser = false
+        raise 'Unable to load api path from tech-docs.yml'
       end
 
       # Load template files
