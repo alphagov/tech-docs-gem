@@ -20,7 +20,7 @@ module GovukTechDocs
       end
 
       # Is the api_path a url or path?
-      if uri?@config['api_path']
+      if uri?(@config['api_path'])
         @api_parser = true
         @document = Openapi3Parser.load_url(@config['api_path'])
       elsif File.exist?(@config['api_path'])
