@@ -102,6 +102,12 @@ module GovukTechDocs
           content: { boost: 50, store: true },
           url:     { index: false, store: true },
         }
+
+        search.pipeline_remove = [
+          'stopWordFilter'
+        ]
+
+        search.tokenizer_separator = '/[\s\-/]+/'
       end
     end
   end
