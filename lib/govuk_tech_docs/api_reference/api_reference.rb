@@ -51,7 +51,8 @@ module GovukTechDocs
       if @api_parser == true
 
         map = {
-          'api&gt;' => ''
+          'api&gt;' => 'default',
+          'api_schema&gt;' => 'schema'
         }
 
         regexp = map.map { |k, _| Regexp.escape(k) }.join('|')
@@ -59,19 +60,18 @@ module GovukTechDocs
         md = text.match(/^<p>(#{regexp})/)
         if md
           key = md.captures[0]
+          type = map[key]
+
           text.gsub!(/#{ Regexp.escape(key) }\s+?/, '')
 
           # Strip paragraph tags from text
           text = text.gsub(/<\/?[^>]*>/, '')
           text = text.strip
 
-          if text == 'api&gt;'
-            return api_full
+          if type == 'default'
+            api_path_render(text)
           else
-            # Call api parser on text
-            path = @document.paths[text]
-            output = @render_path.result(binding)
-            return output
+            api_schema_render(text)
           end
 
         else
@@ -80,6 +80,29 @@ module GovukTechDocs
       else
         text
       end
+    end
+
+    def api_path_render(text)
+      if text == 'api&gt;'
+        return api_full
+      else
+        # Call api parser on text
+        path = @document.paths[text]
+        output = @render_path.result(binding)
+        return output
+      end
+    end
+
+    def api_schema_render(text)
+      schemas = ''
+      schemas_data = @document.components.schemas
+      schemas_data.each do |schema_data|
+        if schema_data[0] == text
+          print schema_data[0]
+          print schema_data[1]
+        end
+      end
+      return text
     end
 
     def api_full
