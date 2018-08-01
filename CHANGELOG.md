@@ -21,6 +21,12 @@ More info:
 
 The search indexing pipeline has been tweaked to provide expected results. The display of the search results has also been
 
+If you're using search then you'll need to add this line to your project `Gemfile`:
+
+```
+gem 'middleman-search', git: 'git://github.com/alphagov/middleman-search.git'
+```
+
 More info:
 - https://github.com/alphagov/tech-docs-gem/pull/37
 - https://github.com/alphagov/tech-docs-gem/pull/38
