@@ -50,17 +50,17 @@ module GovukTechDocs
     def api(text)
       if @api_parser == true
 
-        map = {
+        keywords = {
           'api&gt;' => 'default',
           'api_schema&gt;' => 'schema'
         }
 
-        regexp = map.map { |k, _| Regexp.escape(k) }.join('|')
+        regexp = keywords.map { |k, _| Regexp.escape(k) }.join('|')
 
         md = text.match(/^<p>(#{regexp})/)
         if md
           key = md.captures[0]
-          type = map[key]
+          type = keywords[key]
 
           text.gsub!(/#{ Regexp.escape(key) }\s+?/, '')
 
