@@ -106,6 +106,8 @@ module GovukTechDocs
         search.pipeline_remove = [
           'stopWordFilter'
         ]
+
+        search.tokenizer_separator = '/[\s\-/]+/'
       end
     end
   end
