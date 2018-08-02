@@ -83,12 +83,12 @@ module GovukTechDocs
 
     def api_path_render(text)
       if text == 'api&gt;'
-        return api_full
+        api_full
       else
         # Call api parser on text
         path = @document.paths[text]
         output = @render_path.result(binding)
-        return output
+        output
       end
     end
 
