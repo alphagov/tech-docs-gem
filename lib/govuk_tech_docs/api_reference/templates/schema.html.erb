@@ -1,0 +1,19 @@
+<h3 id="<%= id = 'schema-' + title; id.parameterize %>"><%= title %></h3>
+<%= render_markdown(schema.description) %>
+<% if schema.properties.any? %>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<% schema.properties.each do |property| %>
+<tr>
+<td><%= property[0] %></td>
+<td><%= property[1].type %></td>
+<td><%= property[1].required.present? %></td>
+<td><%= render_markdown(property[1].description) %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<% end %>

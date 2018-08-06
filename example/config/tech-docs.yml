@@ -41,3 +41,5 @@ github_repo: alphagov/example-repo
 
 redirects:
   /something/old.html: /index.html
+
+api_path: source/pets.yml

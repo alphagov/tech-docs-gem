@@ -33,9 +33,7 @@
           <ul>
             <% config[:tech_docs][:header_links].each do |title, path| %>
               <li<% if active_page(path) %> class="active"<% end %>>
-                <a href="<%= path %>">
-                  <%= title %>
-                </a>
+                <a href="<%= path %>"><%= title %></a>
               </li>
             <% end %>
           </ul>

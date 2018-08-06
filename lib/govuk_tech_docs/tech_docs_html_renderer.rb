@@ -4,6 +4,16 @@ module GovukTechDocs
   class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     include Redcarpet::Render::SmartyPants
 
+    def initialize(options = {})
+      @local_options = options.dup
+      @app = @local_options[:context].app
+      super
+    end
+
+    def paragraph(text)
+      @app.api("<p>#{text.strip}</p>\n")
+    end
+
     def header(text, level)
       anchor = UniqueIdentifierGenerator.instance.create(text, level)
       %(<h#{level} id="#{anchor}">#{text}</h#{level}>)
