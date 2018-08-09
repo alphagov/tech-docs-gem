@@ -33,6 +33,10 @@
 @import "govuk-frontend/helpers/typography";
 // Objects
 @import "govuk-frontend/objects/width-container";
+// Components
+@import "govuk-frontend/components/footer/footer";
+
+
 // GOVUK Frontend End
 
 @import "palette/syntax-highlighting";
@@ -40,7 +44,7 @@
 
 @import "modules/anchored-heading";
 @import "modules/app-pane";
-@import "modules/footer";
+
 @import "modules/govuk-logo";
 @import "modules/header";
 @import "modules/page-review";
