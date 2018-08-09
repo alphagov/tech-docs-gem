@@ -28,14 +28,14 @@ $footer-text: $footer-link;
 
 .footer {
   display: block;
-  margin-top: $govuk-gutter * 2;
-  padding: $govuk-gutter $govuk-gutter-half ($govuk-gutter * 2);
+  margin-top: govuk-spacing(9);
+  padding: govuk-spacing(6) govuk-spacing(3) govuk-spacing(9);
   border-top: 1px solid $footer-border-top;
   background: $footer-background;
   color: $footer-text;
 
   @include govuk-media-query($from: tablet) {
-    padding: $govuk-gutter;
+    padding: govuk-spacing(6);
     display: flex;
     flex-shrink: 0;
     align-items: flex-end;
@@ -120,7 +120,7 @@ $footer-text: $footer-link;
     .footer__copyright {
       margin-top: 0;
       display: inline-block;
-      margin-left: $govuk-gutter;
+      margin-left: govuk-spacing(6);
     }
 
     .footer__copyright-logo {

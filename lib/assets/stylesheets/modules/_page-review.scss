@@ -1,12 +1,12 @@
 .page-expiry--not-expired {
-  padding: $govuk-gutter-half;
-  margin-top: $govuk-gutter;
-  margin-bottom: $govuk-gutter;
+  padding: govuk-spacing(3);
+  margin-top: govuk-spacing(6);
+  margin-bottom: govuk-spacing(6);
   background-color: govuk-colour("blue");
   color: govuk-colour("white");
 
   @include govuk-media-query($from: tablet) {
-    padding: $govuk-gutter;
+    padding: govuk-spacing(6);
   }
 
   a:link,
@@ -26,8 +26,8 @@
 .page-expiry--expired {
   display: none;
 
-  padding: $govuk-gutter-half;
-  margin-top: $govuk-gutter * 2;
+  padding: govuk-spacing(3);
+  margin-top: govuk-spacing(9);
   background-color: govuk-colour("grey-4");
   border: 1px solid $govuk-error-colour;
   color: $govuk-error-colour;

@@ -1,11 +1,11 @@
 @include screen {
   .page-title + .search {
-    margin-top: $govuk-gutter;
+    margin-top: govuk-spacing(6);
   }
 
   .search {
     @include govuk-font(16);
-    margin-bottom: $govuk-gutter-half;
+    margin-bottom: govuk-spacing(3);
     height: 40px;
     .search__label {
       position: absolute;
@@ -90,7 +90,7 @@ html.has-search-results-open {
 }
 .search-results__title {
   @include govuk-font(27, $weight: bold);
-  margin-bottom: $govuk-gutter;
+  margin-bottom: govuk-spacing(6);
 }
 .search-results__close {
   cursor: pointer;
@@ -129,7 +129,7 @@ html.has-search-results-open {
   overflow: hidden;
 }
 .search-result {
-  margin-bottom: $govuk-gutter;
+  margin-bottom: govuk-spacing(6);
 }
 .search-result mark {
   background-color: transparent;

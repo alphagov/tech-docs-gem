@@ -22,10 +22,10 @@
     background: govuk-colour("yellow");
     color: govuk-colour("black");
     text-decoration: none;
-    padding: 5px $govuk-gutter-half;
+    padding: 5px govuk-spacing(3);
 
     @include govuk-media-query($from: tablet) {
-      padding: 5px $govuk-gutter;
+      padding: 5px govuk-spacing(6);
     }
   }
 }

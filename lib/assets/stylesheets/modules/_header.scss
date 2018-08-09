@@ -75,10 +75,10 @@ $active-nav-color: #1d8feb;
     border-bottom: none;
     width: auto;
     max-width: none;
-    margin: 0 $govuk-gutter-half;
+    margin: 0 govuk-spacing(3);
 
     @include govuk-media-query($from: tablet) {
-      margin: 0 $govuk-gutter;
+      margin: 0 govuk-spacing(6);
     }
   }
 }
@@ -229,7 +229,7 @@ $active-nav-color: #1d8feb;
 
       li {
         float: left;
-        margin: 12px 0 0 $govuk-gutter-half;
+        margin: 12px 0 0 govuk-spacing(3);
       }
     }
   }

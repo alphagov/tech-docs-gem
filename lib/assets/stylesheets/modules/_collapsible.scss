@@ -14,7 +14,7 @@
 .collapsible__toggle {
   position: absolute;
   top: 0;
-  right: $govuk-gutter-half * -1;
+  right: govuk-spacing(3) * -1;
   width: 50px;
   height: 40px;
   overflow: hidden;

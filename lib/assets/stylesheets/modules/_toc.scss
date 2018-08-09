@@ -2,7 +2,7 @@
   .toc {
 
     @include govuk-font(16);
-    padding: $govuk-gutter-half;
+    padding: govuk-spacing(3);
 
     ul {
       list-style: none;
@@ -27,8 +27,8 @@
 
       a:link, a:visited {
         display: block;
-        padding: 8px 40px 8px $govuk-gutter-half;
-        margin: 0 $govuk-gutter-half * -1;
+        padding: 8px 40px 8px govuk-spacing(3);
+        margin: 0 (govuk-spacing(3) * -1);
         border-left: 5px solid transparent;
 
         @include govuk-media-query($from: tablet) {
@@ -49,28 +49,28 @@
         // Level 3
         li li li {
           a:link, a:visited {
-            padding-left: $govuk-gutter-half * 2;
+            padding-left: govuk-spacing(6);
           }
         }
 
         // Level 4
         li li li li {
           a:link, a:visited {
-            padding-left: $govuk-gutter-half * 4;
+            padding-left: govuk-spacing(9);
           }
         }
 
         // Level 5
         li li li li li {
           a:link, a:visited {
-            padding-left: $govuk-gutter-half * 5;
+            padding-left: govuk-spacing(3) * 5;// 75px not in spacing scale
           }
         }
 
         // Level 6
         li li li li li li {
           a:link, a:visited {
-            padding-left: $govuk-gutter-half * 6;
+            padding-left: govuk-spacing(3) * 6;// 90px not is spacing scale
           }
         }
       }
@@ -83,7 +83,7 @@
 
   @include govuk-media-query($from: tablet) {
     .toc {
-      padding: 22px $govuk-gutter $govuk-gutter-half;
+      padding: 22px govuk-spacing(6) govuk-spacing(3);
     }
 
     // Prevent the fixedsticky spacer from appearing if the browser is resized
@@ -117,7 +117,7 @@
           position: relative;
           z-index: 10;
 
-          padding: $govuk-gutter-half $govuk-gutter-half 10px;
+          padding: govuk-spacing(3) govuk-spacing(3) 10px;
 
           background: govuk-colour("grey-4");
           @supports(backdrop-filter: blur(2px)) {
@@ -147,7 +147,7 @@
       }
 
       .toc__list {
-        margin-right: $govuk-gutter * 1.5;
+        margin-right: govuk-spacing(6) * 1.5;// 45px not in spacing scale
       }
 
       .toc__close {
