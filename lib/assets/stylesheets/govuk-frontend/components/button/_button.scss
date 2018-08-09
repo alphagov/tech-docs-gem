@@ -18,7 +18,9 @@
     @include govuk-font($size: 19, $line-height: 19px);
     @include govuk-focusable;
 
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+            box-sizing: border-box;
     display: inline-block;
     position: relative;
     width: 100%;
@@ -29,7 +31,8 @@
     border-radius: 0;
     color: $govuk-button-text-colour;
     background-color: $govuk-button-colour;
-    box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour; // s0
+    -webkit-box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour;
+            box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour; // s0
     text-align: center;
     vertical-align: top;
     cursor: pointer;
@@ -76,7 +79,8 @@
 
     &:active {
       top: $button-shadow-size;
-      box-shadow: none;
+      -webkit-box-shadow: none;
+              box-shadow: none;
 
       @include govuk-if-ie8 {
         border-bottom-width: 0;
@@ -134,7 +138,8 @@
 
     &:active {
       top: 0;
-      box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour; // s0
+      -webkit-box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour;
+              box-shadow: 0 $button-shadow-size 0 $govuk-button-shadow-colour; // s0
       @include govuk-if-ie8 {
         border-bottom: $button-shadow-size solid $govuk-button-shadow-colour; // s0
       }

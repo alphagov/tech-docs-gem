@@ -11,7 +11,9 @@
     @include govuk-font($size: 19, $line-height: 1.25);
     @include govuk-focusable;
 
-    box-sizing: border-box; // should this be global?
+    -webkit-box-sizing: border-box;
+
+            box-sizing: border-box; // should this be global?
     width: 100%;
     height: 40px;
 

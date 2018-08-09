@@ -1,75 +1,96 @@
-# The `src` directory
+# GOV.UK Frontend
 
-## Structure
+GOV.UK Frontend contains the code you need to start building a user interface
+for government platforms and services.
 
-GOV.UK Frontend is broken into a number of layers in order to help provide a
-logical structure, loosely following the conventions of [ITCSS].
+See live examples of GOV.UK Frontend components, and guidance on when to use
+them in your service, in the [GOV.UK Design System](https://www.gov.uk/design-system).
 
-1. [Settings](#settings)
-2. [Tools](#tools)
-3. [Helpers](#helpers)
-4. [Core](#core)
-5. [Objects](#objects)
-6. [Components](#components)
-7. [Utilities](#utilities)
-8. [Overrides](#overrides)
+## Contact the team
 
-Each folder has its own entry point (`_all.scss`).
+GOV.UK Frontend is maintained by a team at Government Digital Service. If you want to know more about GOV.UK Frontend, please email the [Design System
+team](mailto:govuk-design-system-support@digital.cabinet-office.gov.uk) or get in touch with them on [Slack](https://ukgovernmentdigital.slack.com/messages/govuk-design-system).
 
-## Settings
+## Quick start
 
-Global variables for the project, for example colour palettes and spacing and
-typography scales.
+There are 2 ways to start using GOV.UK Frontend in your app.
 
-This layer should not output any CSS.
+Once installed, you will be able to use the code from the examples in the
+[GOV.UK Design System](https://www.gov.uk/design-system) in your service.
 
-## Tools
+### 1. Install with npm (recommended)
 
-Mixins or functions that implement either logic (e.g. conditionally outputting
-CSS) or calculations, and that need to be made available globally.
+We recommend [installing GOV.UK Frontend using node package manager
+(npm)](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md).
 
-This layer should not output any CSS.
+### 2. Install by using compiled files
 
-## Helpers
+You can also [download the compiled and minified assets (CSS, JavaScript) from
+GitHub](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-from-dist.md).
 
-Mixins that abstract common styling (for example, focus states or visually
-hidden content)
+## Importing styles
 
-This layer should not output any CSS.
+You need to import the GOV.UK Frontend styles into the main Sass file in your
+project. You should place the below code before your own Sass rules (or Sass
+imports) if you want to override GOV.UK Frontend with your own styles.
 
-## Core
+To import add the below to your Sass file:
 
-Basic content styles for typography, links etc. The classes defined in this
-layer would generally correspond to an HTML element - for example paragraphs,
-headings, lists or links.
+  ```scss
+  @import "node_modules/govuk-frontend/all";
+  ```
 
-## Objects
+[More details on importing styles](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md#importing-styles)
 
-Objects can range from something as simple as a wrapper element, to layout
-systems.
+## Importing JavaScript
 
-They may be used in any number of unrelated contexts to the one you can
-currently see it in. This means that making modifications to these types of
-class could potentially have knock-on effects in other places.
+Some of the JavaScript included in GOV.UK Frontend improves the usability and
+accessibility of the components. You should make sure that you are importing and
+initialising Javascript in your application to ensure that all users can use it successfully.
 
-## Components
+You can include Javascript for all components either by copying the `all.js` from `node_modules/govuk-frontend` into your application or referencing the file directly:
 
-Discrete pieces of UI. In most cases these will map to the components in the
-Design System.
+```html
+<script src="<path-to-govuk-frontend-all-file>/all.js"></script>
+```
+Next you need to initialise the script by adding:
 
-## Utilities
+```html
+<script>window.GOVUKFrontend.initAll()</script>
+```
 
-Utility classes – for example clearing floats, visually hiding content.
-
-## Overrides
-
-Classes that map to a specific property – for example margin or font weight -
-and override all other layers. Rules in this layer will generally be marked as
-!important.
-
-Class names within this layer use an additional prefix `-!-`, for example
-`.govuk-!-font-width-regular`.
+[More details on importing Javascript and advanced options](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md#importing-javascript)
 
 
+## Importing assets
 
-[ITCSS]: (http://www.creativebloq.com/web-design/manage-large-css-projects-itcss-101517528)
+In order to import GOV.UK Frontend images and fonts to your project, you should configure your application to reference or copy the relevant GOV.UK Frontend assets.
+
+[More details on importing assets](https://github.com/alphagov/govuk-frontend/blob/master/docs/installation/installing-with-npm.md#import-assets)
+
+
+## Getting updates
+
+To check whether you have the latest version of GOV.UK Frontend, run:
+
+```
+npm outdated govuk-frontend
+```
+
+To update to the latest version, run:
+
+```
+npm update govuk-frontend
+```
+
+## Licence
+
+Unless stated otherwise, the codebase is released under the MIT License. This
+covers both the codebase and any sample code in the documentation. The
+documentation is &copy; Crown copyright and available under the terms of the
+Open Government 3.0 licence.
+
+## Contribution guidelines
+
+If you want to help us build GOV.UK Frontend, view our [contribution
+guidelines](https://github.com/alphagov/govuk-frontend/blob/master/CONTRIBUTING.md).

@@ -86,7 +86,8 @@ $_govuk-grid-widths: (
 @mixin govuk-grid-column($width: full, $float: left, $at: tablet, $class: "govuk-grid-column") {
 
   .#{$class}-#{$width} {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     @if $at != desktop {
       width: 100%;
     }

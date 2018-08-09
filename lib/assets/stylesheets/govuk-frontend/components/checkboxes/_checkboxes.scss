@@ -68,7 +68,8 @@
 
   .govuk-checkboxes__input + .govuk-checkboxes__label::before {
     content: "";
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     position: absolute;
     top: 0;
     left: 0;
@@ -89,7 +90,11 @@
     width: 18px;
     height: 7px;
 
-    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+
+        -ms-transform: rotate(-45deg);
+
+            transform: rotate(-45deg);
     border: solid;
     border-width: 0 0 $govuk-border-width $govuk-border-width;
     // Fix bug in IE11 caused by transform rotate (-45deg).
@@ -108,7 +113,8 @@
     // https://accessibility.blog.gov.uk/2017/03/27/how-users-change-colours-on-websites/
     outline: $govuk-focus-width solid transparent;
     outline-offset: $govuk-focus-width;
-    box-shadow: 0 0 0 $govuk-focus-width $govuk-focus-colour;
+    -webkit-box-shadow: 0 0 0 $govuk-focus-width $govuk-focus-colour;
+            box-shadow: 0 0 0 $govuk-focus-width $govuk-focus-colour;
   }
 
   // Selected state
