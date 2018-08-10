@@ -27,11 +27,14 @@
   </head>
 
   <body>
+    <!-- Required for the DS header navigation, modernizr used extensivly in other places -->
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
     <div class="app-pane">
       <div class="app-pane__header toc-open-disabled">
         <a href="#content" class="skip-link">Skip to main content</a>
 
         <%= partial 'layouts/header' %>
+        <%= partial 'layouts/phase' %>
       </div>
 
       <div id="toc-heading" class="toc-show fixedsticky">

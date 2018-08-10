@@ -4,58 +4,55 @@
 
 // GOVUK Frontend Start
 // Settings
-@import "govuk-frontend/settings/assets";
-@import "govuk-frontend/settings/compatibility";
-@import "govuk-frontend/settings/global-styles";
-@import "govuk-frontend/settings/ie8";
-@import "govuk-frontend/settings/media-queries";
-@import "govuk-frontend/settings/colours-palette";
-@import "govuk-frontend/settings/colours-applied";
-@import "govuk-frontend/settings/spacing";
-@import "govuk-frontend/settings/measurements";
-@import "govuk-frontend/settings/typography-font-families";
-@import "govuk-frontend/settings/typography-font";
-@import "govuk-frontend/settings/typography-responsive";
+@import "../../../node_modules/govuk-frontend/settings/assets";
+@import "../../../node_modules/govuk-frontend/settings/compatibility";
+@import "../../../node_modules/govuk-frontend/settings/global-styles";
+@import "../../../node_modules/govuk-frontend/settings/ie8";
+@import "../../../node_modules/govuk-frontend/settings/media-queries";
+@import "../../../node_modules/govuk-frontend/settings/colours-palette";
+@import "../../../node_modules/govuk-frontend/settings/colours-applied";
+@import "../../../node_modules/govuk-frontend/settings/spacing";
+@import "../../../node_modules/govuk-frontend/settings/measurements";
+@import "../../../node_modules/govuk-frontend/settings/typography-font-families";
+@import "../../../node_modules/govuk-frontend/settings/typography-font";
+@import "../../../node_modules/govuk-frontend/settings/typography-responsive";
 // Tools
-@import "govuk-frontend/tools/compatibility";
-@import "govuk-frontend/tools/exports";
-@import "govuk-frontend/tools/font-url";
-@import "govuk-frontend/tools/ie8";
-@import "govuk-frontend/tools/iff";
-@import "govuk-frontend/tools/image-url";
+@import "../../../node_modules/govuk-frontend/tools/compatibility";
+@import "../../../node_modules/govuk-frontend/tools/exports";
+@import "../../../node_modules/govuk-frontend/tools/font-url";
+@import "../../../node_modules/govuk-frontend/tools/ie8";
+@import "../../../node_modules/govuk-frontend/tools/iff";
+@import "../../../node_modules/govuk-frontend/tools/image-url";
 // Helpers
-@import "govuk-frontend/helpers/clearfix";
-@import "govuk-frontend/helpers/spacing";
-@import "govuk-frontend/helpers/colour";
-@import "govuk-frontend/helpers/device-pixels";
-@import "govuk-frontend/helpers/font-faces";
-@import "govuk-frontend/helpers/media-queries";
-@import "govuk-frontend/helpers/typography";
+@import "../../../node_modules/govuk-frontend/helpers/clearfix";
+@import "../../../node_modules/govuk-frontend/helpers/spacing";
+@import "../../../node_modules/govuk-frontend/helpers/colour";
+@import "../../../node_modules/govuk-frontend/helpers/device-pixels";
+@import "../../../node_modules/govuk-frontend/helpers/font-faces";
+@import "../../../node_modules/govuk-frontend/helpers/media-queries";
+@import "../../../node_modules/govuk-frontend/helpers/typography";
 // Objects
-@import "govuk-frontend/objects/width-container";
+@import "../../../node_modules/govuk-frontend/objects/width-container";
 // Components
-@import "govuk-frontend/components/footer/footer";
-
-
+@import "../../../node_modules/govuk-frontend/components/header/header";
+@import "../../../node_modules/govuk-frontend/components/footer/footer";
+@import "../../../node_modules/govuk-frontend/components/phase-banner/phase-banner";
+// Overides
+@import "../../../node_modules/govuk-frontend/overrides/spacing";
 // GOVUK Frontend End
 
 @import "palette/syntax-highlighting";
 @import "syntax-highlighting";
-
 @import "modules/anchored-heading";
 @import "modules/app-pane";
-
 @import "modules/govuk-logo";
-@import "modules/header";
 @import "modules/page-review";
-@import "modules/phase-banner";
 @import "modules/skip-link";
 @import "modules/search";
 @import "modules/contribution-banner";
 @import "modules/technical-documentation";
 @import "modules/toc";
 @import "modules/collapsible";
-
 @import "accessibility";
 
 html, body {
