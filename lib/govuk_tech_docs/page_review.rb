@@ -2,7 +2,7 @@ module GovukTechDocs
   class PageReview
     attr_reader :page
 
-    def initialize(page, config={})
+    def initialize(page, config = {})
       @page = page
       @config = config
     end
@@ -35,7 +35,7 @@ module GovukTechDocs
       "https://#{owner_slack_workspace}.slack.com/messages/#{slack_identifier}"
     end
 
-    private
+  private
 
     def default_owner_slack
       @config[:tech_docs][:default_owner_slack]
