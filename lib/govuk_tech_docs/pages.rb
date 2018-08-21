@@ -15,11 +15,12 @@ module GovukTechDocs
 
     def as_json
       pages.map do |page|
+        review = PageReview.new(page, @config)
         {
           title: page.data.title,
           url: "#{@config[:tech_docs][:host]}#{page.url}",
-          review_by: PageReview.new(page).review_by,
-          owner_slack: page.data.owner_slack,
+          review_by: review.review_by,
+          owner_slack: review.owner_slack,
         }
       end
     end

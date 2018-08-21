@@ -2,8 +2,9 @@ module GovukTechDocs
   class PageReview
     attr_reader :page
 
-    def initialize(page)
+    def initialize(page, config={})
       @page = page
+      @config = config
     end
 
     def review_by
@@ -24,13 +25,24 @@ module GovukTechDocs
     end
 
     def owner_slack
-      page.data.owner_slack
+      page.data.owner_slack || default_owner_slack
     end
 
     def owner_slack_url
+      return "" unless owner_slack_workspace
       # Slack URLs don't have the # (channels) or @ (usernames)
       slack_identifier = owner_slack.to_s.delete('#').delete('@')
-      "https://govuk.slack.com/messages/#{slack_identifier}"
+      "https://#{owner_slack_workspace}.slack.com/messages/#{slack_identifier}"
+    end
+
+    private
+
+    def default_owner_slack
+      @config[:tech_docs][:default_owner_slack]
+    end
+
+    def owner_slack_workspace
+      @config[:tech_docs][:owner_slack_workspace]
     end
   end
 end
