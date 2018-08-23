@@ -8,27 +8,4 @@
 
 <%= parameters %>
 
-<% if operation.responses.any? %>
-<h4 id="<%= rid = id + '-responses'; rid.parameterize %>">Responses</h4>
-<table>
-<thead>
-<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
-</thead>
-<tbody>
-<% operation.responses.each do |key,response| %>
-<tr>
-<td><%= key %></td>
-<td><%= response.description %></td>
-<td>
-<% if response.content['application/json']
-  schema_name = get_schema_name(response.content['application/json'].schema.node_context.source_location.to_s)
-  if !schema_name.nil? %>
-<a href="#<%= id = 'schema-' + schema_name; id.parameterize %>"><%= schema_name %></a>
-<% end %>
-<% end %>
-</td>
-</tr>
-<% end %>
-</tbody>
-</table>
-<% end %>
+<%= responses %>
