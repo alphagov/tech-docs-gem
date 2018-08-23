@@ -5,25 +5,9 @@
 <% if operation.description %>
   <p><%= markdown(operation.description) %></p>
 <% end %>
-<% if operation.parameters.any? %>
-<h4 id="<%= pid = id + '-parameters'; pid.parameterize %>">Parameters</h4>
-<table>
-<thead>
-<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
-</thead>
-<tbody>
-<% operation.parameters.each do |parameter| %>
-<tr>
-<td><%= parameter.name %></td>
-<td><%= parameter.in %></td>
-<td><%= parameter.schema.type %></td>
-<td><%= parameter.required? %></td>
-<td><%= markdown(parameter.description) %></td>
-</tr>
-<% end %>
-</tbody>
-</table>
-<% end %>
+
+<%= parameters %>
+
 <% if operation.responses.any? %>
 <h4 id="<%= rid = id + '-responses'; rid.parameterize %>">Responses</h4>
 <table>

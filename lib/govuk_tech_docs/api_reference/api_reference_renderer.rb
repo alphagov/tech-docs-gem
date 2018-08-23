@@ -12,6 +12,7 @@ module GovukTechDocs
         @template_path = get_renderer('path.html.erb')
         @template_schema = get_renderer('schema.html.erb')
         @template_operation = get_renderer('operation.html.erb')
+        @template_parameters = get_renderer('parameters.html.erb')
       end
 
       def api_full(info, server)
@@ -56,8 +57,16 @@ module GovukTechDocs
         operations = get_operations(path)
         operations.compact.each do |key, operation|
           id = "#{path_id}-#{key.parameterize}"
+          parameters = parameters(operation, id)
           output += @template_operation.result(binding)
         end
+        output
+      end
+
+      def parameters(operation, operation_id)
+        parameters = operation.parameters
+        id = "#{operation_id}-parameters"
+        output = @template_parameters.result(binding)
         output
       end
 
