@@ -11,6 +11,7 @@ module GovukTechDocs
         @template_api_full = get_renderer('api_reference_full.html.erb')
         @template_path = get_renderer('path.html.erb')
         @template_schema = get_renderer('schema.html.erb')
+        @template_operation = get_renderer('operation.html.erb')
       end
 
       def api_full(info, server)
@@ -20,24 +21,22 @@ module GovukTechDocs
           # For some reason paths.each returns an array of arrays [title, object]
           # instead of an array of objects
           text = path_data[0]
-          path = path_data[1]
-          paths += @template_path.result(binding)
+          paths += path(text)
         end
         schemas = ''
         schemas_data = @document.components.schemas
         schemas_data.each do |schema_data|
-          title = schema_data[0]
-          schema = schema_data[1]
-          schemas += @template_schema.result(binding)
+          text = schema_data[0]
+          schemas += schema(text)
         end
         @template_api_full.result(binding)
       end
 
       def path(text)
         path = @document.paths[text]
-        operations = get_operations(path)
-        output = @template_path.result(binding)
-        output
+        id = text.parameterize
+        operations = operations(path, id)
+        @template_path.result(binding)
       end
 
       def schema(text)
@@ -47,10 +46,19 @@ module GovukTechDocs
           if schema_data[0] == text
             title = schema_data[0]
             schema = schema_data[1]
-            output = @template_schema.result(binding)
-            return output
+            return @template_schema.result(binding)
           end
         end
+      end
+
+      def operations(path, path_id)
+        output = ''
+        operations = get_operations(path)
+        operations.compact.each do |key, operation|
+          id = "#{path_id}-#{key.parameterize}"
+          output += @template_operation.result(binding)
+        end
+        output
       end
 
       def markdown(text)

@@ -1,0 +1,50 @@
+<h3 id="<%= id %>"><%= key %></h3>
+<% if operation.summary %>
+  <p><em><%= operation.summary %></em></p>
+<% end %>
+<% if operation.description %>
+  <p><%= markdown(operation.description) %></p>
+<% end %>
+<% if operation.parameters.any? %>
+<h4 id="<%= pid = id + '-parameters'; pid.parameterize %>">Parameters</h4>
+<table>
+<thead>
+<tr><th>Parameter</th><th>In</th><th>Type</th><th>Required</th><th>Description</th></tr>
+</thead>
+<tbody>
+<% operation.parameters.each do |parameter| %>
+<tr>
+<td><%= parameter.name %></td>
+<td><%= parameter.in %></td>
+<td><%= parameter.schema.type %></td>
+<td><%= parameter.required? %></td>
+<td><%= markdown(parameter.description) %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<% end %>
+<% if operation.responses.any? %>
+<h4 id="<%= rid = id + '-responses'; rid.parameterize %>">Responses</h4>
+<table>
+<thead>
+<tr><th>Status</th><th>Description</th><th>Schema</th></tr>
+</thead>
+<tbody>
+<% operation.responses.each do |key,response| %>
+<tr>
+<td><%= key %></td>
+<td><%= response.description %></td>
+<td>
+<% if response.content['application/json']
+  schema_name = get_schema_name(response.content['application/json'].schema.node_context.source_location.to_s)
+  if !schema_name.nil? %>
+<a href="#<%= id = 'schema-' + schema_name; id.parameterize %>"><%= schema_name %></a>
+<% end %>
+<% end %>
+</td>
+</tr>
+<% end %>
+</tbody>
+</table>
+<% end %>
