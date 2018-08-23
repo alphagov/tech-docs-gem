@@ -9,7 +9,7 @@
   <p><em><%= operation.summary %></em></p>
 <% end %>
 <% if operation.description %>
-  <p><%= render_markdown(operation.description) %></p>
+  <p><%= markdown(operation.description) %></p>
 <% end %>
 <% if operation.parameters.any? %>
 <h3 id="<%= pid = id + '-parameters'; pid.parameterize %>">Parameters</h3>
@@ -24,7 +24,7 @@
 <td><%= parameter.in %></td>
 <td><%= parameter.schema.type %></td>
 <td><%= parameter.required? %></td>
-<td><%= render_markdown(parameter.description) %></td>
+<td><%= markdown(parameter.description) %></td>
 </tr>
 <% end %>
 </tbody>
