@@ -11,7 +11,16 @@
 <td><%= parameter.in %></td>
 <td><%= parameter.schema.type %></td>
 <td><%= parameter.required? %></td>
-<td><%= markdown(parameter.description) %></td>
+<td><%= markdown(parameter.description) %>
+<% if parameter.schema.enum %>
+Available items:
+<ul>
+<% parameter.schema.enum.each do |item| %>
+<li><%= item %></li>
+<% end %>
+</ul>
+<% end %>
+</td>
 </tr>
 <% end %>
 </tbody>
