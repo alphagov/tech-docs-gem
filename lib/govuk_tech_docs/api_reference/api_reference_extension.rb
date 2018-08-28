@@ -70,7 +70,7 @@ module GovukTechDocs
             elsif type == 'default'
               @render.path(text)
             else
-              @render.path.schema(text)
+              @render.schema(text)
             end
 
           else
