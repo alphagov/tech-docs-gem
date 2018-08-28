@@ -53,6 +53,33 @@ module GovukTechDocs
         end
       end
 
+      def schemas_from_path(text)
+        path = @document.paths[text]
+        operations = get_operations(path)
+        # Get all referenced schemas
+        schemas = []
+        operations.compact.each do |key, operation|
+          responses = operation.responses
+          responses.each do |key,response|
+            if response.content['application/json']
+              schema_name = get_schema_name(response.content['application/json'].schema.node_context.source_location.to_s)
+              if !schema_name.nil?
+                schemas.push schema_name
+              end
+            end
+          end
+        end
+        # Render all referenced schemas
+        output = ''
+        schemas.uniq.each do |schema_name|
+          output += schema(schema_name)
+        end
+        if !output.empty?
+          output.prepend('<h2 id="schemas">Schemas</h2>')
+        end
+        output
+      end
+
       def operations(path, path_id)
         output = ''
         operations = get_operations(path)
