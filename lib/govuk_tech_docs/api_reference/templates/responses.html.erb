@@ -10,12 +10,9 @@
 <td><%= key %></td>
 <td><%= response.description %></td>
 <td>
-<% if response.content['application/json']
-  schema_name = get_schema_name(response.content['application/json'].schema.node_context.source_location.to_s)
-  if !schema_name.nil? %>
-<a href="#<%= id = 'schema-' + schema_name; id.parameterize %>"><%= schema_name %></a>
-<% end %>
-<% end %>
+<%= if response.content['application/json']
+  get_schema_link(response.content['application/json'].schema)
+end %>
 </td>
 </tr>
 <% end %>
