@@ -129,7 +129,7 @@ module GovukTechDocs
           properties_hash[key] = value
           # if $ref return referenced
         end
-        output = JSON.generate(properties_hash)
+        output = JSON.pretty_generate(properties_hash)
         return output
       end
 
