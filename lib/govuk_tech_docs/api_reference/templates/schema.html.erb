@@ -14,8 +14,13 @@
 <td><%= markdown(property[1].description) %></td>
 <td>
   <%=
+  schema = property[1]
+  # If property is an array, check the items property for a reference.
+  if property[1].type == 'array'
+    schema = property[1]['items']
+  end
   # Only print a link if it's a referenced object.
-  get_schema_link(property[1]) if property[1].node_context.referenced_by %>
+  get_schema_link(schema) if schema.node_context.referenced_by %>
 </td>
 </tr>
 <% end %>
