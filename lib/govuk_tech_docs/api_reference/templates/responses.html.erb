@@ -15,6 +15,15 @@
 end %>
 </td>
 </tr>
+<% if response.content['application/json'] %>
+<tr>
+<td colspan="3">
+<pre>
+<%= json_output(get_schema_name response.content['application/json'].schema.node_context.source_location.to_s) %>
+</pre>
+</td>
+</tr>
+<% end %>
 <% end %>
 </tbody>
 </table>

@@ -1,4 +1,5 @@
 require 'erb'
+require 'json'
 
 module GovukTechDocs
   module ApiReference
@@ -109,6 +110,33 @@ module GovukTechDocs
       def markdown(text)
         if text
           Tilt['markdown'].new(context: @app) { text }.render
+        end
+      end
+
+      def json_output(schema_path)
+        return schema_properties(schema_path)
+      end
+
+      def schema_properties(text)
+
+        schemas_data = @document.components.schemas
+        schemas_data.each do |schema_data|
+          if schema_data[0] == text
+            title = schema_data[0]
+            properties = schema_data[1].properties
+            properties_hash = Hash.new
+            properties.each do |key, item|
+              if item.example.nil?
+                value = item.type
+              else
+                value = item.example
+              end
+              properties_hash[key] = value
+              # if $ref return referenced
+            end
+            output = JSON.generate(properties_hash)
+            return output
+          end
         end
       end
 
