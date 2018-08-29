@@ -13,7 +13,7 @@
 <td><%= parameter.required? %></td>
 <td><%= markdown(parameter.description) %>
 <% if parameter.schema.enum %>
-Available items:
+<p>Available items:</p>
 <ul>
 <% parameter.schema.enum.each do |item| %>
 <li><%= item %></li>
