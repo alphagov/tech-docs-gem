@@ -8,7 +8,17 @@
 <% responses.each do |key,response| %>
 <tr>
 <td><%= key %></td>
-<td><%= response.description %></td>
+<td>
+<%= response.description %>
+<% if response.content['application/json']
+  request_body = json_output(response.content['application/json'].schema)
+end %>
+<% if !request_body.blank? %>
+<pre>
+  <%= request_body %>
+</pre>
+<% end %>
+</td>
 <td>
 <%= if response.content['application/json']
   get_schema_link(response.content['application/json'].schema)
@@ -17,11 +27,6 @@ end %>
 </tr>
 <% if response.content['application/json'] %>
 <tr>
-<td colspan="3">
-<pre>
-<%= json_output(get_schema_name response.content['application/json'].schema.node_context.source_location.to_s) %>
-</pre>
-</td>
 </tr>
 <% end %>
 <% end %>

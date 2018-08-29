@@ -113,31 +113,24 @@ module GovukTechDocs
         end
       end
 
-      def json_output(schema_path)
-        return schema_properties(schema_path)
+      def json_output(schema)
+        return schema_properties(schema)
       end
 
-      def schema_properties(text)
-
-        schemas_data = @document.components.schemas
-        schemas_data.each do |schema_data|
-          if schema_data[0] == text
-            title = schema_data[0]
-            properties = schema_data[1].properties
-            properties_hash = Hash.new
-            properties.each do |key, item|
-              if item.example.nil?
-                value = item.type
-              else
-                value = item.example
-              end
-              properties_hash[key] = value
-              # if $ref return referenced
-            end
-            output = JSON.generate(properties_hash)
-            return output
+      def schema_properties(schema_data)
+        properties = schema_data.properties
+        properties_hash = Hash.new
+        properties.each do |key, item|
+          if item.example.nil?
+            value = item.type
+          else
+            value = item.example
           end
+          properties_hash[key] = value
+          # if $ref return referenced
         end
+        output = JSON.generate(properties_hash)
+        return output
       end
 
     private
