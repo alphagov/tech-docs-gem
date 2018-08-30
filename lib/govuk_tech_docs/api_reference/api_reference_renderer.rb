@@ -88,12 +88,15 @@ module GovukTechDocs
         properties = schema.properties
         properties.each do |key, property|
           # Must be a schema be referenced by another schema
-          if property.node_context.referenced_by.to_s.include? '#/components/schemas'
+          # And not a property of a schema
+          if property.node_context.referenced_by.to_s.include? '#/components/schemas' and !property.node_context.source_location.to_s.include? '/properties/'
             schema_name = get_schema_name(property.node_context.source_location.to_s)
           end
           if !schema_name.nil?
             schemas.push schema_name
           end
+          # Check sub-properties for references
+          schemas.concat(schemas_from_schema(property))
         end
         schemas
       end
