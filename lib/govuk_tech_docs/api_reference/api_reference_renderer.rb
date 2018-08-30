@@ -48,17 +48,17 @@ module GovukTechDocs
         schemas_data.each do |schema_data|
 
           allOf = schema_data[1]["allOf"]
-
           properties = []
-
           if !allOf.blank?
             schema_data[1]["allOf"].each do |schema_nested|
-              # pry(schema_nested.properties)
-              properties.concat(schema_nested.properties)
+              schema_nested.properties.each do |property|
+                properties.push property
+              end
             end
           end
-
-          puts properties
+          schema_data[1].properties.each do |property|
+            properties.push property
+          end
 
           if schema_data[0] == text
             title = schema_data[0]
