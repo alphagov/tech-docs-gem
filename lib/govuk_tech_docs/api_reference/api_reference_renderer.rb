@@ -99,8 +99,14 @@ module GovukTechDocs
 
       def schemas_from_schema(schema)
         schemas = []
-        properties = schema.properties
-        properties.each do |key, property|
+        properties = []
+        schema.properties.each do |property|
+          properties.push property[1]
+        end
+        if schema.type == 'array'
+          properties.push schema.items
+        end
+        properties.each do |property|
           # Must be a schema be referenced by another schema
           # And not a property of a schema
           if property.node_context.referenced_by.to_s.include? '#/components/schemas' and !property.node_context.source_location.to_s.include? '/properties/'
