@@ -122,7 +122,7 @@ module GovukTechDocs
         properties = schema_data.properties
         properties_hash = Hash.new
         properties.each do |key, item|
-          if item.type == 'object'
+          if item.type == 'object' || item.type == 'array'
             properties_hash[key] = schema_properties(item)
           else
             if item.example.nil?
