@@ -46,6 +46,20 @@ module GovukTechDocs
         schemas = ''
         schemas_data = @document.components.schemas
         schemas_data.each do |schema_data|
+
+          allOf = schema_data[1]["allOf"]
+
+          properties = []
+
+          if !allOf.blank?
+            schema_data[1]["allOf"].each do |schema_nested|
+              # pry(schema_nested.properties)
+              properties.concat(schema_nested.properties)
+            end
+          end
+
+          puts properties
+
           if schema_data[0] == text
             title = schema_data[0]
             schema = schema_data[1]
