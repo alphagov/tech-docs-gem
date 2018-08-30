@@ -63,10 +63,12 @@ module GovukTechDocs
           responses = operation.responses
           responses.each do |key,response|
             if response.content['application/json']
-              schema_name = get_schema_name(response.content['application/json'].schema.node_context.source_location.to_s)
+              schema = response.content['application/json'].schema
+              schema_name = get_schema_name(schema.node_context.source_location.to_s)
               if !schema_name.nil?
                 schemas.push schema_name
               end
+              schemas.concat(schemas_from_schema(schema))
             end
           end
         end
@@ -79,6 +81,21 @@ module GovukTechDocs
           output.prepend('<h2 id="schemas">Schemas</h2>')
         end
         output
+      end
+
+      def schemas_from_schema(schema)
+        schemas = []
+        properties = schema.properties
+        properties.each do |key, property|
+          # Must be a schema be referenced by another schema
+          if property.node_context.referenced_by.to_s.include? '#/components/schemas'
+            schema_name = get_schema_name(property.node_context.source_location.to_s)
+          end
+          if !schema_name.nil?
+            schemas.push schema_name
+          end
+        end
+        schemas
       end
 
       def operations(path, path_id)
