@@ -106,6 +106,14 @@ module GovukTechDocs
         if schema.type == 'array'
           properties.push schema.items
         end
+        allOf = schema["allOf"]
+        if !allOf.blank?
+          allOf.each do |schema_nested|
+            schema_nested.properties.each do |property|
+              properties.push property[1]
+            end
+          end
+        end
         properties.each do |property|
           # Must be a schema be referenced by another schema
           # And not a property of a schema
@@ -120,6 +128,9 @@ module GovukTechDocs
         end
         schemas
       end
+
+
+
 
       def operations(path, path_id)
         output = ''
