@@ -114,23 +114,27 @@ module GovukTechDocs
       end
 
       def json_output(schema)
-        return schema_properties(schema)
+        properties =  schema_properties(schema)
+        JSON.pretty_generate(properties)
       end
 
       def schema_properties(schema_data)
         properties = schema_data.properties
         properties_hash = Hash.new
         properties.each do |key, item|
-          if item.example.nil?
-            value = item.type
+          if item.type == 'object'
+            properties_hash[key] = schema_properties(item)
           else
-            value = item.example
+            if item.example.nil?
+              value = item.type
+            else
+              value = item.example
+            end
+            properties_hash[key] = value
+            # if $ref return referenced
           end
-          properties_hash[key] = value
-          # if $ref return referenced
         end
-        output = JSON.pretty_generate(properties_hash)
-        return output
+        properties_hash
       end
 
     private
