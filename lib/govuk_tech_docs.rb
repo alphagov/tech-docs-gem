@@ -70,7 +70,7 @@ module GovukTechDocs
       end
 
       def current_page_review
-        @current_page_review ||= GovukTechDocs::PageReview.new(current_page)
+        @current_page_review ||= GovukTechDocs::PageReview.new(current_page, config)
       end
 
       def format_date(date)

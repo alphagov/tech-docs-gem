@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Additional configuration options for review system
+
+`default_owner_slack` and `owner_slack_workspace` are now configurable for use within the review system.
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/47
+
 ## 1.5.0
 
 ### New feature: Search

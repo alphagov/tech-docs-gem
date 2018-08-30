@@ -156,3 +156,22 @@ Define a path to an Open API V3 spec file. This can be a relative file path or a
 ```yaml
 api_path: ./source/pets.yml
 ```
+
+## `owner_slack_workspace`
+
+The Slack workspace name used when linking to the Slack owner of a piece of
+content. If not provided, the owner of a piece of content (channel or user)
+won't be linked.
+
+```yaml
+owner_slack_workspace: gds
+```
+
+## `default_owner_slack`
+
+The default Slack user or channel name to show as the owner of a piece of
+content. Can be overridden using the `owner_slack` frontmatter config option.
+
+```yaml
+default_owner_slack: '#owner'
+```
