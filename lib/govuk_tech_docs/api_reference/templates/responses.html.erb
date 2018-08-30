@@ -14,9 +14,7 @@
   request_body = json_output(response.content['application/json'].schema)
 end %>
 <% if !request_body.blank? %>
-<pre>
-  <%= request_body %>
-</pre>
+<pre><%= request_body %></pre>
 <% end %>
 </td>
 <td>
@@ -25,10 +23,6 @@ end %>
 end %>
 </td>
 </tr>
-<% if response.content['application/json'] %>
-<tr>
-</tr>
-<% end %>
 <% end %>
 </tbody>
 </table>
