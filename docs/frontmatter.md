@@ -5,7 +5,9 @@
 ## `last_reviewed_on` and `review_in`
 
 These attributes determine the date when the page needs to be reviewed next.
-See the separate documentation for page expiry for more details.
+See the separate [documentation for page expiry][expiry] for more details.
+
+[expiry]: https://alphagov.github.io/tech-docs-manual/#page-expiry-and-review-notices
 
 Example:
 

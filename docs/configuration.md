@@ -160,4 +160,6 @@ api_path: ./source/pets.yml
 ## `owner_slack_workspace` and `default_owner_slack`
 
 These attributes are used to specify the owner of a page.  See the separate
-documentation for page expiry for more details.
+[documentation for page expiry][expiry] for more details.
+
+[expiry]: https://alphagov.github.io/tech-docs-manual/#page-expiry-and-review-notices
