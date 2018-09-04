@@ -26,7 +26,7 @@ More info:
 
 ### Search result improvements
 
-The search indexing pipeline has been tweaked to provide expected results. The display of the search results has also been
+The search indexing pipeline has been tweaked to provide expected results. The display of the search results has also been improved.
 
 If you're using search then you'll need to add this line to your project `Gemfile`:
 
