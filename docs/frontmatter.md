@@ -5,23 +5,9 @@
 ## `last_reviewed_on` and `review_in`
 
 These attributes determine the date when the page needs to be reviewed next.
-
-If the page doesn't need to be reviewed, we show a blue box with the last-reviewed date, when it needs review again, and the owner.
-
-![](not-expired-page.png)
-
-If the page needs to be reviewed, we show a red box saying the page might not be accurate.
-
-![](expired-page.png)
+See the separate documentation for page expiry for more details.
 
 Example:
-
-```yaml
----
-last_reviewed_on: 2018-01-18
-review_in: 6 weeks
----
-```
 
 You can use this in combination with [owner_slack](#owner-slack) to set an owner for the page.
 
