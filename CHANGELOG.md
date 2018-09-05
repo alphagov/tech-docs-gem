@@ -9,6 +9,38 @@
 More info:
 - https://github.com/alphagov/tech-docs-gem/pull/47
 
+### Correct fork of middleman in example project
+
+The example gem project now uses alphagov/middleman-search. This prevents `bundle exec middleman serve` from crashing.
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/35
+
+### Accessibility improvements
+
+Accessibility improvements to search, collapsible navigation, and the logo.
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/36
+- https://github.com/alphagov/tech-docs-gem/pull/33
+
+### Search result improvements
+
+The search indexing pipeline has been tweaked to provide expected results. The display of the search results has also been improved.
+
+If you're using search then you'll need to add this line to your project `Gemfile`:
+
+```
+gem 'middleman-search', git: 'git://github.com/alphagov/middleman-search.git'
+```
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/37
+- https://github.com/alphagov/tech-docs-gem/pull/38
+- https://github.com/alphagov/tech-docs-gem/pull/41
+- https://github.com/alphagov/tech-docs-gem/pull/42
+- https://github.com/alphagov/tech-docs-gem/pull/43
+
 ## 1.5.0
 
 ### New feature: Search
