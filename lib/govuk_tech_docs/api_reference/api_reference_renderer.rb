@@ -129,9 +129,6 @@ module GovukTechDocs
         schemas
       end
 
-
-
-
       def operations(path, path_id)
         output = ''
         operations = get_operations(path)
@@ -167,6 +164,10 @@ module GovukTechDocs
       def json_output(schema)
         properties =  schema_properties(schema)
         JSON.pretty_generate(properties)
+      end
+
+      def json_prettyprint(data)
+        JSON.pretty_generate(data)
       end
 
       def schema_properties(schema_data)
