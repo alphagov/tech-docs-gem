@@ -71,6 +71,7 @@ module GovukTechDocs
               output = @render.path(text)
               # Render any schemas referenced in the above path
               output += @render.schemas_from_path(text)
+              output
             else
               @render.schema(text)
             end
@@ -92,7 +93,6 @@ module GovukTechDocs
       def api_server
         @document.servers[0]
       end
-
     end
   end
 end

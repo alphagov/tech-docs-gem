@@ -46,11 +46,10 @@ module GovukTechDocs
         schemas = ''
         schemas_data = @document.components.schemas
         schemas_data.each do |schema_data|
-
-          allOf = schema_data[1]["allOf"]
+          all_of = schema_data[1]["allOf"]
           properties = []
-          if !allOf.blank?
-            schema_data[1]["allOf"].each do |schema_nested|
+          if !all_of.blank?
+            all_of.each do |schema_nested|
               schema_nested.properties.each do |property|
                 properties.push property
               end
@@ -74,9 +73,9 @@ module GovukTechDocs
         operations = get_operations(path)
         # Get all referenced schemas
         schemas = []
-        operations.compact.each do |key, operation|
+        operations.compact.each_value do |operation|
           responses = operation.responses
-          responses.each do |key,response|
+          responses.each do |_rkey, response|
             if response.content['application/json']
               schema = response.content['application/json'].schema
               schema_name = get_schema_name(schema.node_context.source_location.to_s)
@@ -107,9 +106,9 @@ module GovukTechDocs
         if schema.type == 'array'
           properties.push schema.items
         end
-        allOf = schema["allOf"]
-        if !allOf.blank?
-          allOf.each do |schema_nested|
+        all_of = schema["allOf"]
+        if !all_of.blank?
+          all_of.each do |schema_nested|
             schema_nested.properties.each do |property|
               properties.push property[1]
             end
@@ -118,7 +117,8 @@ module GovukTechDocs
         properties.each do |property|
           # Must be a schema be referenced by another schema
           # And not a property of a schema
-          if property.node_context.referenced_by.to_s.include? '#/components/schemas' and !property.node_context.source_location.to_s.include? '/properties/'
+          if property.node_context.referenced_by.to_s.include?('#/components/schemas') &&
+              !property.node_context.source_location.to_s.include?('/properties/')
             schema_name = get_schema_name(property.node_context.source_location.to_s)
           end
           if !schema_name.nil?
@@ -129,7 +129,6 @@ module GovukTechDocs
         end
         schemas
       end
-
 
       def operations(path, path_id)
         output = ''
@@ -198,13 +197,7 @@ module GovukTechDocs
               properties_hash[pkey].push schema_properties(items)
             end
           else
-            if !property.example.nil?
-              value = property.example
-            else
-              value = property.type
-            end
-            properties_hash[pkey] = value
-            # if $ref return referenced
+            properties_hash[pkey] = !property.example.nil? ? property.example : property.type
           end
         end
 
@@ -214,7 +207,7 @@ module GovukTechDocs
     private
 
       def get_all_of_array(schema)
-        properties =  Array.new
+        properties = Array.new
         if schema.is_a?(Array)
           schema = schema[1]
         end
@@ -284,4 +277,3 @@ module GovukTechDocs
     end
   end
 end
-
