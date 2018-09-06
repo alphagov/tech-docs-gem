@@ -155,6 +155,10 @@ module GovukTechDocs
         JSON.pretty_generate(properties)
       end
 
+      def json_prettyprint(data)
+        JSON.pretty_generate(data)
+      end
+
       def schema_properties(schema_data)
         properties = Hash.new
         if defined? schema_data.properties

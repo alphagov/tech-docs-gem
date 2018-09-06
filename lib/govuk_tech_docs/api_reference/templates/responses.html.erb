@@ -9,9 +9,13 @@
 <tr>
 <td><%= key %></td>
 <td>
-<%= response.description %>
+<%= markdown(response.description) %>
 <% if response.content['application/json']
+if response.content['application/json']["example"]
+  request_body = json_prettyprint(response.content['application/json']["example"])
+else
   request_body = json_output(response.content['application/json'].schema)
+end
 end %>
 <% if !request_body.blank? %>
 <pre><code><%= request_body %></code></pre>
