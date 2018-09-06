@@ -47,15 +47,7 @@ module GovukTechDocs
         schemas_data = @document.components.schemas
         schemas_data.each do |schema_data|
 
-          allOf = schema_data[1]["allOf"]
-          properties = []
-          if !allOf.blank?
-            schema_data[1]["allOf"].each do |schema_nested|
-              schema_nested.properties.each do |property|
-                properties.push property
-              end
-            end
-          end
+          properties = get_all_of_array(schema_data[1])
           schema_data[1].properties.each do |property|
             properties.push property
           end
@@ -100,37 +92,31 @@ module GovukTechDocs
       def schemas_from_schema(schema)
         schemas = []
         properties = []
-        schema.properties.each do |property|
-          properties.push property[1]
-        end
-        if schema.type == 'array'
-          properties.push schema.items
-        end
-        allOf = schema["allOf"]
-        if !allOf.blank?
-          allOf.each do |schema_nested|
-            schema_nested.properties.each do |property|
-              properties.push property[1]
-            end
+        if defined? schema.properties
+          schema.properties.each do |property|
+            properties.push property[1]
           end
         end
+        properties.concat get_items(schema)
+        properties.concat get_all_of_array(schema)
         properties.each do |property|
           # Must be a schema be referenced by another schema
           # And not a property of a schema
-          if property.node_context.referenced_by.to_s.include? '#/components/schemas' and !property.node_context.source_location.to_s.include? '/properties/'
+          if defined? property.node_context and
+            property.node_context.referenced_by.to_s.include? '#/components/schemas' and
+            !property.node_context.source_location.to_s.include? '/properties/'
             schema_name = get_schema_name(property.node_context.source_location.to_s)
           end
           if !schema_name.nil?
             schemas.push schema_name
           end
           # Check sub-properties for references
-          schemas.concat(schemas_from_schema(property))
+          if !property.nil?
+            schemas.concat(schemas_from_schema(property))
+          end
         end
         schemas
       end
-
-
-
 
       def operations(path, path_id)
         output = ''
@@ -170,25 +156,89 @@ module GovukTechDocs
       end
 
       def schema_properties(schema_data)
-        properties = schema_data.properties
+        properties = Hash.new
+        if defined? schema_data.properties
+          schema_data.properties.each do |key, property|
+            properties[key] = property
+          end
+        end
+        properties.merge! get_all_of_hash(schema_data)
         properties_hash = Hash.new
-        properties.each do |key, item|
-          if item.type == 'object' || item.type == 'array'
-            properties_hash[key] = schema_properties(item)
-          else
-            if item.example.nil?
-              value = item.type
-            else
-              value = item.example
+        properties.each do |pkey, property|
+          if property.type == 'object'
+            properties_hash[pkey] = Hash.new
+            items = property.items
+            if !items.blank?
+              properties_hash[pkey] = schema_properties(items)
             end
-            properties_hash[key] = value
+            if !property.properties.blank?
+              properties_hash[pkey] = schema_properties(property)
+            end
+          elsif property.type == 'array'
+            properties_hash[pkey] = Array.new
+            items = property.items
+            if !items.blank?
+              properties_hash[pkey].push schema_properties(items)
+            end
+          else
+            if !property.example.nil?
+              value = property.example
+            else
+              value = property.type
+            end
+            properties_hash[pkey] = value
             # if $ref return referenced
           end
         end
+
         properties_hash
       end
 
     private
+
+      def get_all_of_array(schema)
+        properties =  Array.new
+        # Sometimes allOf is a keyed array that containing an array
+        if schema[0] == "allOf"
+          all_of = schema[1]
+        end
+        if !all_of.blank?
+          all_of.each do |schema_nested|
+            schema_nested.properties.each do |property|
+              properties.push property
+            end
+          end
+        end
+        properties
+      end
+
+      def get_all_of_hash(schema)
+        properties = Hash.new
+        if schema["allOf"]
+          all_of = schema["allOf"]
+        end
+        if !all_of.blank?
+          all_of.each do |schema_nested|
+            schema_nested.properties.each do |key, property|
+              properties[key] = property
+            end
+          end
+        end
+        properties
+      end
+
+      def get_items(schema)
+        properties = []
+        if defined? schema.items
+          items = schema.items
+          if !items.blank?
+            items.each do |property|
+              properties.push property
+            end
+          end
+        end
+        properties
+      end
 
       def get_renderer(file)
         template_path = File.join(File.dirname(__FILE__), 'templates/' + file)
