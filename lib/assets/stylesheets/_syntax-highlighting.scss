@@ -1,5 +1,19 @@
 .highlight {
 
+  /*
+  Seems like a horrible hack. Highlight ignores its parents
+  width for some reason. The only way to stop horizontal scrollbars
+  is to set an explicit width. I believe it must be a grid layout issue.
+   */
+  @supports (display: grid) {
+    width: calc(100vw - 75px);
+    max-width: 40em;
+
+    @include media(tablet) {
+      width: 46vw;
+    }
+  }
+
   /* Map Rouge / Pygments Tokens to work with 'Base 16' themes */
 
   background: $code-00;
@@ -8,7 +22,7 @@
   /**
    * Comments
    */
-  
+
   .c,       /* Comment */
   .cm,      /* Comment.Multiline */
   .cp,      /* Comment.Preproc */
@@ -16,7 +30,7 @@
   .cs {     /* Comment.Special */
     color: $code-03;
   }
-  
+
   /**
    * Keywords
    */
@@ -35,7 +49,7 @@
 
   .kt {     /* Keyword.Type */
     color: $code-0A;
-  } 
+  }
 
   /**
    * Operators
@@ -58,7 +72,7 @@
   .py {     /* Name.Property */
     // Default styling
   }
-  
+
   .nc,      /* Name.Class */
   .nn {     /* Name.Namespace */
     color: $code-0A;
@@ -76,12 +90,12 @@
   .vi {     /* Name.Variable.Instance */
     color: $code-08;
   }
-  
+
   .nd {     /* Name.Decorator */
     color: $code-0C;
   }
-  
-  .nt,      /* Name.Tag */  
+
+  .nt,      /* Name.Tag */
   .nx {     /* Name.Other */
     color: $code-09;
   }
@@ -89,11 +103,11 @@
   .ne {     /* Name.Exception */
     color: $code-0F;
   }
-  
+
   /**
    * Literals
    */
-  
+
   .l  {     /* Literal */
     color: $code-09;
   }
@@ -101,7 +115,7 @@
   .ld {     /* Literal.Date */
     color: $code-0B;
   }
-  
+
   .m,       /* Literal.Number */
   .mf,      /* Literal.Number.Float */
   .mh,      /* Literal.Number.Hex */
@@ -110,14 +124,14 @@
   .mo {     /* Literal.Number.Oct */
     color: $code-09;
   }
-  
+
   .s,       /* Literal.String */
   .sb,      /* Literal.String.Backtick */
   .s2,      /* Literal.String.Double */
   .sh {     /* Literal.String.Heredoc */
     color: $code-0B;
   }
-  
+
   .sx,      /* Literal.String.Other */
   .sr,      /* Literal.String.Regex */
   .s1,      /* Literal.String.Single */
@@ -133,11 +147,11 @@
   .sd {     /* Literal.String.Doc */
     color: $code-03
   }
-  
+
   .sc {     /* Literal.String.Char */
     // Default styling
   }
-  
+
   /**
    * Diffs
    */
@@ -149,11 +163,11 @@
   .gd {     /* Generic.Deleted */
     background-color: $code-delete-bg;
   }
-  
+
   /**
    * Misc
    */
-  
+
   .p {      /* Punctuation */
     // Default styling
   }
@@ -171,7 +185,7 @@
   .gt {     /* Generic.Traceback */
     color: $code-0F;
   }
-  
+
   .gs {     /* Generic.Strong */
     font-weight: bold;
   }
@@ -179,7 +193,7 @@
   .ge {     /* Generic.Emph */
     font-style: italic;
   }
-  
+
   .gh {     /* Generic.Heading */
     font-weight: bold;
   }
@@ -188,7 +202,7 @@
     color: $code-0A;
     font-weight: bold;
   }
-  
+
   .gp {     /* Generic.Prompt */
     color: $code-03;
     font-weight: bold

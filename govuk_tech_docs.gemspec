@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport"
   spec.add_dependency "chronic", "~> 0.10.2"
   spec.add_dependency "middleman", "~> 4.0"
-  spec.add_dependency "middleman-autoprefixer", "~> 2.7.0"
+  spec.add_dependency "middleman-autoprefixer", "~> 2.8.0"
   spec.add_dependency "middleman-compass", ">= 4.0.0"
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-sprockets", "~> 4.0.0"
