@@ -20,7 +20,7 @@ require 'govuk_tech_docs/pages'
 require 'govuk_tech_docs/tech_docs_html_renderer'
 require 'govuk_tech_docs/unique_identifier_extension'
 require 'govuk_tech_docs/unique_identifier_generator'
-require 'govuk_tech_docs/api_reference/api_reference'
+require 'govuk_tech_docs/api_reference/api_reference_extension'
 
 module GovukTechDocs
   # Configure the tech docs template

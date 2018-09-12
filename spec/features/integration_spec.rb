@@ -136,7 +136,9 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_correct_api_path_content
     # Path title
-    expect(page).to have_css('h2#get-pets', text: 'GET /pets')
+    expect(page).to have_css('h2#pets', text: '/pets')
+    # Operation title
+    expect(page).to have_css('h3#pets-get', text: 'get')
     # Path parameters
     expect(page).to have_css('table', text: /\b(How many items to return at one time)\b/)
     # Link to schema

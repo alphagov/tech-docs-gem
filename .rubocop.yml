@@ -6,3 +6,6 @@ Naming/HeredocDelimiterNaming:
 
 Lint/NestedMethodDefinition:
   Enabled: false
+
+Performance/HashEachMethods:
+  Enabled: false
