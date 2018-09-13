@@ -2,6 +2,55 @@
 
 ## Unreleased
 
+## 1.6.0
+
+Version 1.6.0 adds API reference generation, and improves the search function.
+
+### New feature: API reference
+
+Specify an OpenAPI spec file using `api_path`, for example: `api_path: source/pets.yml`.
+
+To output the generated content in the page of your choice, write `api>` in any markdown parsed file (.md, .html.md, .html.md.erb). You can also specify to just print a specific path: `api> /pets`
+
+This generates request and response schemas and examples for each API operation.
+
+More info:
+
+- https://github.com/alphagov/tech-docs-gem/pull/40
+- https://github.com/alphagov/tech-docs-gem/pull/48
+
+### Search result improvements
+
+The search indexing pipeline has been tweaked to provide expected results. The display of the search results has also been
+
+If you're using search then you'll need to add this line to your project `Gemfile`:
+
+```
+gem 'middleman-search', git: 'git://github.com/alphagov/middleman-search.git'
+```
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/37
+- https://github.com/alphagov/tech-docs-gem/pull/38
+- https://github.com/alphagov/tech-docs-gem/pull/41
+- https://github.com/alphagov/tech-docs-gem/pull/42
+- https://github.com/alphagov/tech-docs-gem/pull/43
+
+### Correct fork of middleman in example project
+
+The example gem project now uses alphagov/middleman-search. This prevents `bundle exec middleman serve` from crashing.
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/35
+
+### Accessibility improvements
+
+Accessibility improvements to search, collapsible navigation, and the logo.
+
+More info:
+- https://github.com/alphagov/tech-docs-gem/pull/36
+- https://github.com/alphagov/tech-docs-gem/pull/33
+
 ### Additional configuration options for review system
 
 `default_owner_slack` and `owner_slack_workspace` are now configurable for use within the review system.
