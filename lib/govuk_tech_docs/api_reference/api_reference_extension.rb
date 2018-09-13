@@ -17,7 +17,8 @@ module GovukTechDocs
 
         # If no api path then just return.
         if @config['api_path'].to_s.empty?
-          raise 'No api path defined in tech-docs.yml'
+          @api_parser = false
+          return
         end
 
         # Is the api_path a url or path?

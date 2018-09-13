@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 1.6.1
+
+### Make `api_path` configuration optional
+
+A bug in the previous release prevented the docs from being generated if
+`api_path` was missing. This is now fixed.
+
 ## 1.6.0
 
 Version 1.6.0 adds API reference generation, and improves the search function.
