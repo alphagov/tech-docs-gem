@@ -67,7 +67,7 @@ module GovukTechDocs
             text = text.strip
 
             if text == 'api&gt;'
-              @render.api_full(api_info, api_server)
+              @render.api_full(api_info, api_servers)
             elsif type == 'default'
               output = @render.path(text)
               # Render any schemas referenced in the above path
@@ -91,8 +91,8 @@ module GovukTechDocs
         @document.info
       end
 
-      def api_server
-        @document.servers[0]
+      def api_servers
+        @document.servers
       end
     end
   end
