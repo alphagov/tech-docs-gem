@@ -29,7 +29,6 @@ module GovukTechDocs
   # @option options [Hash] livereload Options to pass to the `livereload`
   #   extension. Hash with symbols as keys.
   def self.configure(context, options = {})
-    context.activate :autoprefixer
     context.activate :sprockets
     context.activate :syntax
 
@@ -52,6 +51,7 @@ module GovukTechDocs
     end
 
     context.configure :build do
+      activate :autoprefixer
       activate :minify_css
       activate :minify_javascript
     end
