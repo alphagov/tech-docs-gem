@@ -17,7 +17,7 @@ module GovukTechDocs
         @template_responses = get_renderer('responses.html.erb')
       end
 
-      def api_full(info, server)
+      def api_full(info, servers)
         paths = ''
         paths_data = @document.paths
         paths_data.each do |path_data|
