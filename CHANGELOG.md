@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 1.6.2
+
+This version fixes an issue with Middleman hanging (PR #54). It also allows the API reference page to include multiple servers and their descriptions (PR #53).
 
 ## 1.6.1
 
