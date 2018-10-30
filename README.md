@@ -1,10 +1,13 @@
 # Tech Docs Template - gem
 
-This repo is part of the [tech-docs-template](https://github.com/alphagov/tech-docs-template).
+This repo is part of the GOV.UK Tech docs project. This repo contains the Ruby
+gem that is used to distribute most of code that is used to generate the site.
+
+👉 [See alphagov.github.io/tech-docs-manual](https://alphagov.github.io/tech-docs-manual)
 
 ## Usage
 
-To [generate a new site with the template](https://github.com/alphagov/tech-docs-template#creating-a-new-documentation-project), see the tech-docs-template repo.
+To [generate a new site with the template](https://alphagov.github.io/tech-docs-manual/#create-a-new-site), see the manual.
 
 ## Contributing
 
