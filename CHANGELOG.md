@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+The gem now uses `middleman-search-gds` rather than `middleman-search`, which
+removes the need for projects to point to the alphagov github repository in
+their Gemfiles. We will continue to maintain our own fork until the changes
+are merged into the upstream project.
+
 ## 1.6.2
 
 This version fixes an issue with Middleman hanging (PR #54). It also allows the API reference page to include multiple servers and their descriptions (PR #53).
