@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.6.3
+
 The gem now uses `middleman-search-gds` rather than `middleman-search`, which
 removes the need for projects to point to the alphagov github repository in
 their Gemfiles. We will continue to maintain our own fork until the changes
