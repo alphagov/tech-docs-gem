@@ -139,6 +139,18 @@ show_contribution_banner: true
 github_repo: alphagov/example-repo
 ```
 
+## `source_urls`
+
+Customise the URLs that the contribution banner links to. Only useful if
+[show_contribution_banner](#show_contribution_banner) is turned on. By default, "Report issue" links
+to raising a GitHub issue but by modifying the `report_issue_url` it can link to an email address
+or another page.
+
+```yaml
+source_urls:
+  report_issue_url: mailto:support@example.com
+```
+
 ## `show_govuk_logo`
 
 Whether to show the GOV.UK crown logo.
