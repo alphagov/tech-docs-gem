@@ -88,6 +88,17 @@ owner_slack: "#operations-teams"
 ---
 ```
 
+## `source_url`
+
+If the contribution banner is turned on, you can override the "View source" link
+using `source_url`.
+
+Example:
+
+```yaml
+source_url: http://example.org/source.md
+```
+
 ## `title`
 
 The browser title of the page.
