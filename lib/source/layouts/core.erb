@@ -25,6 +25,8 @@
     <% meta_tags.tags.each do |property, content| %>
       <%= tag :meta, property: property, content: content %>
     <% end %>
+
+    <%= yield_content :head %>
   </head>
 
   <body>
