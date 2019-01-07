@@ -65,6 +65,17 @@ This page has a configurable sidebar that is independent of the content.
 
 ![](core-layout.png)
 
+## `hide_sidebar`
+
+Set if the sidebar should be hidden.
+
+
+```yaml
+---
+hide_sidebar: true
+---
+```
+
 ## `old_paths`
 
 Any paths of pages that should redirect to this page.

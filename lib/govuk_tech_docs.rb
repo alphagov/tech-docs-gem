@@ -84,6 +84,10 @@ module GovukTechDocs
           current_page.data.parent != nil && current_page.data.parent.to_s == page_path,
         ].any?
       end
+
+      def show_sidebar?
+        !current_page.data.hide_sidebar
+      end
     end
 
     context.page '/*.xml', layout: false
