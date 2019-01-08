@@ -37,22 +37,26 @@
         <%= partial 'layouts/header' %>
       </div>
 
-      <div id="toc-heading" class="toc-show fixedsticky">
-        <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
-          Table of contents <span class="toc-show__icon"></span>
-        </a>
-      </div>
+      <% if content_for? :sidebar %>
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </a>
+        </div>
+      <% end %>
 
       <div class="app-pane__body"<%= " data-module=\"#{yield_content(:toc_module)}\"" if content_for? :toc_module %>>
-        <div class="app-pane__toc">
-          <div class="toc" data-module="table-of-contents">
-            <%= partial "layouts/search" %>
-            <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
-            <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading"<%= " data-module=\"collapsible-navigation\"" if config[:tech_docs][:collapsible_nav] %>>
-              <%= yield_content :sidebar %>
-            </nav>
+        <% if content_for? :sidebar %>
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents">
+              <%= partial "layouts/search" %>
+              <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading"<%= " data-module=\"collapsible-navigation\"" if config[:tech_docs][:collapsible_nav] %>>
+                <%= yield_content :sidebar %>
+              </nav>
+            </div>
           </div>
-        </div>
+        <% end %>
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
