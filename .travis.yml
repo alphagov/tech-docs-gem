@@ -3,3 +3,6 @@ rvm:
   - 2.4.2
 script:
   - bundle exec rake
+before_install:
+  - rvm @global do gem uninstall bundler -a -x
+  - rvm @global do gem install bundler -v 1.17.3
