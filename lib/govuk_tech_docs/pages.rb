@@ -26,7 +26,7 @@ module GovukTechDocs
     end
 
     def pages
-      sitemap.resources.select { |page| page.url.end_with?('.html') && page.data.title }
+      sitemap.resources.select { |page| page.data.title }
     end
   end
 end
