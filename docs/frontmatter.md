@@ -65,6 +65,18 @@ This page has a configurable sidebar that is independent of the content.
 
 ![](core-layout.png)
 
+If you do not specify a sidebar, you will get a simple one-column layout without one.
+
+```rb
+---
+layout: core
+---
+
+This page does not have a sidebar.
+```
+
+![](core-layout-without-sidebar.png)
+
 ## `old_paths`
 
 Any paths of pages that should redirect to this page.

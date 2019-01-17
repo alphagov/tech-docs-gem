@@ -4,6 +4,9 @@
   // Scale margins with font size on mobile (16/19ths)
   $mobileTopMargin: ceil($tabletTopMargin * (16 / 19));
 
+  padding-top: min($mobileTopMargin, $gutter-half);
+  margin-top: max(0, $mobileTopMargin - $gutter-half);
+
   // Offset headings down on mobile so that linking to anchors they appear after
   // the sticky 'table of contents' element
   $stickyTocOffset: 20px + $gutter-half + 10px + 1px;
@@ -11,8 +14,10 @@
   // Pad the heading so that when linking to an anchor there is at most a
   // $gutter-half (mobile) or $gutter (tablet and above) sized gap between the
   // top of the viewport and the heading.
-  padding-top: min($mobileTopMargin, $gutter-half) + $stickyTocOffset;
-  margin-top: max(0, $mobileTopMargin - $gutter-half) - $stickyTocOffset;
+  .has-sidebar & {
+    padding-top: min($mobileTopMargin, $gutter-half) + $stickyTocOffset;
+    margin-top: max(0, $mobileTopMargin - $gutter-half) - $stickyTocOffset;
+  }
 
   @include media(tablet) {
     padding-top: min($tabletTopMargin, $gutter);
