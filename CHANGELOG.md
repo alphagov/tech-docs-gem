@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## 1.7.0
+
+New features: this release adds support for a full-width page (#63) and adding HTML to the `head` of the page (#64).
+
+This release also makes sure that all pages are returned in the `/api/pages.json` endpoint (#66).
 
 ## 1.6.3
 
