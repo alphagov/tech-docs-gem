@@ -48,11 +48,9 @@ Or, on the command line, run `bundle exec rake jasmine:ci`.
 
 ## Releasing new versions
 
-At the moment this gem has to be released manually. There's a [story on the Reliability Engineering backlog](https://trello.com/c/gRQ8OnBl) to automate this.
-
 To release a new version, create a new Pull Request that updates [version.rb](lib/govuk_tech_docs/version.rb) and [CHANGELOG.md](CHANGELOG.md). Don't mix this in with other changes - this makes it easier to find out what was released when. See [this PR to release a new version as an example](https://github.com/alphagov/tech-docs-gem/pull/15).
 
-[Owners of the Rubygem](https://rubygems.org/gems/govuk_tech_docs#gem__owners) can then run `rake release` to release a new version.
+Travis will automatically release a [new version to Rubygems.org](https://rubygems.org/gems/govuk_tech_docs).
 
 ## License
 
