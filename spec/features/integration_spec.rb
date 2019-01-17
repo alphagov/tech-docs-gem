@@ -11,6 +11,7 @@ RSpec.describe "The tech docs template" do
     and_i_visit_the_homepage
     then_there_is_a_heading
     then_there_is_a_search_form
+    then_there_is_a_sidebar
     then_there_is_a_source_footer
     then_the_page_highlighted_in_the_navigation_is("Documentation")
     then_there_are_navigation_headings_from_other_pages
@@ -30,6 +31,9 @@ RSpec.describe "The tech docs template" do
 
     when_i_view_the_search_index
     then_there_is_indexed_content
+
+    when_i_view_a_page_with_no_sidebar
+    then_there_is_no_sidebar
   end
 
   def when_the_site_is_created
@@ -46,6 +50,10 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_a_search_form
     expect(page).to have_css 'input#search'
+  end
+
+  def then_there_is_a_sidebar
+    expect(page).to have_css 'div.app-pane__toc'
   end
 
   def and_there_are_proper_meta_tags
@@ -107,5 +115,13 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_indexed_content
     expect(page).to have_content 'troubleshoot'
+  end
+
+  def when_i_view_a_page_with_no_sidebar
+    visit '/core-layout-without-sidebar.html'
+  end
+
+  def then_there_is_no_sidebar
+    expect(page).to have_no_css 'div.app-pane__toc'
   end
 end
