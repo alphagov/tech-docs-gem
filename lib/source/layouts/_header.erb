@@ -2,7 +2,7 @@
   <div class="header__container">
     <div class="header__brand">
       <% if config[:tech_docs][:service_link] %>
-        <a href="<%= config[:tech_docs][:service_link] %>">
+        <a href="<%= url_for config[:tech_docs][:service_link] %>">
       <% else %>
         <span>
       <% end %>
@@ -33,7 +33,7 @@
           <ul>
             <% config[:tech_docs][:header_links].each do |title, path| %>
               <li<% if active_page(path) %> class="active"<% end %>>
-                <a href="<%= path %>"><%= title %></a>
+                <a href="<%= url_for path %>"><%= title %></a>
               </li>
             <% end %>
           </ul>
