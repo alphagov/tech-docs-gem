@@ -52,8 +52,8 @@ module GovukTechDocs
 
     context.configure :build do
       activate :autoprefixer
-      activate :minify_css
-      activate :minify_javascript
+      activate :minify_css, ignore: ['/raw_assets/*']
+      activate :minify_javascript, ignore: ['/raw_assets/*']
     end
 
     context.config[:tech_docs] = YAML.load_file('config/tech-docs.yml').with_indifferent_access
