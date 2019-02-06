@@ -63,7 +63,7 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_a_source_footer
     %w[
-      https://github.com/alphagov/example-repo/blob/master/source/index.html.md.erb
+      https://github.com/alphagov/example-repo/blob/source/source/index.html.md.erb
       https://github.com/alphagov/example-repo
     ].each do |url|
       expect(page).to have_link(nil, href: url)

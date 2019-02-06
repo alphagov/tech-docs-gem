@@ -26,6 +26,10 @@ module GovukTechDocs
       "https://github.com/#{config[:tech_docs][:github_repo]}"
     end
 
+    def repo_branch
+      config[:tech_docs][:github_branch] || 'master'
+    end
+
   private
 
     # If a `page` local exists, see if it has a `source_url`. This is used by the
@@ -42,7 +46,7 @@ module GovukTechDocs
 
     # As the last fallback link to the source file in this repository.
     def source_from_file
-      "#{repo_url}/blob/master/source/#{current_page.file_descriptor[:relative_path]}"
+      "#{repo_url}/blob/#{repo_branch}/source/#{current_page.file_descriptor[:relative_path]}"
     end
 
     def locals

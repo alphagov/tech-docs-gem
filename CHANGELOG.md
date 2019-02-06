@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.7.1
+
+### Make `github_branch` configurable
+
+Previously it was hard-coded to master unless you set the source_url on every page
+
 ## 1.7.0
 
 New features: this release adds support for a full-width page (#63) and adding HTML to the `head` of the page (#64).

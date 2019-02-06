@@ -20,6 +20,14 @@ Your repository. Required if [show_contribution_banner](#show-contribution-banne
 github_repo: alphagov/example-repo
 ```
 
+## `github_branch`
+
+Your github branch name. Useful if your default branch is not named master.
+
+```yaml
+github_branch: source
+```
+
 ## `google_site_verification`
 
 Adds a [Google Site Verification code](https://support.google.com/webmasters/answer/35179?hl=en) to the meta tags.

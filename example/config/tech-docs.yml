@@ -38,6 +38,7 @@ enable_search: true
 show_contribution_banner: true
 
 github_repo: alphagov/example-repo
+github_branch: source
 
 redirects:
   /something/old.html: /index.html
