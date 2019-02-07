@@ -2,7 +2,10 @@
 
 ## Unreleased
 
+Make `github_branch` configurable - previously it was hard-coded to master unless you set the source_url on every page
+
 New feature: add `full_service_name` config option, used in the browser title and meta tags (#71).
+
 
 ## 1.7.0
 
