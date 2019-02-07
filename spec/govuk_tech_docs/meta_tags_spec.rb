@@ -35,7 +35,8 @@ RSpec.describe GovukTechDocs::MetaTags do
     it 'returns all the extra meta tags' do
       config = generate_config(
         host: "https://www.example.org",
-        service_name: "Test Site",
+        service_name: "Foo",
+        full_service_name: "Test Site",
       )
 
       current_page = double("current_page",

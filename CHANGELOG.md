@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+New feature: add `full_service_name` config option, used in the browser title and meta tags (#71).
+
 ## 1.7.0
 
 New features: this release adds support for a full-width page (#63) and adding HTML to the `head` of the page (#64).
