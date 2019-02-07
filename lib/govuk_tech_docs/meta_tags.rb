@@ -41,7 +41,7 @@ module GovukTechDocs
     end
 
     def site_name
-      config[:tech_docs][:service_name]
+      config[:tech_docs][:full_service_name] || config[:tech_docs][:service_name]
     end
 
     def page_description

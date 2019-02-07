@@ -124,6 +124,16 @@ Example:
 service_name: "Platform as a Service"
 ```
 
+## `full_service_name`
+
+The full service name (maybe with GOV.UK)
+
+Example:
+
+```yaml
+full_service_name: "GOV.UK Pay"
+```
+
 ## `service_link`
 
 What the service name in the header links to.
