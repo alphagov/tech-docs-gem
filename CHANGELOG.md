@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.7.1
+## Unreleased
 
 ### Make `github_branch` configurable
 
