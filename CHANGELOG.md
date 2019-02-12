@@ -1,11 +1,12 @@
 # Changelog
 
-## Unreleased
+## 1.8.0
 
-Make `github_branch` configurable - previously it was hard-coded to master unless you set the source_url on every page
+🎉 Our first contributor from outside of GDS. Thanks [@timja](https://github.com/timja) from [HMCTS](https://hmcts.github.io)! 🤝
 
-New feature: add `full_service_name` config option, used in the browser title and meta tags (#71).
+New features: you can now configure a different GitHub branch for the repo to generate the "View source" link in the footer. Use `github_branch` in your config file (#71). You can also specify a `full_service_name` in the config, which is used in the browser title and meta tags (#72).
 
+This version also fixes a bug with unclickable links (#74 - reported in [alphagov/tech-docs-template#123](https://github.com/alphagov/tech-docs-template/issues/123)).
 
 ## 1.7.0
 
