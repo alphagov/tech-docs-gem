@@ -19,7 +19,13 @@ module GovukTechDocs
     end
 
     def report_issue_url
-      "#{repo_url}/issues/new?labels=bug&title=Re: '#{current_page.data.title}'&body=Problem with '#{current_page.data.title}' (#{config[:tech_docs][:host]}#{current_page.url})"
+      url = config[:source_urls]&.[](:report_issue_url)
+
+      if url.nil?
+        "#{repo_url}/issues/new?labels=bug&title=Re: '#{current_page.data.title}'&body=Problem with '#{current_page.data.title}' (#{config[:tech_docs][:host]}#{current_page.url})"
+      else
+        "#{url}?subject=Re: '#{current_page.data.title}'&body=Problem with '#{current_page.data.title}' (#{config[:tech_docs][:host]}#{current_page.url})"
+      end
     end
 
     def repo_url
