@@ -81,5 +81,9 @@ The documentation is [© Crown copyright][copyright] and available under the ter
 [mit]: LICENCE
 [copyright]: http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
 [ogl]: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+[tdt-docs]: https://tdt-documentation.london.cloudapps.digital
+[tdt-template]: https://github.com/alphagov/tech-docs-template
+[tdt-readme]: https://github.com/alphagov/tech-docs-template/blob/master/README.md
+[mmt]: https://middlemanapp.com/advanced/project_templates/
 
 [jas]: https://jasmine.github.io/
