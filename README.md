@@ -7,7 +7,7 @@ you can use to build technical documentation using a GOV.UK style.
 
 ## Usage
 
-To [generate a new site with the template](https://alphagov.github.io/tech-docs-manual/#create-a-new-site), see the manual.
+👉 Find out how to [generate a new website with the Tech Docs Template][tdt-readme].
 
 ## Contributing
 
