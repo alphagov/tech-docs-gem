@@ -4,6 +4,6 @@ Everybody who uses this project is encouraged to contribute to this project. If 
 
 - Before adding your feature, [check the backlog to see if someone is already talking about it](https://github.com/alphagov/tech-docs-template/issues)
 - If you add a new option to `config/tech-docs.yml`, make sure you [document the option in docs/configuration.md](docs/configuration.md)
-- If you add a new option to the page frontmatter, make sure you [document the option in docs/frontmatter.md](docs/configuration.md)
+- If you add a new option to the page frontmatter, make sure you [document the option in docs/frontmatter.md](docs/frontmatter.md)
 - You can test your contribution using [unit tests](spec/govuk_tech_docs), [javascript tests](spec/javascripts) or [integration tests](spec/features)
 - If your change is relevant to the users of the gem, add something to [CHANGELOG](CHANGELOG.md). You don't have to do this if it's just refactoring. Make sure that you include any upgrade instructions.
