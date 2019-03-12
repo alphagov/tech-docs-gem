@@ -11,7 +11,9 @@ To [generate a new site with the template](https://alphagov.github.io/tech-docs-
 
 ## Contributing
 
-👉 [See CONTRIBUTING.md](CONTRIBUTING.md)
+Everybody who uses this project is encouraged to contribute.
+
+👉 [See CONTRIBUTING.md](CONTRIBUTING.md) for guidance on making changes.
 
 ## Developing locally
 
