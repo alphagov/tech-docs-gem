@@ -52,16 +52,18 @@ See your website on `http://localhost:4567` in your browser.
 
 ## Tests
 
-We have some automated JavaScript tests that use [Jasmine][jas] as a test
-framework.
+The repository contains automated JavaScript tests that use [Jasmine][jas] test framework.
 
-To run the tests on your machine:
+To run the tests and see the results in your browser:
 
-- Run `bundle exec rake jasmine`
-- Navigate to `http://localhost:8888` in a browser of your choosing
-- Peruse the output of your tests
+1. Run `bundle exec rake jasmine`
+2. Go to `http://localhost:8888` in your browser
 
-Or, on the command line, run `bundle exec rake jasmine:ci`.
+To run the tests and see the results in your terminal, run:
+
+```
+bundle exec rake jasmine:ci
+```
 
 ## Releasing new versions
 
