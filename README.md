@@ -17,23 +17,38 @@ Everybody who uses this project is encouraged to contribute.
 
 ## Developing locally
 
-There are 2 ways to develop with this gem.
+There are 2 ways to develop with this gem. You can see your changes on either:
 
-The first is to point your site's Gemfile to your local checkout, and use it normally. This is good for if you want to see what effect your changes have to the actual site.
+- your own Tech Docs Template website
+- the example in this repository
+
+### Use your own Tech Docs Template website
+
+If you want to see how your changes to the gem affect your website, you have to point your site's Gemfile to your local checkout:
 
 ```rb
 gem 'govuk_tech_docs', path: '../tech-docs-gem'
 ```
 
-The second is to use the example app in this repo. You can start it by
+To view your changes locally run:
 
+```sh
+bundle exec middleman server
 ```
+
+See your website on `http://localhost:4567` in your browser.
+
+### Use the example in this repo
+
+To start the example in this repo, run:
+
+```sh
 cd example
 bundle install
-bundle exec middleman serve
+bundle exec middleman server
 ```
 
-Your site will appear on <http://localhost:4567>.
+See your website on `http://localhost:4567` in your browser.
 
 ## Tests
 
