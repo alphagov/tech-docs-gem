@@ -52,8 +52,15 @@ To release a new version, create a new Pull Request that updates [version.rb](li
 
 Travis will automatically release a [new version to Rubygems.org](https://rubygems.org/gems/govuk_tech_docs).
 
-## License
+## Licence
 
-The gem is available as open source under the terms of the [MIT License](LICENSE).
+Unless stated otherwise, the codebase is released under [the MIT License][mit].
+This covers both the codebase and any sample code in the documentation.
+
+The documentation is [© Crown copyright][copyright] and available under the terms of the [Open Government 3.0][ogl] licence.
+
+[mit]: LICENCE
+[copyright]: http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
+[ogl]: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
 
 [jas]: https://jasmine.github.io/
