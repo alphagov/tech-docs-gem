@@ -1,50 +1,69 @@
 # Tech Docs Template - gem
 
-This repo is part of the GOV.UK Tech docs project. This repo contains the Ruby
-gem that is used to distribute most of code that is used to generate the site.
+This repo contains the Ruby gem that distributes the [Tech Docs Template][tdt-template]. The Tech Docs Template is a [middleman template][mmt] that
+you can use to build technical documentation using a GOV.UK style.
 
-👉 [See alphagov.github.io/tech-docs-manual](https://alphagov.github.io/tech-docs-manual)
+👉 Find out more about the template and its features from the [Tech Docs Template documentation][tdt-docs].
 
 ## Usage
 
-To [generate a new site with the template](https://alphagov.github.io/tech-docs-manual/#create-a-new-site), see the manual.
+👉 Find out how to [generate a new website with the Tech Docs Template][tdt-readme].
 
 ## Contributing
 
-👉 [See CONTRIBUTING.md](CONTRIBUTING.md)
+Everybody who uses this project is encouraged to contribute.
+
+👉 [See CONTRIBUTING.md](CONTRIBUTING.md) for guidance on making changes.
 
 ## Developing locally
 
-There are 2 ways to develop with this gem.
+There are 2 ways to develop with this gem. You can see your changes on either:
 
-The first is to point your site's Gemfile to your local checkout, and use it normally. This is good for if you want to see what effect your changes have to the actual site.
+- your own Tech Docs Template website
+- the example in this repository
+
+### Use your own Tech Docs Template website
+
+If you want to see how your changes to the gem affect your website, you have to point your site's Gemfile to your local checkout:
 
 ```rb
 gem 'govuk_tech_docs', path: '../tech-docs-gem'
 ```
 
-The second is to use the example app in this repo. You can start it by
+To view your changes locally run:
 
+```sh
+bundle exec middleman server
 ```
+
+See your website on `http://localhost:4567` in your browser.
+
+### Use the example in this repo
+
+To start the example in this repo, run:
+
+```sh
 cd example
 bundle install
-bundle exec middleman serve
+bundle exec middleman server
 ```
 
-Your site will appear on <http://localhost:4567>.
+See your website on `http://localhost:4567` in your browser.
 
 ## Tests
 
-We have some automated JavaScript tests that use [Jasmine][jas] as a test
-framework.
+The repository contains automated JavaScript tests that use [Jasmine][jas] test framework.
 
-To run the tests on your machine:
+To run the tests and see the results in your browser:
 
-- Run `bundle exec rake jasmine`
-- Navigate to `http://localhost:8888` in a browser of your choosing
-- Peruse the output of your tests
+1. Run `bundle exec rake jasmine`
+2. Go to `http://localhost:8888` in your browser
 
-Or, on the command line, run `bundle exec rake jasmine:ci`.
+To run the tests and see the results in your terminal, run:
+
+```
+bundle exec rake jasmine:ci
+```
 
 ## Releasing new versions
 
@@ -52,8 +71,19 @@ To release a new version, create a new Pull Request that updates [version.rb](li
 
 Travis will automatically release a [new version to Rubygems.org](https://rubygems.org/gems/govuk_tech_docs).
 
-## License
+## Licence
 
-The gem is available as open source under the terms of the [MIT License](LICENSE).
+Unless stated otherwise, the codebase is released under [the MIT License][mit].
+This covers both the codebase and any sample code in the documentation.
+
+The documentation is [© Crown copyright][copyright] and available under the terms of the [Open Government 3.0][ogl] licence.
+
+[mit]: LICENCE
+[copyright]: http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
+[ogl]: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+[tdt-docs]: https://tdt-documentation.london.cloudapps.digital
+[tdt-template]: https://github.com/alphagov/tech-docs-template
+[tdt-readme]: https://github.com/alphagov/tech-docs-template/blob/master/README.md
+[mmt]: https://middlemanapp.com/advanced/project_templates/
 
 [jas]: https://jasmine.github.io/
