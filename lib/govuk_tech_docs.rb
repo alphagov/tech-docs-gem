@@ -20,6 +20,7 @@ require 'govuk_tech_docs/pages'
 require 'govuk_tech_docs/tech_docs_html_renderer'
 require 'govuk_tech_docs/unique_identifier_extension'
 require 'govuk_tech_docs/unique_identifier_generator'
+require 'govuk_tech_docs/warning_text_extension'
 require 'govuk_tech_docs/api_reference/api_reference_extension'
 
 module GovukTechDocs
@@ -58,7 +59,7 @@ module GovukTechDocs
 
     context.config[:tech_docs] = YAML.load_file('config/tech-docs.yml').with_indifferent_access
     context.activate :unique_identifier
-
+    context.activate :warning_text
     context.activate :api_reference
 
     context.helpers do
