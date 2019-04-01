@@ -45,11 +45,21 @@ module GovukTechDocs
           # Avoid redirect pages
           next if content.include? "http-equiv=refresh"
           # If this page has children, just print the title and recursively
-          # render the children.
-          # If not, print the heading structure.
+          # render the children. If not, print the heading structure.
+
           # We avoid printing the children of the root index.html as it is the
-          # parent of every other top level file.
-          if resource.children.any? && resource.url != "/"
+          # parent of every other top level file.  We need to take any custom
+          # prefix in to consideration when checking for the root index.html.
+          # The prefix may be set with or without a trailing slash: make sure
+          # it has one for this comparison check.
+          home_url =
+            if config[:http_prefix].end_with?("/")
+              config[:http_prefix]
+            else
+              config[:http_prefix] + "/"
+            end
+
+          if resource.children.any? && resource.url != home_url
             output += %{<ul><li><a href="#{resource.url}">#{resource.data.title}</a>\n}
             output += render_page_tree(resource.children, current_page, config, current_page_html)
             output += '</li></ul>'

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+This release fixes a bug (#79 - reported in
+[alphagov/tech-docs-template#183][tdt-183]) which prevented a multipage site
+from being generated when a custom `http_prefix` was configured.
+
+[tdt-183]: https://github.com/alphagov/tech-docs-template/issues/183
+
 ## 1.8.0
 
 🎉 Our first contributor from outside of GDS. Thanks [@timja](https://github.com/timja) from [HMCTS](https://hmcts.github.io)! 🤝
