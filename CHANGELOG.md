@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.8.1
 
 This release fixes a bug (#79 - reported in
 [alphagov/tech-docs-template#183][tdt-183]) which prevented a multipage site
