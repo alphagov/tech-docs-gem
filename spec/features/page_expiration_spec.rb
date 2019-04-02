@@ -3,7 +3,7 @@ require 'capybara/rspec'
 
 Capybara.app = Rack::File.new("example/build")
 
-RSpec.describe "Page exiration" do
+RSpec.describe "Page expiration" do
   include Capybara::DSL
 
   it "shows the expiration date on the page" do

@@ -5,15 +5,20 @@ module GovukTechDocs
     def initialize(page, config = {})
       @page = page
       @config = config
+      @review_by = nil
     end
 
     def review_by
       return unless last_reviewed_on
 
-      @review_by ||= Chronic.parse(
-        "in #{page.data.review_in}",
-        now: last_reviewed_on.to_time
-      ).to_date
+      if page.data.review_in
+        @review_by ||= Chronic.parse(
+          "in #{page.data.review_in}",
+          now: last_reviewed_on.to_time
+        ).to_date
+      end
+
+      @review_by
     end
 
     def under_review?

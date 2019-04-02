@@ -3,10 +3,12 @@
     <div class='page-expiry--not-expired'>
       This page was last reviewed on <%= format_date current_page_review.last_reviewed_on %>.
 
+      <% if current_page_review.review_by %>
       It needs to be reviewed again on <%= format_date current_page_review.review_by %>
       <% if current_page_review.owner_slack %>
       by the page owner <%= link_to current_page_review.owner_slack, current_page_review.owner_slack_url %>
       <% end %>.
+      <% end %>
     </div>
 
     <div class='page-expiry--expired'>

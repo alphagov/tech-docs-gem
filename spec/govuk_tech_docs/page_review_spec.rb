@@ -47,5 +47,13 @@ RSpec.describe GovukTechDocs::PageReview do
 
       expect(review_by.review_by).to eql(Date.parse("2016-07-01"))
     end
+
+    it "returns nil when not present" do
+      review_by = described_class.new(
+        double(data: double(last_reviewed_on: Date.parse("2016-01-01")))
+      )
+
+      expect(review_by.review_by).to eql(nil)
+    end
   end
 end
