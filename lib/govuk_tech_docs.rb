@@ -57,7 +57,8 @@ module GovukTechDocs
       activate :minify_javascript, ignore: ['/raw_assets/*']
     end
 
-    context.config[:tech_docs] = YAML.load_file('config/tech-docs.yml').with_indifferent_access
+    config_file = ENV.fetch('CONFIG_FILE', 'config/tech-docs.yml')
+    context.config[:tech_docs] = YAML.load_file(config_file).with_indifferent_access
     context.activate :unique_identifier
     context.activate :warning_text
     context.activate :api_reference
