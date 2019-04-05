@@ -1,0 +1,35 @@
+@import "govuk_tech_docs";
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.notice {
+  background-color: $grey-4;
+  border-bottom: 1px solid $border-colour;
+  border-top: 1px solid $border-colour;
+  padding: 0 16px;
+  margin-top: 24px;
+
+  .container {
+    margin-bottom: 0;
+  }
+
+  p {
+    @include core-16;
+
+    margin: 0;
+    padding: ($gutter / 2) 0;
+  }
+}
+
+.technical-documentation h1:first-of-type {
+  margin-top: 0 !important;
+}
