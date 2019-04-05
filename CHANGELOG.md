@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+Adds a `show_expiry` config option to allow you to choose whether to show the review due date and expired banner from your pages. Find out more about the [page expiry and review feature][expiry].
+
+[expiry]: https://tdt-documentation.london.cloudapps.digital/page-expiry.html#page-expiry-and-review
+
 ## 1.8.1
 
 This release fixes a bug (#79 - reported in
