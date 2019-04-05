@@ -7,7 +7,7 @@
 These attributes determine the date when the page needs to be reviewed next.
 See the separate [documentation for page expiry][expiry] for more details.
 
-[expiry]: https://alphagov.github.io/tech-docs-manual/#page-expiry-and-review-notices
+[expiry]: https://tdt-documentation.london.cloudapps.digital/page-expiry.html#page-expiry-and-review
 
 Example:
 
