@@ -1,0 +1,42 @@
+# Host to use for canonical URL generation (without trailing slash)
+host: https://tdt-documentation.london.cloudapps.digital/
+
+# Header-related options
+show_govuk_logo: true
+service_name: Tech docs template
+service_link:
+phase: Beta
+
+# Links to show on right-hand-side of header
+header_links:
+  About: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/communities-of-practice/content/technical-writing
+  Documentation: /
+  Support: /
+
+# Table of contents depth – how many levels to include in the table of contents.
+# If your ToC is too long, reduce this number and we'll only show higher-level
+# headings.
+max_toc_heading_level: 2
+
+# Tracking ID from Google Analytics (e.g. UA-XXXX-Y)
+ga_tracking_id: UA-86101042-3
+
+google_site_verification: "IJ5HOXpZrISM6la-YO_iX0rBUC5YFftpexygcKLsNs4"
+
+# Multi-page options
+multipage_nav: true
+collapsible_nav: true
+
+# Show links to contribute on GitHub
+show_contribution_banner: true
+github_repo: alphagov/tdt-documentation
+
+# Enable search
+enable_search: true
+
+# Ownership for page reviews
+default_owner_slack: '#docs-repos'
+owner_slack_workspace: gds
+
+# Enable GOV.UK crown logo
+show_govuk_logo: false
