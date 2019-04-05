@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.8.2
 
 Adds a `show_expiry` config option to allow you to choose whether to show the review due date and expired banner from your pages. Find out more about the [page expiry and review feature][expiry].
 
