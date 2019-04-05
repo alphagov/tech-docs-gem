@@ -192,4 +192,14 @@ api_path: ./source/pets.yml
 These attributes are used to specify the owner of a page.  See the separate
 [documentation for page expiry][expiry] for more details.
 
-[expiry]: https://alphagov.github.io/tech-docs-manual/#page-expiry-and-review-notices
+## `show_expiry`
+
+Decides whether or not to show a red banner when the page needs to be reviewed.
+
+If not present or set to `true`, the red banner will appear when the page needs to be reviewed. This is the default behaviour.
+
+If set to `false`, the red banner will not appear when the page needs to be reviewed.
+
+See the separate [documentation for page expiry][expiry] for more details.
+
+[expiry]: https://tdt-documentation.london.cloudapps.digital/page-expiry.html#page-expiry-and-review

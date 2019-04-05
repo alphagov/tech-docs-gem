@@ -35,6 +35,10 @@ module GovukTechDocs
       "https://#{owner_slack_workspace}.slack.com/messages/#{slack_identifier}"
     end
 
+    def show_expiry?
+      @config[:tech_docs].fetch(:show_expiry, true)
+    end
+
   private
 
     def default_owner_slack
