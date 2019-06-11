@@ -35,6 +35,10 @@ removes the need for projects to point to the alphagov github repository in
 their Gemfiles. We will continue to maintain our own fork until the changes
 are merged into the upstream project.
 
+## Unreleased
+
+Fixes bug where search results disappear when opening results in a new tab, making it difficult to open several results in a batch (PR #86).
+
 ## 1.6.2
 
 This version fixes an issue with Middleman hanging (PR #54). It also allows the API reference page to include multiple servers and their descriptions (PR #53).
