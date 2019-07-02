@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "name": "govuk_frontend_assets",
+  "license": "MIT",
+  "dependencies": {
+    "govuk-frontend": "2.12.0"
+  }
+}

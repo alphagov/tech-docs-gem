@@ -1,3 +1,4 @@
+# TODO: npm install on travis before build
 language: ruby
 deploy:
   provider: rubygems
