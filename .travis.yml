@@ -1,4 +1,7 @@
 # TODO: npm install on travis before build
+before_install:
+  - npm install --save govuk-frontend
+
 language: ruby
 deploy:
   provider: rubygems

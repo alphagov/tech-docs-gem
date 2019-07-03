@@ -1,4 +1,135 @@
 @import "core";
 @import "vendor/fixedsticky";
 
-@import "../../node_modules/govuk-frontend/all";
+@import "../../../node_modules/govuk-frontend/all";
+
+.app-pane__body {
+	@extend .govuk-width-container;
+}
+
+.technical-documentation {
+	@extend .govuk-grid-column-two-thirds;
+}
+
+.app-pane__toc {
+	@extend .govuk-grid-column-one-third;
+}
+
+.skip-link {
+	@extend .govuk-skip-link;
+}
+
+.toc-show__label {
+	@extend .govuk-visually-hidden-focusable;
+}
+
+h1 {
+	@extend %govuk-heading-xl;
+}
+
+h2 {
+	@extend %govuk-heading-l;
+}
+
+h3 {
+	@extend %govuk-heading-m;
+}
+
+h4 {
+	@extend %govuk-heading-s;
+}
+
+p {
+	@extend %govuk-body-m;
+}
+
+th {
+	@extend .govuk-table__header;
+}
+
+td {
+	@extend .govuk-table__cell;
+}
+
+strong,
+b {
+	@include govuk-typography-weight-bold;
+}
+
+ul,
+ol {
+	@extend %govuk-list;
+}
+
+ol {
+	@extend %govuk-list--number;
+}
+
+ul {
+	@extend %govuk-list--bullet;
+}
+
+a {
+	@extend %govuk-link;
+}
+
+hr {
+	@extend %govuk-section-break;
+	@extend %govuk-section-break--visible;
+	@extend %govuk-section-break--xl;
+}
+
+pre + h2 {
+	padding-top: govuk-spacing(4);
+}
+
+pre + h3,
+pre + h4 {
+	padding-top: govuk-spacing(2);
+}
+
+.header {
+	@extend .govuk-header;
+}
+
+.header__container {
+	@extend .govuk-header__container;
+	@extend .govuk-width-container
+}
+
+.header__navigation ul li {
+	@extend .govuk-header__navigation-item;
+	@extend .govuk-header__navigation-item--active;
+}
+
+.header__navigation ul li a {
+	@extend .govuk-header__link;
+}
+
+.header__brand a {
+	@extend .govuk-link;
+}
+
+.header__navigation-toggle {
+	@extend .govuk-header__menu-button;
+}
+
+.header__navigation {
+	@extend .govuk-header__navigation;
+}
+
+.header__brand {
+	@extend .govuk-header__logo;
+}
+
+a {
+	@extend .govuk-link;
+}
+
+footer {
+	@extend .govuk-footer;
+}
+
+table {
+	@extend .govuk-table;
+}

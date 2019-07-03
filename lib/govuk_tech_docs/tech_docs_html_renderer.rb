@@ -22,13 +22,5 @@ module GovukTechDocs
     def image(link, *args)
       %(<a href="#{link}" target="_blank" rel="noopener noreferrer">#{super}</a>)
     end
-
-    def table(header, body)
-      %(<div class="table-container">
-        <table>
-          #{header}#{body}
-        </table>
-      </div>)
-    end
   end
 end
