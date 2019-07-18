@@ -21,11 +21,11 @@ RSpec.describe "Page expiration" do
   end
 
   def when_the_site_is_created
-    `cd example && rm -rf build && bundle install --quiet && middleman build`
+    rebuild_site!
   end
 
   def when_the_site_is_created_hiding_expiry
-    `cd example && rm -rf build && bundle install --quiet && CONFIG_FILE=config/hide-expiry.yml middleman build`
+    rebuild_site!(config: "config/hide-expiry.yml")
   end
 
   def and_i_visit_an_expired_page

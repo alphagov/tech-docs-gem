@@ -37,7 +37,7 @@ RSpec.describe "The tech docs template" do
   end
 
   def when_the_site_is_created
-    puts `cd example && rm -rf build && bundle install && middleman build --verbose`
+    rebuild_site!
   end
 
   def and_i_visit_the_homepage
