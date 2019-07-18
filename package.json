@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "tech-docs-gem",
+  "license": "MIT",
+  "scripts": {
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "standard": "^13.0.2"
+  }
+}
