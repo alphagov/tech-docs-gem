@@ -7,5 +7,25 @@
   },
   "devDependencies": {
     "standard": "^13.0.2"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach",
+      "it",
+      "assert",
+      "expect",
+      "GOVUK",
+      "lunr",
+      "$",
+      "jQuery",
+      "_",
+      "Modernizr",
+      "history",
+      "ga"
+    ]
   }
 }
