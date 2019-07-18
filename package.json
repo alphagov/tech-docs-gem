@@ -26,6 +26,9 @@
       "Modernizr",
       "history",
       "ga"
+    ],
+    "ignore": [
+      "lib/assets/javascripts/_vendor/**"
     ]
   }
 }
