@@ -1,4 +1,6 @@
 language: ruby
+before_script:
+  - npm install
 deploy:
   provider: rubygems
   gem: govuk_tech_docs
