@@ -18,7 +18,7 @@ RSpec.describe "OpenAPI reference" do
   end
 
   def when_the_site_is_created
-    puts `cd example && rm -rf build && bundle install && middleman build --verbose`
+    rebuild_site!
   end
 
   def when_i_view_an_api_reference_page

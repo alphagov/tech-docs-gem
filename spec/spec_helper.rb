@@ -21,6 +21,19 @@ require 'govuk_tech_docs'
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  def rebuild_site!(config: "config/tech-docs.yml")
+    command = [
+      "cd example",
+      "rm -rf build",
+      "bundle install --quiet",
+      "CONFIG_FILE=#{config} NO_CONTRACTS=true middleman build --bail --show-exceptions"
+    ].join(" && ")
+
+    unless system(command)
+      raise "`middleman build` failed, see the log for more info"
+    end
+  end
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
