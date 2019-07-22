@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+Adds [Standard JS](https://standardjs.com) to the code base to lint all Javascript
+
 ## 1.8.3
 
 Fixes bug where search results disappear when opening results in a new tab, making it difficult to open several results in a batch (PR #86).
