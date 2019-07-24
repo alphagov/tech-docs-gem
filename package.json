@@ -1,0 +1,34 @@
+{
+  "private": true,
+  "name": "tech-docs-gem",
+  "license": "MIT",
+  "scripts": {
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "standard": "^13.0.2"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "before",
+      "after",
+      "beforeEach",
+      "afterEach",
+      "it",
+      "assert",
+      "expect",
+      "GOVUK",
+      "lunr",
+      "$",
+      "jQuery",
+      "_",
+      "Modernizr",
+      "history",
+      "ga"
+    ],
+    "ignore": [
+      "lib/assets/javascripts/_vendor/**"
+    ]
+  }
+}
