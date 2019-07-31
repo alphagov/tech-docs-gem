@@ -15,7 +15,11 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   files_in_git = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  spec.files         = files_in_git + ["node_modules/govuk-frontend"]
+
+  # Include the CSS and JS from GOV.UK Frontend library
+  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js}"]
+
+  spec.files         = files_in_git + govuk_frontend_assets
 
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
