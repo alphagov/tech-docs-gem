@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-Adds [Standard JS](https://standardjs.com) to the code base to lint all Javascript
+This release adds [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) (part of the [GOV.UK Design System](https://design-system.service.gov.uk)). Converts the "phase tag" (the alpha/beta thing next to the logo) to use a GOV.UK Frontend component. Also adds [Standard JS](https://standardjs.com) to the code base to lint all Javascript.
 
 ## 1.8.3
 
