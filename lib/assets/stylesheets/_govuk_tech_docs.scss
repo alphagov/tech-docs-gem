@@ -1,2 +1,10 @@
 @import "core";
 @import "vendor/fixedsticky";
+
+$govuk-image-url-function: "image-url";
+$govuk-font-url-function: "font-url";
+
+$govuk-compatibility-govukfrontendtoolkit: true;
+$govuk-compatibility-govuktemplate: true;
+
+@import "../../../node_modules/govuk-frontend/govuk/all";

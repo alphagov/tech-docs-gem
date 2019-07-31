@@ -14,9 +14,13 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/alphagov/tech-docs-gem"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
+  files_in_git = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+
+  # Include assets from GOV.UK Frontend library in the distributed gem
+  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js}"]
+
+  spec.files         = files_in_git + govuk_frontend_assets
+
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
