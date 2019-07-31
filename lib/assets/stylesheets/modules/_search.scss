@@ -24,7 +24,7 @@
       appearance: none;
 
       &:focus {
-        outline: 3px solid $focus-colour;
+        outline: $govuk-focus-width solid $govuk-focus-colour;
         outline-offset: 0;
       }
     }
@@ -102,7 +102,7 @@ html.has-search-results-open {
   border: 0;
   padding: 0;
   &:focus {
-    outline: 3px solid $focus-colour;;
+    outline: $govuk-focus-width solid $govuk-focus-colour;
     outline-offset: 0;
   }
   &::after {

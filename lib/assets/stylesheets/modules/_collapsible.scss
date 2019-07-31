@@ -28,7 +28,7 @@
   color: inherit;
   padding: 0;
   &:focus {
-    outline: 3px solid $focus-colour;
+    outline: $govuk-focus-width solid $govuk-focus-colour;
   }
 }
 .collapsible__toggle-icon {
