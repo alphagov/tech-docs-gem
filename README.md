@@ -15,6 +15,12 @@ Everybody who uses this project is encouraged to contribute.
 
 👉 [See CONTRIBUTING.md](CONTRIBUTING.md) for guidance on making changes.
 
+## GOV.UK frontend
+
+This gem uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend), part of the [GOV.UK Design System](https://design-system.service.gov.uk/).
+
+We use `npm` to download the govuk-frontend package. To update to a new version, change the version in [package.json](blob/master/package.json) and run `npm update`.
+
 ## Developing locally
 
 There are 2 ways to develop with this gem. You can see your changes on either:
