@@ -238,4 +238,8 @@
     background-color: $border-colour;
     color: $border-colour;
   }
+
+  a {
+    @extend %govuk-link;
+  }
 }
