@@ -31,8 +31,6 @@ $desktop-breakpoint: 992px !default;
 @import "modules/toc";
 @import "modules/collapsible";
 
-@import "accessibility";
-
 html, body {
   color: $text-colour;
   background-color: $page-colour;
@@ -47,20 +45,4 @@ html, body, div, h1, h2, h3, h4, h5, h6, article, aside, footer, header, hgroup,
   margin: 0;
   padding: 0;
   vertical-align: baseline;
-}
-
-a:link {
-  color: $link-colour;
-}
-
-a:visited {
-  color: $link-visited-colour;
-}
-
-a:hover {
-  color: $link-hover-colour;
-}
-
-a:active {
-  color: $link-active-colour;
 }
