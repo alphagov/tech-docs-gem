@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="govuk-template no-js">
   <head>
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta charset="utf-8">
@@ -10,8 +10,7 @@
 
     <title><%= meta_tags.browser_title %></title>
 
-    <!--[if gt IE 8]><!--><%= stylesheet_link_tag :screen, media: 'screen' %><!--<![endif]-->
-    <!--[if lte IE 8]><%= stylesheet_link_tag 'screen-old-ie', media: 'screen' %><![endif]-->
+    <%= stylesheet_link_tag :screen, media: 'screen' %>
 
     <link rel="canonical" href="<%= meta_tags.canonical_url %>">
 
@@ -19,7 +18,6 @@
       <meta name="google-site-verification" content="<%= config[:tech_docs][:google_site_verification] %>" />
     <% end %>
 
-    <%= stylesheet_link_tag :print, media: 'print' %>
     <%= javascript_include_tag :application %>
 
     <% meta_tags.tags.each do |property, content| %>
@@ -29,7 +27,7 @@
     <%= yield_content :head %>
   </head>
 
-  <body>
+  <body class="govuk-template__body">
     <div class="app-pane">
       <div class="app-pane__header toc-open-disabled">
         <a href="#content" class="govuk-skip-link">Skip to main content</a>

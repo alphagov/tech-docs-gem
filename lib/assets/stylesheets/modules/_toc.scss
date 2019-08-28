@@ -1,8 +1,7 @@
-@include screen {
+  @include govuk-media-query($media-type: screen) {
   .toc {
-
-    @include core-16;
-    padding: $gutter-half;
+    @include govuk-font($size: 16);
+    padding: govuk-spacing(3);
 
     ul {
       list-style: none;
@@ -16,7 +15,15 @@
 
     a:link, a:visited {
       text-decoration: none;
-      color: $link-colour;
+      color: $govuk-link-colour;
+    }
+
+    a:focus {
+      outline: none;
+
+      span {
+        @include govuk-focused-text;
+      }
     }
 
     a:hover {
@@ -24,53 +31,59 @@
     }
 
     &__list {
+      li {
+        a:link, a:visited {
+          display: inline-block;
+          position: relative;
+          padding: 8px govuk-spacing(6) 8px govuk-spacing(3);
+          margin: 0 -1 * govuk-spacing(3);
+          border-left: 5px solid transparent;
 
-      a:link, a:visited {
-        display: block;
-        padding: 8px $gutter 8px $gutter-half;
-        margin: 0 $gutter-half * -1;
-        border-left: 5px solid transparent;
+            @include govuk-media-query(tablet) {
+            &.toc-link--in-view  {
+              color: $govuk-link-hover-colour;
+              border-left-color: $govuk-link-hover-colour;
+              background-color: govuk-colour("light-grey");
 
-        @include media(tablet) {
-          &.toc-link--in-view {
-            color: $link-active-colour;
-            border-left-color: $link-active-colour;
-            background-color: $grey-4;
+              &:focus span {
+                @include govuk-focused-text;
+              }
+            }
           }
         }
       }
 
       // Top level
       > ul > li > a:link {
-        @include bold-19;
+        @include govuk-font($size: 19, $weight: bold);
       }
 
-      @include media(tablet) {
+        @include govuk-media-query(tablet) {
         // Level 3
         li li li {
           a:link, a:visited {
-            padding-left: $gutter-half * 2;
+            padding-left: govuk-spacing(6);
           }
         }
 
         // Level 4
         li li li li {
           a:link, a:visited {
-            padding-left: $gutter-half * 4;
+            padding-left: govuk-spacing(7);
           }
         }
 
         // Level 5
         li li li li li {
           a:link, a:visited {
-            padding-left: $gutter-half * 5;
+            padding-left: govuk-spacing(8);
           }
         }
 
         // Level 6
         li li li li li li {
           a:link, a:visited {
-            padding-left: $gutter-half * 6;
+            padding-left: govuk-spacing(9);
           }
         }
       }
@@ -81,9 +94,9 @@
     display: none;
   }
 
-  @include media(tablet) {
+    @include govuk-media-query(tablet) {
     .toc {
-      padding: 22px $gutter $gutter-half;
+      padding: 22px govuk-spacing(6) govuk-spacing(3)
     }
 
     // Prevent the fixedsticky spacer from appearing if the browser is resized
@@ -93,7 +106,7 @@
     }
   }
 
-  @include media(mobile) {
+  @include govuk-media-query($until: tablet) {
     .js {
       .toc {
         display: none;
@@ -117,16 +130,16 @@
           position: relative;
           z-index: 10;
 
-          padding: $gutter-half $gutter-half 10px;
+          padding: govuk-spacing(3) govuk-spacing(3) 10px;
 
-          background: $grey-4;
+          background: govuk-colour("light-grey");
           @supports(backdrop-filter: blur(2px)) {
-            background: transparentize($grey-4, 0.05);
+            background: transparentize(govuk-colour("light-grey"), 0.05);
             backdrop-filter: blur(2px);
           }
-          border-bottom: 1px solid $grey-2;
+          border-bottom: 1px solid govuk-colour("mid-grey");
           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-          color: $text-colour;
+          color:  $govuk-text-colour;
           text-decoration: none;
         }
 
@@ -139,7 +152,7 @@
           background-repeat: no-repeat;
           background-position: left center;
 
-          @include device-pixel-ratio {
+          @include govuk-device-pixel-ratio {
             background-image: file-url('govuk-icn-numbered-list@2x.png');
             background-size: 20px 20px;
           }
@@ -147,7 +160,7 @@
       }
 
       .toc__list {
-        margin-right: $gutter * 1.5;
+        margin-right: govuk-spacing(7);
       }
 
       .toc__close {
@@ -164,7 +177,7 @@
         background-repeat: no-repeat;
         background-position: left center;
 
-        @include device-pixel-ratio {
+        @include govuk-device-pixel-ratio {
           background-image: file-url('govuk-icn-close@2x.png');
           background-size: 20px 20px;
         }
@@ -198,9 +211,9 @@
           -webkit-overflow-scrolling: touch;
           -ms-overflow-style: none;
 
-          background: $white;
+          background: govuk-colour("white");
           @supports(backdrop-filter: blur(2px)) {
-            background: transparentize($white, 0.05);
+            background: transparentize(govuk-colour("white"), 0.05);
             backdrop-filter: blur(2px);
           }
         }
@@ -209,7 +222,7 @@
   }
 }
 
-@include print {
+@include govuk-media-query($media-type: print) {
   .toc {
     display: none;
   }

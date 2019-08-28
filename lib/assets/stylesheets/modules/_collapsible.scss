@@ -11,10 +11,12 @@
     display: block
   }
 }
+
 .collapsible__heading,
 .toc__list > ul > li > a:link.collapsible__heading {
   margin-right: 30px;
 }
+
 .collapsible__toggle {
   position: absolute;
   top: 0;
@@ -27,18 +29,20 @@
   background: 0;
   color: inherit;
   padding: 0;
+
   &:focus {
-    outline: 3px solid $focus-colour;
+    @include govuk-focused-text;
   }
 }
+
 .collapsible__toggle-icon {
   position: absolute;
   top: 0;
-  right: 30px;
+  right: 20px;
   &::after {
     content: '';
     display: block;
-    border: 2px solid $black;
+    border: 2px solid govuk-colour("black");
     border-width: 2px 2px 0 0;
     transform: rotate(135deg);
     width: 10px;
