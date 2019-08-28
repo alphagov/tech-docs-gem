@@ -11,7 +11,8 @@
   }
 
   a {
-    margin-right: $gutter-half;
+    @include govuk-link-common;
+    @include govuk-link-style-default;
   }
 
   li {

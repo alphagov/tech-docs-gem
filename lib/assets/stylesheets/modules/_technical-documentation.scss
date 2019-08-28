@@ -1,21 +1,3 @@
-// Adds combination of margin and padding to headings to make them appear
-// correctly when they're linked to as anchors, and scale them on mobile
-// TODO: Headings are hidden underneath the sticky 'table of contents' on mobile
-// when following a link to them
-
-@mixin heading-offset($tabletTopMargin) {
-  // Scale margins with font size on mobile (16/19ths)
-  $mobileTopMargin: ceil($tabletTopMargin * (16 / 19));
-
-  padding-top: min($mobileTopMargin, $gutter-half);
-  margin-top: max(0, $mobileTopMargin - $gutter-half);
-
-  @include media(tablet) {
-    padding-top: min($tabletTopMargin, $gutter);
-    margin-top: max(0, $tabletTopMargin - $gutter);
-  }
-}
-
 .technical-documentation {
   // Required for IE11 to render <main> correctly
   display: block;
@@ -36,87 +18,71 @@
     visibility: hidden;
   }
 
-  // Headings
-  h1 {
-    @include bold-48;
-    @include heading-offset($gutter * 2);
-    border-top: 5px solid $text-colour;
-
-    &:first-of-type {
-      @include heading-offset($gutter);
-      border-top: none;
-    }
+  > h1 {
+    @extend %govuk-heading-xl;
   }
 
-  h2 {
-    @include bold-36;
-    @include heading-offset($gutter * 1.5);
+  > h2 {
+    @extend %govuk-heading-l;
   }
 
-  h3, h4, h5, h6 {
-    @include heading-offset($gutter);
+  > h3 {
+    @extend %govuk-heading-m;
   }
 
-  h3 {
-    @include bold-24;
+  > h4 {
+    @extend %govuk-heading-s;
   }
 
-  h4 {
-    @include bold-19;
+  > p {
+    @extend %govuk-body-m;
   }
 
-  h5 {
-    @include bold-19;
-    color: $secondary-text-colour;
+  > strong,
+  > b {
+    @include govuk-typography-weight-bold;
   }
 
-  h6 {
-    @include core-19;
-    color: $secondary-text-colour;
+  > ul,
+  > ol {
+    @extend %govuk-list;
   }
 
-  // Expand margin when h1 followed directly by paragraph
-  h1 + p {
-    @include media(tablet) {
-      margin-top: $gutter * 1.5;
-    }
+  > ol {
+    @extend %govuk-list--number;
   }
 
-  // Tighten up margins where headings follow each other
-  h1 + h2 {
-    @include heading-offset($gutter);
+  > ul {
+    @extend %govuk-list--bullet;
   }
 
-  h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
-    @include heading-offset(20px);
+  a {
+    @extend %govuk-link;
   }
 
-  p {
-    margin-top: ceil($gutter-half * (16 / 19));
-    margin-bottom: 0;
+  > a {
+    @extend %govuk-body-m;
+  }
 
-    @include media(tablet) {
-      margin-top: $gutter-half;
-    }
+  hr {
+    @extend %govuk-section-break;
+    @extend %govuk-section-break--visible;
+    @extend %govuk-section-break--xl;
+  }
+
+  pre + h2 {
+    padding-top: govuk-spacing(4);
+  }
+
+  pre + h3,
+  pre + h4 {
+    padding-top: govuk-spacing(2);
   }
 
   img {
     max-width: 100%;
     width: auto;
     height: auto;
-  }
-
-  ol, ul {
-    margin: $gutter-half 0 0;
-    padding-left: 20px;
-  }
-
-  ol ol, ul ul, ol ul, ul ol {
-    margin-top: 0;
-  }
-
-  li {
-    margin-top: 5px;
   }
 
   ol + p, ul + p, .table-container + p {

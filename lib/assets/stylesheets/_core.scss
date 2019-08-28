@@ -23,7 +23,6 @@ $desktop-breakpoint: 992px !default;
 @import "modules/app-pane";
 @import "modules/footer";
 @import "modules/govuk-logo";
-@import "modules/header";
 @import "modules/page-review";
 @import "modules/skip-link";
 @import "modules/search";
@@ -31,19 +30,3 @@ $desktop-breakpoint: 992px !default;
 @import "modules/technical-documentation";
 @import "modules/toc";
 @import "modules/collapsible";
-
-html, body {
-  color: $text-colour;
-  background-color: $page-colour;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  @include core-19;
-}
-
-// basic styles for HTML5 and other elements
-html, body, div, h1, h2, h3, h4, h5, h6, article, aside, footer, header, hgroup, nav, section {
-  margin: 0;
-  padding: 0;
-  vertical-align: baseline;
-}
