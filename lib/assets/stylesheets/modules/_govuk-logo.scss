@@ -21,16 +21,16 @@
   font-weight: bold;
   display: inline-block;
 
-  @include screen {
+    @include govuk-media-query($media-type: screen) {
     background-image: file-url('/images/gov.uk_logotype_crown.png');
     background-repeat: no-repeat;
 
-    @include device-pixel-ratio {
+    @include govuk-device-pixel-ratio {
       background-image: file-url('/images/gov.uk_logotype_crown-2x.png');
       background-size: 36px 32px;
     }
 
-    @include media(tablet) {
+      @include govuk-media-query(tablet) {
       margin-right: 8px;
       background-position: 0 1px;
     }
@@ -41,7 +41,7 @@
   vertical-align: middle;
   margin-right: 1px;
 
-  @include screen {
+    @include govuk-media-query($media-type: screen) {
     visibility: hidden;
   }
 }

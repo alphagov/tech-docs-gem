@@ -1,17 +1,17 @@
 .technical-documentation {
   // Required for IE11 to render <main> correctly
   display: block;
-  margin: 0 $gutter-half 10px;
+  margin: 0 govuk-spacing(3) 10px;
   max-width: 40em;
 
   line-height: 1.4;
 
-  color: $text-colour;
+  color:  $govuk-text-colour;
 
-  @include media(tablet) {
+    @include govuk-media-query(tablet) {
     // We add 2 pixels to the gutter here to ensure there's sufficient spacing between
     // an anchor link (see _anchored-heading.scss) on a heading and the left-hand pane.
-    margin: 0 ($gutter + 2px) $gutter;
+    margin: govuk-spacing(6) (govuk-spacing(6) + 2px);
   }
 
   .has-search-results-open & {
@@ -86,18 +86,18 @@
   }
 
   ol + p, ul + p, .table-container + p {
-    margin-top: ceil($gutter * (16 / 19));
+    margin-top: ceil(govuk-spacing(6) * (16 / 19));
 
-    @include media(tablet) {
-      margin-top: $gutter;
+      @include govuk-media-query(tablet) {
+      margin-top: govuk-spacing(6);
     }
   }
 
   blockquote {
-    background: $grey-4;
-    padding: $gutter-half;
-    margin: $gutter-half;
-    border-left: 5px solid $grey-3;
+    background: govuk-colour("light-grey");
+    padding: govuk-spacing(3);
+    margin: govuk-spacing(3);
+    border-left: 5px solid govuk-colour("light-grey");
   }
 
   pre {
@@ -121,14 +121,14 @@
 
   code {
     background: $code-01;
-    padding: 3px 5px;
+    padding: 3px govuk-spacing(1);
     border-radius: 1px;
 
     font-family: monaco, Consolas, "Lucida Console", monospace;
     font-size: 15px;
     color: $code-0E;
 
-    @include media(tablet) {
+      @include govuk-media-query(tablet) {
       font-size: 16px;
     }
 
@@ -148,7 +148,7 @@
   h1, h2, h3, h4, h5, h6 {
     code {
       font-size: inherit;
-      color: $text-colour;
+      color:  $govuk-text-colour;
       background: none;
       padding: 0;
     }
@@ -159,7 +159,7 @@
     max-width: 100%;
     overflow-x: auto;
 
-    margin-top: $gutter-half;
+    margin-top: govuk-spacing(3);
   }
 
   table {
@@ -170,13 +170,13 @@
   }
 
   th, td {
-    padding: $gutter-one-third $gutter-two-thirds $gutter-one-third 0;
+    padding: govuk-spacing(2) govuk-spacing(4) govuk-spacing(2) 0;
 
     background-color: transparent;
-    border-bottom: 1px solid $border-colour;
+    border-bottom: 1px solid $govuk-border-colour;
     border-width: 0 0 1px 0;
 
-    @include core-16;
+    @include govuk-font($size: 16);
     vertical-align: top;
     text-align: left;
   }
@@ -192,17 +192,17 @@
     p+p, p+ul, p+ol,
     ul+p, ul+ol,
     ol+p {
-      margin-top: $gutter-one-third;
+      margin-top: govuk-spacing(2);
     }
   }
 
   hr {
     height: 1px;
     border: none;
-    margin-top: $gutter - 1px;
-    margin-bottom: $gutter;
-    background-color: $border-colour;
-    color: $border-colour;
+    margin-top: govuk-spacing(6) - 1px;
+    margin-bottom: govuk-spacing(6);
+    background-color: $govuk-border-colour;
+    color: $govuk-border-colour;
   }
 
   a {

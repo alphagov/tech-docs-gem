@@ -19,13 +19,13 @@
   &:focus {
     position: relative;
     left: inherit;
-    background: $yellow;
-    color: $black;
+    background: govuk-colour("yellow");
+    color: govuk-colour("black");
     text-decoration: none;
-    padding: 5px $gutter-half;
+    padding: 5px govuk-spacing(3);
     
-    @include media(tablet) {
-      padding: 5px $gutter;
+      @include govuk-media-query(tablet) {
+      padding: 5px govuk-spacing(6);
     }
   }
 }

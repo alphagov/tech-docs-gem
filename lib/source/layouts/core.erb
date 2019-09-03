@@ -10,8 +10,7 @@
 
     <title><%= meta_tags.browser_title %></title>
 
-    <!--[if gt IE 8]><!--><%= stylesheet_link_tag :screen, media: 'screen' %><!--<![endif]-->
-    <!--[if lte IE 8]><%= stylesheet_link_tag 'screen-old-ie', media: 'screen' %><![endif]-->
+    <%= stylesheet_link_tag :screen, media: 'screen' %>
 
     <link rel="canonical" href="<%= meta_tags.canonical_url %>">
 
@@ -19,7 +18,6 @@
       <meta name="google-site-verification" content="<%= config[:tech_docs][:google_site_verification] %>" />
     <% end %>
 
-    <%= stylesheet_link_tag :print, media: 'print' %>
     <%= javascript_include_tag :application %>
 
     <% meta_tags.tags.each do |property, content| %>
