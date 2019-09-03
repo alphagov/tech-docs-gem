@@ -13,23 +13,6 @@
       display: none;
     }
 
-    a:link, a:visited {
-      text-decoration: none;
-      color: $govuk-link-colour;
-    }
-
-    a:focus {
-      outline: none;
-
-      span {
-        @include govuk-focused-text;
-      }
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
     &__list {
       li {
         a:link, a:visited {
@@ -38,17 +21,31 @@
           padding: 8px govuk-spacing(6) 8px govuk-spacing(3);
           margin: 0 -1 * govuk-spacing(3);
           border-left: 5px solid transparent;
+          text-decoration: none;
+          color: $govuk-link-colour;
 
             @include govuk-media-query(tablet) {
             &.toc-link--in-view  {
               color: $govuk-link-hover-colour;
               border-left-color: $govuk-link-hover-colour;
               background-color: govuk-colour("light-grey");
-
-              &:focus span {
-                @include govuk-focused-text;
-              }
             }
+          }
+        }
+
+        a:focus {
+          outline: none;
+
+          span {
+            @include govuk-focused-text;
+          }
+        }
+
+        a:hover {
+          text-decoration: underline;
+
+          &:focus {
+            text-decoration: none;
           }
         }
       }
