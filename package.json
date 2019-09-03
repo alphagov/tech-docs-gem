@@ -28,7 +28,8 @@
       "_",
       "Modernizr",
       "history",
-      "ga"
+      "ga",
+      "GOVUKFrontend"
     ],
     "ignore": [
       "lib/assets/javascripts/_vendor/**"
