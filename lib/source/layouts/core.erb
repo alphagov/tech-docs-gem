@@ -18,8 +18,6 @@
       <meta name="google-site-verification" content="<%= config[:tech_docs][:google_site_verification] %>" />
     <% end %>
 
-    <%= javascript_include_tag :application %>
-
     <% meta_tags.tags.each do |property, content| %>
       <%= tag :meta, property: property, content: content %>
     <% end %>
@@ -78,5 +76,6 @@
     </div>
 
     <%= partial 'layouts/analytics' %>
+    <%= javascript_include_tag :application %>
   </body>
 </html>
