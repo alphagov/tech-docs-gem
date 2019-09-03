@@ -22,11 +22,11 @@
   display: inline-block;
 
     @include govuk-media-query($media-type: screen) {
-    background-image: file-url('/images/gov.uk_logotype_crown.png');
+    background-image: url('/images/gov.uk_logotype_crown.png');
     background-repeat: no-repeat;
 
     @include govuk-device-pixel-ratio {
-      background-image: file-url('/images/gov.uk_logotype_crown-2x.png');
+      background-image: url('/images/gov.uk_logotype_crown-2x.png');
       background-size: 36px 32px;
     }
 
