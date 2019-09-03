@@ -20,7 +20,7 @@ module GovukTechDocs
     private
 
       def page
-        @_page ||= Nokogiri::HTML(@html)
+        @page ||= Nokogiri::HTML(@html)
       end
 
       def heading_elements

@@ -60,7 +60,7 @@ module GovukTechDocs
             key = md.captures[0]
             type = keywords[key]
 
-            text.gsub!(/#{ Regexp.escape(key) }\s+?/, '')
+            text.gsub!(/#{Regexp.escape(key)}\s+?/, '')
 
             # Strip paragraph tags from text
             text = text.gsub(/<\/?[^>]*>/, '')

@@ -24,8 +24,8 @@ RSpec.describe GovukTechDocs::MetaTags do
       )
 
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: page_title),
-        metadata: { locals: {} })
+                            data: double("page_frontmatter", description: "The description.", title: page_title),
+                            metadata: { locals: {} })
 
       GovukTechDocs::MetaTags.new(config, current_page).browser_title
     end
@@ -40,9 +40,9 @@ RSpec.describe GovukTechDocs::MetaTags do
       )
 
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/foo.html",
-        metadata: { locals: {} })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/foo.html",
+                            metadata: { locals: {} })
 
       tags = GovukTechDocs::MetaTags.new(config, current_page).tags
 
@@ -62,9 +62,9 @@ RSpec.describe GovukTechDocs::MetaTags do
 
     it 'uses the local variable as page description for proxied pages' do
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/foo.html",
-        metadata: { locals: { description: "The local variable description." } })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/foo.html",
+                            metadata: { locals: { description: "The local variable description." } })
 
       tags = GovukTechDocs::MetaTags.new(generate_config, current_page).tags
 
@@ -73,9 +73,9 @@ RSpec.describe GovukTechDocs::MetaTags do
 
     it 'uses the local variable as page title for proxied pages' do
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/foo.html",
-        metadata: { locals: { title: "The local variable title." } })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/foo.html",
+                            metadata: { locals: { title: "The local variable title." } })
 
       tags = GovukTechDocs::MetaTags.new(generate_config, current_page).tags
 
@@ -84,9 +84,9 @@ RSpec.describe GovukTechDocs::MetaTags do
 
     it 'works even when no config is set' do
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/foo.html",
-        metadata: { locals: { title: "The local variable title." } })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/foo.html",
+                            metadata: { locals: { title: "The local variable title." } })
 
       config = { tech_docs: {} }
 

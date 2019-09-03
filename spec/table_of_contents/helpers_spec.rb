@@ -133,9 +133,9 @@ describe GovukTechDocs::TableOfContents::Helpers do
       resources[0].add_children [resources[1], resources[2]]
 
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/index.html",
-        metadata: { locals: {} })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/index.html",
+                            metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
 
@@ -182,9 +182,9 @@ describe GovukTechDocs::TableOfContents::Helpers do
       resources[0].add_children [resources[1], resources[2]]
 
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/prefix/index.html",
-        metadata: { locals: {} })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/prefix/index.html",
+                            metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
 
@@ -228,9 +228,9 @@ describe GovukTechDocs::TableOfContents::Helpers do
       resources.push FakeResource.new('/index.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>');
 
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/index.html",
-        metadata: { locals: {} })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/index.html",
+                            metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
 

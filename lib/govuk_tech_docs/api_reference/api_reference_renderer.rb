@@ -262,6 +262,7 @@ module GovukTechDocs
         unless text.is_a?(String)
           return nil
         end
+
         # Schema dictates that it's always components['schemas']
         text.gsub(/#\/components\/schemas\//, '')
       end
