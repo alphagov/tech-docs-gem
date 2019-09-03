@@ -31,6 +31,10 @@ module GovukTechDocs
   #   extension. Hash with symbols as keys.
   def self.configure(context, options = {})
     context.activate :sprockets
+
+    context.sprockets.append_path File.join(__dir__, '../node_modules/govuk-frontend/')
+    context.sprockets.append_path File.join(__dir__, './source')
+
     context.activate :syntax
 
     context.files.watch :source, path: "#{__dir__}/source"
