@@ -71,11 +71,11 @@ RSpec.describe "The tech docs template" do
   end
 
   def then_the_page_highlighted_in_the_navigation_is(link_label)
-    page.find('#navigation li.active a', text: link_label)
+    page.find('#navigation li.govuk-header__navigation-item--active a', text: link_label)
   end
 
   def then_there_are_navigation_headings_from_other_pages
-    expect(page).to have_css '.toc__list a', text: 'A subheader'
+    expect(page).to have_css '.toc__list a span', text: 'A subheader'
   end
 
   def when_i_view_a_proxied_page
