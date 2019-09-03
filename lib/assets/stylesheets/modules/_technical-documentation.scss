@@ -2,6 +2,7 @@
   // Required for IE11 to render <main> correctly
   display: block;
   margin: govuk-spacing(3);
+  font-size: 19px;
   max-width: 40em;
 
   line-height: 1.4;
@@ -20,10 +21,16 @@
 
   > h1 {
     @extend %govuk-heading-xl;
+
+    &:first-of-type {
+      padding-top: govuk-spacing(6);
+    }
   }
 
   > h2 {
     @extend %govuk-heading-l;
+    padding-top: govuk-spacing(6);
+    margin-top: govuk-spacing(3);
   }
 
   > h3 {
@@ -94,10 +101,11 @@
   }
 
   blockquote {
+    @include govuk-font($size: 19);
     background: govuk-colour("light-grey");
     padding: govuk-spacing(3);
     margin: govuk-spacing(3);
-    border-left: 5px solid govuk-colour("light-grey");
+    border-left: govuk-spacing(2) solid govuk-colour("mid-grey");
   }
 
   pre {
