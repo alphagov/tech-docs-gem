@@ -1,4 +1,5 @@
 .technical-documentation {
+  @include govuk-font($size: 19);
   // Required for IE11 to render <main> correctly
   display: block;
   margin: govuk-spacing(3);
@@ -12,15 +13,14 @@
   @include govuk-media-query(tablet) {
     // We add 2 pixels to the gutter here to ensure there's sufficient spacing between
     // an anchor link (see _anchored-heading.scss) on a heading and the left-hand pane.
-    margin: govuk-spacing(6) (govuk-spacing(6) + 2px);
+    margin: 0 govuk-spacing(6) (govuk-spacing(6) + 2px);
   }
 
   .has-search-results-open & {
     visibility: hidden;
   }
 
-  > h1,
-  #server-list > h1 {
+  > h1 {
     @extend %govuk-heading-xl;
 
     &:first-of-type {
@@ -76,6 +76,10 @@
     @extend %govuk-section-break;
     @extend %govuk-section-break--visible;
     @extend %govuk-section-break--xl;
+  }
+
+  table {
+    @include govuk-responsive-margin(6, "bottom");
   }
 
   pre + h2 {
