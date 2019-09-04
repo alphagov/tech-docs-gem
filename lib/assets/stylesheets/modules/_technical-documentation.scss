@@ -212,8 +212,4 @@
     background-color: $govuk-border-colour;
     color: $govuk-border-colour;
   }
-
-  a {
-    @extend %govuk-link;
-  }
 }
