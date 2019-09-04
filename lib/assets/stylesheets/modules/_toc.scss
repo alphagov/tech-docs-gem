@@ -16,7 +16,7 @@
     &__list {
       li {
         a:link, a:visited {
-          display: inline-block;
+          display: block;
           position: relative;
           padding: 8px govuk-spacing(6) 8px govuk-spacing(3);
           margin: 0 -1 * govuk-spacing(3);
