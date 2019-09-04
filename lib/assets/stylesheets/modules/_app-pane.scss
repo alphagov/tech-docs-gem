@@ -40,7 +40,7 @@
     .app-pane__toc {
       flex: 0 0 auto;
       width: $toc-width;
-      border-right: 1px solid govuk-colour("mid-grey");
+      border-right: 1px solid $govuk-border-colour;
     }
 
     .app-pane__content {
