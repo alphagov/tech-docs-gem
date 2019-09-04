@@ -3,6 +3,13 @@ lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "govuk_tech_docs/version"
 
+`npm install`
+abort 'npm install failed' unless $?.success?
+
+unless File.exist?('node_modules/govuk-frontend/govuk/all.scss')
+  abort 'govuk-frontend npm package not installed'
+end
+
 Gem::Specification.new do |spec|
   spec.name          = "govuk_tech_docs"
   spec.version       = GovukTechDocs::VERSION
