@@ -11,6 +11,7 @@
   }
 
   a {
+    margin-right: govuk-spacing(3);
     @include govuk-link-common;
     @include govuk-link-style-default;
   }
