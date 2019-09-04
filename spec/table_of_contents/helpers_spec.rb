@@ -20,13 +20,13 @@ describe GovukTechDocs::TableOfContents::Helpers do
       expected_single_page_table_of_contents = %{
 <ul>
   <li>
-    <a href="#fruit">Fruit</a>
+    <a href="#fruit"><span>Fruit</span></a>
   </li>
   <li>
-    <a href="#apples">Apples</a>
+    <a href="#apples"><span>Apples</span></a>
     <ul>
       <li>
-        <a href="#apple-recipes">Apple recipes</a>
+        <a href="#apple-recipes"><span>Apple recipes</span></a>
       </li>
     </ul>
   </li>
@@ -49,15 +49,15 @@ describe GovukTechDocs::TableOfContents::Helpers do
       expected_single_page_table_of_contents = %{
 <ul>
   <li>
-    <a href="#fruit">Fruit</a>
+    <a href="#fruit"><span>Fruit</span></a>
     <ul>
       <li>
         <ul>
           <li>
-            <a href="#apples">Apples</a>
+            <a href="#apples"><span>Apples</span></a>
             <ul>
               <li>
-                <a href="#apple-recipes">Apple recipes</a>
+                <a href="#apple-recipes"><span>Apple recipes</span></a>
               </li>
             </ul>
           </li>
@@ -66,7 +66,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
     </ul>
   </li>
   <li>
-    <a href="#bread">Bread</a>
+    <a href="#bread"><span>Bread</span></a>
   </li>
 </ul>
       }
@@ -133,9 +133,9 @@ describe GovukTechDocs::TableOfContents::Helpers do
       resources[0].add_children [resources[1], resources[2]]
 
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/index.html",
-        metadata: { locals: {} })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/index.html",
+                            metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
 
@@ -150,20 +150,20 @@ describe GovukTechDocs::TableOfContents::Helpers do
 <ul><li><a href="/index.html">Index</a>
 <ul>
   <li>
-    <a href="/a.html#heading-one">Heading one</a>
+    <a href="/a.html#heading-one"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/a.html#heading-two">Heading two</a>
+        <a href="/a.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>
 </ul>
 <ul>
   <li>
-    <a href="/b.html#heading-one">Heading one</a>
+    <a href="/b.html#heading-one"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/b.html#heading-two">Heading two</a>
+        <a href="/b.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>
@@ -182,9 +182,9 @@ describe GovukTechDocs::TableOfContents::Helpers do
       resources[0].add_children [resources[1], resources[2]]
 
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/prefix/index.html",
-        metadata: { locals: {} })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/prefix/index.html",
+                            metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
 
@@ -199,20 +199,20 @@ describe GovukTechDocs::TableOfContents::Helpers do
 <ul><li><a href="/prefix/index.html">Index</a>
 <ul>
   <li>
-    <a href="/prefix/a.html#heading-one">Heading one</a>
+    <a href="/prefix/a.html#heading-one"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/prefix/a.html#heading-two">Heading two</a>
+        <a href="/prefix/a.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>
 </ul>
 <ul>
   <li>
-    <a href="/prefix/b.html#heading-one">Heading one</a>
+    <a href="/prefix/b.html#heading-one"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/prefix/b.html#heading-two">Heading two</a>
+        <a href="/prefix/b.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>
@@ -228,9 +228,9 @@ describe GovukTechDocs::TableOfContents::Helpers do
       resources.push FakeResource.new('/index.html', '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>');
 
       current_page = double("current_page",
-        data: double("page_frontmatter", description: "The description.", title: "The Title"),
-        url: "/index.html",
-        metadata: { locals: {} })
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/index.html",
+                            metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
 
@@ -245,26 +245,26 @@ describe GovukTechDocs::TableOfContents::Helpers do
       expected_multi_page_table_of_contents = %{
 <ul>
   <li>
-    <a href="/index.html#heading-one">Heading one</a>
+    <a href="/index.html#heading-one"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/index.html#heading-two">Heading two</a>
+        <a href="/index.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>
   <li>
-    <a href="/index.html#heading-one">Heading one</a>
+    <a href="/index.html#heading-one"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/index.html#heading-two">Heading two</a>
+        <a href="/index.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>
   <li>
-    <a href="/index.html#heading-one">Heading one</a>
+    <a href="/index.html#heading-one"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/index.html#heading-two">Heading two</a>
+        <a href="/index.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>

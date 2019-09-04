@@ -13,6 +13,7 @@
 src_files:
   - lib/assets/javascripts/_vendor/jquery.js
   - lib/assets/javascripts/**/*.js
+  - node_modules/govuk-frontend/govuk/all.js
 
 # helpers
 #

@@ -44,6 +44,7 @@ module GovukTechDocs
             end
           # Avoid redirect pages
           next if content.include? "http-equiv=refresh"
+
           # If this page has children, just print the title and recursively
           # render the children. If not, print the heading structure.
 

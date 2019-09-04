@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
   files_in_git = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
 
   # Include assets from GOV.UK Frontend library in the distributed gem
-  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js}"]
+  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js,woff,woff2}"]
 
   spec.files         = files_in_git + govuk_frontend_assets
 
@@ -32,6 +32,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-compass", ">= 4.0.0"
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-sprockets", "~> 4.0.0"
+  spec.add_dependency "sprockets", "4.0.0.beta10"
+  spec.add_dependency "sass"
   spec.add_dependency "middleman-syntax", "~> 3.0.0"
   spec.add_dependency "middleman-search-gds"
   spec.add_dependency "nokogiri"
@@ -43,7 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 2.0.1"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "capybara", "~> 2.18.0"
-  spec.add_development_dependency "govuk-lint", "~> 3.7.0"
+  spec.add_development_dependency "govuk-lint", "~> 3.11.5"
   spec.add_development_dependency "jasmine", "~> 3.1.0"
   spec.add_development_dependency "rspec", "~> 3.7.0"
   spec.add_development_dependency "byebug"

@@ -25,15 +25,15 @@ describe GovukTechDocs::TableOfContents::HeadingTreeRenderer do
       <<~EOF
       <ul>
         <li>
-          <a href="#apples">Apples</a>
+          <a href="#apples"><span>Apples</span></a>
           <ul>
             <li>
-              <a href="#apple-recipes">Apple recipes</a>
+              <a href="#apple-recipes"><span>Apple recipes</span></a>
             </li>
           </ul>
         </li>
         <li>
-          <a href="#oranges">Oranges</a>
+          <a href="#oranges"><span>Oranges</span></a>
         </li>
       </ul>
       EOF
@@ -43,10 +43,10 @@ describe GovukTechDocs::TableOfContents::HeadingTreeRenderer do
       <<~EOF
       <ul>
         <li>
-          <a href="#apples">Apples</a>
+          <a href="#apples"><span>Apples</span></a>
         </li>
         <li>
-          <a href="#oranges">Oranges</a>
+          <a href="#oranges"><span>Oranges</span></a>
         </li>
       </ul>
       EOF

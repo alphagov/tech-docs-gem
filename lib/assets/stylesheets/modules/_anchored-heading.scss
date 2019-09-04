@@ -18,16 +18,16 @@
     text-decoration: none;
     text-indent: -9999em;
 
-    background-image: file-url('anchored-heading-icon.png');
+    background-image: url('/images/anchored-heading-icon.png');
     background-repeat: no-repeat;
     background-position: center center;
 
-    @include device-pixel-ratio {
-      background-image: file-url('anchored-heading-icon-2x.png');
+    @include govuk-device-pixel-ratio {
+      background-image: url('/images/anchored-heading-icon-2x.png');
       background-size: $icon-width $icon-height;
     }
 
-    @include media(tablet) {
+    @include govuk-media-query(tablet) {
       display: block;
     }
 
@@ -39,13 +39,13 @@
   }
 
   &:hover &__icon {
-    @include media(tablet) {
+    @include govuk-media-query(tablet) {
       opacity: 1;
     }
   }
 
   &__icon:focus {
-    @include media(tablet) {
+    @include govuk-media-query(tablet) {
       opacity: 1;
       outline-width: 1px;
       padding: 0 ($icon-spacing - 1);

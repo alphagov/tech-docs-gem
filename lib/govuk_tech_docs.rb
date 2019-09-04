@@ -31,20 +31,24 @@ module GovukTechDocs
   #   extension. Hash with symbols as keys.
   def self.configure(context, options = {})
     context.activate :sprockets
+
+    context.sprockets.append_path File.join(__dir__, '../node_modules/govuk-frontend/')
+    context.sprockets.append_path File.join(__dir__, './source')
+
     context.activate :syntax
 
     context.files.watch :source, path: "#{__dir__}/source"
 
     context.set :markdown_engine, :redcarpet
     context.set :markdown,
-        renderer: TechDocsHTMLRenderer.new(
-          with_toc_data: true,
-          api: true,
-          context: context
-        ),
-        fenced_code_blocks: true,
-        tables: true,
-        no_intra_emphasis: true
+                renderer: TechDocsHTMLRenderer.new(
+                  with_toc_data: true,
+                  api: true,
+                  context: context
+                ),
+                fenced_code_blocks: true,
+                tables: true,
+                no_intra_emphasis: true
 
     # Reload the browser automatically whenever files change
     context.configure :development do
@@ -109,9 +113,7 @@ module GovukTechDocs
           url:     { index: false, store: true },
         }
 
-        search.pipeline_remove = [
-          'stopWordFilter'
-        ]
+        search.pipeline_remove = %w[stopWordFilter]
 
         search.tokenizer_separator = '/[\s\-/]+/'
       end
