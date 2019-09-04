@@ -107,7 +107,7 @@ html.has-search-results-open {
   }
 }
 .search-results__title {
-  @include govuk-font($size: 27);
+  @include govuk-font($size: 27, $weight: bold);
   margin-bottom: govuk-spacing(6);
 }
 .search-results__close {
