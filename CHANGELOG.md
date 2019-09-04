@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.0
 
 This release adds [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) (part of the [GOV.UK Design System](https://design-system.service.gov.uk)) and remove the legacy framework [GOV.UK Frontend Toolkit](https://github.com/alphagov/govuk_frontend_toolkit). This required a lot of markup being ported over
 to use the design system’s markup and all custom CSS to use new variables and mixins.
