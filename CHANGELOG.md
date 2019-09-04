@@ -2,7 +2,12 @@
 
 ## Unreleased
 
-This release adds [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) (part of the [GOV.UK Design System](https://design-system.service.gov.uk)). Converts the "phase tag" (the alpha/beta thing next to the logo) to use a GOV.UK Frontend component. Also adds [Standard JS](https://standardjs.com) to the code base to lint all Javascript.
+This release adds [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend) (part of the [GOV.UK Design System](https://design-system.service.gov.uk)) and remove the legacy framework [GOV.UK Frontend Toolkit](https://github.com/alphagov/govuk_frontend_toolkit). This required a lot of markup being ported over
+to use the design system’s markup and all custom CSS to use new variables and mixins.
+
+Custom components such as the table of contents (toc) were updated to use the WCAG 2.1 AA compliant focus states too.
+
+It was also necessary to upgrade the Ruby version to `2.6.3` so that we could bump the gem versions of `govuk_lint`, `rubocop` and `sprockets`. The new version of sprockets allowed us to pull through assets from `node_modules/govuk-frontend` without having to manually include them as was the case before with govuk_frontend_toolkit.
 
 ## 1.8.3
 
