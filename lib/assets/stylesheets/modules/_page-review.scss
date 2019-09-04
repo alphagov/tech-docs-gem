@@ -6,7 +6,7 @@
   background-color: $govuk-brand-colour;
   color: govuk-colour("white");
 
-    @include govuk-media-query(tablet) {
+  @include govuk-media-query(tablet) {
     padding: govuk-spacing(6);
   }
 

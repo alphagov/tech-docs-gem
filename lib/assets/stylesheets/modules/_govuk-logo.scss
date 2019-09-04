@@ -30,7 +30,7 @@
       background-size: 36px 32px;
     }
 
-      @include govuk-media-query(tablet) {
+    @include govuk-media-query(tablet) {
       margin-right: 8px;
       background-position: 0 1px;
     }

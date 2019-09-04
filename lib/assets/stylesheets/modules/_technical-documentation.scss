@@ -9,7 +9,7 @@
 
   color:  $govuk-text-colour;
 
-    @include govuk-media-query(tablet) {
+  @include govuk-media-query(tablet) {
     // We add 2 pixels to the gutter here to ensure there's sufficient spacing between
     // an anchor link (see _anchored-heading.scss) on a heading and the left-hand pane.
     margin: govuk-spacing(6) (govuk-spacing(6) + 2px);
@@ -95,7 +95,7 @@
   ol + p, ul + p, .table-container + p {
     margin-top: ceil(govuk-spacing(6) * (16 / 19));
 
-      @include govuk-media-query(tablet) {
+    @include govuk-media-query(tablet) {
       margin-top: govuk-spacing(6);
     }
   }
@@ -136,7 +136,7 @@
     font-size: 15px;
     color: $code-0E;
 
-      @include govuk-media-query(tablet) {
+    @include govuk-media-query(tablet) {
       font-size: 16px;
     }
 

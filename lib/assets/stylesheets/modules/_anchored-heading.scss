@@ -27,7 +27,7 @@
       background-size: $icon-width $icon-height;
     }
 
-      @include govuk-media-query(tablet) {
+    @include govuk-media-query(tablet) {
       display: block;
     }
 
@@ -39,13 +39,13 @@
   }
 
   &:hover &__icon {
-      @include govuk-media-query(tablet) {
+    @include govuk-media-query(tablet) {
       opacity: 1;
     }
   }
 
   &__icon:focus {
-      @include govuk-media-query(tablet) {
+    @include govuk-media-query(tablet) {
       opacity: 1;
       outline-width: 1px;
       padding: 0 ($icon-spacing - 1);

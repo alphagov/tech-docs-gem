@@ -24,7 +24,7 @@
           text-decoration: none;
           color: $govuk-link-colour;
 
-            @include govuk-media-query(tablet) {
+          @include govuk-media-query(tablet) {
             &.toc-link--in-view  {
               color: $govuk-link-hover-colour;
               border-left-color: $govuk-link-hover-colour;
@@ -55,7 +55,7 @@
         @include govuk-font($size: 19, $weight: bold);
       }
 
-        @include govuk-media-query(tablet) {
+      @include govuk-media-query(tablet) {
         // Level 3
         li li li {
           a:link, a:visited {
@@ -91,7 +91,7 @@
     display: none;
   }
 
-    @include govuk-media-query(tablet) {
+  @include govuk-media-query(tablet) {
     .toc {
       padding: 22px govuk-spacing(6) govuk-spacing(3)
     }

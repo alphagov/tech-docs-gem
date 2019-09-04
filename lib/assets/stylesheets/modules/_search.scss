@@ -61,7 +61,7 @@ html.has-search-results-open {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
-      @include govuk-media-query(tablet) {
+    @include govuk-media-query(tablet) {
       padding: 22px 20px 0 30px;
       top: 0;
       // The width of the sidebar
@@ -91,7 +91,7 @@ html.has-search-results-open {
   border-top: 1px solid govuk-colour("mid-grey");
   max-width: 40rem;
   padding: 15px;
-    @include govuk-media-query(tablet) {
+  @include govuk-media-query(tablet) {
     padding: 15px 200px 50px 40px;
     border: 1px solid govuk-colour("mid-grey");
     &::after {
