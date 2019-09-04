@@ -1,34 +1,15 @@
-  @include govuk-media-query($media-type: screen) {
+@include govuk-media-query($media-type: screen) {
   .page-title + .search {
     margin-top: govuk-spacing(6);
   }
 
-  .search {
-    @include govuk-font($size: 16);
-    margin-bottom: govuk-spacing(3);
-    height: 40px;
-    .search__label {
-      position: absolute;
-      left: -9999em;
-      top: auto;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
-    .form-control {
-      @include govuk-font($size: 19);
-
-      box-sizing: border-box;
-      width: 100%;
-      padding: 5px 4px 2px;
-      border: 2px solid  $govuk-text-colour;
-      appearance: none;
-
-      &:focus {
-        outline: 3px solid $govuk-focus-colour;
-        outline-offset: 0;
-      }
-    }
+  .js .search__label {
+    position: absolute;
+    left: -9999em;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
   }
 }
 

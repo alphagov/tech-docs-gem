@@ -13,8 +13,8 @@ describe('Search', function () {
     $element = $('<div class="search" data-module="search">' +
   '<form action="https://www.google.co.uk/search" method="get" role="search">' +
     '<input type="hidden" name="as_sitesearch" value="<%= config[:tech_docs][:host] %>"/>' +
-    '<label for="tech-docs-search"  class="search__label">Search (via Google)</label>' +
-    '<input type="text" id="search" name="q" placeholder="Search" aria-controls="search-results" class="form-control" />' +
+    '<label for="search"  class="govuk-label search__label">Search (via Google)</label>' +
+    '<input type="text" id="search" name="q" placeholder="Search" aria-controls="search-results" class="govuk-input" />' +
   '</form>' +
   '<div id="search-results" class="search-results" aria-hidden="true">' +
     '<div class="search-results__inner">' +
