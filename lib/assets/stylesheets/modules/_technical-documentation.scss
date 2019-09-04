@@ -19,7 +19,8 @@
     visibility: hidden;
   }
 
-  > h1 {
+  > h1,
+  #server-list > h1 {
     @extend %govuk-heading-xl;
 
     &:first-of-type {
@@ -202,14 +203,5 @@
     ol+p {
       margin-top: govuk-spacing(2);
     }
-  }
-
-  hr {
-    height: 1px;
-    border: none;
-    margin-top: govuk-spacing(6) - 1px;
-    margin-bottom: govuk-spacing(6);
-    background-color: $govuk-border-colour;
-    color: $govuk-border-colour;
   }
 }
