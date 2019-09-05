@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2
+
+This fixes ensures all assets from govuk-frontend are bundled; we were missing some PNG, SVG and ICO files.
+
 ## 2.0.1
 
 This fixes an issue where Travis CI wasn’t packaging up the gem with the govuk-frontend module.
