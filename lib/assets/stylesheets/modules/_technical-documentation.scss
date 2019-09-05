@@ -80,6 +80,7 @@
 
   table {
     @include govuk-responsive-margin(6, "bottom");
+    table-layout: fixed;
   }
 
   pre + h2 {
@@ -119,11 +120,6 @@
     overflow: auto;
     position: relative;
     border: 1px solid $code-02;
-    // Restrict the width of pre tags, as they have a tendency grow larger than
-    // the viewport when placed within table cells.
-    // @todo: Use table-layout: fixed, and remove the max-width definition from
-    // .technical-documentation so tables can fill the viewport.
-    max-width: 40em;
   }
 
   pre code {
