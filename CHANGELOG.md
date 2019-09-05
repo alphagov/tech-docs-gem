@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.3
+
+Fixes a couple of styling issues: [#100](https://github.com/alphagov/tech-docs-gem/issues/100) and [#106](https://github.com/alphagov/tech-docs-gem/issues/106).
+
 ## 2.0.2
 
 This fixes ensures all assets from govuk-frontend are bundled; we were missing some PNG, SVG and ICO files.
