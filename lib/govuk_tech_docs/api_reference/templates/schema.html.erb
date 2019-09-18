@@ -6,21 +6,21 @@
 <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
 </thead>
 <tbody>
-<% properties.each do |property| %>
+<% properties.each do |property_name, property_attributes| %>
 <tr>
-<td><%= property[0] %></td>
-<td><%= property[1].type %></td>
-<td><%= property[1].required.present? %></td>
-<td><%= markdown(property[1].description) %></td>
+<td><%= property_name %></td>
+<td><%= property_attributes.type %></td>
+<td><%= property_attributes.required.present? %></td>
+<td><%= markdown(property_attributes.description) %></td>
 <td>
   <%=
-  schema = property[1]
+  linked_schema = property_attributes
   # If property is an array, check the items property for a reference.
-  if property[1].type == 'array'
-    schema = property[1]['items']
+  if property_attributes.type == 'array'
+    linked_schema = property_attributes['items']
   end
   # Only print a link if it's a referenced object.
-  get_schema_link(schema) if schema.node_context.referenced_by.to_s.include? '#/components/schemas' and !schema.node_context.source_location.to_s.include? '/properties/' %>
+  get_schema_link(linked_schema) if linked_schema.node_context.referenced_by.to_s.include?('#/components/schemas') && !linked_schema.node_context.source_location.to_s.include?('/properties/') %>
 </td>
 </tr>
 <% end %>
