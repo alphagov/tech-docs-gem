@@ -53,7 +53,11 @@ RSpec.describe "OpenAPI reference" do
   def then_there_is_correct_api_schema_content
     # Schema title
     expect(page).to have_css('h3#schema-pet', text: 'Pet')
+
     # Schema parameters
     expect(page).to have_css('table', text: /\b(tag )\b/)
+
+    # Check that the "required" column is true for the `id` attribute
+    expect(page).to have_css('table.schema-pet td:nth(3)', text: "true")
   end
 end

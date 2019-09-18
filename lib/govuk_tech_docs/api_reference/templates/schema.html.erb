@@ -1,7 +1,7 @@
 <h3 id="<%= id = 'schema-' + title; id.parameterize %>"><%= title %></h3>
 <%= markdown(schema.description) %>
 <% if properties.any? %>
-<table>
+<table class='<%= id.parameterize %>'>
 <thead>
 <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
 </thead>
@@ -10,7 +10,7 @@
 <tr>
 <td><%= property_name %></td>
 <td><%= property_attributes.type %></td>
-<td><%= property_attributes.required.present? %></td>
+<td><%= property_name.in?(schema.required.to_a) %></td>
 <td><%= markdown(property_attributes.description) %></td>
 <td>
   <%=
