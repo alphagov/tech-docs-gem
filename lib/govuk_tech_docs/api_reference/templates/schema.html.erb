@@ -1,7 +1,7 @@
 <h3 id="<%= id = 'schema-' + title; id.parameterize %>"><%= title %></h3>
 <%= schema.description_html %>
 <% if properties.any? %>
-<table>
+<table class='<%= id.parameterize %>'>
 <thead>
 <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th><th>Schema</th></tr>
 </thead>
@@ -10,7 +10,7 @@
 <tr>
 <td><%= property_name %></td>
 <td><%= property_attributes.type %></td>
-<td><%= property_attributes.required.present? %></td>
+<td><%= schema.requires?(property_name) %></td>
 <td><%= property_attributes.description_html %></td>
 <td>
   <%=
@@ -20,7 +20,7 @@
     linked_schema = property_attributes['items']
   end
   # Only print a link if it's a named schema
-  get_schema_link(schema) if schema.name %>
+  get_schema_link(linked_schema) if linked_schema.name %>
 </td>
 </tr>
 <% end %>
