@@ -14,6 +14,10 @@ header_links:
   Expired with owner: /expired-page-with-owner.html
   Not expired page: /not-expired-page.html
 
+footer_links:
+  Accessibility: /hidden-page.html
+  Hidden Page: /hidden-page.html
+
 # Tracking ID from Google Analytics (e.g. UA-XXXX-Y)
 ga_tracking_id:
 

@@ -91,6 +91,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
     class FakeData
       attr_reader :weight
       attr_reader :title
+      attr_reader :hide_in_navigation
       def initialize(weight = nil, title = nil)
         @weight = weight
         @title = title
