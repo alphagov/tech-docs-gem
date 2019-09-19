@@ -55,6 +55,17 @@ header_links:
   Documentation: /
 ```
 
+## `footer_links`
+
+Links to show in footer.
+
+Example:
+
+```yaml
+footer_links:
+  Accessibility: /accessibility
+```
+
 ## `host`
 
 Host to use for canonical URL generation (without trailing slash).

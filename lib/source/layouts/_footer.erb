@@ -2,6 +2,16 @@
   <div class="govuk-footer__meta">
     <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
 
+      <% if config[:tech_docs][:footer_links] %>
+        <ul class="govuk-footer__inline-list">
+          <% config[:tech_docs][:footer_links].each do |title, path| %>
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="<%= url_for path %>"><%= title %></a>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
       <svg
         role="presentation"
         focusable="false"

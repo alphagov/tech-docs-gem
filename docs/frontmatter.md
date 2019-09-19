@@ -132,6 +132,17 @@ weight: 20
 ---
 ```
 
+## `hide_in_navigation`
+
+Set `hide_in_navigation: true` to prevent the page from being rendered in the
+main page tree navigation.
+
+```yaml
+---
+hide_in_navigation: true
+---
+```
+
 ## `parent`
 
 The page that should be highlighted as ‘active’ in the navigation.

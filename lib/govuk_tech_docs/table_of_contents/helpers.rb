@@ -34,6 +34,8 @@ module GovukTechDocs
         .sort_by { |r| [r.data.weight ? 0 : 1, r.data.weight || 0] }
         output = '';
         resources.each do |resource|
+          # Skip from page tree if hide_in_navigation:true frontmatter
+          next if resource.data.hide_in_navigation
           # Reuse the generated content for the active page
           # If we generate it twice it increments the heading ids
           content =
