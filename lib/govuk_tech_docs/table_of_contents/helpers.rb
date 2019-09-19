@@ -36,14 +36,14 @@ module GovukTechDocs
         resources.each do |resource|
           # Skip from page tree if hide_in_navigation:true frontmatter
           next if resource.data.hide_in_navigation
+
           # Reuse the generated content for the active page
           # If we generate it twice it increments the heading ids
-          content =
-            if current_page.url == resource.url && current_page_html
-              current_page_html
-            else
-              resource.render(layout: false)
-            end
+          content = if current_page.url == resource.url && current_page_html
+                      current_page_html
+                    else
+                      resource.render(layout: false)
+                    end
           # Avoid redirect pages
           next if content.include? "http-equiv=refresh"
 
