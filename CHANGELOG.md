@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.4
+
+Adds `footer_links` option for displaying links in the footer and ability to hide pages from left hand navigation.
+
 ## 2.0.3
 
 Fixes a couple of styling issues: [#100](https://github.com/alphagov/tech-docs-gem/issues/100) and [#106](https://github.com/alphagov/tech-docs-gem/issues/106).
