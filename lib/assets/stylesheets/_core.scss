@@ -3,8 +3,6 @@
 $tablet-breakpoint: 768px !default;
 $desktop-breakpoint: 992px !default;
 
-@import "utilities/printable";
-
 @import "palette/syntax-highlighting";
 @import "syntax-highlighting";
 
