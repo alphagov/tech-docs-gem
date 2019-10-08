@@ -13,7 +13,7 @@
   }
 }
 
-@include print {
+@include govuk-media-query($media-type: print) {
   .search {
     display: none;
   }
