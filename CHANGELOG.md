@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+Selectively include only the CSS for the GOV.UK Frontend components that we are using, to reduce the size of the CSS file served to the user ([#118](https://github.com/alphagov/tech-docs-gem/issues/118))
+
+Fix service name to link to the configured `service_link`, rather than being hardcoded to `/` ([#119](https://github.com/alphagov/tech-docs-gem/issues/119))
+
 ## 2.0.4
 
 Adds `footer_links` option for displaying links in the footer and ability to hide pages from left hand navigation.
