@@ -2,7 +2,7 @@
   <div class="govuk-header__container govuk-header__container--full-width">
     <div class="govuk-header__logo">
       <% if config[:tech_docs][:service_link] %>
-      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+      <a href="<%= url_for config[:tech_docs][:service_link] %>" class="govuk-header__link govuk-header__link--homepage">
       <% else %>
       <span class="govuk-header__link govuk-header__link--homepage">
       <% end %>
