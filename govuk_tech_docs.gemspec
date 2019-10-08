@@ -45,7 +45,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-search-gds"
   spec.add_dependency "nokogiri"
   spec.add_dependency "redcarpet", "~> 3.3.2"
-  spec.add_dependency "openapi3_parser"
+  spec.add_dependency "openapi3_parser", "~> 0.5.0"
   spec.add_dependency "pry"
 
 
