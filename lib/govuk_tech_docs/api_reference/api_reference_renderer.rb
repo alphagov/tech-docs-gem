@@ -4,6 +4,8 @@ require 'json'
 module GovukTechDocs
   module ApiReference
     class Renderer
+      RENDERABLE_OPERATIONS = %w[get put post delete patch].freeze
+
       def initialize(app, document)
         @app = app
         @document = document
@@ -17,15 +19,11 @@ module GovukTechDocs
         @template_responses = get_renderer('responses.html.erb')
       end
 
-      def api_full(info, servers)
-        paths = ''
-        paths_data = @document.paths
-        paths_data.each do |path_data|
-          # For some reason paths.each returns an array of arrays [title, object]
-          # instead of an array of objects
-          text = path_data[0]
-          paths += path(text)
+      def render_api_full(info, servers)
+        paths = @document.paths.keys.inject('') do |memo, path|
+          memo + render_path(path)
         end
+
         schemas = ''
         schemas_data = @document.components.schemas
         schemas_data.each do |schema_data|
@@ -35,10 +33,12 @@ module GovukTechDocs
         @template_api_full.result(binding)
       end
 
-      def path(text)
-        path = @document.paths[text]
-        id = text.parameterize
-        operations = operations(path, id)
+      def render_path(path)
+        path_item = @document.paths[path]
+        raise "path_item not found for #{path}" unless path_item
+
+        id = path.parameterize
+        operations = render_operations(path, path_item)
         @template_path.result(binding)
       end
 
@@ -125,30 +125,27 @@ module GovukTechDocs
         schemas
       end
 
-      def operations(path, path_id)
-        output = ''
-        operations = get_operations(path)
-        operations.compact.each do |key, operation|
-          id = "#{path_id}-#{key.parameterize}"
-          parameters = parameters(operation, id)
-          responses = responses(operation, id)
-          output += @template_operation.result(binding)
+      def render_operations(path, path_item)
+        path_item.inject('') do |memo, (field, operation)|
+          next memo if operation.nil? || !RENDERABLE_OPERATIONS.include?(field)
+
+          id = "#{path.parameterize}-#{field.parameterize}"
+          parameters = render_parameters(id, operation)
+          responses = render_responses(id, operation)
+          memo + @template_operation.result(binding)
         end
-        output
       end
 
-      def parameters(operation, operation_id)
+      def render_parameters(operation_id, operation)
         parameters = operation.parameters
         id = "#{operation_id}-parameters"
-        output = @template_parameters.result(binding)
-        output
+        @template_parameters.result(binding)
       end
 
-      def responses(operation, operation_id)
+      def render_responses(operation_id, operation)
         responses = operation.responses
         id = "#{operation_id}-responses"
-        output = @template_responses.result(binding)
-        output
+        @template_responses.result(binding)
       end
 
       def markdown(text)
@@ -157,13 +154,9 @@ module GovukTechDocs
         end
       end
 
-      def json_output(schema)
-        properties =  schema_properties(schema)
+      def render_json_schema(schema)
+        properties = schema_properties(schema)
         JSON.pretty_generate(properties)
-      end
-
-      def json_prettyprint(data)
-        JSON.pretty_generate(data)
       end
 
       def schema_properties(schema_data)
@@ -260,6 +253,13 @@ module GovukTechDocs
 
         # Schema dictates that it's always components['schemas']
         text.gsub(/#\/components\/schemas\//, '')
+      end
+
+      def schema_link(schema)
+        return unless schema.name
+
+        id = "schema-#{schema_name.parameterize}"
+        "<a href='\##{id}'>#{schema.name}</a>"
       end
 
       def get_schema_link(schema)
