@@ -9,7 +9,7 @@
 <tr>
 <td><%= key %></td>
 <td>
-<%= markdown(response.description) %>
+<%= response.description_html %>
 <% if response.content['application/json']
 if response.content['application/json']["example"]
   request_body = json_prettyprint(response.content['application/json']["example"])

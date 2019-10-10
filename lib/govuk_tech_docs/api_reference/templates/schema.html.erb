@@ -1,5 +1,5 @@
 <h3 id="<%= id = 'schema-' + title; id.parameterize %>"><%= title %></h3>
-<%= markdown(schema.description) %>
+<%= schema.description_html %>
 <% if properties.any? %>
 <table>
 <thead>
@@ -11,7 +11,7 @@
 <td><%= property[0] %></td>
 <td><%= property[1].type %></td>
 <td><%= property[1].required.present? %></td>
-<td><%= markdown(property[1].description) %></td>
+<td><%= property[1].description_html %></td>
 <td>
   <%=
   schema = property[1]

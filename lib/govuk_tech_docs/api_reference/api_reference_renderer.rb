@@ -107,12 +107,6 @@ module GovukTechDocs
         @template_responses.result(binding)
       end
 
-      def markdown(text)
-        if text
-          Tilt["markdown"].new(context: @app) { text }.render
-        end
-      end
-
       def json_output(schema)
         properties = schema_properties(schema)
         JSON.pretty_generate(properties)
