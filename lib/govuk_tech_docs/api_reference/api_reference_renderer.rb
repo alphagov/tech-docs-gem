@@ -18,20 +18,15 @@ module GovukTechDocs
       end
 
       def api_full(info, servers)
-        paths = ""
-        paths_data = @document.paths
-        paths_data.each do |path_data|
-          # For some reason paths.each returns an array of arrays [title, object]
-          # instead of an array of objects
-          text = path_data[0]
-          paths += path(text)
+        paths = @document.paths.keys.inject("") do |memo, text|
+          memo + path(text)
         end
-        schemas = ""
-        schemas_data = @document.components.schemas
-        schemas_data.each do |schema_data|
-          text = schema_data[0]
-          schemas += schema(text)
+
+        schema_names = @document.components.schemas.keys
+        schemas = schema_names.inject("") do |memo, schema_name|
+          memo + schema(schema_name)
         end
+
         @template_api_full.result(binding)
       end
 
@@ -42,113 +37,74 @@ module GovukTechDocs
         @template_path.result(binding)
       end
 
-      def schema(text)
-        schemas = ""
-        schemas_data = @document.components.schemas
-        schemas_data.each do |schema_data|
-          all_of = schema_data[1]["allOf"]
-          properties = []
-          if !all_of.blank?
-            all_of.each do |schema_nested|
-              schema_nested.properties.each do |property|
-                properties.push property
-              end
-            end
-          end
+      def schema(title)
+        schema = @document.components.schemas[title]
+        return unless schema
 
-          schema_data[1].properties.each do |property|
-            properties.push property
-          end
+        properties = if schema.all_of
+                       schema.all_of.each_with_object({}) do |nested, memo|
+                         memo.merge!(nested.properties.to_h)
+                       end
+                     else
+                       {}
+                     end
 
-          if schema_data[0] == text
-            title = schema_data[0]
-            schema = schema_data[1]
-            return @template_schema.result(binding)
-          end
-        end
+        properties.merge!(schema.properties.to_h)
+        @template_schema.result(binding)
       end
 
       def schemas_from_path(text)
-        path = @document.paths[text]
-        operations = get_operations(path)
-        # Get all referenced schemas
-        schemas = []
-        operations.compact.each_value do |operation|
-          responses = operation.responses
-          responses.each do |_rkey, response|
-            if response.content["application/json"]
-              schema = response.content["application/json"].schema
-              schema_name = get_schema_name(schema.node_context.source_location.to_s)
-              if !schema_name.nil?
-                schemas.push schema_name
-              end
-              schemas.concat(schemas_from_schema(schema))
-            end
+        operations = get_operations(@document.paths[text])
+        schemas = operations.flat_map do |_, operation|
+          operation.responses.inject([]) do |memo, (_, response)|
+            next memo unless response.content["application/json"]
+
+            schema = response.content["application/json"].schema
+
+            memo << schema.name if schema.name
+            memo + schemas_from_schema(schema)
           end
         end
+
         # Render all referenced schemas
-        output = ""
-        schemas.uniq.each do |schema_name|
-          output += schema(schema_name)
+        output = schemas.uniq.inject("") do |memo, schema_name|
+          memo + schema(schema_name)
         end
-        if !output.empty?
-          output.prepend('<h2 id="schemas">Schemas</h2>')
-        end
+
+        output.prepend('<h2 id="schemas">Schemas</h2>') unless output.empty?
         output
       end
 
       def schemas_from_schema(schema)
-        schemas = []
-        properties = []
-        schema.properties.each do |property|
-          properties.push property[1]
-        end
-        if schema.type == "array"
-          properties.push schema.items
-        end
-        all_of = schema["allOf"]
-        if !all_of.blank?
-          all_of.each do |schema_nested|
-            schema_nested.properties.each do |property|
-              properties.push property[1]
-            end
-          end
-        end
-        properties.each do |property|
-          if property.name
-            schemas.push property.name
-          end
+        schemas = schema.properties.map(&:last)
+        schemas << schema.items if schema.items && schema.type == "array"
+        schemas += schema.all_of.to_a.flat_map { |s| s.properties.map(&:last) }
 
-          # Check sub-properties for references
-          schemas.concat(schemas_from_schema(property))
+        schemas.flat_map do |nested|
+          sub_schemas = schemas_from_schema(nested)
+          nested.name ? [nested.name] + sub_schemas : sub_schemas
         end
-        schemas
       end
 
       def operations(path, path_id)
-        output = ""
-        operations = get_operations(path)
-        operations.compact.each do |key, operation|
+        get_operations(path).inject("") do |memo, (key, operation)|
           id = "#{path_id}-#{key.parameterize}"
           parameters = parameters(operation, id)
           responses = responses(operation, id)
-          output += @template_operation.result(binding)
+          memo + @template_operation.result(binding)
         end
-        output
       end
 
       def parameters(operation, operation_id)
         parameters = operation.parameters
         id = "#{operation_id}-parameters"
-        output = @template_parameters.result(binding)
-        output
+        @template_parameters.result(binding)
       end
 
       def responses(operation, operation_id)
         responses = operation.responses
         id = "#{operation_id}-responses"
-        output = @template_responses.result(binding)
-        output
+        @template_responses.result(binding)
       end
 
       def markdown(text)
@@ -158,7 +114,7 @@ module GovukTechDocs
       end
 
       def json_output(schema)
-        properties =  schema_properties(schema)
+        properties = schema_properties(schema)
         JSON.pretty_generate(properties)
       end
 
@@ -167,75 +123,25 @@ module GovukTechDocs
       end
 
       def schema_properties(schema_data)
-        properties = Hash.new
-        if defined? schema_data.properties
-          schema_data.properties.each do |key, property|
-            properties[key] = property
-          end
-        end
-        properties.merge! get_all_of_hash(schema_data)
-        properties_hash = Hash.new
-        properties.each do |pkey, property|
-          if property.type == "object"
-            properties_hash[pkey] = Hash.new
-            items = property.items
-            if !items.blank?
-              properties_hash[pkey] = schema_properties(items)
-            end
-            if !property.properties.blank?
-              properties_hash[pkey] = schema_properties(property)
-            end
-          elsif property.type == "array"
-            properties_hash[pkey] = Array.new
-            items = property.items
-            if !items.blank?
-              properties_hash[pkey].push schema_properties(items)
-            end
-          else
-            properties_hash[pkey] = !property.example.nil? ? property.example : property.type
-          end
+        properties = schema_data.properties.to_h
+
+        schema_data.all_of.to_a.each do |all_of_schema|
+          properties.merge!(all_of_schema.properties.to_h)
         end
 
-        properties_hash
+        properties.each_with_object({}) do |(name, schema), memo|
+          memo[name] = case schema.type
+                       when "object"
+                         schema_properties(schema.items || schema)
+                       when "array"
+                         schema.items ? [schema_properties(schema.items)] : []
+                       else
+                         schema.example || schema.type
+                       end
+        end
       end
 
     private
-
-      def get_all_of_array(schema)
-        properties = Array.new
-        if schema.is_a?(Array)
-          schema = schema[1]
-        end
-        if schema["allOf"]
-          all_of = schema["allOf"]
-        end
-        if !all_of.blank?
-          all_of.each do |schema_nested|
-            schema_nested.properties.each do |property|
-              if property.is_a?(Array)
-                property = property[1]
-              end
-              properties.push property
-            end
-          end
-        end
-        properties
-      end
-
-      def get_all_of_hash(schema)
-        properties = Hash.new
-        if schema["allOf"]
-          all_of = schema["allOf"]
-        end
-        if !all_of.blank?
-          all_of.each do |schema_nested|
-            schema_nested.properties.each do |key, property|
-              properties[key] = property
-            end
-          end
-        end
-        properties
-      end
 
       def get_renderer(file)
         template_path = File.join(File.dirname(__FILE__), "templates/" + file)
@@ -244,31 +150,20 @@ module GovukTechDocs
       end
 
       def get_operations(path)
-        operations = {}
-        operations["get"] = path.get if defined? path.get
-        operations["put"] = path.put if defined? path.put
-        operations["post"] = path.post if defined? path.post
-        operations["delete"] = path.delete if defined? path.delete
-        operations["patch"] = path.patch if defined? path.patch
-        operations
-      end
-
-      def get_schema_name(text)
-        unless text.is_a?(String)
-          return nil
-        end
-
-        # Schema dictates that it's always components['schemas']
-        text.gsub(/#\/components\/schemas\//, "")
+        {
+          "get" => path.get,
+          "put" => path.put,
+          "post" => path.post,
+          "delete" => path.delete,
+          "patch" => path.patch,
+        }.compact
       end
 
       def get_schema_link(schema)
-        schema_name = get_schema_name schema.node_context.source_location.to_s
-        if !schema_name.nil?
-          id = "schema-#{schema_name.parameterize}"
-          output = "<a href='\##{id}'>#{schema_name}</a>"
-          output
-        end
+        return unless schema.name
+
+        id = "schema-#{schema.name.parameterize}"
+        "<a href='\##{id}'>#{schema.name}</a>"
       end
     end
   end
