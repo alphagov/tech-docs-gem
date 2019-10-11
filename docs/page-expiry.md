@@ -24,14 +24,13 @@ Setting `show_expiry: false` generates a blue banner with the last reviewed date
 This feature relies on JavaScript being enabled on the user's browser to
 display the relevant notices.
 
-If you want to disable the banners, but keep the review dates in the frontmatter, add the following to `source/javascripts/application.js`
+If you want to disable the banners, but keep the review dates in the frontmatter, add the following to your global configuration file:
 
-```js
-// Disable page expiry banner
-window.GOVUK.Modules.PageExpiry = null;
+```yaml
+show_review_banner: false
 ```
 
-For example if you do not want any page expiry banner at the bottom of the page, but want to have the review dates in the frontmatter for Daniel the Manual Spaniel to pick up.
+The page review banner will no longer appear at the bottom of the page, but Daniel the Manual Spaniel will still notify you about expired pages.
 
 ## Frontmatter configuration
 

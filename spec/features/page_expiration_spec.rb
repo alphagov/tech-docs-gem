@@ -20,12 +20,24 @@ RSpec.describe "Page expiration" do
     then_i_dont_see_review_date
   end
 
+  it "hides the review banner when show_review_banner is false" do
+    when_the_site_is_created_hiding_review_banner
+    and_i_visit_an_expired_page
+    then_i_dont_see_the_review_banner
+    and_i_visit_a_not_expired_page
+    then_i_dont_see_the_review_banner
+  end
+
   def when_the_site_is_created
     rebuild_site!
   end
 
   def when_the_site_is_created_hiding_expiry
-    rebuild_site!(config: "config/hide-expiry.yml")
+    rebuild_site!(overrides: { 'show_expiry' => false })
+  end
+
+  def when_the_site_is_created_hiding_review_banner
+    rebuild_site!(overrides: { 'show_review_banner' => false })
   end
 
   def and_i_visit_an_expired_page
@@ -46,5 +58,9 @@ RSpec.describe "Page expiration" do
 
   def then_i_dont_see_review_date
     expect(page).to have_no_content "It needs to be reviewed again on"
+  end
+
+  def then_i_dont_see_the_review_banner
+    expect(page).to have_no_content "This page was last reviewed"
   end
 end

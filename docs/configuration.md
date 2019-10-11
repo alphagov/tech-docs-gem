@@ -214,3 +214,15 @@ If set to `false`, the red banner will not appear when the page needs to be revi
 See the separate [documentation for page expiry][expiry] for more details.
 
 [expiry]: https://tdt-documentation.london.cloudapps.digital/page-expiry.html#page-expiry-and-review
+
+## `show_review_banner`
+
+Decides whether or not to display the page review banner, regardless of whether the page needs to be reviewed or not.
+
+If not present or set to `true`, the banner will be displayed on the page. This is the default behaviour.
+
+If set to `false`, the banner will not be displayed.
+
+See the separate [documentation for page expiry][expiry] for more details.
+
+[expiry]: https://tdt-documentation.london.cloudapps.digital/page-expiry.html#page-expiry-and-review
