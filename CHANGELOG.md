@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased
+## 2.0.5
+
+
+Adds [new global configuration option](https://github.com/alphagov/tech-docs-gem/pull/122) that controls whether review banners appear or not at the bottom of pages when expiry dates are set in the frontmatter.
+
+[Fixes the hard-coded service link](https://github.com/alphagov/tech-docs-gem/pull/119) in the header.
 
 Selectively include only the CSS for the GOV.UK Frontend components that we are using, to reduce the size of the CSS file served to the user ([#118](https://github.com/alphagov/tech-docs-gem/issues/118))
 
