@@ -1,4 +1,4 @@
-<% if current_page_review.under_review? %>
+<% if current_page_review.under_review? && current_page_review.show_review_banner? %>
   <div data-module='page-expiry' data-last-reviewed-on="<%= current_page_review.review_by %>">
     <div class='page-expiry--<%= current_page_review.show_expiry? ? "not-expired" : "default" %>'>
       This page was last reviewed on <%= format_date current_page_review.last_reviewed_on %>.

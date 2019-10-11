@@ -40,6 +40,10 @@ module GovukTechDocs
       @config[:tech_docs].fetch(:show_expiry, true)
     end
 
+    def show_review_banner?
+      @config[:tech_docs].fetch(:show_review_banner, true)
+    end
+
   private
 
     def default_owner_slack

@@ -6,6 +6,8 @@ Selectively include only the CSS for the GOV.UK Frontend components that we are 
 
 Fix service name to link to the configured `service_link`, rather than being hardcoded to `/` ([#119](https://github.com/alphagov/tech-docs-gem/issues/119))
 
+Add the `show_review_banner` global configuration option allowing users to hide the page review banner.
+
 ## 2.0.4
 
 Adds `footer_links` option for displaying links in the footer and ability to hide pages from left hand navigation.
