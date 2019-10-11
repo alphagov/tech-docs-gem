@@ -25,7 +25,7 @@ RSpec.describe "Page expiration" do
   end
 
   def when_the_site_is_created_hiding_expiry
-    rebuild_site!(config: "config/hide-expiry.yml")
+    rebuild_site!(overrides: { 'show_expiry' => false })
   end
 
   def and_i_visit_an_expired_page
