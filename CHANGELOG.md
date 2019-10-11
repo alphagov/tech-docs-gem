@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.5
 
 Selectively include only the CSS for the GOV.UK Frontend components that we are using, to reduce the size of the CSS file served to the user ([#118](https://github.com/alphagov/tech-docs-gem/issues/118))
 
