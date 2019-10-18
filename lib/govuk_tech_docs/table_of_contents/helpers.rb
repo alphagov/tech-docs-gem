@@ -63,7 +63,7 @@ module GovukTechDocs
             end
 
           if resource.children.any? && resource.url != home_url
-            output += %{<ul><li><a href="#{resource.url}">#{resource.data.title}</a>\n}
+            output += %{<ul><li><a href="#{resource.url}"><span>#{resource.data.title}</span></a>\n}
             output += render_page_tree(resource.children, current_page, config, current_page_html)
             output += '</li></ul>'
           else

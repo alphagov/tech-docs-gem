@@ -148,7 +148,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_multi_page_table_of_contents = %{
-<ul><li><a href="/index.html">Index</a>
+<ul><li><a href="/index.html"><span>Index</span></a>
 <ul>
   <li>
     <a href="/a.html#heading-one"><span>Heading one</span></a>
@@ -197,7 +197,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_multi_page_table_of_contents = %{
-<ul><li><a href="/prefix/index.html">Index</a>
+<ul><li><a href="/prefix/index.html"><span>Index</span></a>
 <ul>
   <li>
     <a href="/prefix/a.html#heading-one"><span>Heading one</span></a>

@@ -1,12 +1,9 @@
 .technical-documentation {
-  @include govuk-font($size: 19);
+  @include govuk-font($size: 19, $line-height: 1.4);
   // Required for IE11 to render <main> correctly
   display: block;
   margin: govuk-spacing(3);
-  font-size: 19px;
   max-width: 40em;
-
-  line-height: 1.4;
 
   color:  $govuk-text-colour;
 
@@ -135,10 +132,12 @@
 
     font-family: monaco, Consolas, "Lucida Console", monospace;
     font-size: 15px;
+    font-size: 0.9375rem;
     color: $code-0E;
 
     @include govuk-media-query(tablet) {
       font-size: 16px;
+      font-size: 1rem;
     }
 
     // Handle long strings (URLs, long variable names, etc) by allowing them
@@ -161,6 +160,16 @@
       background: none;
       padding: 0;
     }
+  }
+
+  // Ensure that if a code element is wrapped with a link that it renders correctly.
+  a code {
+    color: inherit;
+  }
+
+  a:focus code {
+    background: inherit;
+    color: inherit;
   }
 
   .table-container {
