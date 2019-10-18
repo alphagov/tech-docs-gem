@@ -162,6 +162,16 @@
     }
   }
 
+  // Ensure that if a code element is wrapped with a link that it renders correctly.
+  a code {
+    color: inherit;
+  }
+
+  a:focus code {
+    background: inherit;
+    color: inherit;
+  }
+
   .table-container {
     display: block;
     max-width: 100%;
