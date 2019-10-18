@@ -132,10 +132,12 @@
 
     font-family: monaco, Consolas, "Lucida Console", monospace;
     font-size: 15px;
+    font-size: 0.9375rem;
     color: $code-0E;
 
     @include govuk-media-query(tablet) {
       font-size: 16px;
+      font-size: 1rem;
     }
 
     // Handle long strings (URLs, long variable names, etc) by allowing them
