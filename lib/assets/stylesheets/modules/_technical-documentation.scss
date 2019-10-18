@@ -1,12 +1,9 @@
 .technical-documentation {
-  @include govuk-font($size: 19);
+  @include govuk-font($size: 19, $line-height: 1.4);
   // Required for IE11 to render <main> correctly
   display: block;
   margin: govuk-spacing(3);
-  font-size: 19px;
   max-width: 40em;
-
-  line-height: 1.4;
 
   color:  $govuk-text-colour;
 
