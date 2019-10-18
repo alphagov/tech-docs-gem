@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.0.6
+
+This release contains accessibility fixes:
+
+- anchor header links are now properly hidden to assistive technologies
+- side navigation items now have consistent visible focus when tabbing between them
+- side navigation items have unique Ids
+- code elements now scale properly when you enlarge your text
+- links with code elements now look correct
+- contribution links are now within a landmark
+
+You can look at the [2.0.6 milestone](https://github.com/alphagov/tech-docs-gem/milestone/2?closed=1) for the closed issues, and [pull request #129: Accessibility improvements](https://github.com/alphagov/tech-docs-gem/pull/129) for details on how these issues were fixed.
+
 ## 2.0.5
 
 
