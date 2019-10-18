@@ -111,6 +111,15 @@
     border-left: govuk-spacing(2) solid govuk-colour("mid-grey");
   }
 
+  // http://code.iamkate.com/html-and-css/fixing-browsers-broken-monospace-font-handling/
+  pre,
+  code {
+    // Restores the normal text size in Mozilla Firefox, Google Chrome, and Safari; this unusual style rule should also be used anywhere where you would otherwise set the font-family property to ‘monospace’.
+    font-family: monospace, monospace;
+    // Restores the normal text size in Internet Explorer and Opera.
+    font-size: 1em;
+  }
+
   pre {
     background: $code-00;
     padding: 15px;
