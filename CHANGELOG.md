@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.7
+
+A small release to fix an issue where code blocks font size was too large on some browsers.
+
+See [pull request #131: Improve code font sizing ](https://github.com/alphagov/tech-docs-gem/pull/131) for details.
+
+
 ## 2.0.6
 
 This release contains accessibility fixes:
