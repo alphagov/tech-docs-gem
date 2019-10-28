@@ -80,5 +80,5 @@ default_owner_slack: '#owner'
 
 The expiry date for each page is also shown in the `/api/pages.json`
 representation of all pages.  This is used by the
-[tech-docs-notifier](https://github.com/alphagov/tech-docs-notifier) to post
+[tech-docs-monitor](https://github.com/alphagov/tech-docs-monitor) to post
 messages to Slack when pages have expired.
