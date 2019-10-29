@@ -1,4 +1,4 @@
-require 'middleman-core/renderers/redcarpet'
+require "middleman-core/renderers/redcarpet"
 
 module GovukTechDocs
   class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML

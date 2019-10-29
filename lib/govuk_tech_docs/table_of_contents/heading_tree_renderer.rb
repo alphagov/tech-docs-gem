@@ -2,8 +2,8 @@ module GovukTechDocs
   module TableOfContents
     class HeadingTreeRenderer
       DEFAULT_MAX_LEVEL = Float::INFINITY
-      DEFAULT_INDENTATION = ''.freeze
-      INDENTATION_INCREMENT = '  '.freeze
+      DEFAULT_INDENTATION = "".freeze
+      INDENTATION_INCREMENT = "  ".freeze
 
       def initialize(heading_tree, max_level: nil)
         @heading_tree = heading_tree
@@ -17,7 +17,7 @@ module GovukTechDocs
     private
 
       def render_tree(tree, indentation: DEFAULT_INDENTATION, level: nil)
-        output = ''
+        output = ""
 
         if tree.heading
           output += indentation + %{<a href="#{tree.heading.href}"><span>#{tree.heading.title}</span></a>\n}
@@ -31,7 +31,7 @@ module GovukTechDocs
             output += render_tree(
               child,
               indentation: indentation + INDENTATION_INCREMENT * 2,
-              level: level + 1
+              level: level + 1,
             )
             output += indentation + INDENTATION_INCREMENT + "</li>\n"
           end

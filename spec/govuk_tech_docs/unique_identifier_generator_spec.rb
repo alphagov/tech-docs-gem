@@ -2,34 +2,34 @@ RSpec.describe GovukTechDocs::UniqueIdentifierGenerator do
   subject { described_class.instance }
   before { subject.reset }
 
-  describe '#create' do
-    it 'lower-cases the text' do
-      expect(subject.create('Heading', 1)).to eq "heading"
+  describe "#create" do
+    it "lower-cases the text" do
+      expect(subject.create("Heading", 1)).to eq "heading"
     end
 
-    it 'strips leading and trailing spaces' do
-      expect(subject.create('  heading  ', 1)).to eq "heading"
+    it "strips leading and trailing spaces" do
+      expect(subject.create("  heading  ", 1)).to eq "heading"
     end
 
-    it 'replaces non alphanumeric characters with dashes' do
-      expect(subject.create('Headings (Etc) Are Great', 1)).to eq "headings-etc-are-great"
+    it "replaces non alphanumeric characters with dashes" do
+      expect(subject.create("Headings (Etc) Are Great", 1)).to eq "headings-etc-are-great"
     end
 
-    it 'does not add dashes at the start or end of the identifier' do
-      expect(subject.create('(Not (More) Headings!)', 1)).to eq "not-more-headings"
+    it "does not add dashes at the start or end of the identifier" do
+      expect(subject.create("(Not (More) Headings!)", 1)).to eq "not-more-headings"
     end
 
-    it 'strips HTML tags' do
-      expect(subject.create('Using <code>bash</code>', 1)).to eq "using-bash"
+    it "strips HTML tags" do
+      expect(subject.create("Using <code>bash</code>", 1)).to eq "using-bash"
     end
 
-    context 'with a parent that is unique' do
-      it 'generates unique headings by prefixing with the parent' do
-        subject.create('Parent 1', 1)
-        first_heading = subject.create('The Same Heading', 2)
+    context "with a parent that is unique" do
+      it "generates unique headings by prefixing with the parent" do
+        subject.create("Parent 1", 1)
+        first_heading = subject.create("The Same Heading", 2)
 
-        subject.create('Parent 2', 1)
-        second_heading = subject.create('The Same Heading', 2)
+        subject.create("Parent 2", 1)
+        second_heading = subject.create("The Same Heading", 2)
 
         aggregate_failures do
           expect(first_heading).to eq "the-same-heading"
@@ -38,13 +38,13 @@ RSpec.describe GovukTechDocs::UniqueIdentifierGenerator do
       end
     end
 
-    context 'with a parent that is identical' do
-      it 'generates unique headings by suffixing with a number' do
-        subject.create('The Same Parent', 1)
+    context "with a parent that is identical" do
+      it "generates unique headings by suffixing with a number" do
+        subject.create("The Same Parent", 1)
 
-        first_heading = subject.create('The Same Heading', 2)
-        second_heading = subject.create('The Same Heading', 2)
-        third_heading = subject.create('The Same Heading', 2)
+        first_heading = subject.create("The Same Heading", 2)
+        second_heading = subject.create("The Same Heading", 2)
+        third_heading = subject.create("The Same Heading", 2)
 
         aggregate_failures do
           expect(first_heading).to eq "the-same-heading"
@@ -54,10 +54,10 @@ RSpec.describe GovukTechDocs::UniqueIdentifierGenerator do
       end
     end
 
-    context 'with no parent' do
-      it 'generates unique headings by suffixing with a number' do
-        first_heading = subject.create('The Same Heading', 1)
-        second_heading = subject.create('The Same Heading', 1)
+    context "with no parent" do
+      it "generates unique headings by suffixing with a number" do
+        first_heading = subject.create("The Same Heading", 1)
+        second_heading = subject.create("The Same Heading", 1)
 
         aggregate_failures do
           expect(first_heading).to eq "the-same-heading"
@@ -67,9 +67,9 @@ RSpec.describe GovukTechDocs::UniqueIdentifierGenerator do
     end
   end
 
-  describe '#reset' do
-    it 'clears the list of existing anchors' do
-      subject.create('An Anchor', 1)
+  describe "#reset" do
+    it "clears the list of existing anchors" do
+      subject.create("An Anchor", 1)
       expect(subject.anchors).to_not be_empty
       subject.reset
       expect(subject.anchors).to be_empty

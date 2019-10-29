@@ -7,25 +7,25 @@ module GovukTechDocs
 
     def tags
       all_tags = {
-        'description' => page_description,
-        'og:description' => page_description,
-        'og:image' => page_image,
-        'og:site_name' => site_name,
-        'og:title' => page_title,
-        'og:type' => 'object',
-        'og:url' => canonical_url,
-        'twitter:card' => 'summary',
-        'twitter:domain' => URI.parse(host).host,
-        'twitter:image' => page_image,
-        'twitter:title' => browser_title,
-        'twitter:url' => canonical_url,
+        "description" => page_description,
+        "og:description" => page_description,
+        "og:image" => page_image,
+        "og:site_name" => site_name,
+        "og:title" => page_title,
+        "og:type" => "object",
+        "og:url" => canonical_url,
+        "twitter:card" => "summary",
+        "twitter:domain" => URI.parse(host).host,
+        "twitter:image" => page_image,
+        "twitter:title" => browser_title,
+        "twitter:url" => canonical_url,
       }
 
       Hash[all_tags.select { |_k, v| v }]
     end
 
     def browser_title
-      [page_title, site_name].select(&:present?).uniq.join(' | ')
+      [page_title, site_name].select(&:present?).uniq.join(" | ")
     end
 
     def canonical_url

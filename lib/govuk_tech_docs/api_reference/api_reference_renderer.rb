@@ -1,5 +1,5 @@
-require 'erb'
-require 'json'
+require "erb"
+require "json"
 
 module GovukTechDocs
   module ApiReference
@@ -9,16 +9,16 @@ module GovukTechDocs
         @document = document
 
         # Load template files
-        @template_api_full = get_renderer('api_reference_full.html.erb')
-        @template_path = get_renderer('path.html.erb')
-        @template_schema = get_renderer('schema.html.erb')
-        @template_operation = get_renderer('operation.html.erb')
-        @template_parameters = get_renderer('parameters.html.erb')
-        @template_responses = get_renderer('responses.html.erb')
+        @template_api_full = get_renderer("api_reference_full.html.erb")
+        @template_path = get_renderer("path.html.erb")
+        @template_schema = get_renderer("schema.html.erb")
+        @template_operation = get_renderer("operation.html.erb")
+        @template_parameters = get_renderer("parameters.html.erb")
+        @template_responses = get_renderer("responses.html.erb")
       end
 
       def api_full(info, servers)
-        paths = ''
+        paths = ""
         paths_data = @document.paths
         paths_data.each do |path_data|
           # For some reason paths.each returns an array of arrays [title, object]
@@ -26,7 +26,7 @@ module GovukTechDocs
           text = path_data[0]
           paths += path(text)
         end
-        schemas = ''
+        schemas = ""
         schemas_data = @document.components.schemas
         schemas_data.each do |schema_data|
           text = schema_data[0]
@@ -43,7 +43,7 @@ module GovukTechDocs
       end
 
       def schema(text)
-        schemas = ''
+        schemas = ""
         schemas_data = @document.components.schemas
         schemas_data.each do |schema_data|
           all_of = schema_data[1]["allOf"]
@@ -76,8 +76,8 @@ module GovukTechDocs
         operations.compact.each_value do |operation|
           responses = operation.responses
           responses.each do |_rkey, response|
-            if response.content['application/json']
-              schema = response.content['application/json'].schema
+            if response.content["application/json"]
+              schema = response.content["application/json"].schema
               schema_name = get_schema_name(schema.node_context.source_location.to_s)
               if !schema_name.nil?
                 schemas.push schema_name
@@ -87,7 +87,7 @@ module GovukTechDocs
           end
         end
         # Render all referenced schemas
-        output = ''
+        output = ""
         schemas.uniq.each do |schema_name|
           output += schema(schema_name)
         end
@@ -103,7 +103,7 @@ module GovukTechDocs
         schema.properties.each do |property|
           properties.push property[1]
         end
-        if schema.type == 'array'
+        if schema.type == "array"
           properties.push schema.items
         end
         all_of = schema["allOf"]
@@ -117,8 +117,8 @@ module GovukTechDocs
         properties.each do |property|
           # Must be a schema be referenced by another schema
           # And not a property of a schema
-          if property.node_context.referenced_by.to_s.include?('#/components/schemas') &&
-              !property.node_context.source_location.to_s.include?('/properties/')
+          if property.node_context.referenced_by.to_s.include?("#/components/schemas") &&
+              !property.node_context.source_location.to_s.include?("/properties/")
             schema_name = get_schema_name(property.node_context.source_location.to_s)
           end
           if !schema_name.nil?
@@ -131,7 +131,7 @@ module GovukTechDocs
       end
 
       def operations(path, path_id)
-        output = ''
+        output = ""
         operations = get_operations(path)
         operations.compact.each do |key, operation|
           id = "#{path_id}-#{key.parameterize}"
@@ -158,7 +158,7 @@ module GovukTechDocs
 
       def markdown(text)
         if text
-          Tilt['markdown'].new(context: @app) { text }.render
+          Tilt["markdown"].new(context: @app) { text }.render
         end
       end
 
@@ -181,7 +181,7 @@ module GovukTechDocs
         properties.merge! get_all_of_hash(schema_data)
         properties_hash = Hash.new
         properties.each do |pkey, property|
-          if property.type == 'object'
+          if property.type == "object"
             properties_hash[pkey] = Hash.new
             items = property.items
             if !items.blank?
@@ -190,7 +190,7 @@ module GovukTechDocs
             if !property.properties.blank?
               properties_hash[pkey] = schema_properties(property)
             end
-          elsif property.type == 'array'
+          elsif property.type == "array"
             properties_hash[pkey] = Array.new
             items = property.items
             if !items.blank?
@@ -243,18 +243,18 @@ module GovukTechDocs
       end
 
       def get_renderer(file)
-        template_path = File.join(File.dirname(__FILE__), 'templates/' + file)
-        template = File.open(template_path, 'r').read
+        template_path = File.join(File.dirname(__FILE__), "templates/" + file)
+        template = File.open(template_path, "r").read
         ERB.new(template)
       end
 
       def get_operations(path)
         operations = {}
-        operations['get'] = path.get if defined? path.get
-        operations['put'] = path.put if defined? path.put
-        operations['post'] = path.post if defined? path.post
-        operations['delete'] = path.delete if defined? path.delete
-        operations['patch'] = path.patch if defined? path.patch
+        operations["get"] = path.get if defined? path.get
+        operations["put"] = path.put if defined? path.put
+        operations["post"] = path.post if defined? path.post
+        operations["delete"] = path.delete if defined? path.delete
+        operations["patch"] = path.patch if defined? path.patch
         operations
       end
 
@@ -264,7 +264,7 @@ module GovukTechDocs
         end
 
         # Schema dictates that it's always components['schemas']
-        text.gsub(/#\/components\/schemas\//, '')
+        text.gsub(/#\/components\/schemas\//, "")
       end
 
       def get_schema_link(schema)

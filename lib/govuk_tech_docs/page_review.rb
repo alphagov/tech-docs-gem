@@ -12,7 +12,7 @@ module GovukTechDocs
 
       @review_by ||= Chronic.parse(
         "in #{page.data.review_in}",
-        now: last_reviewed_on.to_time
+        now: last_reviewed_on.to_time,
       ).to_date
     end
 
@@ -32,7 +32,7 @@ module GovukTechDocs
       return "" unless owner_slack_workspace
 
       # Slack URLs don't have the # (channels) or @ (usernames)
-      slack_identifier = owner_slack.to_s.delete('#').delete('@')
+      slack_identifier = owner_slack.to_s.delete("#").delete("@")
       "https://#{owner_slack_workspace}.slack.com/messages/#{slack_identifier}"
     end
 
