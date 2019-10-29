@@ -1,18 +1,18 @@
 RSpec.describe GovukTechDocs::MetaTags do
-  describe '#browser_title' do
-    it 'combines the page title and service name' do
+  describe "#browser_title" do
+    it "combines the page title and service name" do
       browser_title = generate_title(site_name: "Test Site", page_title: "The Title")
 
       expect(browser_title).to eql("The Title | Test Site")
     end
 
-    it 'does not duplicate the page title' do
+    it "does not duplicate the page title" do
       browser_title = generate_title(site_name: "My documentation site", page_title: "My documentation site")
 
       expect(browser_title).to eql("My documentation site")
     end
 
-    it 'does not show an empty page title' do
+    it "does not show an empty page title" do
       browser_title = generate_title(site_name: "My documentation site", page_title: nil)
 
       expect(browser_title).to eql("My documentation site")
@@ -31,8 +31,8 @@ RSpec.describe GovukTechDocs::MetaTags do
     end
   end
 
-  describe '#tags' do
-    it 'returns all the extra meta tags' do
+  describe "#tags" do
+    it "returns all the extra meta tags" do
       config = generate_config(
         host: "https://www.example.org",
         service_name: "Foo",
@@ -60,7 +60,7 @@ RSpec.describe GovukTechDocs::MetaTags do
         "twitter:url" => "https://www.example.org/foo.html")
     end
 
-    it 'uses the local variable as page description for proxied pages' do
+    it "uses the local variable as page description for proxied pages" do
       current_page = double("current_page",
                             data: double("page_frontmatter", description: "The description.", title: "The Title"),
                             url: "/foo.html",
@@ -71,7 +71,7 @@ RSpec.describe GovukTechDocs::MetaTags do
       expect(tags["description"]).to eql("The local variable description.")
     end
 
-    it 'uses the local variable as page title for proxied pages' do
+    it "uses the local variable as page title for proxied pages" do
       current_page = double("current_page",
                             data: double("page_frontmatter", description: "The description.", title: "The Title"),
                             url: "/foo.html",
@@ -82,7 +82,7 @@ RSpec.describe GovukTechDocs::MetaTags do
       expect(tags["og:title"]).to eql("The local variable title.")
     end
 
-    it 'works even when no config is set' do
+    it "works even when no config is set" do
       current_page = double("current_page",
                             data: double("page_frontmatter", description: "The description.", title: "The Title"),
                             url: "/foo.html",
@@ -101,7 +101,7 @@ RSpec.describe GovukTechDocs::MetaTags do
       tech_docs: {
         host: "https://www.example.org",
         service_name: "Test Site",
-      }.merge(config)
+      }.merge(config),
     }
   end
 end

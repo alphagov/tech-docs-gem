@@ -1,27 +1,27 @@
-require 'govuk_tech_docs/version'
+require "govuk_tech_docs/version"
 
-require 'middleman'
-require 'middleman-autoprefixer'
-require 'middleman-sprockets'
-require 'middleman-livereload'
-require 'middleman-syntax'
-require 'middleman-search'
+require "middleman"
+require "middleman-autoprefixer"
+require "middleman-sprockets"
+require "middleman-livereload"
+require "middleman-syntax"
+require "middleman-search"
 
-require 'nokogiri'
-require 'chronic'
-require 'active_support/all'
+require "nokogiri"
+require "chronic"
+require "active_support/all"
 
-require 'govuk_tech_docs/redirects'
-require 'govuk_tech_docs/table_of_contents/helpers'
-require 'govuk_tech_docs/contribution_banner'
-require 'govuk_tech_docs/meta_tags'
-require 'govuk_tech_docs/page_review'
-require 'govuk_tech_docs/pages'
-require 'govuk_tech_docs/tech_docs_html_renderer'
-require 'govuk_tech_docs/unique_identifier_extension'
-require 'govuk_tech_docs/unique_identifier_generator'
-require 'govuk_tech_docs/warning_text_extension'
-require 'govuk_tech_docs/api_reference/api_reference_extension'
+require "govuk_tech_docs/redirects"
+require "govuk_tech_docs/table_of_contents/helpers"
+require "govuk_tech_docs/contribution_banner"
+require "govuk_tech_docs/meta_tags"
+require "govuk_tech_docs/page_review"
+require "govuk_tech_docs/pages"
+require "govuk_tech_docs/tech_docs_html_renderer"
+require "govuk_tech_docs/unique_identifier_extension"
+require "govuk_tech_docs/unique_identifier_generator"
+require "govuk_tech_docs/warning_text_extension"
+require "govuk_tech_docs/api_reference/api_reference_extension"
 
 module GovukTechDocs
   # Configure the tech docs template
@@ -32,8 +32,8 @@ module GovukTechDocs
   def self.configure(context, options = {})
     context.activate :sprockets
 
-    context.sprockets.append_path File.join(__dir__, '../node_modules/govuk-frontend/')
-    context.sprockets.append_path File.join(__dir__, './source')
+    context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/")
+    context.sprockets.append_path File.join(__dir__, "./source")
 
     context.activate :syntax
 
@@ -44,7 +44,7 @@ module GovukTechDocs
                 renderer: TechDocsHTMLRenderer.new(
                   with_toc_data: true,
                   api: true,
-                  context: context
+                  context: context,
                 ),
                 fenced_code_blocks: true,
                 tables: true,
@@ -57,10 +57,10 @@ module GovukTechDocs
 
     context.configure :build do
       activate :autoprefixer
-      activate :minify_javascript, ignore: ['/raw_assets/*']
+      activate :minify_javascript, ignore: ["/raw_assets/*"]
     end
 
-    config_file = ENV.fetch('CONFIG_FILE', 'config/tech-docs.yml')
+    config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")
     context.config[:tech_docs] = YAML.load_file(config_file).with_indifferent_access
     context.activate :unique_identifier
     context.activate :warning_text
@@ -79,7 +79,7 @@ module GovukTechDocs
       end
 
       def format_date(date)
-        date.strftime('%-e %B %Y')
+        date.strftime("%-e %B %Y")
       end
 
       def active_page(page_path)
@@ -91,9 +91,9 @@ module GovukTechDocs
       end
     end
 
-    context.page '/*.xml', layout: false
-    context.page '/*.json', layout: false
-    context.page '/*.txt', layout: false
+    context.page "/*.xml", layout: false
+    context.page "/*.json", layout: false
+    context.page "/*.txt", layout: false
 
     context.ready do
       redirects = GovukTechDocs::Redirects.new(context).redirects
@@ -105,7 +105,7 @@ module GovukTechDocs
 
     if context.config[:tech_docs][:enable_search]
       context.activate :search do |search|
-        search.resources = ['']
+        search.resources = [""]
 
         search.fields = {
           title:   { boost: 100, store: true, required: true },

@@ -1,5 +1,5 @@
-require 'rack/file'
-require 'capybara/rspec'
+require "rack/file"
+require "capybara/rspec"
 
 Capybara.app = Rack::File.new("example/build")
 
@@ -33,11 +33,11 @@ RSpec.describe "Page expiration" do
   end
 
   def when_the_site_is_created_hiding_expiry
-    rebuild_site!(overrides: { 'show_expiry' => false })
+    rebuild_site!(overrides: { "show_expiry" => false })
   end
 
   def when_the_site_is_created_hiding_review_banner
-    rebuild_site!(overrides: { 'show_review_banner' => false })
+    rebuild_site!(overrides: { "show_review_banner" => false })
   end
 
   def and_i_visit_an_expired_page

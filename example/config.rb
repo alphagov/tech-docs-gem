@@ -1,9 +1,9 @@
-require 'govuk_tech_docs'
+require "govuk_tech_docs"
 
 GovukTechDocs.configure(self)
 
-ignore 'templates/*'
+ignore "templates/*"
 
-proxy '/a-proxied-page.html', 'templates/proxy_template.html', locals: {
-  title: 'I am a title'
+proxy "/a-proxied-page.html", "templates/proxy_template.html", locals: {
+  title: "I am a title",
 }

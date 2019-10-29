@@ -11,7 +11,7 @@ module GovukTechDocs
 
       all_redirects.map do |from, to|
         # Middleman needs paths without leading slashes
-        [from.sub(LEADING_SLASH, ''), to: to.sub(LEADING_SLASH, '')]
+        [from.sub(LEADING_SLASH, ""), to: to.sub(LEADING_SLASH, "")]
       end
     end
 

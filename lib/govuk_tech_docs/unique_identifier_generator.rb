@@ -1,4 +1,4 @@
-require 'singleton'
+require "singleton"
 
 module GovukTechDocs
   class UniqueIdentifierGenerator
@@ -64,9 +64,9 @@ module GovukTechDocs
       text
         .downcase
         .strip
-        .gsub(%r{</?[^>]+?>}, '') # Remove HTML tags
-        .gsub(/[^0-9a-z]+/, '-')  # Replace non-alphanumeric characters with dashes
-        .gsub(/\A-+|-+\z/, '')    # Remove trailing dashes
+        .gsub(%r{</?[^>]+?>}, "") # Remove HTML tags
+        .gsub(/[^0-9a-z]+/, "-")  # Replace non-alphanumeric characters with dashes
+        .gsub(/\A-+|-+\z/, "")    # Remove trailing dashes
     end
   end
 end

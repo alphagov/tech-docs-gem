@@ -1,8 +1,8 @@
-require 'erb'
-require 'openapi3_parser'
-require 'uri'
-require 'pry'
-require 'govuk_tech_docs/api_reference/api_reference_renderer'
+require "erb"
+require "openapi3_parser"
+require "uri"
+require "pry"
+require "govuk_tech_docs/api_reference/api_reference_renderer"
 
 module GovukTechDocs
   module ApiReference
@@ -16,22 +16,22 @@ module GovukTechDocs
         @config = @app.config[:tech_docs]
 
         # If no api path then just return.
-        if @config['api_path'].to_s.empty?
+        if @config["api_path"].to_s.empty?
           @api_parser = false
           return
         end
 
         # Is the api_path a url or path?
-        if uri?(@config['api_path'])
+        if uri?(@config["api_path"])
           @api_parser = true
-          @document = Openapi3Parser.load_url(@config['api_path'])
-        elsif File.exist?(@config['api_path'])
+          @document = Openapi3Parser.load_url(@config["api_path"])
+        elsif File.exist?(@config["api_path"])
           # Load api file and set existence flag.
           @api_parser = true
-          @document = Openapi3Parser.load_file(@config['api_path'])
+          @document = Openapi3Parser.load_file(@config["api_path"])
         else
           @api_parser = false
-          raise 'Unable to load api path from tech-docs.yml'
+          raise "Unable to load api path from tech-docs.yml"
         end
         @render = Renderer.new(@app, @document)
       end
@@ -49,26 +49,26 @@ module GovukTechDocs
         if @api_parser == true
 
           keywords = {
-            'api&gt;' => 'default',
-            'api_schema&gt;' => 'schema'
+            "api&gt;" => "default",
+            "api_schema&gt;" => "schema",
           }
 
-          regexp = keywords.map { |k, _| Regexp.escape(k) }.join('|')
+          regexp = keywords.map { |k, _| Regexp.escape(k) }.join("|")
 
           md = text.match(/^<p>(#{regexp})/)
           if md
             key = md.captures[0]
             type = keywords[key]
 
-            text.gsub!(/#{Regexp.escape(key)}\s+?/, '')
+            text.gsub!(/#{Regexp.escape(key)}\s+?/, "")
 
             # Strip paragraph tags from text
-            text = text.gsub(/<\/?[^>]*>/, '')
+            text = text.gsub(/<\/?[^>]*>/, "")
             text = text.strip
 
-            if text == 'api&gt;'
+            if text == "api&gt;"
               @render.api_full(api_info, api_servers)
-            elsif type == 'default'
+            elsif type == "default"
               output = @render.path(text)
               # Render any schemas referenced in the above path
               output += @render.schemas_from_path(text)

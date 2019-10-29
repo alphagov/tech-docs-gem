@@ -10,7 +10,7 @@ RSpec.describe GovukTechDocs::Pages do
 
       expect(JSON.parse(json)).to eql([
         { "title" => "A thing", "url" => "/a.html", "review_by" => Date.yesterday.to_s, "owner_slack" => "#2ndline" },
-        { "title" => "B thing", "url" => "/b.html", "review_by" => Date.tomorrow.to_s, "owner_slack" => "#2ndline" }
+        { "title" => "B thing", "url" => "/b.html", "review_by" => Date.tomorrow.to_s, "owner_slack" => "#2ndline" },
       ])
     end
   end
