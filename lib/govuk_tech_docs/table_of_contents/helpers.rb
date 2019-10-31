@@ -55,22 +55,18 @@ module GovukTechDocs
           # prefix in to consideration when checking for the root index.html.
           # The prefix may be set with or without a trailing slash: make sure
           # it has one for this comparison check.
-          home_url =
-            if config[:http_prefix].end_with?("/")
-              config[:http_prefix]
-            else
-              config[:http_prefix] + "/"
-            end
+          home_url = config[:http_prefix].end_with?("/") ? config[:http_prefix] : config[:http_prefix] + "/"
+          resource_url = config[:tech_docs][:path_prefix] ? config[:tech_docs][:path_prefix] + resource.url : resource.url
 
-          if resource.children.any? && resource.url != home_url
-            output += %{<ul><li><a href="#{resource.url}"><span>#{resource.data.title}</span></a>\n}
+          if resource.children.any? && resource_url != home_url
+            output += %{<ul><li><a href="#{resource_url}"><span>#{resource.data.title}</span></a>\n}
             output += render_page_tree(resource.children, current_page, config, current_page_html)
             output += "</li></ul>"
-          else
+          elsif resource.path.end_with?(".html")
             output +=
               single_page_table_of_contents(
                 content,
-                url: resource.url,
+                url: resource_url,
                 max_level: config[:tech_docs][:max_toc_heading_level],
               )
           end
