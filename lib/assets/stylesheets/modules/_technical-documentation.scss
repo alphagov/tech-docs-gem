@@ -77,7 +77,6 @@
 
   table {
     @include govuk-responsive-margin(6, "bottom");
-    table-layout: fixed;
   }
 
   pre + h2 {

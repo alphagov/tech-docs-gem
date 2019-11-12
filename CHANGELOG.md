@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+Remove the `table-layout: fixed` style from the tables in tech' docs content, mainly due to it
+causing https://github.com/alphagov/tech-docs-gem/issues/133.
+
 ## 2.0.8
 
 Use of  `govuk-lint` replaced with `rubocop-govuk` due to the former [becoming deprecated](https://github.com/alphagov/govuk-lint/pull/133).
