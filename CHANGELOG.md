@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.8
 
 Use of  `govuk-lint` replaced with `rubocop-govuk` due to the former [becoming deprecated](https://github.com/alphagov/govuk-lint/pull/133).
 
