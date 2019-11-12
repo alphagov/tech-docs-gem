@@ -7,7 +7,7 @@ RSpec::Core::RakeTask.new(:spec)
 load "jasmine/tasks/jasmine.rake"
 
 task :lint do
-  sh "govuk-lint-ruby example lib spec Rakefile"
+  sh "rubocop example lib spec Rakefile"
   sh "npm run lint --silent"
 end
 

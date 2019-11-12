@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+Use of  `govuk-lint` replaced with `rubocop-govuk` due to the former [becoming deprecated](https://github.com/alphagov/govuk-lint/pull/133).
+
 ## 2.0.7
 
 A small release to fix an issue where code blocks font size was too large on some browsers.
