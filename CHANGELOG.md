@@ -2,8 +2,7 @@
 
 ## Unreleased
 
-Remove the `table-layout: fixed` style from the tables in tech' docs content, mainly due to it
-causing https://github.com/alphagov/tech-docs-gem/issues/133.
+Change how tables are laid out to fix https://github.com/alphagov/tech-docs-gem/issues/133.
 
 ## 2.0.8
 
