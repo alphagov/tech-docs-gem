@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.0.9
 
 Change how tables are laid out to fix some content in Notify tech' docs being squashed due to its
 column having a fixed width.
