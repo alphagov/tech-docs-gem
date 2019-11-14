@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.9
+
 ### Fixes
 
 - [Pull request #154: Fix table columns breaking content](https://github.com/alphagov/tech-docs-gem/pull/154).
