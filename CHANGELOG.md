@@ -2,10 +2,9 @@
 
 ## Unreleased
 
-Change how tables are laid out to fix some content in Notify tech' docs being squashed due to its
-column having a fixed width.
+### Fixes
 
-Related issue: https://github.com/alphagov/tech-docs-gem/issues/133
+- [Pull request #154: Fix table columns breaking content](https://github.com/alphagov/tech-docs-gem/pull/154).
 
 ## 2.0.8
 
