@@ -139,6 +139,8 @@
     font-family: monaco, Consolas, "Lucida Console", monospace;
     font-size: 15px;
     font-size: 0.9375rem;
+    // Match the line-height outside of tables
+    line-height: 1.4;
     color: $code-0E;
 
     @include govuk-media-query(tablet) {
