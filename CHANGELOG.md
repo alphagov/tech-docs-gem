@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.10
+
 - [Pull request #160: Make sure IDs on collapsible navigation are unique](https://github.com/alphagov/tech-docs-gem/pull/160)
 
 ## 2.0.9
