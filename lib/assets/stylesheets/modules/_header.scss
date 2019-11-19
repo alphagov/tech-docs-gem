@@ -1,0 +1,7 @@
+.app-header {
+  // Adjust the padding on the header container so that it matches the custom sidebar.
+  .govuk-header__container--full-width {
+    @include govuk-responsive-padding(6, "left");
+    @include govuk-responsive-padding(6, "right");
+  }
+}

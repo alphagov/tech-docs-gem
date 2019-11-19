@@ -8,9 +8,7 @@
   color:  $govuk-text-colour;
 
   @include govuk-media-query(tablet) {
-    // We add 2 pixels to the gutter here to ensure there's sufficient spacing between
-    // an anchor link (see _anchored-heading.scss) on a heading and the left-hand pane.
-    margin: 0 govuk-spacing(6) (govuk-spacing(6) + 2px);
+    margin: 0 govuk-spacing(6) govuk-spacing(6);
   }
 
   .has-search-results-open & {
