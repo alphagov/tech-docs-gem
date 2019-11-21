@@ -43,7 +43,7 @@ html.has-search-results-open {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
     @include govuk-media-query(tablet) {
-      padding: 22px 20px 0 30px;
+      padding: govuk-spacing(6);
       top: 0;
       // The width of the sidebar
       left: 330px;
