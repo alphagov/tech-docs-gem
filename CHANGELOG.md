@@ -2,7 +2,13 @@
 
 ## Unreleased
 
+### Fixes
+
+- [Pull request #165: Update header alignment to match layout](https://github.com/alphagov/tech-docs-gem/pull/165)
+
 ## 2.0.10
+
+### Fixes
 
 - [Pull request #160: Make sure IDs on collapsible navigation are unique](https://github.com/alphagov/tech-docs-gem/pull/160)
 
