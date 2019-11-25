@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.11
+
 ### Fixes
 
 - [Pull request #162: Fix line height spacing for multiline code elements](https://github.com/alphagov/tech-docs-gem/pull/162)
