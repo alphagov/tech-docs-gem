@@ -14,6 +14,8 @@ module GovukTechDocs
           @pointer.children << HeadingTree.new(parent: @pointer, heading: heading)
         end
 
+        remove_h1()
+
         @tree
       end
 
@@ -35,6 +37,19 @@ module GovukTechDocs
 
           move_to_depth(depth)
         end
+      end
+
+      def remove_h1()
+        top_tree = HeadingTree.new
+        @tree.children.each do |h1_tree|
+          top_tree.heading = h1_tree.heading
+          h1_tree.children.each do |h2_tree|
+            top_tree.children.push(h2_tree)
+            h2_tree.parent = top_tree
+          end
+        end
+
+        @tree = top_tree
       end
     end
   end
