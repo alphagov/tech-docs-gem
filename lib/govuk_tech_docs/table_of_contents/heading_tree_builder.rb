@@ -41,8 +41,8 @@ module GovukTechDocs
 
       def remove_h1()
         top_tree = HeadingTree.new
+
         @tree.children.each do |h1_tree|
-          top_tree.heading = h1_tree.heading
           h1_tree.children.each do |h2_tree|
             top_tree.children.push(h2_tree)
             h2_tree.parent = top_tree
