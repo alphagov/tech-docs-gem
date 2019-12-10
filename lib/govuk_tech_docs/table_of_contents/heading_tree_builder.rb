@@ -1,10 +1,11 @@
 module GovukTechDocs
   module TableOfContents
     class HeadingTreeBuilder
-      def initialize(headings)
+      def initialize(headings, h1_as_root: false)
         @headings = headings
         @tree = HeadingTree.new
         @pointer = @tree
+        @h1_as_root = h1_as_root
       end
 
       def tree
@@ -14,7 +15,9 @@ module GovukTechDocs
           @pointer.children << HeadingTree.new(parent: @pointer, heading: heading)
         end
 
-        remove_h1()
+        if @h1_as_root
+          set_root_to_h1()
+        end
 
         @tree
       end
@@ -39,17 +42,17 @@ module GovukTechDocs
         end
       end
 
-      def remove_h1()
-        top_tree = HeadingTree.new
+      def set_root_to_h1()
+        h1_children = @tree.children.select { |tree| tree.heading.size == 1 }
 
-        @tree.children.each do |h1_tree|
-          h1_tree.children.each do |h2_tree|
-            top_tree.children.push(h2_tree)
-            h2_tree.parent = top_tree
-          end
+        if h1_children.length != 1
+          raise "Cannot set table of contents root to H1. One H1 needed, #{h1_children.length} found"
         end
 
-        @tree = top_tree
+        h1 = h1_children.last
+        root = HeadingTree.new(parent: nil, heading: h1.heading, children: h1.children)
+
+        @tree = root
       end
     end
   end

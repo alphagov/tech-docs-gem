@@ -7,14 +7,14 @@ require "govuk_tech_docs/table_of_contents/headings_builder"
 module GovukTechDocs
   module TableOfContents
     module Helpers
-      def single_page_table_of_contents(html, url: "", max_level: nil)
+      def single_page_table_of_contents(html, url: "", max_level: nil, h1_as_root: false)
         headings = HeadingsBuilder.new(html, url).headings
 
         if headings.none? { |heading| heading.size == 1 }
           raise "No H1 tag found. You have to at least add one H1 heading to the page: " + url
         end
 
-        tree = HeadingTreeBuilder.new(headings).tree
+        tree = HeadingTreeBuilder.new(headings, h1_as_root: h1_as_root).tree
         HeadingTreeRenderer.new(tree, max_level: max_level).html
       end
 

@@ -8,7 +8,7 @@ wrap_layout :core do
     if config[:tech_docs][:multipage_nav] %>
       <%= multi_page_table_of_contents(sitemap.resources, current_page, config, html) %>
     <% else %>
-      <%= single_page_table_of_contents(html, max_level: config[:tech_docs][:max_toc_heading_level]) %>
+      <%= single_page_table_of_contents(html, max_level: config[:tech_docs][:max_toc_heading_level], h1_as_root: config[:tech_docs].fetch(:h1_as_root, false)) %>
     <% end %>
   <%
   end
