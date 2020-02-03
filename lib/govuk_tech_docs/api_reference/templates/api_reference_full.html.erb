@@ -1,7 +1,8 @@
 <h1 id="<%=  info.title.parameterize %>"><%= info.title %> v<%= info.version %></h1>
 <%= info.description_html %>
 
-<% unless servers.empty? %>
+<%# OpenAPI files default to having a single server of URL "/" %>
+<% if servers.length > 1 || servers[0].url != "/" %>
   <h2 id="servers">Servers</h2>
   <div id="server-list">
     <% servers.each do |server| %>
