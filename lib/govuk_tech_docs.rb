@@ -30,6 +30,9 @@ module GovukTechDocs
   # @option options [Hash] livereload Options to pass to the `livereload`
   #   extension. Hash with symbols as keys.
   def self.configure(context, options = {})
+    config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")
+    context.config[:tech_docs] = YAML.load_file(config_file).with_indifferent_access
+
     context.activate :sprockets
 
     context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/")
@@ -51,7 +54,7 @@ module GovukTechDocs
       tables: true,
       no_intra_emphasis: true
     }
-    markdown_options = options[:markdown] || {}
+    markdown_options = context.config[:tech_docs][:markdown].transform_keys(&:to_sym) || {}
     context.set :markdown, default_markdown_options.merge(markdown_options)
 
     # Reload the browser automatically whenever files change
@@ -64,8 +67,6 @@ module GovukTechDocs
       activate :minify_javascript, ignore: ["/raw_assets/*"]
     end
 
-    config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")
-    context.config[:tech_docs] = YAML.load_file(config_file).with_indifferent_access
     context.activate :unique_identifier
     context.activate :warning_text
     context.activate :api_reference

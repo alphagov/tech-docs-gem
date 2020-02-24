@@ -52,3 +52,7 @@ api_path: source/pets.yml
 # Optional global settings for the page review process
 owner_slack_workspace: gds
 default_owner_slack: '#2nd-line'
+
+# Markdown options
+markdown:
+  disable_indented_code_blocks: true
