@@ -40,15 +40,19 @@ module GovukTechDocs
     context.files.watch :source, path: "#{__dir__}/source"
 
     context.set :markdown_engine, :redcarpet
-    context.set :markdown,
-                renderer: TechDocsHTMLRenderer.new(
-                  with_toc_data: true,
-                  api: true,
-                  context: context,
-                ),
-                fenced_code_blocks: true,
-                tables: true,
-                no_intra_emphasis: true
+
+    default_markdown_options = {
+      renderer: TechDocsHTMLRenderer.new(
+        with_toc_data: true,
+        api: true,
+        context: context,
+      ),
+      fenced_code_blocks: true,
+      tables: true,
+      no_intra_emphasis: true
+    }
+    markdown_options = options[:markdown] || {}
+    context.set :markdown, default_markdown_options.merge(markdown_options)
 
     # Reload the browser automatically whenever files change
     context.configure :development do
