@@ -8,7 +8,7 @@ A paragraph with a `code` element within it.
 
 <a href="#"><code>code element within a link</code></a>
 
-An example of a table with a `code` element within it.
+## Table with a `code` element within it.
 
 <div class="table-container">
   <table>
@@ -37,7 +37,7 @@ An example of a table with a `code` element within it.
   </table>
 </div>
 
-An example of a code block with a long line length
+## Code block with a long line length
 
 ```ruby
 RSpec.describe ContentItem do
@@ -56,9 +56,14 @@ RSpec.describe ContentItem do
 end
 ```
 
-An example of a code block with a short length
+## Fenced code block with a short length
 
 ```ruby
 RSpec.describe ContentItem do
 end
 ```
+
+## Indented code block
+
+    RSpec.describe ContentItem do
+    end
