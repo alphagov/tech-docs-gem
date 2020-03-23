@@ -163,7 +163,7 @@ module GovukTechDocs
       end
 
       def json_output(schema)
-        properties =  schema_properties(schema)
+        properties = schema_properties(schema)
         JSON.pretty_generate(properties)
       end
 
@@ -179,6 +179,7 @@ module GovukTechDocs
           end
         end
         properties.merge! get_all_of_hash(schema_data)
+        properties.merge! get_any_of_hash(schema_data)
         properties_hash = Hash.new
         properties.each do |pkey, property|
           if property.type == "object"
@@ -237,6 +238,19 @@ module GovukTechDocs
             schema_nested.properties.each do |key, property|
               properties[key] = property
             end
+          end
+        end
+        properties
+      end
+
+      def get_any_of_hash(schema)
+        properties = Hash.new
+        any_of = schema["anyOf"]
+
+        if any_of.present?
+          nested_schema = any_of.first
+          nested_schema.properties.each do |key, property|
+            properties[key] = property
           end
         end
         properties
