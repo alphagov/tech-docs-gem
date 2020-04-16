@@ -6,10 +6,10 @@
     "lint": "standard"
   },
   "dependencies": {
-    "govuk-frontend": "^3.1.0"
+    "govuk-frontend": "^3.6.0"
   },
   "devDependencies": {
-    "standard": "^13.0.2"
+    "standard": "^14.3.0"
   },
   "standard": {
     "globals": [
