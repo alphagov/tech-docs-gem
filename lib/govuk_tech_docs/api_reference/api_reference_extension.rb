@@ -78,7 +78,7 @@ module GovukTechDocs
             end
 
           else
-            return text
+            text
           end
         else
           text
