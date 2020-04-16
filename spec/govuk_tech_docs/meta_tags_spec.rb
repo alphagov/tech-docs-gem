@@ -3,7 +3,7 @@ RSpec.describe GovukTechDocs::MetaTags do
     it "combines the page title and service name" do
       browser_title = generate_title(site_name: "Test Site", page_title: "The Title")
 
-      expect(browser_title).to eql("The Title | Test Site")
+      expect(browser_title).to eql("The Title - Test Site")
     end
 
     it "does not duplicate the page title" do
@@ -56,7 +56,7 @@ RSpec.describe GovukTechDocs::MetaTags do
         "twitter:card" => "summary",
         "twitter:domain" => "www.example.org",
         "twitter:image" => "https://www.example.org/images/govuk-large.png",
-        "twitter:title" => "The Title | Test Site",
+        "twitter:title" => "The Title - Test Site",
         "twitter:url" => "https://www.example.org/foo.html")
     end
 

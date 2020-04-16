@@ -25,7 +25,7 @@ module GovukTechDocs
     end
 
     def browser_title
-      [page_title, site_name].select(&:present?).uniq.join(" | ")
+      [page_title, site_name].select(&:present?).uniq.join(" - ")
     end
 
     def canonical_url
