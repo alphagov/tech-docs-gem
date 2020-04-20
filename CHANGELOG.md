@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [Pull request #178: Update dependencies and fix tests](https://github.com/alphagov/tech-docs-gem/pull/178) – includes updating GOV.UK Frontend to v3.6.0.
+- [Pull request #176: Use correct separator for page titles](https://github.com/alphagov/tech-docs-gem/pull/176)
 
 ## 2.0.11
 
