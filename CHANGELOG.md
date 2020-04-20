@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [Pull request #179: Use current markup for header and footer](https://github.com/alphagov/tech-docs-gem/pull/179)
 - [Pull request #178: Update dependencies and fix tests](https://github.com/alphagov/tech-docs-gem/pull/178) – includes updating GOV.UK Frontend to v3.6.0.
 
 ## 2.0.11
