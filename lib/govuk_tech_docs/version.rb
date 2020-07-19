@@ -1,3 +1,3 @@
 module GovukTechDocs
-  VERSION = "2.0.12".freeze
+  VERSION = "2.1.0".freeze
 end
