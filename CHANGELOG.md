@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 2.0.13
+
+- [Pull request #189: Update orange code highlight colour to meet minimum AA colour contrast ratio criterion](https://github.com/alphagov/tech-docs-gem/pull/189)
 
 ## 2.0.12
 
