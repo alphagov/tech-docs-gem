@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased
+
+### New features
+
+#### Exclude individual pages from search engine indexes
+
+You can now exclude individual pages from search engine indexes by including `prevent_indexing: true` in the frontmatter for the page.
+
+This was added in [pull request #192: Fixes and improvements to meta tags](https://github.com/alphagov/tech-docs-gem/pull/192).
+
+### Fixes
+
+We’ve made fixes to the Tech Docs Gem in the following pull requests:
+
+- [#192: Fixes and improvements to meta tags](https://github.com/alphagov/tech-docs-gem/pull/192)
+
 ## 2.0.13
 
 - [Pull request #189: Update orange code highlight colour to meet minimum AA colour contrast ratio criterion](https://github.com/alphagov/tech-docs-gem/pull/189)
