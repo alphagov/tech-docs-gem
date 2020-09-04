@@ -8,6 +8,7 @@ module GovukTechDocs
     def tags
       all_tags = {
         "description" => page_description,
+        "robots" => robots,
         "twitter:card" => "summary",
         "twitter:domain" => URI.parse(host).host,
         "twitter:image" => page_image,
@@ -59,6 +60,10 @@ module GovukTechDocs
 
     def page_title
       locals[:title] || frontmatter.title
+    end
+
+    def robots
+      "noindex" if config[:tech_docs][:prevent_indexing]
     end
 
     def host
