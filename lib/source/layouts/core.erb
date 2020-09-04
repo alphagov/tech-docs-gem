@@ -18,7 +18,11 @@
       <meta name="google-site-verification" content="<%= config[:tech_docs][:google_site_verification] %>" />
     <% end %>
 
-    <% meta_tags.tags.each do |property, content| %>
+    <% meta_tags.tags.each do |name, content| %>
+      <%= tag :meta, name: name, content: content %>
+    <% end %>
+
+    <% meta_tags.opengraph_tags.each do |property, content| %>
       <%= tag :meta, property: property, content: content %>
     <% end %>
 

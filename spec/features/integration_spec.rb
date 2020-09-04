@@ -58,6 +58,7 @@ RSpec.describe "The tech docs template" do
 
   def and_there_are_proper_meta_tags
     expect(page).to have_title "GOV.UK Documentation Example - My First Service"
+    expect(page).to have_css 'meta[name="description"]', visible: false
     expect(page).to have_css 'meta[property="og:site_name"]', visible: false
   end
 
