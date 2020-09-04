@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.1.0
+
 ### New features
 
 #### Exclude individual pages from search engine indexes
