@@ -34,6 +34,9 @@ RSpec.describe "The tech docs template" do
 
     when_i_view_a_page_with_no_sidebar
     then_there_is_no_sidebar
+
+    when_i_view_a_page_with_prevent_indexing
+    then_there_is_a_robots_noindex_metatag
   end
 
   def when_the_site_is_created
@@ -58,6 +61,7 @@ RSpec.describe "The tech docs template" do
 
   def and_there_are_proper_meta_tags
     expect(page).to have_title "GOV.UK Documentation Example - My First Service"
+    expect(page).to have_css 'meta[name="description"]', visible: false
     expect(page).to have_css 'meta[property="og:site_name"]', visible: false
   end
 
@@ -123,5 +127,13 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_no_sidebar
     expect(page).to have_no_css "div.app-pane__toc"
+  end
+
+  def when_i_view_a_page_with_prevent_indexing
+    visit "/prevent-index-page.html"
+  end
+
+  def then_there_is_a_robots_noindex_metatag
+    expect(page).to have_css 'meta[name="robots"][content="noindex"]', visible: false
   end
 end

@@ -4,9 +4,6 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <% if config[:tech_docs][:prevent_indexing] %>
-      <meta name="robots" content="noindex">
-    <% end %>
 
     <title><%= meta_tags.browser_title %></title>
 
@@ -14,11 +11,11 @@
 
     <link rel="canonical" href="<%= meta_tags.canonical_url %>">
 
-    <% if config[:tech_docs][:google_site_verification] %>
-      <meta name="google-site-verification" content="<%= config[:tech_docs][:google_site_verification] %>" />
+    <% meta_tags.tags.each do |name, content| %>
+      <%= tag :meta, name: name, content: content %>
     <% end %>
 
-    <% meta_tags.tags.each do |property, content| %>
+    <% meta_tags.opengraph_tags.each do |property, content| %>
       <%= tag :meta, property: property, content: content %>
     <% end %>
 

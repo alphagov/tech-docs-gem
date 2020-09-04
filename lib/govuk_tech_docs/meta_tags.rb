@@ -8,12 +8,8 @@ module GovukTechDocs
     def tags
       all_tags = {
         "description" => page_description,
-        "og:description" => page_description,
-        "og:image" => page_image,
-        "og:site_name" => site_name,
-        "og:title" => page_title,
-        "og:type" => "object",
-        "og:url" => canonical_url,
+        "google-site-verification" => google_site_verification,
+        "robots" => robots,
         "twitter:card" => "summary",
         "twitter:domain" => URI.parse(host).host,
         "twitter:image" => page_image,
@@ -22,6 +18,21 @@ module GovukTechDocs
       }
 
       Hash[all_tags.select { |_k, v| v }]
+    end
+
+    # OpenGraph uses the non-standard property attribute instead of name, so we
+    # return these separately so we can output them correctly.
+    def opengraph_tags
+      all_opengraph_tags = {
+        "og:description" => page_description,
+        "og:image" => page_image,
+        "og:site_name" => site_name,
+        "og:title" => page_title,
+        "og:type" => "object",
+        "og:url" => canonical_url,
+      }
+
+      Hash[all_opengraph_tags.select { |_k, v| v }]
     end
 
     def browser_title
@@ -45,11 +56,19 @@ module GovukTechDocs
     end
 
     def page_description
-      locals[:description] || frontmatter.description
+      locals[:description] || frontmatter[:description]
     end
 
     def page_title
-      locals[:title] || frontmatter.title
+      locals[:title] || frontmatter[:title]
+    end
+
+    def robots
+      "noindex" if config[:tech_docs][:prevent_indexing] || frontmatter[:prevent_indexing]
+    end
+
+    def google_site_verification
+      config[:tech_docs][:google_site_verification]
     end
 
     def host
