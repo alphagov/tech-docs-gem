@@ -56,15 +56,15 @@ module GovukTechDocs
     end
 
     def page_description
-      locals[:description] || frontmatter.description
+      locals[:description] || frontmatter[:description]
     end
 
     def page_title
-      locals[:title] || frontmatter.title
+      locals[:title] || frontmatter[:title]
     end
 
     def robots
-      "noindex" if config[:tech_docs][:prevent_indexing]
+      "noindex" if config[:tech_docs][:prevent_indexing] || frontmatter[:prevent_indexing]
     end
 
     def google_site_verification

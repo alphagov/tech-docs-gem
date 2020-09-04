@@ -24,7 +24,7 @@ RSpec.describe GovukTechDocs::MetaTags do
       )
 
       current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: page_title),
+                            data: { description: "The description.", title: page_title },
                             metadata: { locals: {} })
 
       GovukTechDocs::MetaTags.new(config, current_page).browser_title
@@ -40,7 +40,7 @@ RSpec.describe GovukTechDocs::MetaTags do
       )
 
       current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            data: { description: "The description.", title: "The Title" },
                             url: "/foo.html",
                             metadata: { locals: {} })
 
@@ -62,11 +62,22 @@ RSpec.describe GovukTechDocs::MetaTags do
       )
 
       current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            data: {},
                             url: "/foo.html",
                             metadata: { locals: {} })
 
       tags = GovukTechDocs::MetaTags.new(config, current_page).tags
+
+      expect(tags["robots"]).to eql("noindex")
+    end
+
+    it "adds a noindex robots tag when the page frontmatter prevents indexing" do
+      current_page = double("current_page",
+                            data: { prevent_indexing: true },
+                            url: "/foo.html",
+                            metadata: { locals: {} })
+
+      tags = GovukTechDocs::MetaTags.new(generate_config, current_page).tags
 
       expect(tags["robots"]).to eql("noindex")
     end
@@ -77,7 +88,7 @@ RSpec.describe GovukTechDocs::MetaTags do
       )
 
       current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            data: {},
                             url: "/foo.html",
                             metadata: { locals: {} })
 
@@ -88,7 +99,7 @@ RSpec.describe GovukTechDocs::MetaTags do
 
     it "uses the local variable as page description for proxied pages" do
       current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            data: { description: "The description." },
                             url: "/foo.html",
                             metadata: { locals: { description: "The local variable description." } })
 
@@ -99,7 +110,7 @@ RSpec.describe GovukTechDocs::MetaTags do
 
     it "works even when no config is set" do
       current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            data: {},
                             url: "/foo.html",
                             metadata: { locals: { title: "The local variable title." } })
 
@@ -120,7 +131,7 @@ RSpec.describe GovukTechDocs::MetaTags do
       )
 
       current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            data: { description: "The description.", title: "The Title" },
                             url: "/foo.html",
                             metadata: { locals: {} })
 
@@ -138,7 +149,7 @@ RSpec.describe GovukTechDocs::MetaTags do
 
     it "uses the local variable as page title for proxied pages" do
       current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            data: { description: "The description." },
                             url: "/foo.html",
                             metadata: { locals: { title: "The local variable title." } })
 
