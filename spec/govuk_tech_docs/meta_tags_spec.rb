@@ -71,6 +71,21 @@ RSpec.describe GovukTechDocs::MetaTags do
       expect(tags["robots"]).to eql("noindex")
     end
 
+    it "adds a google site validation meta tag when provided in config" do
+      config = generate_config(
+        google_site_verification: "LEGIT-VALIDATION-TOKEN",
+      )
+
+      current_page = double("current_page",
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/foo.html",
+                            metadata: { locals: {} })
+
+      tags = GovukTechDocs::MetaTags.new(config, current_page).tags
+
+      expect(tags["google-site-verification"]).to eql("LEGIT-VALIDATION-TOKEN")
+    end
+
     it "uses the local variable as page description for proxied pages" do
       current_page = double("current_page",
                             data: double("page_frontmatter", description: "The description.", title: "The Title"),

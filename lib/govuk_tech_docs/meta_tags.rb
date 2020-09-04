@@ -8,6 +8,7 @@ module GovukTechDocs
     def tags
       all_tags = {
         "description" => page_description,
+        "google-site-verification" => google_site_verification,
         "robots" => robots,
         "twitter:card" => "summary",
         "twitter:domain" => URI.parse(host).host,
@@ -64,6 +65,10 @@ module GovukTechDocs
 
     def robots
       "noindex" if config[:tech_docs][:prevent_indexing]
+    end
+
+    def google_site_verification
+      config[:tech_docs][:google_site_verification]
     end
 
     def host

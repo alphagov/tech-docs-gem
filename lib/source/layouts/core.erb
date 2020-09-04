@@ -11,10 +11,6 @@
 
     <link rel="canonical" href="<%= meta_tags.canonical_url %>">
 
-    <% if config[:tech_docs][:google_site_verification] %>
-      <meta name="google-site-verification" content="<%= config[:tech_docs][:google_site_verification] %>" />
-    <% end %>
-
     <% meta_tags.tags.each do |name, content| %>
       <%= tag :meta, name: name, content: content %>
     <% end %>
