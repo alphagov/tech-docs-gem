@@ -2,17 +2,19 @@
 
 ## Unreleased
 
+## 2.1.0
+
 ### New features
 
-#### Exclude individual pages from search engine indexes
+#### Exclude pages from search engine results
 
-You can now exclude individual pages from search engine indexes by including `prevent_indexing: true` in the frontmatter for the page.
+You can now exclude a page from search engine results by including `prevent_indexing: true` in the page's frontmatter.
 
 This was added in [pull request #192: Fixes and improvements to meta tags](https://github.com/alphagov/tech-docs-gem/pull/192).
 
 ### Fixes
 
-We’ve made fixes to the Tech Docs Gem in the following pull requests:
+We’ve made fixes in the following pull requests:
 
 - [#192: Fixes and improvements to meta tags](https://github.com/alphagov/tech-docs-gem/pull/192)
 
