@@ -62,3 +62,14 @@ An example of a code block with a short length
 RSpec.describe ContentItem do
 end
 ```
+
+An example of a [mermaid](https://mermaid-js.github.io/mermaid) diagram
+
+```mermaid
+graph TD;
+	A-->B;
+	A-->C;
+	B-->D;
+	C-->D;
+```
+

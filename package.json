@@ -6,6 +6,7 @@
     "lint": "standard"
   },
   "dependencies": {
+    "@mermaid-js/mermaid-cli": "^8.4.8",
     "govuk-frontend": "^3.6.0"
   },
   "devDependencies": {
