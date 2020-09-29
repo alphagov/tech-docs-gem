@@ -82,7 +82,7 @@ html.has-search-results-open {
       left: -9px;
       width: 10px;
       height: 20px;
-      background: no-repeat url('/images/search-result-caret.svg') center right;
+      background: no-repeat image-url('/images/search-result-caret.svg') center right;
       background-size: contain;
     }
   }
@@ -123,9 +123,9 @@ html.has-search-results-open {
     padding-left: 8px;
     height: 18px;
     width: 18px;
-    background: no-repeat url('/images/govuk-icn-close.png') center right;
+    background: no-repeat image-url('/images/govuk-icn-close.png') center right;
     @include govuk-device-pixel-ratio {
-      background-image: url('/images/govuk-icn-close@2x.png');
+      background-image: image-url('/images/govuk-icn-close@2x.png');
     }
     background-size: contain;
   }

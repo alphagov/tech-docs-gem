@@ -18,12 +18,12 @@
     text-decoration: none;
     text-indent: -9999em;
 
-    background-image: url('/images/anchored-heading-icon.png');
+    background-image: image-url('/images/anchored-heading-icon.png');
     background-repeat: no-repeat;
     background-position: center center;
 
     @include govuk-device-pixel-ratio {
-      background-image: url('/images/anchored-heading-icon-2x.png');
+      background-image: image-url('/images/anchored-heading-icon-2x.png');
       background-size: $icon-width $icon-height;
     }
 
