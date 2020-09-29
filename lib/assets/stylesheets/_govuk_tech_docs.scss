@@ -1,4 +1,4 @@
-$govuk-assets-path: "/assets/govuk/assets/";
+$govuk-assets-path: "/assets/govuk/assets/" !default;
 
 // Include only the bits of GOV.UK Frontend we need
 @import "govuk/settings/all";
