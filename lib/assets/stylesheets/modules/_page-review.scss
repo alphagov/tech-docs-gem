@@ -13,11 +13,9 @@
 
   a:link,
   a:visited {
-    color: inherit;
-  }
-
-  a:hover {
-    color: $govuk-link-hover-colour;
+    &:not(:focus) {
+      color: inherit;
+    }
   }
 
   a:active {
