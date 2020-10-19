@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Fixes
+
+We’ve made fixes in the following pull requests:
+
+- [#199: Fix page expiry box link colours (hover and focus) ](https://github.com/alphagov/tech-docs-gem/pull/199)
+
 ## 2.1.0
 
 ### New features
