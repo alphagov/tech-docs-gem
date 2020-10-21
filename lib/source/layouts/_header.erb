@@ -37,7 +37,19 @@
       </span>
       <% end %>
       <% if config[:tech_docs][:phase] %>
-        <strong class="govuk-tag"><%= config[:tech_docs][:phase] %></strong>
+        <% if config[:tech_docs][:phaseFeedbackLink] %>
+          <div class="govuk-phase-banner">
+            <p class="govuk-phase-banner__content">
+              <strong class="govuk-tag govuk-phase-banner__content__tag"><%= config[:tech_docs][:phase] %></strong>
+              <span class="govuk-phase-banner__text">
+                This is a new service.
+                Your <a class="govuk-header__link" href="<%= config[:tech_docs][:phaseFeedbackLink] %>">feedback</a> will help us to improve it.
+              </span>
+            </p>
+          </div>
+        <% else %>
+          <strong class="govuk-tag"><%= config[:tech_docs][:phase] %></strong>
+        <% end %>
       <% end %>
     </div>
     <% if config[:tech_docs][:header_links] %>
