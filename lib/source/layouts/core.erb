@@ -19,10 +19,12 @@
       <%= tag :meta, property: property, content: content %>
     <% end %>
 
+    <%= partial 'layouts/google_tag_manager_js' %>
     <%= yield_content :head %>
   </head>
 
   <body class="govuk-template__body">
+    <%= partial 'layouts/google_tag_manager_non_js' %>
     <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
 
     <div class="app-pane">
