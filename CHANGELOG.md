@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Ruby version bump
+
+We've updated the Ruby version supported:
+
+- [#201: Bump ruby to 2.7.2](https://github.com/alphagov/tech-docs-gem/pull/201)
+
 ### Fixes
 
 We’ve made fixes in the following pull requests:
