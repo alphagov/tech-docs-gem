@@ -127,7 +127,7 @@
           display: block;
           position: relative;
           z-index: 10;
-
+          width: 100%;
           padding: govuk-spacing(3) govuk-spacing(3) 10px;
 
           background: govuk-colour("light-grey");
@@ -135,10 +135,12 @@
             background: transparentize(govuk-colour("light-grey"), 0.05);
             backdrop-filter: blur(2px);
           }
+          border: 0;
           border-bottom: 1px solid govuk-colour("mid-grey");
           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
           color:  $govuk-text-colour;
           text-decoration: none;
+          text-align: left;
 
           &:focus {
             @include govuk-focused-text;
@@ -170,7 +172,7 @@
         position: sticky;
         right: 0;
         top: 0;
-
+        border: 0;
         float: right;
         width: 20px;
         height: 20px;
