@@ -39,7 +39,7 @@ module GovukTechDocs
 
     context.files.watch :source, path: "#{__dir__}/source"
 
-    context.set :markdown_engine, :redcarpet
+    context.set :markdown_engine, :kramdown
     context.set :markdown,
                 renderer: TechDocsHTMLRenderer.new(
                   with_toc_data: true,
@@ -47,6 +47,7 @@ module GovukTechDocs
                   context: context,
                 ),
                 fenced_code_blocks: true,
+                input: "GFM",
                 tables: true,
                 no_intra_emphasis: true
 

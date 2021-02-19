@@ -45,6 +45,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "openapi3_parser", "~> 0.5.0"
   spec.add_dependency "pry"
   spec.add_dependency "redcarpet", "~> 3.5.0"
+  spec.add_dependency "kramdown"
+  spec.add_dependency "kramdown-parser-gfm"
   spec.add_dependency "sass"
   spec.add_dependency "sprockets", "~> 4.0.0"
 
