@@ -32,15 +32,7 @@ To see how your changes to the gem affect your website, point your website's Gem
 gem 'govuk_tech_docs', path: '../tech-docs-gem'
 ```
 
-To view your changes locally run:
-
-```sh
-bundle exec middleman server
-```
-
-See your website on `http://localhost:4567` in your browser.
-
-For more information on previewing your documentation locally, see the [Tech Docs template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
+To preview your documentation changes locally, see the [Tech Docs template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
 
 ### Use the example in this repo
 
