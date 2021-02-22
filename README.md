@@ -3,13 +3,13 @@
 This repo contains the Ruby gem that distributes the [Tech Docs Template][tdt-template]. The Tech Docs Template is a [middleman template][mmt] that
 you can use to build technical documentation using a GOV.UK style.
 
-👉 To find out more about setting up and managing content for a website using this template, see the [Tech Docs Template documentation][tdt-docs].
+To find out more about setting up and managing content for a website using this template, see the [Tech Docs Template documentation][tdt-docs].
 
 ## Contributing
 
 Everybody who uses this project is encouraged to contribute.
 
-👉 See the[CONTRIBUTING.md file](CONTRIBUTING.md) for guidance on contributing to this project.
+You can find out more about contributing to this project from the[CONTRIBUTING.md file](CONTRIBUTING.md).
 
 ## GOV.UK frontend
 
@@ -32,7 +32,7 @@ To see how your changes to the gem affect your website, point your website's Gem
 gem 'govuk_tech_docs', path: '../tech-docs-gem'
 ```
 
-To preview your documentation changes locally, see the [Tech Docs template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
+To preview your documentation changes locally, see the [Tech Docs Template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
 
 ### Use the example in this repo
 
@@ -52,7 +52,7 @@ For more information on previewing your documentation locally, see the [Tech Doc
 
 This repository contains automated JavaScript tests that use the [Jasmine test framework][jas].
 
-To run the tests and see the results in your browser:
+You can run these tests and see the results in your browser.
 
 1. Run `bundle exec rake jasmine`.
 2. Go to `http://localhost:8888` in your browser.
@@ -67,7 +67,7 @@ bundle exec rake jasmine:ci
 
 To release a new version, create a new pull request (PR) that updates [version.rb](lib/govuk_tech_docs/version.rb) and [CHANGELOG.md](CHANGELOG.md).
 
-Do not include other changes in this pull request, as this makes it easier to find out what was released when. See this [PR for releasing a new version](https://github.com/alphagov/tech-docs-gem/pull/15) as an example.
+Do not include other changes in your pull request, as this makes it easier to find out what was released when. See an example of a [PR for releasing a new version](https://github.com/alphagov/tech-docs-gem/pull/15).
 
 Travis will automatically release a [new version to Rubygems.org](https://rubygems.org/gems/govuk_tech_docs).
 
