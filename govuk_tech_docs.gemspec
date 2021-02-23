@@ -34,6 +34,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "activesupport"
   spec.add_dependency "chronic", "~> 0.10.2"
+  spec.add_dependency "kramdown", "~> 2.3.0"
+  spec.add_dependency "kramdown-parser-gfm", "~> 1.1.0"
   spec.add_dependency "middleman", "~> 4.0"
   spec.add_dependency "middleman-autoprefixer", "~> 2.10.0"
   spec.add_dependency "middleman-compass", ">= 4.0.0"
@@ -44,7 +46,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "nokogiri"
   spec.add_dependency "openapi3_parser", "~> 0.5.0"
   spec.add_dependency "pry"
-  spec.add_dependency "redcarpet", "~> 3.5.0"
   spec.add_dependency "sass"
   spec.add_dependency "sprockets", "~> 4.0.0"
 

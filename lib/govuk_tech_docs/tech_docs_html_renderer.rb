@@ -1,34 +1,39 @@
-require "middleman-core/renderers/redcarpet"
+require "middleman-core/renderers/kramdown"
 
-module GovukTechDocs
-  class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
-    include Redcarpet::Render::SmartyPants
+module Middleman
+  module Renderers
+    class MiddlemanKramdownHTML
+      def convert_header(element, indent)
+        attr = element.attr.dup
+        if @options[:auto_ids] && !attr["id"]
+          attr["id"] = UniqueIdentifierGenerator.instance.create(element.options[:raw_text], element.options[:level])
+        end
+        @toc << [element.options[:level], attr["id"], element.children] if attr["id"] && in_toc?(element)
+        level = output_header_level(element.options[:level])
+        format_as_block_html("h#{level}", attr, inner(element, indent), indent)
+      end
 
-    def initialize(options = {})
-      @local_options = options.dup
-      @app = @local_options[:context].app
-      super
-    end
+      def convert_img(element, _indent)
+        %(<a href="#{element.attr['src']}" rel="noopener noreferrer">#{super}</a>)
+      end
 
-    def paragraph(text)
-      @app.api("<p>#{text.strip}</p>\n")
-    end
-
-    def header(text, level)
-      anchor = UniqueIdentifierGenerator.instance.create(text, level)
-      %(<h#{level} id="#{anchor}">#{text}</h#{level}>)
-    end
-
-    def image(link, *args)
-      %(<a href="#{link}" rel="noopener noreferrer">#{super}</a>)
-    end
-
-    def table(header, body)
-      %(<div class="table-container">
-        <table>
-          #{header}#{body}
-        </table>
+      def convert_table(_element, _indent)
+        %(<div class="table-container">
+        #{super}
       </div>)
+      end
+
+      def convert_p(element, indent)
+        app.api("<p>#{inner(element, indent).strip}</p>\n")
+      end
+
+      def app
+        context.respond_to?(:app) ? context.app : context
+      end
+
+      def context
+        @context ||= @options[:context]
+      end
     end
   end
 end
