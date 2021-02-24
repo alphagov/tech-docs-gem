@@ -20,7 +20,7 @@ module GovukTechDocs
     end
 
     def image(link, *args)
-      %(<a href="#{link}" target="_blank" rel="noopener noreferrer">#{super}</a>)
+      %(<a href="#{link}" rel="noreferrer">#{super}</a>)
     end
 
     def table(header, body)
