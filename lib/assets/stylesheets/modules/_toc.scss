@@ -165,6 +165,9 @@
 
       .toc__list {
         margin-right: govuk-spacing(7);
+        &.search-results-open {
+          display: none;
+        }
       }
 
       .toc__close {
@@ -209,6 +212,10 @@
           height: 100%;
           overflow: hidden;
           pointer-events: none;
+          // set visibility hidden on the body when TOC is open
+          // this is a hack to prevent tabbing to out-of-view elements when the TOC is active
+          // it's preferable to keyboard trapping... probably.
+          visibility: hidden;
         }
 
         .toc-show {
@@ -216,6 +223,7 @@
         }
 
         .toc {
+          visibility: visible;
           display: block;
           pointer-events: auto;
           position: fixed;

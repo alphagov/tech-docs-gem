@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [#210: Fix issue with WCAG 2.1 success criterion 1.3.1 (Info and Relationships)](https://github.com/alphagov/tech-docs-gem/pull/210)
+- [#209: Some search and keyboard navigation updates](https://github.com/alphagov/tech-docs-gem/pull/209)
 
 ### Ruby version bump
 
