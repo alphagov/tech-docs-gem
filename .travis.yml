@@ -1,4 +1,7 @@
 language: ruby
+cache:
+  bundler: true
+  npm: true
 before_install:
   - gem update --system
   - gem install bundler
