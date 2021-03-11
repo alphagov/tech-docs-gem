@@ -118,14 +118,17 @@
   }
 
   pre {
+    $padding: 15px;
+    $border-width: 1px;
+
     background: $code-00;
-    padding: 15px;
+    padding: $padding;
     overflow: auto;
     position: relative;
-    border: 1px solid $code-02;
+    border: $border-width solid $code-02;
 
     &:focus {
-      padding: 13px;
+      padding: $padding - ($govuk-focus-width - $border-width);
       border: $govuk-focus-width solid $govuk-focus-text-colour;
       outline: $govuk-focus-width solid $govuk-focus-colour;
     }
