@@ -1,1 +1,1 @@
-⚠️ Don't forget to update the gem version in the [version file](https://github.com/alphagov/tech-docs-gem/blob/master/lib/govuk_tech_docs/version.rb) and [CHANGELOG](https://github.com/alphagov/tech-docs-gem/blob/master/CHANGELOG.md) before merging! ⚠️
+⚠️ Don't forget to update the gem version in the [CHANGELOG](https://github.com/alphagov/tech-docs-gem/blob/master/CHANGELOG.md) before merging! When you're ready to release bump [version file](https://github.com/alphagov/tech-docs-gem/blob/master/lib/govuk_tech_docs/version.rb) and generate a tag. ⚠️
