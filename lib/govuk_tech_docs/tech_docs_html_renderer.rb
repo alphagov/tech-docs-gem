@@ -74,5 +74,23 @@ module GovukTechDocs
 
       tr.to_html
     end
+
+    def block_code(text, lang)
+      if defined?(super)
+        # Post-processing the block_code HTML to implement tabbable code blocks.
+        #
+        # Middleman monkey patches the Middleman::Renderers::MiddlemanRedcarpetHTML
+        # to include Middleman::Syntax::RedcarpetCodeRenderer. This defines its own
+        # version of `block_code(text, lang)` which we can call with `super`.
+
+        highlighted_html = super
+        highlighted_html.sub("<pre ", '<pre tabindex="0" ')
+      else
+        # If syntax highlighting with redcarpet isn't enabled, super will not
+        # be `defined?`, so we can jump straight to rendering HTML ourselves.
+
+        "<pre tabindex=\"0\"><code class=\"#{lang}\">#{text}</code></pre>"
+      end
+    end
   end
 end

@@ -123,6 +123,12 @@
     overflow: auto;
     position: relative;
     border: 1px solid $code-02;
+
+    &:focus {
+      padding: 13px;
+      border: $govuk-focus-width solid $govuk-focus-text-colour;
+      outline: $govuk-focus-width solid $govuk-focus-colour;
+    }
   }
 
   pre code {
