@@ -1,31 +1,40 @@
 RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
+  let(:app) { double("app") }
+  let(:context) { double("context") }
+  let(:processor) {
+    allow(context).to receive(:app) { app }
+    allow(app).to receive(:api)
+    Redcarpet::Markdown.new(described_class.new(context: context), tables: true)
+  }
+
   describe "#render a table" do
-    it "renders tables with row headings" do
-      app = double("app")
-      context = double("context")
-      allow(context).to receive(:app) { app }
-      allow(app).to receive(:api)
+    markdown_table = <<~MARKDOWN
+     |  A   | B |
+     |------|---|
+     |# C   | D |
+     |  E   | F |
+     |# *G* | H |
+    MARKDOWN
 
-      processor = Redcarpet::Markdown.new(described_class.new(context: context), tables: true)
-      output = processor.render <<~MARKDOWN
-       |  A   | B |
-       |------|---|
-       |# C   | D |
-       |  E   | F |
-       |# *G* | H |
-      MARKDOWN
+    it "treats cells in the heading row as headings" do
+      output = processor.render markdown_table
 
-      # Cells in the heading row should be treated as headings
       expect(output).to include("<th>A</th>")
       expect(output).to include("<th>B</th>")
+    end
 
-      # Cells starting with `#` should be treated as row headings
+    it "treats cells starting with # as row headings" do
+      output = processor.render markdown_table
       expect(output).to include('<th scope="row">C</th>')
+    end
 
-      # Cells starting with `#` with more complex markup should be treated as row headings
+    it "treats cells starting with # with more complex markup as row headings" do
+      output = processor.render markdown_table
       expect(output).to match(/<th scope="row"><em>G<\/em>\s*<\/th>/)
+    end
 
-      # Other cells should be treated as ordinary cells
+    it "treats other cells as ordinary cells" do
+      output = processor.render markdown_table
       expect(output).to include("<td>D</td>")
       expect(output).to include("<td>E</td>")
       expect(output).to include("<td>F</td>")
