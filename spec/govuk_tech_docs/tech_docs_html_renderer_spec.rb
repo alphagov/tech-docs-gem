@@ -57,36 +57,41 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
       MARKDOWN
     }
 
-    it "sets tab index to 0" do
-      expect(output).to include('<pre tabindex="0">')
+    context "without syntax highlighting" do
+      let(:processor) {
+        Redcarpet::Markdown.new(described_class.new(context: context), fenced_code_blocks: true)
+      }
+
+      it "sets tab index to 0" do
+        expect(output).to include('<pre tabindex="0">')
+      end
+
+      it "renders the code without syntax highlighting" do
+        expect(output).to include("def hello_world")
+        expect(output).to include('puts "hello world"')
+        expect(output).to include("end")
+      end
     end
 
-    it "renders the code without syntax highlighting" do
-      expect(output).to include("def hello_world")
-      expect(output).to include('puts "hello world"')
-      expect(output).to include("end")
-    end
 
-    describe "with syntax highlighting" do
+    context "with syntax highlighting" do
       let(:processor) {
         renderer_class = described_class.clone.tap do |c|
           c.send :include, Middleman::Syntax::RedcarpetCodeRenderer
         end
-        Redcarpet::Markdown.new(renderer_class.new(context: context), tables: true, fenced_code_blocks: true)
+        Redcarpet::Markdown.new(renderer_class.new(context: context), fenced_code_blocks: true)
       }
 
-      describe "#render a code block" do
-        it "sets tab index to 0" do
-          expect(output).to include('<pre class=" ruby" tabindex="0">')
-        end
+      it "sets tab index to 0" do
+        expect(output).to include('<pre class=" ruby" tabindex="0">')
+      end
 
-        it "renders the code with syntax highlighting" do
-          expect(output).to include("def</span>")
-          expect(output).to include("hello_world</span>")
-          expect(output).to include("puts</span>")
-          expect(output).to include('"hello world"</span>')
-          expect(output).to include("end</span>")
-        end
+      it "renders the code with syntax highlighting" do
+        expect(output).to include("def</span>")
+        expect(output).to include("hello_world</span>")
+        expect(output).to include("puts</span>")
+        expect(output).to include('"hello world"</span>')
+        expect(output).to include("end</span>")
       end
     end
   end
