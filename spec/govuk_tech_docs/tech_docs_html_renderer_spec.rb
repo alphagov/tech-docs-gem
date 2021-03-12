@@ -77,7 +77,7 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
 
       describe "#render a code block" do
         it "sets tab index to 0" do
-          expect(output).to include('<pre tabindex="0" class=" ruby">')
+          expect(output).to include('<pre class=" ruby" tabindex="0">')
         end
 
         it "renders the code with syntax highlighting" do
