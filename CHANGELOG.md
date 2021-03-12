@@ -1,23 +1,32 @@
 # Changelog
 
-## Unreleased
+## 2.2.0
 
-- [#210: Fix issue with WCAG 2.1 success criterion 1.3.1 (Info and Relationships)](https://github.com/alphagov/tech-docs-gem/pull/210)
+### Accessibility Fixes
+
+- [#205: Improve table of contents accessibility](https://github.com/alphagov/tech-docs-gem/pull/205)
 - [#209: Some search and keyboard navigation updates](https://github.com/alphagov/tech-docs-gem/pull/209)
+- [#210: Stop linking images to new tabs](https://github.com/alphagov/tech-docs-gem/pull/210)
 - [#214: Implement row level table headings to allow accessible tables with row headings](https://github.com/alphagov/tech-docs-gem/pull/214)
 - [#215: Add tabindex and focus states to code blocks](https://github.com/alphagov/tech-docs-gem/pull/215)
 
-### Ruby version bump
+### Docs
 
-We've updated the Ruby version supported:
+- [#206: Remove tdt docs content from readme file](https://github.com/alphagov/tech-docs-gem/pull/206)
 
-- [#201: Bump ruby to 2.7.2](https://github.com/alphagov/tech-docs-gem/pull/201)
+## 2.1.1
 
 ### Fixes
 
 We’ve made fixes in the following pull requests:
 
 - [#199: Fix page expiry box link colours (hover and focus) ](https://github.com/alphagov/tech-docs-gem/pull/199)
+
+### Ruby version bump
+
+We've updated the Ruby version supported:
+
+- [#201: Bump ruby to 2.7.2](https://github.com/alphagov/tech-docs-gem/pull/201)
 
 ## 2.1.0
 
