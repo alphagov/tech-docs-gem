@@ -74,5 +74,35 @@ module GovukTechDocs
 
       tr.to_html
     end
+
+    def block_code(text, lang)
+      if defined?(super)
+        # Post-processing the block_code HTML to implement tabbable code blocks.
+        #
+        # Middleman monkey patches the Middleman::Renderers::MiddlemanRedcarpetHTML
+        # to include Middleman::Syntax::RedcarpetCodeRenderer. This defines its own
+        # version of `block_code(text, lang)` which we can call with `super`.
+
+        fragment = Nokogiri::HTML::DocumentFragment.parse(super)
+        fragment.traverse do |element|
+          if element.name == "pre" && element["tabindex"].nil?
+            element["tabindex"] = "0"
+          end
+        end
+        fragment.to_html
+      else
+        # If syntax highlighting with redcarpet isn't enabled, super will not
+        # be `defined?`, so we can jump straight to rendering HTML ourselves.
+
+        fragment = Nokogiri::HTML::DocumentFragment.parse("")
+        pre = Nokogiri::XML::Node.new "pre", fragment
+        pre["tabindex"] = "0"
+        code = Nokogiri::XML::Node.new "code", fragment
+        code["class"] = lang
+        code.content = text
+        pre.add_child code
+        pre.to_html
+      end
+    end
   end
 end
