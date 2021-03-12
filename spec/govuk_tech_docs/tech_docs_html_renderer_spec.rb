@@ -19,17 +19,17 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
       expect(output).to include("<th>A</th>")
       expect(output).to include("<th>B</th>")
 
-      # Cells starting with `# ` should be treated as row headings
+      # Cells starting with `#` should be treated as row headings
       expect(output).to include('<th scope="row">C</th>')
+
+      # Cells starting with `#` with more complex markup should be treated as row headings
+      expect(output).to match(/<th scope="row"><em>G<\/em>\s*<\/th>/)
 
       # Other cells should be treated as ordinary cells
       expect(output).to include("<td>D</td>")
       expect(output).to include("<td>E</td>")
       expect(output).to include("<td>F</td>")
       expect(output).to include("<td>H</td>")
-
-      # Heading cells with more complex markup aren't handled yet
-      expect(output).to include("<td># <em>G</em></td>")
     end
   end
 end

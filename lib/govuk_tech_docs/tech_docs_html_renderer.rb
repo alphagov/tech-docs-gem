@@ -52,12 +52,27 @@ module GovukTechDocs
       # table cells and table headings until https://github.com/vmg/redcarpet/commit/27dfb2a738a23aadd286ac9e7ecd61c4545d29de
       # (which is not yet released). This means we can't use the table_cell callback
       # without breaking column headers, so we're having to hack it in table_row.
-      #
-      # Despite the hackiness, this substitution should work for all cases
-      # where the table cell just includes simple text (with no other markup).
 
-      body_with_row_headers = body.gsub(/<td># ([^<]*)<\/td>/, "<th scope=\"row\">\\1</th>")
-      "<tr>#{body_with_row_headers}</tr>"
+      fragment = Nokogiri::HTML::DocumentFragment.parse(body)
+      fragment.children.each do |cell|
+        next unless cell.name == "td"
+        next if cell.children.empty?
+
+        first_child = cell.children.first
+        next unless first_child.text?
+
+        leading_text = first_child.content
+        next unless leading_text.start_with?("#")
+
+        cell.name = "th"
+        cell["scope"] = "row"
+        first_child.content = leading_text.sub(/# */, "")
+      end
+
+      tr = Nokogiri::XML::Node.new "tr", fragment
+      tr.children = fragment.children
+
+      tr.to_html
     end
   end
 end
