@@ -1,13 +1,18 @@
 # Changelog
 
-## Unreleased
+## 2.2.0
+
+### Accessibility Fixes
 
 - [#205: Improve table of contents accessibility](https://github.com/alphagov/tech-docs-gem/pull/205)
-- [#206: Remove tdt docs content from readme file](https://github.com/alphagov/tech-docs-gem/pull/206)
 - [#209: Some search and keyboard navigation updates](https://github.com/alphagov/tech-docs-gem/pull/209)
-- [#210: Fix issue with WCAG 2.1 success criterion 1.3.1 (Info and Relationships)](https://github.com/alphagov/tech-docs-gem/pull/210)
+- [#210: Stop linking images to new tabs](https://github.com/alphagov/tech-docs-gem/pull/210)
 - [#214: Implement row level table headings to allow accessible tables with row headings](https://github.com/alphagov/tech-docs-gem/pull/214)
 - [#215: Add tabindex and focus states to code blocks](https://github.com/alphagov/tech-docs-gem/pull/215)
+
+### Docs
+
+- [#206: Remove tdt docs content from readme file](https://github.com/alphagov/tech-docs-gem/pull/206)
 
 ## 2.1.1
 
