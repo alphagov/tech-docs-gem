@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- [Pull request: #125: Fix API docs showing required properties as optional](https://github.com/alphagov/tech-docs-gem/pull/125)
+
 ## 2.2.0
 
 ### Accessibility Fixes
