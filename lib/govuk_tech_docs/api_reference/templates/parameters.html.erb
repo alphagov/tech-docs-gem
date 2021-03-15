@@ -11,7 +11,7 @@
 <td><%= parameter.in %></td>
 <td><%= parameter.schema.type %></td>
 <td><%= parameter.required? %></td>
-<td><%= markdown(parameter.description) %>
+<td><%= parameter.description_html %>
 <% if parameter.schema.enum %>
 <p>Available items:</p>
 <ul>
