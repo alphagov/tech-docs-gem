@@ -46,7 +46,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pry"
   spec.add_dependency "redcarpet", "~> 3.5.0"
   spec.add_dependency "sass"
-  spec.add_dependency "sprockets", "~> 4.0.0"
 
   spec.add_development_dependency "bundler", "~> 2.2.0"
   spec.add_development_dependency "byebug"
