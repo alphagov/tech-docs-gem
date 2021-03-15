@@ -1,8 +1,9 @@
 # Changelog
 
-## Unreleased
+## 2.2.1
 
-- [Pull request: #125: Fix API docs showing required properties as optional](https://github.com/alphagov/tech-docs-gem/pull/125)
+- [#218: Remove unnecessary explicit dependencies: sprockets, activesupport, sass and pry](https://github.com/alphagov/tech-docs-gem/pull/218)
+- [#125: Fix API docs showing required properties as optional](https://github.com/alphagov/tech-docs-gem/pull/125)
 
 ## 2.2.0
 
