@@ -43,7 +43,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-syntax", "~> 3.2.0"
   spec.add_dependency "nokogiri"
   spec.add_dependency "openapi3_parser", "~> 0.9.0"
-  spec.add_dependency "pry"
   spec.add_dependency "redcarpet", "~> 3.5.0"
 
   spec.add_development_dependency "bundler", "~> 2.2.0"
