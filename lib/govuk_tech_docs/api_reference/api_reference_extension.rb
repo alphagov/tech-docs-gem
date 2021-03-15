@@ -1,7 +1,6 @@
 require "erb"
 require "openapi3_parser"
 require "uri"
-require "pry"
 require "govuk_tech_docs/api_reference/api_reference_renderer"
 
 module GovukTechDocs
