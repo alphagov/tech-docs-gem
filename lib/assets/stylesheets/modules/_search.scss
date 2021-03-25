@@ -57,6 +57,10 @@ html.has-search-results-open {
   .app-pane__content {
     overflow: hidden;
   }
+  
+  .toc__close{
+    display: none;
+  }
 }
 .search-results {
   display: none;
