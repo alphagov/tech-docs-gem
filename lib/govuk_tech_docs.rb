@@ -113,7 +113,7 @@ module GovukTechDocs
           url:     { index: false, store: true },
         }
 
-        search.pipeline_remove = %w[stopWordFilter]
+        search.pipeline_remove = %w[stemmer stopWordFilter]
 
         search.tokenizer_separator = '/[\s\-/]+/'
       end
