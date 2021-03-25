@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.2.2
 
 - [#223: Remove unnecessary CSS class on the search submit button](https://github.com/alphagov/tech-docs-gem/pull/223)
 - [#224: Accessibility fix: Hide the 'table of contents close' button when search results are open](https://github.com/alphagov/tech-docs-gem/pull/224)
