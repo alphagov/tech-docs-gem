@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.2
+
+- [#223: Remove unnecessary CSS class on the search submit button](https://github.com/alphagov/tech-docs-gem/pull/223)
+
 ## 2.2.1
 
 - [#218: Remove unnecessary explicit dependencies: sprockets, activesupport, sass and pry](https://github.com/alphagov/tech-docs-gem/pull/218)
