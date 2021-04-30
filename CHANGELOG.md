@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- [Bump redcarpet to 3.5.1 to fix CVE-2020-26298]()
+- [Bump redcarpet to 3.5.1 to fix CVE-2020-26298](https://github.com/alphagov/tech-docs-gem/pull/226)
 
 ## 2.2.2
 
