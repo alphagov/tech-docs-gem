@@ -8,6 +8,8 @@ $govuk-assets-path: "/assets/govuk/assets/";
 @import "govuk/core/all";
 @import "govuk/objects/all";
 
+@import "govuk/components/cookie-banner/cookie-banner";
+@import "govuk/components/button/button";
 @import "govuk/components/footer/footer";
 @import "govuk/components/header/header";
 @import "govuk/components/inset-text/inset-text";
