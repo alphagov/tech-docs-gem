@@ -52,3 +52,12 @@ api_path: source/pets.yml
 # Optional global settings for the page review process
 owner_slack_workspace: gds
 default_owner_slack: '#2nd-line'
+
+cookie_banner: 
+  enable: true
+  cookie_types: ['essential','analytics', 'additional']
+  custom_cookies_text: |
+    This is my custom text
+    This adds a line break.
+
+    This adds a new paragraph.
