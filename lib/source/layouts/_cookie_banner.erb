@@ -1,0 +1,108 @@
+<%
+  is_enabled ||= config.tech_docs.dig(:cookie_banner, :enable)
+  essential_cookies = config.tech_docs.dig(:cookie_banner, :cookie_types) ? config[:tech_docs][:cookie_banner][:cookie_types].include?('essential') : false
+
+  analytics_cookies = config.tech_docs.dig(:cookie_banner, :cookie_types) ? config[:tech_docs][:cookie_banner][:cookie_types].include?('analytics') : false
+
+  additional_cookies = config.tech_docs.dig(:cookie_banner, :cookie_types) ? config[:tech_docs][:cookie_banner][:cookie_types].include?('additional') : false
+
+  custom_cookies_text = config.tech_docs.dig(:cookie_banner, :custom_cookies_text)
+
+  default_essential_cookies_text = "We use some essential cookies to make this service work."
+
+  default_analytics_cookies_text = "We’d also like to use analytics cookies so we can understand how you use the service and make improvements."
+
+  default_additional_cookies_text = "We’d like to set additional cookies so we can remember your settings, understand how people use the service and make improvements."
+
+  cookie_page_path = config.tech_docs.dig(:cookie_banner, :cookie_page_path) ?
+    config[:tech_docs][:cookie_banner][:cookie_page_path] : '/cookies'
+
+  nonessential_cookie_type_text = additional_cookies ? 'additional' : 'analytics'
+%>
+
+<% if is_enabled %>
+
+<div class="govuk-cookie-banner " role="region" aria-label="Cookies on <%= config[:tech_docs][:service_name] %>">
+  <div class="govuk-cookie-banner__message govuk-width-container">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on <%= config[:tech_docs][:service_name] %></h2>
+        <div class="govuk-cookie-banner__content">
+        <% if custom_cookies_text %>
+          <%= simple_format(custom_cookies_text) %>
+        <% else %>
+          <% if essential_cookies %>
+            <p><%= default_essential_cookies_text %></p>
+          <% end %>
+
+          <% if additional_cookies %>
+            <p><%= default_additional_cookies_text %></p>
+          <% elsif analytics_cookies %>
+            <p><%= default_analytics_cookies_text %></p>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+
+    
+      <div class="govuk-button-group">
+        <% if analytics_cookies || additional_cookies %>
+          <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button">
+            Accept <%= nonessential_cookie_type_text %> cookies
+          </button>
+          <button value="reject" type="button" name="cookies" class="govuk-button" data-module="govuk-button">
+            Reject <%= nonessential_cookie_type_text %> cookies
+          </button>
+        <% end %>
+        <% if essential_cookies %>
+          <a class="govuk-link" href="<%= cookie_page_path %>">View cookies</a>
+        <% end %>
+        <% if essential_cookies && !(analytics_cookies || additional_cookies) %>
+          <button type="button" class="govuk-button" data-module="govuk-button">
+            Hide this message
+          </button>
+        <% end %>
+      </div>
+  </div>
+  <% if analytics_cookies || additional_cookies %>
+    <div class="govuk-cookie-banner__message govuk-width-container" role="alert" hidden>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          <div class="govuk-cookie-banner__content">
+            <p>You’ve accepted <%= nonessential_cookie_type_text %> cookies. You can <a href="<%= cookie_page_path %>">change your cookie settings</a> at any time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button">
+          Hide this message
+        </button>
+      </div>
+    </div>
+
+    <div class="govuk-cookie-banner__message govuk-width-container" role="alert" hidden>
+
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+          <div class="govuk-cookie-banner__content">
+            <p>You’ve rejected <%= nonessential_cookie_type_text %> cookies. You can <a href="<%= cookie_page_path %>">change your cookie settings</a> at any time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-button-group">
+        <button class="govuk-button" data-module="govuk-button">
+          Hide this message
+        </button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% end %>
