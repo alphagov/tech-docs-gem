@@ -15,14 +15,18 @@
 
     &__list {
       li {
+        a {
+          @include govuk-link-decoration;
+          @include govuk-link-style-no-visited-state;
+          @include govuk-link-style-no-underline;
+        }
+
         a:link, a:visited {
           display: block;
           position: relative;
           padding: 8px govuk-spacing(6) 8px govuk-spacing(2);
           margin: 0 -1 * govuk-spacing(3);
           border-left: 5px solid transparent;
-          text-decoration: none;
-          color: $govuk-link-colour;
 
           @include govuk-media-query(tablet) {
             &.toc-link--in-view  {
@@ -33,19 +37,15 @@
           }
         }
 
+        a:hover {
+          @include govuk-link-hover-decoration;
+        }
+
         a:focus {
-          outline: none;
+          text-decoration: none;
 
           span {
             @include govuk-focused-text;
-          }
-        }
-
-        a:hover {
-          text-decoration: underline;
-
-          &:focus {
-            text-decoration: none;
           }
         }
       }

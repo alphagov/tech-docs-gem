@@ -1,6 +1,7 @@
 $govuk-assets-path: "/assets/govuk/assets/";
 
 // Include only the bits of GOV.UK Frontend we need
+$govuk-new-link-styles: true;
 @import "govuk/settings/all";
 @import "govuk/tools/all";
 @import "govuk/helpers/all";

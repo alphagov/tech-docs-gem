@@ -87,21 +87,9 @@ html.has-search-results-open {
       min-height: auto;
     }
 
-    a:link, a:visited {
-      text-decoration: none;
-      color: $govuk-link-colour;
-    }
-
-    a:hover {
-      text-decoration: underline;
-
-      &:focus {
-        text-decoration: none;
-      }
-    }
-    a:focus {
-      outline: none;
-      @include govuk-focused-text;
+    a {
+      @include govuk-link-common;
+      @include govuk-link-style-no-visited-state;
     }
   }
 .search-results__inner {
