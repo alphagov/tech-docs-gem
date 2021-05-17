@@ -1,5 +1,7 @@
 # Changelog
 
+## 2.3.0
+
 - [#232: Update GOV.UK Frontend and use new link styles](https://github.com/alphagov/tech-docs-gem/pull/232)
 
 ## 2.2.2
