@@ -3,6 +3,8 @@ cache:
   bundler: true
   npm: true
 before_install:
+  - nvm install
+  - nvm use
   - gem update --system
   - gem install bundler
 before_script:

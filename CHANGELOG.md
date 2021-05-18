@@ -4,6 +4,10 @@
 
 - [Bump redcarpet to 3.5.1 to fix CVE-2020-26298](https://github.com/alphagov/tech-docs-gem/pull/226)
 
+## 2.3.0
+
+- [#232: Update GOV.UK Frontend and use new link styles](https://github.com/alphagov/tech-docs-gem/pull/232)
+
 ## 2.2.2
 
 - [#223: Remove unnecessary CSS class on the search submit button](https://github.com/alphagov/tech-docs-gem/pull/223)
