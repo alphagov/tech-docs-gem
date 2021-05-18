@@ -7,6 +7,8 @@ $govuk-new-link-styles: true;
 @import "govuk/core/all";
 @import "govuk/objects/all";
 
+@import "govuk/components/button/index";
+@import "govuk/components/cookie-banner/index";
 @import "govuk/components/footer/index";
 @import "govuk/components/header/index";
 @import "govuk/components/inset-text/index";
