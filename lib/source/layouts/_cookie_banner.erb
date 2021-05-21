@@ -25,8 +25,8 @@
 <% end %>
 
 <% if is_enabled %>
-<div class="govuk-cookie-banner " role="region" aria-label="Cookies on <%= config[:tech_docs][:service_name] %>">
-  <div class="govuk-cookie-banner__message govuk-width-container">
+<div class="govuk-cookie-banner" data-module="cookie-banner" role="region" aria-label="Cookies on <%= config[:tech_docs][:service_name] %>">
+  <div class="govuk-cookie-banner__message js-cookie-message govuk-width-container">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
         <h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on <%= config[:tech_docs][:service_name] %></h2>
@@ -57,7 +57,7 @@
     </div>
   </div>
   <% if analytics_cookies || additional_cookies %>
-    <div class="govuk-cookie-banner__message govuk-width-container" role="alert" hidden>
+    <div class="govuk-cookie-banner__message js-accept-message govuk-width-container" role="alert" hidden>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
@@ -71,7 +71,7 @@
         </button>
       </div>
     </div>
-    <div class="govuk-cookie-banner__message govuk-width-container" role="alert" hidden>
+    <div class="govuk-cookie-banner__message js-reject-message govuk-width-container" role="alert" hidden>
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds">
           <div class="govuk-cookie-banner__content">
