@@ -29,6 +29,7 @@
 .rvmrc
 
 /example/build
+/example/.bundle
 /example/.sass-cache
 
 Gemfile.lock
