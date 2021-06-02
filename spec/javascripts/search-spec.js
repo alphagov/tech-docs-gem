@@ -49,34 +49,38 @@ describe('Search', function () {
     })
   })
 
-  it('returns concatenated sentences that contain the search query', function () {
-    var expectedResults = ' … This is <mark data-markjs="true">test</mark> sentence one … This is <mark data-markjs="true">test</mark> sentence two … This is <mark data-markjs="true">test</mark> sentence three … This is <mark data-markjs="true">test</mark> sentence four … This is <mark data-markjs="true">test</mark> sentence five … '
-    expect(processedContent).toEqual(expectedResults)
+  describe('the search method', function () {
+    it('returns an array of search results', function () {
+      var expectedResults = [
+        {
+          title: 'This is an expired page',
+          content: 'This is an expired page\nSee the banner on this page.\n',
+          url: '/expired-page.html'
+        },
+        {
+          title: 'This is an expired page',
+          content: 'This is not an expired page\nSee the banner on this page.\n',
+          url: '/not-expired-page.html'
+        },
+        {
+          title: 'This is an expired page',
+          content: 'This is an expired page with owner\nSee the banner on this page.\n',
+          url: '/expired-page-with-owner.html'
+        },
+        {
+          title: 'This is a child of expired page',
+          content: 'This is a child of expired page\nExpired page should highlight in the navigation.\n',
+          url: '/child-of-expired-page.html'
+        }
+      ]
+      expect(searchResults).toEqual(expectedResults)
+    })
   })
 
-  it('renders search results in the search results area', function () {
-    var expectedResults = [
-      {
-        title: 'This is an expired page',
-        content: 'This is an expired page\nSee the banner on this page.\n',
-        url: '/expired-page.html'
-      },
-      {
-        title: 'This is an expired page',
-        content: 'This is not an expired page\nSee the banner on this page.\n',
-        url: '/not-expired-page.html'
-      },
-      {
-        title: 'This is an expired page',
-        content: 'This is an expired page with owner\nSee the banner on this page.\n',
-        url: '/expired-page-with-owner.html'
-      },
-      {
-        title: 'This is a child of expired page',
-        content: 'This is a child of expired page\nExpired page should highlight in the navigation.\n',
-        url: '/child-of-expired-page.html'
-      }
-    ]
-    expect(searchResults).toEqual(expectedResults)
+  describe('the processContent method', function () {
+    it('returns concatenated sentences that contain the search query', function () {
+      var expectedResults = ' … This is <mark data-markjs="true">test</mark> sentence one … This is <mark data-markjs="true">test</mark> sentence two … This is <mark data-markjs="true">test</mark> sentence three … This is <mark data-markjs="true">test</mark> sentence four … This is <mark data-markjs="true">test</mark> sentence five … '
+      expect(processedContent).toEqual(expectedResults)
+    })
   })
 })
