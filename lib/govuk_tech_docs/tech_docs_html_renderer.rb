@@ -16,7 +16,7 @@ module GovukTechDocs
 
     def header(text, level)
       anchor = UniqueIdentifierGenerator.instance.create(text, level)
-      %(<h#{level} id="#{anchor}">#{text}</h#{level}>)
+      %(<h#{level} id="#{anchor}">#{text}</h#{level}>\n)
     end
 
     def image(link, *args)
