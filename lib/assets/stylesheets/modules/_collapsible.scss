@@ -17,6 +17,11 @@
   margin-right: 30px;
 }
 
+.collapsible__heading h2 {
+  font-size: inherit;
+  margin: 0;
+}
+
 .collapsible__toggle {
   position: absolute;
   top: 0;
