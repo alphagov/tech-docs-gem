@@ -22,33 +22,29 @@ describe GovukTechDocs::TableOfContents::HeadingTreeRenderer do
     }
 
     let(:expected_html_with_all_headings) {
-      <<~EOF
-      <ul>
-        <li>
-          <a href="#apples"><span>Apples</span></a>
-          <ul>
-            <li>
-              <a href="#apple-recipes"><span>Apple recipes</span></a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#oranges"><span>Oranges</span></a>
-        </li>
-      </ul>
+      <<-EOF
+  <li>
+    <a href="#apples"><span>Apples</span></a>
+    <ul>
+      <li>
+        <a href="#apple-recipes"><span>Apple recipes</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#oranges"><span>Oranges</span></a>
+  </li>
       EOF
     }
 
     let(:expected_html_with_max_heading_of_one) {
-      <<~EOF
-      <ul>
-        <li>
-          <a href="#apples"><span>Apples</span></a>
-        </li>
-        <li>
-          <a href="#oranges"><span>Oranges</span></a>
-        </li>
-      </ul>
+      <<-EOF
+  <li>
+    <a href="#apples"><span>Apples</span></a>
+  </li>
+  <li>
+    <a href="#oranges"><span>Oranges</span></a>
+  </li>
       EOF
     }
 

@@ -32,8 +32,8 @@ module GovukTechDocs
         # Sort by weight frontmatter
         resources = resources
         .sort_by { |r| [r.data.weight ? 0 : 1, r.data.weight || 0] }
-        
-        output = "<ul>"
+
+        output = "<ul>\n"
         resources.each do |resource|
           # Skip from page tree if hide_in_navigation:true frontmatter
           next if resource.data.hide_in_navigation
@@ -66,7 +66,7 @@ module GovukTechDocs
           if resource.children.any? && resource.url != home_url
             output += %{<li><a href="#{resource.url}"><span>#{resource.data.title}</span></a>\n}
             output += render_page_tree(resource.children, current_page, config, current_page_html)
-            output += "</li>"
+            output += "</li>\n"
           else
             output +=
               single_page_table_of_contents(
@@ -76,7 +76,7 @@ module GovukTechDocs
               )
           end
         end
-        output += "</ul>"
+        output += "</ul>\n"
 
         output
       end
