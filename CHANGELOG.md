@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [Bump redcarpet to 3.5.1 to fix CVE-2020-26298](https://github.com/alphagov/tech-docs-gem/pull/226)
+- [#238: Move the aria-expanded attribute to the correct element](https://github.com/alphagov/tech-docs-gem/pull/238)
 
 ## 2.3.0
 
