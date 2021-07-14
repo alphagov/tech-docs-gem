@@ -130,16 +130,7 @@ html.has-search-results-open {
   cursor: pointer;
 
   &:focus {
-    background-color: $govuk-focus-colour;
-    outline: $govuk-focus-width solid transparent;
-    box-shadow: inset 0 0 0 1px $govuk-focus-colour;
-  }
-
-  &:focus:not(:active):not(:hover) {
-    border-color: $govuk-focus-colour;
-    color: $govuk-focus-text-colour;
-    background-color: $govuk-focus-colour;
-    box-shadow: 0 2px 0 $govuk-focus-text-colour;
+    @include govuk-focused-text;
   }
 
   &::after {
