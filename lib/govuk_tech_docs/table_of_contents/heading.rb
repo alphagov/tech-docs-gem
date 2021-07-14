@@ -12,8 +12,8 @@ module GovukTechDocs
         @element_name.scan(/h(\d)/) && $1 && Integer($1)
       end
 
-      def href(level)
-        if @page_url != "" && level == 1
+      def href
+        if @page_url != "" && size == 1
           @page_url
         else
           @page_url + "#" + @attributes["id"]
