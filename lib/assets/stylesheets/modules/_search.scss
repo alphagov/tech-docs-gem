@@ -56,8 +56,9 @@ html.has-search-results-open {
   overflow: hidden;
   .app-pane__content {
     overflow: hidden;
+    opacity: .4;
   }
-  
+
   .toc__close{
     display: none;
   }
