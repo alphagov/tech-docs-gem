@@ -148,7 +148,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
 <li><a href="/index.html"><span>Index</span></a>
 <ul>
   <li>
-    <a href="/a.html#heading-one"><span>Heading one</span></a>
+    <a href="/a.html"><span>Heading one</span></a>
     <ul>
       <li>
         <a href="/a.html#heading-two"><span>Heading two</span></a>
@@ -156,7 +156,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
     </ul>
   </li>
   <li>
-    <a href="/b.html#heading-one"><span>Heading one</span></a>
+    <a href="/b.html"><span>Heading one</span></a>
     <ul>
       <li>
         <a href="/b.html#heading-two"><span>Heading two</span></a>
@@ -197,7 +197,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
 <li><a href="/prefix/index.html"><span>Index</span></a>
 <ul>
   <li>
-    <a href="/prefix/a.html#heading-one"><span>Heading one</span></a>
+    <a href="/prefix/a.html"><span>Heading one</span></a>
     <ul>
       <li>
         <a href="/prefix/a.html#heading-two"><span>Heading two</span></a>
@@ -205,7 +205,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
     </ul>
   </li>
   <li>
-    <a href="/prefix/b.html#heading-one"><span>Heading one</span></a>
+    <a href="/prefix/b.html"><span>Heading one</span></a>
     <ul>
       <li>
         <a href="/prefix/b.html#heading-two"><span>Heading two</span></a>
@@ -242,7 +242,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       expected_multi_page_table_of_contents = %{
 <ul>
   <li>
-    <a href="/index.html#heading-one"><span>Heading one</span></a>
+    <a href="/index.html"><span>Heading one</span></a>
     <ul>
       <li>
         <a href="/index.html#heading-two"><span>Heading two</span></a>
@@ -250,7 +250,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
     </ul>
   </li>
   <li>
-    <a href="/index.html#heading-one"><span>Heading one</span></a>
+    <a href="/index.html"><span>Heading one</span></a>
     <ul>
       <li>
         <a href="/index.html#heading-two"><span>Heading two</span></a>
@@ -258,7 +258,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
     </ul>
   </li>
   <li>
-    <a href="/index.html#heading-one"><span>Heading one</span></a>
+    <a href="/index.html"><span>Heading one</span></a>
     <ul>
       <li>
         <a href="/index.html#heading-two"><span>Heading two</span></a>
