@@ -24,7 +24,7 @@ module GovukTechDocs
         end
 
         if tree.children.any? && level < @max_level
-          output += indentation + "<ul>\n"
+          output += indentation + "<ul>\n" unless level.zero?
 
           tree.children.each do |child|
             output += indentation + INDENTATION_INCREMENT + "<li>\n"
@@ -36,7 +36,7 @@ module GovukTechDocs
             output += indentation + INDENTATION_INCREMENT + "</li>\n"
           end
 
-          output += indentation + "</ul>\n"
+          output += indentation + "</ul>\n" unless level.zero?
         end
 
         output

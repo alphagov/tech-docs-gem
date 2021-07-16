@@ -18,7 +18,6 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_single_page_table_of_contents = %{
-<ul>
   <li>
     <a href="#fruit"><span>Fruit</span></a>
   </li>
@@ -30,7 +29,6 @@ describe GovukTechDocs::TableOfContents::Helpers do
       </li>
     </ul>
   </li>
-</ul>
       }
 
       expect(subject.single_page_table_of_contents(html).strip).to eq(expected_single_page_table_of_contents.strip)
@@ -47,7 +45,6 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_single_page_table_of_contents = %{
-<ul>
   <li>
     <a href="#fruit"><span>Fruit</span></a>
     <ul>
@@ -68,7 +65,6 @@ describe GovukTechDocs::TableOfContents::Helpers do
   <li>
     <a href="#bread"><span>Bread</span></a>
   </li>
-</ul>
       }
 
       expect(subject.single_page_table_of_contents(html).strip).to eq(expected_single_page_table_of_contents.strip)
@@ -148,7 +144,8 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_multi_page_table_of_contents = %{
-<ul><li><a href="/index.html"><span>Index</span></a>
+<ul>
+<li><a href="/index.html"><span>Index</span></a>
 <ul>
   <li>
     <a href="/a.html"><span>Heading one</span></a>
@@ -158,8 +155,6 @@ describe GovukTechDocs::TableOfContents::Helpers do
       </li>
     </ul>
   </li>
-</ul>
-<ul>
   <li>
     <a href="/b.html"><span>Heading one</span></a>
     <ul>
@@ -169,7 +164,8 @@ describe GovukTechDocs::TableOfContents::Helpers do
     </ul>
   </li>
 </ul>
-</li></ul>
+</li>
+</ul>
       }
 
       expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
@@ -197,7 +193,8 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_multi_page_table_of_contents = %{
-<ul><li><a href="/prefix/index.html"><span>Index</span></a>
+<ul>
+<li><a href="/prefix/index.html"><span>Index</span></a>
 <ul>
   <li>
     <a href="/prefix/a.html"><span>Heading one</span></a>
@@ -207,8 +204,6 @@ describe GovukTechDocs::TableOfContents::Helpers do
       </li>
     </ul>
   </li>
-</ul>
-<ul>
   <li>
     <a href="/prefix/b.html"><span>Heading one</span></a>
     <ul>
@@ -218,7 +213,8 @@ describe GovukTechDocs::TableOfContents::Helpers do
     </ul>
   </li>
 </ul>
-</li></ul>
+</li>
+</ul>
       }
 
       expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
