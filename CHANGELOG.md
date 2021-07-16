@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [Bump redcarpet to 3.5.1 to fix CVE-2020-26298](https://github.com/alphagov/tech-docs-gem/pull/226)
+- [244: Don't change the focus of the page on initial load](https://github.com/alphagov/tech-docs-gem/pull/244)
 
 ## 2.3.0
 

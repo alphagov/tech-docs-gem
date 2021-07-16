@@ -13,7 +13,11 @@ module GovukTechDocs
       end
 
       def href
-        @page_url + "#" + @attributes["id"]
+        if @page_url != "" && size == 1
+          @page_url
+        else
+          @page_url + "#" + @attributes["id"]
+        end
       end
 
       def title
