@@ -3,8 +3,9 @@
 ## Unreleased
 
 - [Bump redcarpet to 3.5.1 to fix CVE-2020-26298](https://github.com/alphagov/tech-docs-gem/pull/226)
+- [#238: Move the aria-expanded attribute to the correct element](https://github.com/alphagov/tech-docs-gem/pull/238)
 - [#240: Update menu html structure so it's one single hierarchical list](https://github.com/alphagov/tech-docs-gem/pull/240)
-- [244: Don't change the focus of the page on initial load](https://github.com/alphagov/tech-docs-gem/pull/244)
+- [#244: Don't change the focus of the page on initial load](https://github.com/alphagov/tech-docs-gem/pull/244)
 
 ## 2.3.0
 
