@@ -10,10 +10,40 @@ describe GovukTechDocs::TableOfContents::Heading do
   end
 
   describe "#href" do
-    it "returns a fragment href" do
-      heading = described_class.new(element_name: "", text: "", attributes: { "id" => "apple-recipes" })
+    describe "when page is specified" do
+      describe "and heading is h1" do
+        it "returns an href with page and without fragment" do
+          heading = described_class.new(element_name: "h1", text: "", page_url: "index.html", attributes: { "id" => "apple-recipes" })
 
-      expect(heading.href).to eq("#apple-recipes")
+          expect(heading.href).to eq("index.html")
+        end
+      end
+
+      describe "and heading is not h1" do
+        it "returns an href with page and fragment" do
+          heading = described_class.new(element_name: "h2", text: "", page_url: "index.html", attributes: { "id" => "apple-recipes" })
+
+          expect(heading.href).to eq("index.html#apple-recipes")
+        end
+      end
+    end
+
+    describe "when page is not specified" do
+      describe "and heading is h1" do
+        it "returns a fragment href" do
+          heading = described_class.new(element_name: "h1", text: "", attributes: { "id" => "apple-recipes" })
+
+          expect(heading.href).to eq("#apple-recipes")
+        end
+      end
+
+      describe "and heading is not h1" do
+        it "returns a fragment href" do
+          heading = described_class.new(element_name: "h2", text: "", attributes: { "id" => "apple-recipes" })
+
+          expect(heading.href).to eq("#apple-recipes")
+        end
+      end
     end
   end
 
