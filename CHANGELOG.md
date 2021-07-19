@@ -6,6 +6,7 @@
 - [#238: Move the aria-expanded attribute to the correct element](https://github.com/alphagov/tech-docs-gem/pull/238)
 - [#240: Update menu html structure so it's one single hierarchical list](https://github.com/alphagov/tech-docs-gem/pull/240)
 - [#244: Don't change the focus of the page on initial load](https://github.com/alphagov/tech-docs-gem/pull/244)
+- [#243: Fix focus state for links containing inline code](https://github.com/alphagov/tech-docs-gem/pull/243)
 
 ## 2.3.0
 
