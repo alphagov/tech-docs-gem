@@ -7,6 +7,7 @@
 - [#240: Update menu html structure so it's one single hierarchical list](https://github.com/alphagov/tech-docs-gem/pull/240)
 - [#244: Don't change the focus of the page on initial load](https://github.com/alphagov/tech-docs-gem/pull/244)
 - [#243: Fix focus state for links containing inline code](https://github.com/alphagov/tech-docs-gem/pull/243)
+- [#245: Fix focus state for search results ‘Close’ button](https://github.com/alphagov/tech-docs-gem/pull/245)
 
 ## 2.3.0
 
