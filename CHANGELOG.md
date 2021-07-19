@@ -8,6 +8,7 @@
 - [#244: Don't change the focus of the page on initial load](https://github.com/alphagov/tech-docs-gem/pull/244)
 - [#243: Fix focus state for links containing inline code](https://github.com/alphagov/tech-docs-gem/pull/243)
 - [#245: Fix focus state for search results ‘Close’ button](https://github.com/alphagov/tech-docs-gem/pull/245)
+- [#246: Update GOV.UK Frontend to v3.13.0](https://github.com/alphagov/tech-docs-gem/pull/246)
 
 ## 2.3.0
 
