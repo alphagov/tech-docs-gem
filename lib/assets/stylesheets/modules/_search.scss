@@ -54,8 +54,10 @@ $input-size: 40px;
 
 html.has-search-results-open {
   overflow: hidden;
-  .app-pane__content {
+  .app-pane__toc {
     overflow: hidden;
+  }
+  .govuk-header__content, .app-pane__content, #toc {
     opacity: .4;
   }
 
