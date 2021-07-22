@@ -1,5 +1,5 @@
 <% if config[:tech_docs][:enable_search] %>
-<div class="search" data-module="search">
+<div class="search" data-module="search" role="dialog" aria-labelledby="search-results-title">
   <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
     <input type="hidden" name="as_sitesearch" value="<%= config[:tech_docs][:host] %>"/>
     <label class="govuk-label search__label" for="search" aria-hidden="true">
@@ -13,7 +13,7 @@
       placeholder="Search">
     <button type="submit" class="search__button">Search</button>
   </form>
-  <div id="search-results" class="search-results" aria-hidden="true" role="dialog" aria-labelledby="search-results-title">
+  <div id="search-results" class="search-results" aria-hidden="true">
     <div class="search-results__inner">
       <button class="search-results__close">Close<span class="search-results__close-label"> search results</span></button>
       <h2 id="search-results-title" class="search-results__title" aria-live="assertive" role="alert">Results</h2>
