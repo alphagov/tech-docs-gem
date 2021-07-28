@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.4.1
+
 - [#248: Remove IE8 fallback PNG with broken image reference](https://github.com/alphagov/tech-docs-gem/pull/248)
 
 ## 2.4.0
