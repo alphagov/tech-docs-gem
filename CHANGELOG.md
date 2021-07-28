@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [#248: Remove IE8 fallback PNG with broken image reference](https://github.com/alphagov/tech-docs-gem/pull/248)
+
 ## 2.4.0
 
 - [Bump redcarpet to 3.5.1 to fix CVE-2020-26298](https://github.com/alphagov/tech-docs-gem/pull/226)
