@@ -4,8 +4,10 @@ wrap_layout :core do
 
   content_for(:toc_module, "in-page-navigation")
 
+  use_multipage_nav = current_page.data.fetch(:multipage_nav, config[:tech_docs][:multipage_nav])
+
   content_for :sidebar do
-    if config[:tech_docs][:multipage_nav] %>
+    if use_multipage_nav %>
       <%= multi_page_table_of_contents(sitemap.resources, current_page, config, html) %>
     <% else %>
       <%= single_page_table_of_contents(html, max_level: config[:tech_docs][:max_toc_heading_level]) %>
