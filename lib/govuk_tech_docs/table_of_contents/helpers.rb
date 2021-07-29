@@ -8,14 +8,11 @@ module GovukTechDocs
   module TableOfContents
     module Helpers
       def single_page_table_of_contents(html, url: "", max_level: nil)
-        headings = HeadingsBuilder.new(html, url).headings
+        output = "<ul>\n"
+        output += list_items_from_headings(html, url: url, max_level: max_level)
+        output += "</ul>\n"
 
-        if headings.none? { |heading| heading.size == 1 }
-          raise "No H1 tag found. You have to at least add one H1 heading to the page: " + url
-        end
-
-        tree = HeadingTreeBuilder.new(headings).tree
-        HeadingTreeRenderer.new(tree, max_level: max_level).html
+        output
       end
 
       def multi_page_table_of_contents(resources, current_page, config, current_page_html = nil)
@@ -26,6 +23,17 @@ module GovukTechDocs
         .sort_by { |r| [r.data.weight ? 0 : 1, r.data.weight || 0] }
 
         render_page_tree(resources, current_page, config, current_page_html)
+      end
+
+      def list_items_from_headings(html, url: "", max_level: nil)
+        headings = HeadingsBuilder.new(html, url).headings
+
+        if headings.none? { |heading| heading.size == 1 }
+          raise "No H1 tag found. You have to at least add one H1 heading to the page: " + url
+        end
+
+        tree = HeadingTreeBuilder.new(headings).tree
+        HeadingTreeRenderer.new(tree, max_level: max_level).html
       end
 
       def render_page_tree(resources, current_page, config, current_page_html)
@@ -69,7 +77,7 @@ module GovukTechDocs
             output += "</li>\n"
           else
             output +=
-              single_page_table_of_contents(
+              list_items_from_headings(
                 content,
                 url: resource.url,
                 max_level: config[:tech_docs][:max_toc_heading_level],
