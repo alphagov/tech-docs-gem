@@ -18,6 +18,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_single_page_table_of_contents = %{
+<ul>
   <li>
     <a href="#fruit"><span>Fruit</span></a>
   </li>
@@ -29,6 +30,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       </li>
     </ul>
   </li>
+</ul>
       }
 
       expect(subject.single_page_table_of_contents(html).strip).to eq(expected_single_page_table_of_contents.strip)
@@ -45,6 +47,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       }
 
       expected_single_page_table_of_contents = %{
+<ul>
   <li>
     <a href="#fruit"><span>Fruit</span></a>
     <ul>
@@ -65,6 +68,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
   <li>
     <a href="#bread"><span>Bread</span></a>
   </li>
+</ul>
       }
 
       expect(subject.single_page_table_of_contents(html).strip).to eq(expected_single_page_table_of_contents.strip)
