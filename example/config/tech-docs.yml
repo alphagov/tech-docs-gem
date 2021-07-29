@@ -13,6 +13,7 @@ header_links:
   Expired page: /expired-page.html
   Expired with owner: /expired-page-with-owner.html
   Not expired page: /not-expired-page.html
+  Single page nav: /single-page-nav.html
 
 footer_links:
   Accessibility: /hidden-page.html
