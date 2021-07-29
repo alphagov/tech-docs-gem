@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 2.4.2
+
+- [#251 Fix missing `<ul>` in single page navigation](https://github.com/alphagov/tech-docs-gem/pull/251)
+
 ## 2.4.1
 
 - [#248: Remove IE8 fallback PNG with broken image reference](https://github.com/alphagov/tech-docs-gem/pull/248)
