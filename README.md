@@ -71,11 +71,11 @@ bundle exec rake jasmine:ci
 
 Users on OSX Mojave (10.14) may get this error when running `bundle exec middleman serve` on apps that use this gem.
 
-There are 3 different ways to solve this, depending on what is possible for you. Listed here as best to worst:
+There are 3 possible ways to solve this. From best to worst, you can:
 
-1. upgrade to macOS 10.15 (Catalina) or higher
-2. tell rubygems not to use the system ffi (gem inst ffi -- --disable-system-libffi)
-3. pin the ffi version back to 1.12.2 in the Gemfile of your app
+* upgrade to macOS 10.15 (Catalina) or higher
+* tell rubygems not to use the system ffi by running `gem install ffi -- --disable-system-libffi` in the command line when the error shows
+* pin the ffi version back to 1.12.2 by editing the Gemfile of your app
 
 ## Releasing new versions
 
