@@ -34,7 +34,7 @@ gem 'govuk_tech_docs', path: '../tech-docs-gem'
 
 To preview your documentation changes locally, see the [Tech Docs Template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
 
-If you experience [this issue](https://github.com/alphagov/tech-docs-gem/issues/254), possible fixes can be found [here](#issue-with-ffi-on-osx-mohave).
+If you experience [this issue with ffi](https://github.com/alphagov/tech-docs-gem/issues/254), possible fixes can be found [here](#issue-with-ffi-on-osx-mohave).
 
 ### Use the example in this repo
 
@@ -48,7 +48,7 @@ bundle exec middleman server
 
 See your website on `http://localhost:4567` in your browser.
 
-If you experience [this issue](https://github.com/alphagov/tech-docs-gem/issues/254), possible fixes can be found [here](#issue-with-ffi-on-osx-mohave).
+If you experience [this issue with ffi](https://github.com/alphagov/tech-docs-gem/issues/254), possible fixes can be found [here](#issue-with-ffi-on-osx-mohave).
 
 For more information on previewing your documentation locally, see the [Tech Docs template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
 
@@ -67,9 +67,9 @@ To run the tests and see the results in your terminal, run:
 bundle exec rake jasmine:ci
 ```
 
-## Issue with FFI on OSX Mohave
+## Issue with FFI on OSX Mojave
 
-Users on OSX Mohave (10.14) may get this error when running `bundle exec middleman serve` on apps that use this gem.
+Users on OSX Mojave (10.14) may get this error when running `bundle exec middleman serve` on apps that use this gem.
 
 There are 3 different ways to solve this, depending on what is possible for you. Listed here as best to worst:
 
