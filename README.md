@@ -9,7 +9,7 @@ To find out more about setting up and managing content for a website using this 
 
 Everybody who uses this project is encouraged to contribute.
 
-You can find out more about contributing to this project from the[CONTRIBUTING.md file](CONTRIBUTING.md).
+Find out how to [contribute](https://tdt-documentation.london.cloudapps.digital/support/#contribute).
 
 ## GOV.UK frontend
 
