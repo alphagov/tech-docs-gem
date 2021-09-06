@@ -75,6 +75,14 @@ describe('Search', function () {
       ]
       expect(searchResults).toEqual(expectedResults)
     })
+
+    it('autocompletes words', function () {
+      module.search('documenta', function (incomplete) {
+        module.search('documentation', function (complete) {
+          expect(incomplete).toEqual(complete)
+        })
+      })
+    })
   })
 
   describe('the processContent method', function () {
