@@ -52,9 +52,20 @@ $input-size: 40px;
   }
 }
 
-html.has-search-results-open {
-  .toc__close{
-    display: none;
+@include govuk-media-query($until: tablet) {
+  html.js.has-search-results-open:not(.toc-open) {
+    .toc {
+      display: block;
+      padding-bottom: 0;
+    }
+
+    .toc__close {
+      display: none;
+    }
+
+    .toc__list {
+      display: none;
+    }
   }
 }
 
