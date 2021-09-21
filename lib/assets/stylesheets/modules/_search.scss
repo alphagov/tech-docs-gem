@@ -53,15 +53,11 @@ $input-size: 40px;
 }
 
 html.has-search-results-open {
-  overflow: hidden;
-  .app-pane__content {
-    overflow: hidden;
-  }
-  
   .toc__close{
     display: none;
   }
 }
+
 .search-results {
   display: none;
   &.is-open {
@@ -70,30 +66,26 @@ html.has-search-results-open {
 }
 
 .search-results {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 600;
-    overflow-x: scroll;
-    -webkit-overflow-scrolling: touch;
-    -ms-overflow-style: none;
-    @include govuk-media-query(tablet) {
-      padding: govuk-spacing(6);
-      top: 0;
-      // The width of the sidebar
-      left: 330px;
-      min-height: auto;
-    }
+  @include govuk-media-query(tablet) {
+    // Create basis for the search results caret (below)
+    position: relative;
 
-    a {
-      @include govuk-link-common;
-      @include govuk-link-style-no-visited-state;
-    }
+    @include govuk-font($size: 16);
+    padding-top: govuk-spacing(6);
   }
+
+  a {
+    @include govuk-link-common;
+    @include govuk-link-style-no-visited-state;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
 .search-results__inner {
-  position: relative;
   background: govuk-colour("white");
   border-top: 1px solid govuk-colour("mid-grey");
   max-width: 40rem;
@@ -104,7 +96,7 @@ html.has-search-results-open {
     &::after {
       content: '';
       position: absolute;
-      top: 10px;
+      top: 35px;
       left: -9px;
       width: 10px;
       height: 20px;
