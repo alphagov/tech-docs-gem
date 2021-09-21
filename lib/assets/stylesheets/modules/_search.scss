@@ -117,44 +117,6 @@ html.has-search-results-open {
   @include govuk-font($size: 27, $weight: bold);
   margin-bottom: govuk-spacing(6);
 }
-.search-results__close {
-  @include govuk-font($size: 16);
-  position: absolute;
-  top: 18px;
-  right: 20px;
-  appearance: none;
-  -webkit-appearance: none;
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-
-  &:focus {
-    @include govuk-focused-text;
-  }
-
-  &::after {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 8px;
-    height: 18px;
-    width: 18px;
-    background: no-repeat url('/images/govuk-icn-close.png') center right;
-    @include govuk-device-pixel-ratio {
-      background-image: url('/images/govuk-icn-close@2x.png');
-    }
-    background-size: contain;
-  }
-}
-.search-results__close-label {
-  position: absolute;
-  left: -9999em;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-}
 .search-result {
   margin-bottom: govuk-spacing(6);
 }
