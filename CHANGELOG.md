@@ -2,7 +2,10 @@
 
 ## Unreleased
 
+## 2.4.3
+
 - [#236: Fix search 'autocomplete' behaviour](https://github.com/alphagov/tech-docs-gem/pull/236)
+- [#203: Update vendored javascripts](https://github.com/alphagov/tech-docs-gem/pull/203)
 
 ## 2.4.2
 
