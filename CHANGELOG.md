@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [#265: Fix mark styles in Windows High Contrast Mode](https://github.com/alphagov/tech-docs-gem/pull/265)
+
 ## 2.4.3
 
 - [#236: Fix search 'autocomplete' behaviour](https://github.com/alphagov/tech-docs-gem/pull/236)
