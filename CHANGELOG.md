@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 2.4.4
 
 - [#265: Fix mark styles in Windows High Contrast Mode](https://github.com/alphagov/tech-docs-gem/pull/265)
 
