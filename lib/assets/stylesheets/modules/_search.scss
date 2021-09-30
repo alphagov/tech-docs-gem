@@ -70,13 +70,6 @@ $input-size: 40px;
 }
 
 .search-results {
-  display: none;
-  &.is-open {
-    display: block;
-  }
-}
-
-.search-results {
   @include govuk-media-query(tablet) {
     // Create basis for the search results caret (below)
     position: relative;
