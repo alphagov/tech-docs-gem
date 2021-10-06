@@ -25,6 +25,15 @@ describe('Search', function () {
   '</div>' +
 '</div>')
 
+    // Stub out isOnSearchPage and getQuery
+    module.isOnSearchPage = function isOnSearchPage () {
+      return true
+    }
+
+    module.getQuery = function getQuery () {
+      return query
+    }
+
     // Change the default search index location to use the search index from the example app
     module.downloadSearchIndex = function downloadSearchIndex () {
       $.ajax({
