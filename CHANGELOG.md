@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.0.0
+
 ### Breaking changes
 
 The search user experience is now more accessible for screenreader users. Search results are now on a separate page instead of a modal window.
