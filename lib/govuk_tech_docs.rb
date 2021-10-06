@@ -117,6 +117,8 @@ module GovukTechDocs
 
         search.tokenizer_separator = '/[\s\-/]+/'
       end
+    else
+      context.ignore "search/*"
     end
   end
 end

@@ -11,10 +11,6 @@
     margin: 0 govuk-spacing(6) govuk-spacing(6);
   }
 
-  .has-search-results-open & {
-    visibility: hidden;
-  }
-
   > h1 {
     @extend %govuk-heading-xl;
 

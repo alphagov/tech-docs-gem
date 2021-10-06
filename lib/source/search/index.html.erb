@@ -1,0 +1,31 @@
+---
+title: Search
+index: false
+prevent_indexing: true
+hide_in_navigation: true
+---
+
+<div id="search-help" class="search-help">
+  <%# strange id is to avoid clash with search input id #%>
+  <h1 id="how-to-search">Search</h1>
+
+  <p class="govuk-body search-help__no-js">
+    You need to turn on JavaScript in your browser to search this site. You can either:
+
+    <ul>
+      <li>turn on JavaScript in your browser</li>
+      <li>search this site using Google</li>
+    </ul>
+  </p>
+
+  <p class="govuk-body">
+    Enter a search term in the search box, then select the search button.
+  </p>
+</div>
+
+<div id="search-results" class="search-results" hidden aria-labelledby="search-results-title">
+  <div class="search-results__inner">
+    <h1 id="search-results-title" class="search-results__title" aria-live="assertive">Results</h1>
+    <div class="search-results__content"></div>
+  </div>
+</div>

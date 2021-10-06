@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+### Breaking changes
+
+The search user experience is now more accessible for screenreader users. Search results are now on a separate page instead of a modal window.
+
+Users can no longer see search results as they type. They must press the Return key or select the search button to see the search results page.
+
+This was added in [pull request #263: Change search to only show results after submit](https://github.com/alphagov/tech-docs-gem/pull/263).
+
+### Fixes
+
 - [#265: Fix mark styles in Windows High Contrast Mode](https://github.com/alphagov/tech-docs-gem/pull/265)
 
 ## 2.4.3
