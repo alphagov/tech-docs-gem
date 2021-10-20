@@ -10,4 +10,4 @@ After you submit your issue, the technical writing team from the Central Digital
 
 ## User need
 
-<!-- Do you have evidence that the change will meet the needs of users? Let us know about any user research or testing you’ve done. -->
+<!-- Do you have evidence that this meets the needs of users? Let us know about any user research or testing you’ve done. -->
