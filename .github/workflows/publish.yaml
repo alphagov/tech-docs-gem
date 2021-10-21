@@ -31,7 +31,7 @@ jobs:
       - name: Check if new version to release
         id: gem_version
         run: |
-          gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('govuk_tech_docs.gemspec)').version")
+          gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('govuk_tech_docs.gemspec').version")
           echo "::set-output name=gem_version::$gem_version"
 
           if git fetch origin "refs/tags/v$gem_version" >/dev/null 2>&1
