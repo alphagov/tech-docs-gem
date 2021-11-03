@@ -34,7 +34,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "autoprefixer-rails", "~> 10.2"
   spec.add_dependency "chronic", "~> 0.10.2"
-  spec.add_dependency "middleman", "~> 4.0"
+  spec.add_dependency "middleman", "~> 4.0", "!= 4.4.1"
   spec.add_dependency "middleman-autoprefixer", "~> 2.10.0"
   spec.add_dependency "middleman-compass", ">= 4.0.0"
   spec.add_dependency "middleman-livereload"
