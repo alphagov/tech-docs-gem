@@ -11,15 +11,34 @@ RSpec.describe GovukTechDocs::ApiReference::Renderer do
         "info": {
           "title": "title",
           "version": "0.0.1",
+          "description": "# This is a header\n\nAnd a piece of _text_",
         },
         "paths": {},
       }
+      @app = double("Middleman::Application")
+      @config_context = double("Middleman::ConfigContext")
+      allow(@app).to receive(:config_context).and_return @config_context
+      allow(@config_context).to receive(:app).and_return @app
+      allow(@app).to receive(:api) { |arg| arg }
+    end
+
+    it "renders the description" do
+      document = Openapi3Parser.load(@spec)
+
+      render = described_class.new(@app, document)
+      rendered = render.api_full(document.info, document.servers)
+
+      rendered = Capybara::Node::Simple.new(rendered)
+      expect(rendered).to have_css("h1", exact_text: "This is a header")
+      expect(rendered).to have_css("h1#this-is-a-header")
+      expect(rendered).to have_css("p", exact_text: "And a piece of text")
+      expect(rendered).to have_css("p>em", exact_text: "text")
     end
 
     it "renders no servers" do
       document = Openapi3Parser.load(@spec)
 
-      render = described_class.new(nil, document)
+      render = described_class.new(@app, document)
       rendered = render.api_full(document.info, document.servers)
 
       rendered = Capybara::Node::Simple.new(rendered)
@@ -33,7 +52,7 @@ RSpec.describe GovukTechDocs::ApiReference::Renderer do
       ]
       document = Openapi3Parser.load(@spec)
 
-      render = described_class.new(nil, document)
+      render = described_class.new(@app, document)
       rendered = render.api_full(document.info, document.servers)
 
       rendered = Capybara::Node::Simple.new(rendered)
@@ -49,7 +68,7 @@ RSpec.describe GovukTechDocs::ApiReference::Renderer do
       ]
       document = Openapi3Parser.load(@spec)
 
-      render = described_class.new(nil, document)
+      render = described_class.new(@app, document)
       rendered = render.api_full(document.info, document.servers)
 
       rendered = Capybara::Node::Simple.new(rendered)

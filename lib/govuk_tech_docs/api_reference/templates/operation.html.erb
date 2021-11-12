@@ -3,7 +3,7 @@
   <p><em><%= operation.summary %></em></p>
 <% end %>
 <% if operation.description %>
-  <%= operation.description_html %>
+  <%= render_markdown(operation.description) %>
 <% end %>
 
 <%= parameters %>

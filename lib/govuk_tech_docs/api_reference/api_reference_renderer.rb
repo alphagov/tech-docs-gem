@@ -7,6 +7,7 @@ module GovukTechDocs
       def initialize(app, document)
         @app = app
         @document = document
+        @redcarpet = build_redcarpet(app)
 
         # Load template files
         @template_api_full = get_renderer("api_reference_full.html.erb")
@@ -137,6 +138,11 @@ module GovukTechDocs
 
     private
 
+      def build_redcarpet(app)
+        renderer = GovukTechDocs::TechDocsHTMLRenderer.new(context: app.config_context)
+        Redcarpet::Markdown.new(renderer)
+      end
+
       def get_renderer(file)
         template_path = File.join(File.dirname(__FILE__), "templates/" + file)
         template = File.open(template_path, "r").read
@@ -158,6 +164,10 @@ module GovukTechDocs
 
         id = "schema-#{schema.name.parameterize}"
         "<a href='\##{id}'>#{schema.name}</a>"
+      end
+
+      def render_markdown(text)
+        @redcarpet.render(text) if text
       end
     end
   end

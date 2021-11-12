@@ -1,5 +1,5 @@
 <h1 id="<%=  info.title.parameterize %>"><%= info.title %> v<%= info.version %></h1>
-<%= info.description_html %>
+<%= render_markdown(info.description) %>
 
 <%# OpenAPI files default to having a single server of URL "/" %>
 <% if servers.length > 1 || servers[0].url != "/" %>
