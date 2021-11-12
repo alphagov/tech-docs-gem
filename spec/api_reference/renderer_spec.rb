@@ -64,7 +64,7 @@ RSpec.describe GovukTechDocs::ApiReference::Renderer do
     it "renders a list of servers" do
       @spec["servers"] = [
         { "url": "https://example.com", "description": "Production" },
-        { "url": "https://dev.example.com", "description": "Development" },
+        { "url": "https://dev.example.com", "description": "_Development_" },
       ]
       document = Openapi3Parser.load(@spec)
 
@@ -77,6 +77,7 @@ RSpec.describe GovukTechDocs::ApiReference::Renderer do
       expect(rendered).to have_css("div#server-list>p>strong", text: "Production")
       expect(rendered).to have_css("div#server-list>a", text: "https://dev.example.com")
       expect(rendered).to have_css("div#server-list>p>strong", text: "Development")
+      expect(rendered).to have_css("div#server-list>p>strong>p>em", text: "Development")
     end
   end
 end

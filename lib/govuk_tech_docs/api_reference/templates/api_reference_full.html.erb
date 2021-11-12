@@ -7,7 +7,7 @@
   <div id="server-list">
     <% servers.each do |server| %>
     <% if server.description %>
-    <p><strong><%= server.description %></strong></p>
+    <p><strong><%= render_markdown(server.description) %></strong></p>
     <% end %>
     <a href="<%= server.url %>"><%= server.url %></a>
   <% end %>
