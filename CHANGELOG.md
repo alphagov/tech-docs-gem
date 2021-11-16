@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#281: Fix: Don't break TOC when OpenAPI description includes headers](https://github.com/alphagov/tech-docs-gem/pull/281) - Thanks [@jamietanna](https://github.com/jamietanna)!
+
 ## 3.0.0
 
 ### Breaking changes
