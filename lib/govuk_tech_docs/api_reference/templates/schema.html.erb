@@ -1,5 +1,5 @@
 <h3 id="<%= id = 'schema-' + title; id.parameterize %>"><%= title %></h3>
-<%= schema.description_html %>
+<%= render_markdown(schema.description) %>
 <% if properties.any? %>
 <table class='<%= id.parameterize %>'>
 <thead>
@@ -11,7 +11,7 @@
 <td><%= property_name %></td>
 <td><%= property_attributes.type %></td>
 <td><%= schema.requires?(property_name) %></td>
-<td><%= property_attributes.description_html %></td>
+<td><%= render_markdown(property_attributes.description) %></td>
 <td>
   <%=
   linked_schema = property_attributes
