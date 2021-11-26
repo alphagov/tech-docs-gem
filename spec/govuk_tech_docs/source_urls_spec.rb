@@ -7,7 +7,7 @@ RSpec.describe GovukTechDocs::SourceUrls do
       config = generate_config("test/repo", "https://test-docs/")
       source_urls = GovukTechDocs::SourceUrls.new(current_page, config)
 
-      expect(source_urls.report_issue_url).to eql("https://github.com/test/repo/issues/new?labels=bug&title=Re: 'title'&body=Problem with 'title' (https://test-docs/url)")
+      expect(source_urls.report_issue_url).to eql("https://github.com/test/repo/issues/new?body=Problem+with+%27title%27+%28https%3A%2F%2Ftest-docs%2Furl%29&labels=bug&title=Re%3A+%27title%27")
     end
 
     it "uses a custom URL when configured" do
@@ -18,7 +18,7 @@ RSpec.describe GovukTechDocs::SourceUrls do
       }
       source_urls = GovukTechDocs::SourceUrls.new(current_page, config)
 
-      expect(source_urls.report_issue_url).to eql("mailto:test@example.com?subject=Re: 'title'&body=Problem with 'title' (https://test-docs/url)")
+      expect(source_urls.report_issue_url).to eql("mailto:test@example.com?body=Problem+with+%27title%27+%28https%3A%2F%2Ftest-docs%2Furl%29&subject=Re%3A+%27title%27")
     end
   end
 
