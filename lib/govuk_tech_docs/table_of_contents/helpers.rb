@@ -36,6 +36,29 @@ module GovukTechDocs
         HeadingTreeRenderer.new(tree, max_level: max_level).html
       end
 
+      def get_resource_link_value(config, resource, current_page)
+        if config[:relative_links]
+          current_page_segments = current_page.path.split("/").reject(&:empty?)[0..-2]
+          resource_path_segments = resource.path.split("/").reject(&:empty?)[0..-2]
+          resource_file_name = resource.path.split("/")[-1]
+          number_of_ascents_to_site_root = current_page_segments.length
+
+          if number_of_ascents_to_site_root == 0
+            ascents = ["."]
+          else
+            ascents = number_of_ascents_to_site_root.times.collect { ".." }
+          end
+
+          link_value = ascents.concat(resource_path_segments)
+                              .push(resource_file_name)
+                              .join("/")
+
+        else
+          link_value = resource.url
+        end
+        link_value
+      end
+
       def render_page_tree(resources, current_page, config, current_page_html)
         # Sort by weight frontmatter
         resources = resources
@@ -71,15 +94,16 @@ module GovukTechDocs
               config[:http_prefix] + "/"
             end
 
+          link_value = get_resource_link_value(config, resource, current_page)
           if resource.children.any? && resource.url != home_url
-            output += %{<li><a href="#{resource.url}"><span>#{resource.data.title}</span></a>\n}
+            output += %{<li><a href="#{link_value}"><span>#{resource.data.title}</span></a>\n}
             output += render_page_tree(resource.children, current_page, config, current_page_html)
             output += "</li>\n"
           else
             output +=
               list_items_from_headings(
                 content,
-                url: resource.url,
+                url: link_value,
                 max_level: config[:tech_docs][:max_toc_heading_level],
               )
           end

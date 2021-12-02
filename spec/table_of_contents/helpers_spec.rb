@@ -126,16 +126,20 @@ describe GovukTechDocs::TableOfContents::Helpers do
 
     subject { Subject.new }
 
-    it "builds a table of contents from several page resources" do
+    it "builds a table of contents using absolute links from several page resources" do
       resources = []
       resources[0] = FakeResource.new("/index.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, "Index");
-      resources[1] = FakeResource.new("/a.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, "Sub page A", resources[0]);
-      resources[2] = FakeResource.new("/b.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 20, "Sub page B", resources[0]);
-      resources[0].add_children [resources[1], resources[2]]
+      resources[1] = FakeResource.new("/1/2/a.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 20, "Sub page A", resources[0]);
+      resources[2] = FakeResource.new("/1/2/3/b.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 30, "Sub page A", resources[0]);
+      resources[3] = FakeResource.new("/1/2/3/4/c.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 40, "Sub page B", resources[0]);
+      resources[4] = FakeResource.new("/1/5/d.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 50, "Sub page A", resources[0]);
+      resources[5] = FakeResource.new("/1/5/6/e.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 60, "Sub page A", resources[0]);
+      resources[0].add_children [resources[1], resources[2], resources[3], resources[4], resources[5]]
 
       current_page = double("current_page",
                             data: double("page_frontmatter", description: "The description.", title: "The Title"),
-                            url: "/index.html",
+                            url: "/1/2/3/index.html",
+                            path: "/1/2/3/index.html",
                             metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
@@ -152,18 +156,42 @@ describe GovukTechDocs::TableOfContents::Helpers do
 <li><a href="/index.html"><span>Index</span></a>
 <ul>
   <li>
-    <a href="/a.html"><span>Heading one</span></a>
+    <a href="/1/2/a.html"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/a.html#heading-two"><span>Heading two</span></a>
+        <a href="/1/2/a.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>
   <li>
-    <a href="/b.html"><span>Heading one</span></a>
+    <a href="/1/2/3/b.html"><span>Heading one</span></a>
     <ul>
       <li>
-        <a href="/b.html#heading-two"><span>Heading two</span></a>
+        <a href="/1/2/3/b.html#heading-two"><span>Heading two</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/1/2/3/4/c.html"><span>Heading one</span></a>
+    <ul>
+      <li>
+        <a href="/1/2/3/4/c.html#heading-two"><span>Heading two</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/1/5/d.html"><span>Heading one</span></a>
+    <ul>
+      <li>
+        <a href="/1/5/d.html#heading-two"><span>Heading two</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="/1/5/6/e.html"><span>Heading one</span></a>
+    <ul>
+      <li>
+        <a href="/1/5/6/e.html#heading-two"><span>Heading two</span></a>
       </li>
     </ul>
   </li>
@@ -175,7 +203,86 @@ describe GovukTechDocs::TableOfContents::Helpers do
       expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
     end
 
-    it "builds a table of contents from several page resources with a custom http prefix ocnfigured" do
+    it "builds a table of contents using relative links from several page resources" do
+      resources = []
+      resources[0] = FakeResource.new("/index.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, "Index");
+      resources[1] = FakeResource.new("/1/2/a.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 20, "Sub page A", resources[0]);
+      resources[2] = FakeResource.new("/1/2/3/b.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 30, "Sub page A", resources[0]);
+      resources[3] = FakeResource.new("/1/2/3/4/c.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 40, "Sub page B", resources[0]);
+      resources[4] = FakeResource.new("/1/5/d.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 50, "Sub page A", resources[0]);
+      resources[5] = FakeResource.new("/1/5/6/e.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 60, "Sub page A", resources[0]);
+      resources[0].add_children [resources[1], resources[2], resources[3], resources[4], resources[5]]
+
+      current_page = double("current_page",
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/1/2/3/index.html",
+                            path: "/1/2/3/index.html",
+                            metadata: { locals: {} })
+
+      current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
+
+      config = {
+        http_prefix: "/",
+        relative_links: true,
+        tech_docs: {
+          max_toc_heading_level: 3,
+        },
+      }
+
+      expected_multi_page_table_of_contents = %{
+<ul>
+<li><a href="../../../index.html"><span>Index</span></a>
+<ul>
+  <li>
+    <a href="../../../1/2/a.html"><span>Heading one</span></a>
+    <ul>
+      <li>
+        <a href="../../../1/2/a.html#heading-two"><span>Heading two</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="../../../1/2/3/b.html"><span>Heading one</span></a>
+    <ul>
+      <li>
+        <a href="../../../1/2/3/b.html#heading-two"><span>Heading two</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="../../../1/2/3/4/c.html"><span>Heading one</span></a>
+    <ul>
+      <li>
+        <a href="../../../1/2/3/4/c.html#heading-two"><span>Heading two</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="../../../1/5/d.html"><span>Heading one</span></a>
+    <ul>
+      <li>
+        <a href="../../../1/5/d.html#heading-two"><span>Heading two</span></a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="../../../1/5/6/e.html"><span>Heading one</span></a>
+    <ul>
+      <li>
+        <a href="../../../1/5/6/e.html#heading-two"><span>Heading two</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</li>
+</ul>
+      }
+
+      expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
+    end
+
+    #TODO: Assess whether this test is still relevant given that we are now generating relative links.
+    it "builds a table of contents from several page resources with a custom http prefix configured" do
       resources = []
       resources[0] = FakeResource.new("/prefix/index.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, "Index");
       resources[1] = FakeResource.new("/prefix/a.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, "Sub page A", resources[0]);
@@ -185,6 +292,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       current_page = double("current_page",
                             data: double("page_frontmatter", description: "The description.", title: "The Title"),
                             url: "/prefix/index.html",
+                            path: "/prefix/index.html",
                             metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
@@ -231,6 +339,7 @@ describe GovukTechDocs::TableOfContents::Helpers do
       current_page = double("current_page",
                             data: double("page_frontmatter", description: "The description.", title: "The Title"),
                             url: "/index.html",
+                            path: "/index.html",
                             metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>';
