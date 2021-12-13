@@ -2,9 +2,16 @@
 
 ## Unreleased
 
+## 3.0.1
+
 ### Fixes
 
-- [#281: Fix: Don't break TOC when OpenAPI description includes headers](https://github.com/alphagov/tech-docs-gem/pull/281) - Thanks [@jamietanna](https://github.com/jamietanna)!
+We’ve made the following fixes to the tech docs gem in [pull request #281: Don't break TOC when OpenAPI description includes headers](https://github.com/alphagov/tech-docs-gem/pull/281): 
+
+* we now render OpenAPI Markdown with the same Markdown renderer as other documents
+* table of contents (TOC) uses `TechDocsHTMLRenderer` to render the headings with IDs
+
+Thanks to [@jamietanna](https://github.com/jamietanna) for contributing to this issue and its solution.
 
 ## 3.0.0
 
