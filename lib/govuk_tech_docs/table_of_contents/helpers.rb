@@ -59,6 +59,22 @@ module GovukTechDocs
         link_value
       end
 
+      def path_to_site_root(*args, &block)
+        if config[:relative_links]
+          current_page_url = args[0]
+          number_of_ascents_to_site_root = current_page_url.to_s.split("/").length() - 1
+          if number_of_ascents_to_site_root == 0
+            ascents = ["."]
+          else
+            ascents = number_of_ascents_to_site_root.times.collect { ".." }
+          end
+          path_to_site_root = ascents.join("/").concat('/')
+        else
+          path_to_site_root = "/"
+        end
+        path_to_site_root
+      end
+
       def render_page_tree(resources, current_page, config, current_page_html)
         # Sort by weight frontmatter
         resources = resources
