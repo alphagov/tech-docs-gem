@@ -1,3 +1,4 @@
+require "govuk_tech_docs/path_helpers"
 require "govuk_tech_docs/table_of_contents/heading_tree_builder"
 require "govuk_tech_docs/table_of_contents/heading_tree_renderer"
 require "govuk_tech_docs/table_of_contents/heading_tree"
@@ -7,6 +8,8 @@ require "govuk_tech_docs/table_of_contents/headings_builder"
 module GovukTechDocs
   module TableOfContents
     module Helpers
+      include GovukTechDocs::PathHelpers
+
       def single_page_table_of_contents(html, url: "", max_level: nil)
         output = "<ul>\n"
         output += list_items_from_headings(html, url: url, max_level: max_level)
@@ -34,45 +37,6 @@ module GovukTechDocs
 
         tree = HeadingTreeBuilder.new(headings).tree
         HeadingTreeRenderer.new(tree, max_level: max_level).html
-      end
-
-      def get_resource_link_value(config, resource, current_page)
-        if config[:relative_links]
-          current_page_segments = current_page.path.split("/").reject(&:empty?)[0..-2]
-          resource_path_segments = resource.path.split("/").reject(&:empty?)[0..-2]
-          resource_file_name = resource.path.split("/")[-1]
-          number_of_ascents_to_site_root = current_page_segments.length
-
-          if number_of_ascents_to_site_root == 0
-            ascents = ["."]
-          else
-            ascents = number_of_ascents_to_site_root.times.collect { ".." }
-          end
-
-          link_value = ascents.concat(resource_path_segments)
-                              .push(resource_file_name)
-                              .join("/")
-
-        else
-          link_value = resource.url
-        end
-        link_value
-      end
-
-      def path_to_site_root(*args, &block)
-        if config[:relative_links]
-          current_page_url = args[0]
-          number_of_ascents_to_site_root = current_page_url.to_s.split("/").length() - 1
-          if number_of_ascents_to_site_root == 0
-            ascents = ["."]
-          else
-            ascents = number_of_ascents_to_site_root.times.collect { ".." }
-          end
-          path_to_site_root = ascents.join("/").concat('/')
-        else
-          path_to_site_root = "/"
-        end
-        path_to_site_root
       end
 
       def render_page_tree(resources, current_page, config, current_page_html)
@@ -110,7 +74,7 @@ module GovukTechDocs
               config[:http_prefix] + "/"
             end
 
-          link_value = get_resource_link_value(config, resource, current_page)
+          link_value = get_path_to_resource(config, resource, current_page)
           if resource.children.any? && resource.url != home_url
             output += %{<li><a href="#{link_value}"><span>#{resource.data.title}</span></a>\n}
             output += render_page_tree(resource.children, current_page, config, current_page_html)
