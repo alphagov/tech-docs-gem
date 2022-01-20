@@ -20,7 +20,7 @@ module GovukTechDocs
         review = PageReview.new(page, @config)
         {
           title: page.data.title,
-          url: "#{get_path_to_resource(@config, page, @current_page)}",
+          url: get_path_to_resource(@config, page, @current_page).to_s,
           review_by: review.review_by,
           owner_slack: review.owner_slack,
         }

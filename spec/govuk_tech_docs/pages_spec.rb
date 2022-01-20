@@ -22,7 +22,7 @@ RSpec.describe GovukTechDocs::Pages do
         double(url: "/b/c.html", path: "/b/c.html", data: double(title: "B thing", owner_slack: "#2ndline", last_reviewed_on: Date.yesterday, review_in: "2 days")),
       ])
 
-      json = described_class.new(sitemap, {:relative_links => true}, current_page).to_json
+      json = described_class.new(sitemap, { relative_links: true }, current_page).to_json
 
       expect(JSON.parse(json)).to eql([
         { "title" => "A thing", "url" => "../a.html", "review_by" => Date.yesterday.to_s, "owner_slack" => "#2ndline" },

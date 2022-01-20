@@ -51,11 +51,7 @@ module GovukTechDocs
 
           # Reuse the generated content for the active page
           # If we generate it twice it increments the heading ids
-          content = if current_page.url == resource.url && current_page_html
-                      current_page_html
-                    else
-                      resource.render(layout: false)
-                    end
+          content = current_page.url == resource.url && current_page_html ? current_page_html : resource.render(layout: false)
           # Avoid redirect pages
           next if content.include? "http-equiv=refresh"
 

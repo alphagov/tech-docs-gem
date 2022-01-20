@@ -17,13 +17,9 @@ module GovukTechDocs
 
     def path_to_site_root(config, page_path)
       if config[:relative_links]
-        number_of_ascents_to_site_root = page_path.to_s.split("/").reject(&:empty?)[0..-2].length()
-        if number_of_ascents_to_site_root == 0
-          ascents = ["."]
-        else
-          ascents = number_of_ascents_to_site_root.times.collect { ".." }
-        end
-        path_to_site_root = ascents.join("/").concat('/')
+        number_of_ascents_to_site_root = page_path.to_s.split("/").reject(&:empty?)[0..-2].length
+        ascents = number_of_ascents_to_site_root.zero? ? ["."] : number_of_ascents_to_site_root.times.collect { ".." }
+        path_to_site_root = ascents.join("/").concat("/")
       else
         path_to_site_root = "/"
       end
