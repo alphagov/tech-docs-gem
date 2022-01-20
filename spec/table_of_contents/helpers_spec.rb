@@ -281,7 +281,6 @@ describe GovukTechDocs::TableOfContents::Helpers do
       expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
     end
 
-    #TODO: Assess whether this test is still relevant given that we are now generating relative links.
     it "builds a table of contents from several page resources with a custom http prefix configured" do
       resources = []
       resources[0] = FakeResource.new("/prefix/index.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 10, "Index");
