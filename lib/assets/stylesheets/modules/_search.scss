@@ -36,7 +36,7 @@ $input-size: 40px;
   padding: 0;
   width: $input-size;
   height: 100%;
-  background-image: url('/images/search-button.png');
+  background-image: image-url('/images/search-button.png');
   background-repeat: no-repeat;
   background-position: 2px 50%;
   text-indent: -5000px;
@@ -104,7 +104,7 @@ $input-size: 40px;
       left: -9px;
       width: 10px;
       height: 20px;
-      background: no-repeat url('/images/search-result-caret.svg') center right;
+      background: no-repeat image-url('/images/search-result-caret.svg') center right;
       background-size: contain;
     }
   }

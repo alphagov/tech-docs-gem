@@ -152,12 +152,12 @@
           height: 20px;
           float: right;
 
-          background-image: url('/images/govuk-icn-numbered-list.png');
+          background-image: image-url('/images/govuk-icn-numbered-list.png');
           background-repeat: no-repeat;
           background-position: left center;
 
           @include govuk-device-pixel-ratio {
-            background-image: url('/images/govuk-icn-numbered-list@2x.png');
+            background-image: image-url('/images/govuk-icn-numbered-list@2x.png');
             background-size: 20px 20px;
           }
         }
@@ -178,12 +178,12 @@
         height: 20px;
         cursor: pointer;
 
-        background-image: url('/images/govuk-icn-close.png');
+        background-image: image-url('/images/govuk-icn-close.png');
         background-repeat: no-repeat;
         background-position: left center;
 
         @include govuk-device-pixel-ratio {
-          background-image: url('/images/govuk-icn-close@2x.png');
+          background-image: image-url('/images/govuk-icn-close@2x.png');
           background-size: 20px 20px;
         }
 
