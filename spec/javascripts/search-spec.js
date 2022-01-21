@@ -10,7 +10,7 @@ describe('Search', function () {
 
   beforeEach(function () {
     module = new GOVUK.Modules.Search()
-    $element = $('<div class="search" data-module="search">' +
+    $element = $('<div class="search" data-module="search" data-path-to-site-root="/">' +
   '<form action="https://www.google.co.uk/search" method="get" role="search">' +
     '<input type="hidden" name="as_sitesearch" value="<%= config[:tech_docs][:host] %>"/>' +
     '<label for="search"  class="govuk-label search__label">Search (via Google)</label>' +
