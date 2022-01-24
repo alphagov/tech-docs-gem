@@ -31,10 +31,23 @@ RSpec.describe GovukTechDocs::PathHelpers do
     it "calculates the path from a page to the site root when using absolute links" do
       page_path = "/documentation/introduction/index.html"
 
-      config = {}
+      config = {
+        http_prefix: "/", # This is Middleman's default setting.
+      }
 
       path_to_site_root = path_to_site_root(config, page_path)
       expect(path_to_site_root).to eql("/")
+    end
+
+    it "calculates the path from a page to the site root when a middleman http prefix" do
+      page_path = "/bananas/documentation/introduction/index.html"
+
+      config = {
+        http_prefix: "/bananas",
+      }
+
+      path_to_site_root = path_to_site_root(config, page_path)
+      expect(path_to_site_root).to eql("/bananas/")
     end
 
     it "calculates the path from a page to the site root when using relative links" do

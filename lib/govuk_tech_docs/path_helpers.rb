@@ -21,7 +21,8 @@ module GovukTechDocs
         ascents = number_of_ascents_to_site_root.zero? ? ["."] : number_of_ascents_to_site_root.times.collect { ".." }
         path_to_site_root = ascents.join("/").concat("/")
       else
-        path_to_site_root = "/"
+        middleman_http_prefix = config[:http_prefix]
+        path_to_site_root = middleman_http_prefix.end_with?("/") ? middleman_http_prefix : "#{middleman_http_prefix}/"
       end
       path_to_site_root
     end
