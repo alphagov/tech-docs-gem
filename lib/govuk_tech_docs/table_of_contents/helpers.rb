@@ -1,3 +1,4 @@
+require "govuk_tech_docs/path_helpers"
 require "govuk_tech_docs/table_of_contents/heading_tree_builder"
 require "govuk_tech_docs/table_of_contents/heading_tree_renderer"
 require "govuk_tech_docs/table_of_contents/heading_tree"
@@ -7,6 +8,8 @@ require "govuk_tech_docs/table_of_contents/headings_builder"
 module GovukTechDocs
   module TableOfContents
     module Helpers
+      include GovukTechDocs::PathHelpers
+
       def single_page_table_of_contents(html, url: "", max_level: nil)
         output = "<ul>\n"
         output += list_items_from_headings(html, url: url, max_level: max_level)
@@ -48,11 +51,7 @@ module GovukTechDocs
 
           # Reuse the generated content for the active page
           # If we generate it twice it increments the heading ids
-          content = if current_page.url == resource.url && current_page_html
-                      current_page_html
-                    else
-                      resource.render(layout: false)
-                    end
+          content = current_page.url == resource.url && current_page_html ? current_page_html : resource.render(layout: false)
           # Avoid redirect pages
           next if content.include? "http-equiv=refresh"
 
@@ -71,15 +70,16 @@ module GovukTechDocs
               config[:http_prefix] + "/"
             end
 
+          link_value = get_path_to_resource(config, resource, current_page)
           if resource.children.any? && resource.url != home_url
-            output += %{<li><a href="#{resource.url}"><span>#{resource.data.title}</span></a>\n}
+            output += %{<li><a href="#{link_value}"><span>#{resource.data.title}</span></a>\n}
             output += render_page_tree(resource.children, current_page, config, current_page_html)
             output += "</li>\n"
           else
             output +=
               list_items_from_headings(
                 content,
-                url: resource.url,
+                url: link_value,
                 max_level: config[:tech_docs][:max_toc_heading_level],
               )
           end

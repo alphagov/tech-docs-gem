@@ -1,10 +1,12 @@
 module GovukTechDocs
   class Pages
+    include GovukTechDocs::PathHelpers
     attr_reader :sitemap
 
-    def initialize(sitemap, config)
+    def initialize(sitemap, config, current_page)
       @sitemap = sitemap
       @config = config
+      @current_page = current_page
     end
 
     def to_json(*_args)
@@ -18,7 +20,7 @@ module GovukTechDocs
         review = PageReview.new(page, @config)
         {
           title: page.data.title,
-          url: "#{@config[:tech_docs][:host]}#{page.url}",
+          url: get_path_to_resource(@config, page, @current_page).to_s,
           review_by: review.review_by,
           owner_slack: review.owner_slack,
         }

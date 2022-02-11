@@ -67,6 +67,7 @@ module GovukTechDocs
     context.activate :api_reference
 
     context.helpers do
+      include GovukTechDocs::PathHelpers
       include GovukTechDocs::TableOfContents::Helpers
       include GovukTechDocs::ContributionBanner
 
