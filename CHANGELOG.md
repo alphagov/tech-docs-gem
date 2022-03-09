@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.2.0
+
 ### New features
 
 You can now [configure your Tech Docs Template (TDT) to build your documentation site to use relative links to pages and assets](https://tdt-documentation.london.cloudapps.digital/configure_project/global_configuration/#build-your-site-using-relative-links).
