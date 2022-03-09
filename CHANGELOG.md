@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### New features
+
+You can now [configure your Tech Docs Template (TDT) to build your documentation site to use relative links to pages and assets](https://tdt-documentation.london.cloudapps.digital/configure_project/global_configuration/#build-your-site-using-relative-links).
+
+Thanks [@eddgrant](https://github.com/eddgrant) for contributing this feature and the associated fixes.
+
+This change was introduced in [pull request #291: Support sites deployed on paths other than "/" (by generating relative links)](https://github.com/alphagov/tech-docs-gem/pull/291). 
+
 ## 3.1.0
 
 ### New features
