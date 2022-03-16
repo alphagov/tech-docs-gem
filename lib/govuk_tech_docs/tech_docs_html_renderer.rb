@@ -69,7 +69,7 @@ module GovukTechDocs
         first_child.content = leading_text.sub(/# */, "")
       end
 
-      tr = Nokogiri::XML::Node.new "tr", fragment
+      tr = Nokogiri::XML::Node.new "tr", fragment.document
       tr.children = fragment.children
 
       tr.to_html
@@ -95,9 +95,9 @@ module GovukTechDocs
         # be `defined?`, so we can jump straight to rendering HTML ourselves.
 
         fragment = Nokogiri::HTML::DocumentFragment.parse("")
-        pre = Nokogiri::XML::Node.new "pre", fragment
+        pre = Nokogiri::XML::Node.new "pre", fragment.document
         pre["tabindex"] = "0"
-        code = Nokogiri::XML::Node.new "code", fragment
+        code = Nokogiri::XML::Node.new "code", fragment.document
         code["class"] = lang
         code.content = text
         pre.add_child code

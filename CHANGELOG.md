@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+Deprecation warnings from Nokogiri addressed when rendering markdown tables
+
 ## 3.2.0
 
 ### New features
