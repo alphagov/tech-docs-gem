@@ -10,32 +10,9 @@ A paragraph with a `code` element within it.
 
 An example of a table with a `code` element within it.
 
-<div class="table-container">
-  <table>
-    <thead>
-      <tr>
-        <th style="text-align:left">httpResult</th>
-        <th style="text-align:left">Message</th>
-        <th style="text-align:left">How to fix</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="text-align:left"><code>400</code></td>
-        <td style="text-align:left">
-          <code>[{</code>
-          <br />
-          <code>"error": "BadRequestError",</code>
-          <br />
-          <code>"message": "Can't send to this recipient using a team-only API key"</code>
-          <br />
-          <code>]}</code>
-        </td>
-        <td style="text-align:left">Use the correct type of API key</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+| httpResult | Message | How to fix |
+| -          | -       | -          |
+| `400`      | `[{`<br>`"error": "BadRequestError",`<br>`"message": "Can't send to this recipient using a team-only API key"`<br>`]}` | Use the correct type of API key |
 
 An example of a code block with a long line length
 
