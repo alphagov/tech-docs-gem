@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.2.1
+
 ### Fixes
 
 - [#296: Fix Nokogiri Node.new deprecation warnings](https://github.com/alphagov/tech-docs-gem/pull/296) (thanks [@timja](https://github.com/timja))
