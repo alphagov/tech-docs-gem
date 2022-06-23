@@ -79,5 +79,26 @@ RSpec.describe GovukTechDocs::ApiReference::Renderer do
       expect(rendered).to have_css("div#server-list>p>strong", text: "Development")
       expect(rendered).to have_css("div#server-list>p>strong>p>em", text: "Development")
     end
+
+    it "renders a schema" do
+      @spec["components"] = {
+        "schemas": {
+          "Pet": {
+            "properties": {
+              "id": { "type": "integer", "format": "int64" },
+            },
+          },
+        },
+      }
+      document = Openapi3Parser.load(@spec)
+
+      render = described_class.new(@app, document)
+      rendered = render.api_full(document.info, document.servers)
+
+      rendered = Capybara::Node::Simple.new(rendered)
+      expect(rendered).to have_css("h2#schemas", text: "Schemas")
+      expect(rendered).to have_css("h3#schema-pet", text: "Pet")
+      expect(rendered).to have_css("table.schema-pet", text: "id")
+    end
   end
 end
