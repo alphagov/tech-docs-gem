@@ -93,10 +93,19 @@ components:
           type: string
         tag:
           type: string
+        status:
+          $ref: "#/components/schemas/PetStatus"
     Pets:
       type: array
       items:
         $ref: "#/components/schemas/Pet"
+    PetStatus:
+      type: string
+      description: pet status in the store
+      enum:
+        - pending
+        - available
+        - sold
     Error:
       required:
         - code
