@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### Fixes
+
+You no longer need to change the Sass variable govuk-assets-path when using a http prefix; the tech docs gem will add the prefix for you.
+
+- [#292: Make GOV.UK Frontend assets path work with http prefix](https://github.com/alphagov/tech-docs-gem/pull/292)
+
 ## 3.2.1
 
 ### Fixes

@@ -24,12 +24,24 @@ require "govuk_tech_docs/warning_text_extension"
 require "govuk_tech_docs/api_reference/api_reference_extension"
 
 module GovukTechDocs
+  class GovukTechDocsExtension < Middleman::Extension
+    def after_configuration
+      if app.config[:govuk_assets_path]
+        warn "Warning: setting govuk_assets_path in config.rb is no longer necessary, and will have no effect."
+      end
+    end
+  end
+
+  ::Middleman::Extensions.register(:govuk_tech_docs, GovukTechDocsExtension)
+
   # Configure the tech docs template
   #
   # @param options [Hash]
   # @option options [Hash] livereload Options to pass to the `livereload`
   #   extension. Hash with symbols as keys.
   def self.configure(context, options = {})
+    context.activate :govuk_tech_docs
+
     context.activate :sprockets
 
     context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/")
