@@ -1,4 +1,20 @@
-$govuk-assets-path: "/assets/govuk/assets/" !default;
+// Set $govuk-assets-path so that $govuk-images-path and $govuk-fonts-path
+// (used below, but set in govuk/base) are correct.
+$govuk-assets-path: "/assets/govuk/assets/";
+
+// Use Sprockets' asset url helpers to add the http prefix if present.
+// GOV.UK Frontend provides hooks for us to define the url lookup functions,
+// see https://frontend.design-system.service.gov.uk/sass-api-reference/
+@function tech-docs-image-url-function($filename) {
+  @return image-url($govuk-images-path + $filename);
+}
+
+@function tech-docs-font-url-function($filename) {
+  @return font-url($govuk-fonts-path + $filename);
+}
+
+$govuk-font-url-function: "tech-docs-font-url-function";
+$govuk-image-url-function: "tech-docs-image-url-function";
 
 // Include only the bits of GOV.UK Frontend we need
 $govuk-new-link-styles: true;
