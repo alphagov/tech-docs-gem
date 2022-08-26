@@ -15,7 +15,7 @@ Find out how to [contribute](https://tdt-documentation.london.cloudapps.digital/
 
 This gem uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend), part of the [GOV.UK Design System](https://design-system.service.gov.uk/).
 
-We use `npm` to download the govuk-frontend package. To update to a new version, change the version in the [package.json file](blob/main/package.json) and run `npm update`.
+We use `npm` to download the govuk-frontend package. To update to a new version, change the version in the [package.json file](package.json) and run `npm update`.
 
 ## Developing locally
 
