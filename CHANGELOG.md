@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- [#242: Make scrollable area keyboard (and voice) focusable](https://github.com/alphagov/tech-docs-gem/pull/242) (thanks [@colinbm](https://github.com/colinbm))
+
 ## 3.2.1
 
 ### Fixes
