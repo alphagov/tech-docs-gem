@@ -39,7 +39,7 @@ module GovukTechDocs
     end
 
     def repo_branch
-      config[:tech_docs][:github_branch] || "master"
+      config[:tech_docs][:github_branch] || "master" # TODO: change this to 'main' in a future breaking release
     end
 
   private

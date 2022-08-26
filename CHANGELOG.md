@@ -422,7 +422,7 @@ which item is selected in the navigation.
 More info:
 
 - https://github.com/alphagov/tech-docs-gem/pull/19
-- https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#parent
+- https://github.com/alphagov/tech-docs-gem/blob/main/docs/frontmatter.md#parent
 
 ## 1.2.0
 
@@ -434,15 +434,15 @@ You can use this when you change a page URL.
 
 More info:
 
-- https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#redirects
-- https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#old_paths
+- https://github.com/alphagov/tech-docs-gem/blob/main/docs/configuration.md#redirects
+- https://github.com/alphagov/tech-docs-gem/blob/main/docs/frontmatter.md#old_paths
 
 ### New feature: contribution banner
 
 You can now show a block at the bottom of the page that links to
 the page source on GitHub, so readers can easily contribute back to the documentation.
 
-https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#show_contribution_banner
+https://github.com/alphagov/tech-docs-gem/blob/main/docs/configuration.md#show_contribution_banner
 
 ### New feature: page review system
 
@@ -450,8 +450,8 @@ An optional page review system to make sure documentation stays up to date.
 
 More info:
 
-- https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#last_reviewed_on
-- https://github.com/alphagov/tech-docs-gem/blob/master/docs/frontmatter.md#owner_slack
+- https://github.com/alphagov/tech-docs-gem/blob/main/docs/frontmatter.md#last_reviewed_on
+- https://github.com/alphagov/tech-docs-gem/blob/main/docs/frontmatter.md#owner_slack
 
 
 ### Better meta tags
@@ -463,7 +463,7 @@ Pages now include better meta tags for search engines, Twitter, Facebook and Sla
 You can now specify `google_site_verification` in tech-docs.yml. You can use
 this to verify your site in Google Webmaster tools.
 
-https://github.com/alphagov/tech-docs-gem/blob/master/docs/configuration.md#google_site_verification
+https://github.com/alphagov/tech-docs-gem/blob/main/docs/configuration.md#google_site_verification
 
 ## 1.0.0
 
