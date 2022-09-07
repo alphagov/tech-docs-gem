@@ -31,7 +31,9 @@ RSpec.describe GovukTechDocs::PageReview do
         tech_docs: config,
       )
 
+      expect(page_review_by.owner_slack).to eql("@from.page")
       expect(page_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from.page")
+      expect(config_review_by.owner_slack).to eql("@from.config")
       expect(config_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from.config")
     end
 
@@ -46,7 +48,9 @@ RSpec.describe GovukTechDocs::PageReview do
         tech_docs: config,
       )
 
+      expect(page_review_by.owner_slack).to eql("#from_page")
       expect(page_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from_page")
+      expect(config_review_by.owner_slack).to eql("#from_config")
       expect(config_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from_config")
     end
   end
