@@ -20,22 +20,34 @@ RSpec.describe GovukTechDocs::PageReview do
       expect(review_by.owner_slack_url).to be_empty
     end
 
-    it "links to Slack usernames" do
-      review_by = described_class.new(
-        double(data: double(owner_slack: "@foo")),
-        tech_docs: { owner_slack_workspace: "govuk" },
+    it "links to Slack usernames without the @ prefix" do
+      config = { owner_slack_workspace: "govuk", default_owner_slack: "@from.config" }
+      page_review_by = described_class.new(
+        double(data: double(owner_slack: "@from.page")),
+        tech_docs: config,
+      )
+      config_review_by = described_class.new(
+        double(data: double(owner_slack: nil)),
+        tech_docs: config,
       )
 
-      expect(review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/foo")
+      expect(page_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from.page")
+      expect(config_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from.config")
     end
 
-    it "links to Slack channels" do
-      review_by = described_class.new(
-        double(data: double(owner_slack: "#foo")),
-        tech_docs: { owner_slack_workspace: "govuk" },
+    it "links to Slack channels without the # prefix" do
+      config = { owner_slack_workspace: "govuk", default_owner_slack: "#from_config" }
+      page_review_by = described_class.new(
+        double(data: double(owner_slack: "#from_page")),
+        tech_docs: config,
+      )
+      config_review_by = described_class.new(
+        double(data: double(owner_slack: nil)),
+        tech_docs: config,
       )
 
-      expect(review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/foo")
+      expect(page_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from_page")
+      expect(config_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from_config")
     end
   end
 
