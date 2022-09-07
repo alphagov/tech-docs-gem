@@ -31,8 +31,6 @@ module GovukTechDocs
     def owner_slack_url
       return "" unless owner_slack_workspace
 
-      # Slack URLs don't have the # (channels) or @ (usernames)
-      slack_identifier = owner_slack.to_s.delete("#").delete("@")
       "https://#{owner_slack_workspace}.slack.com/messages/#{slack_identifier}"
     end
 
@@ -46,8 +44,19 @@ module GovukTechDocs
 
   private
 
+    def slack_identifier
+      identifier = page.data.owner_slack_id || default_owner_slack_id || owner_slack
+
+      # Slack URLs don't have the # (channels) or @ (usernames)
+      identifier.to_s.delete("#").delete("@")
+    end
+
     def default_owner_slack
       @config[:tech_docs][:default_owner_slack]
+    end
+
+    def default_owner_slack_id
+      @config[:tech_docs][:default_owner_slack_id]
     end
 
     def owner_slack_workspace

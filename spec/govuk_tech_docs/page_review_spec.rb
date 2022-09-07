@@ -23,11 +23,11 @@ RSpec.describe GovukTechDocs::PageReview do
     it "links to Slack usernames without the @ prefix" do
       config = { owner_slack_workspace: "govuk", default_owner_slack: "@from.config" }
       page_review_by = described_class.new(
-        double(data: double(owner_slack: "@from.page")),
+        double(data: double(owner_slack: "@from.page", owner_slack_id: nil)),
         tech_docs: config,
       )
       config_review_by = described_class.new(
-        double(data: double(owner_slack: nil)),
+        double(data: double(owner_slack: nil, owner_slack_id: nil)),
         tech_docs: config,
       )
 
@@ -40,11 +40,11 @@ RSpec.describe GovukTechDocs::PageReview do
     it "links to Slack channels without the # prefix" do
       config = { owner_slack_workspace: "govuk", default_owner_slack: "#from_config" }
       page_review_by = described_class.new(
-        double(data: double(owner_slack: "#from_page")),
+        double(data: double(owner_slack: "#from_page", owner_slack_id: nil)),
         tech_docs: config,
       )
       config_review_by = described_class.new(
-        double(data: double(owner_slack: nil)),
+        double(data: double(owner_slack: nil, owner_slack_id: nil)),
         tech_docs: config,
       )
 
@@ -52,6 +52,23 @@ RSpec.describe GovukTechDocs::PageReview do
       expect(page_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from_page")
       expect(config_review_by.owner_slack).to eql("#from_config")
       expect(config_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/from_config")
+    end
+
+    it "links to Slack identifiers with the given label" do
+      config = { owner_slack_workspace: "govuk", default_owner_slack: "#from_config", default_owner_slack_id: "0CONFIG" }
+      page_review_by = described_class.new(
+        double(data: double(owner_slack: "#from_page", owner_slack_id: "0PAGE")),
+        tech_docs: config,
+      )
+      config_review_by = described_class.new(
+        double(data: double(owner_slack: nil, owner_slack_id: nil)),
+        tech_docs: config,
+      )
+
+      expect(page_review_by.owner_slack).to eql("#from_page")
+      expect(page_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/0PAGE")
+      expect(config_review_by.owner_slack).to eql("#from_config")
+      expect(config_review_by.owner_slack_url).to eql("https://govuk.slack.com/messages/0CONFIG")
     end
   end
 

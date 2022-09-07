@@ -52,4 +52,5 @@ api_path: source/pets.yml
 
 # Optional global settings for the page review process
 owner_slack_workspace: gds
-default_owner_slack: '#2nd-line'
+default_owner_slack: '#2nd-line'    # right click on channel/DM in Slack > Copy > Copy name
+default_owner_slack_id: 'C02DYEB3J' # right click on channel/DM in Slack > Copy > Copy link
