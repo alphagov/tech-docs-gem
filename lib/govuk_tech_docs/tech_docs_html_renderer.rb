@@ -11,6 +11,12 @@ module GovukTechDocs
       super
     end
 
+    def preprocess(document)
+      UniqueIdentifierGenerator.instance.reset
+
+      document
+    end
+
     def paragraph(text)
       @app.api("<p>#{text.strip}</p>\n")
     end

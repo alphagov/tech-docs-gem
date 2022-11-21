@@ -109,7 +109,7 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
       expect(output).to include('<h1 id="a-heading">A heading</h1>')
       expect(output).to include('<h2 id="a-subheading">A subheading</h2>')
     end
-    
+
     it "Ensures IDs are unique among headings in the page" do
       output = processor.render <<~MARKDOWN
         # A heading
@@ -129,6 +129,20 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
       expect(output).to include('<h3 id="a-subheading-a-shared-heading-2">A shared heading</h3>')
       # Finally the last occurence will get a prefix, but no number as it's in a different section
       expect(output).to include('<h3 id="another-subheading-a-shared-heading">A shared heading</h3>')
+    end
+
+    it "Does not consider unique IDs across multiple renders" do
+      processor.render <<~MARKDOWN
+        # A heading
+        ## A subheading
+      MARKDOWN
+
+      second_output = processor.render <<~MARKDOWN
+        # A heading
+        ## A subheading
+      MARKDOWN
+
+      expect(second_output).to include('<h2 id="a-subheading">A subheading</h2>')
     end
   end
 end
