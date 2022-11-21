@@ -97,9 +97,6 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
   end
 
   describe "#render unique heading IDs" do
-    # Reset the UniqueIdentifierGenerator between each tests to ensure independence
-    before(:each) { GovukTechDocs::UniqueIdentifierGenerator.instance.reset }
-
     it "Automatically assigns an ID to the heading" do
       output = processor.render <<~MARKDOWN
         # A heading

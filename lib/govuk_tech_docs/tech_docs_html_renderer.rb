@@ -12,7 +12,7 @@ module GovukTechDocs
     end
 
     def preprocess(document)
-      UniqueIdentifierGenerator.instance.reset
+      @unique_identifier_generator = UniqueIdentifierGenerator.new
 
       document
     end
@@ -22,7 +22,7 @@ module GovukTechDocs
     end
 
     def header(text, level)
-      anchor = UniqueIdentifierGenerator.instance.create(text, level)
+      anchor = @unique_identifier_generator.create(text, level)
       %(<h#{level} id="#{anchor}">#{text}</h#{level}>\n)
     end
 
