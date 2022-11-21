@@ -95,4 +95,40 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
       end
     end
   end
+
+  describe "#render unique heading IDs" do
+    # Reset the UniqueIdentifierGenerator between each tests to ensure independence
+    before(:each) { GovukTechDocs::UniqueIdentifierGenerator.instance.reset }
+
+    it "Automatically assigns an ID to the heading" do
+      output = processor.render <<~MARKDOWN
+        # A heading
+        ## A subheading
+      MARKDOWN
+
+      expect(output).to include('<h1 id="a-heading">A heading</h1>')
+      expect(output).to include('<h2 id="a-subheading">A subheading</h2>')
+    end
+    
+    it "Ensures IDs are unique among headings in the page" do
+      output = processor.render <<~MARKDOWN
+        # A heading
+        ## A subheading
+        ### A shared heading
+        ### A shared heading
+        ### A shared heading
+        ## Another subheading
+        ### A shared heading
+      MARKDOWN
+
+      # Fist heading will get its ID as a normal heading
+      expect(output).to include('<h3 id="a-shared-heading">A shared heading</h3>')
+      # Second occurence will be prefixed by the previous heading to ensure uniqueness
+      expect(output).to include('<h3 id="a-subheading-a-shared-heading">A shared heading</h3>')
+      # Third occurence will be get the prefix, as well as a numeric suffix, to keep ensuring uniqueness
+      expect(output).to include('<h3 id="a-subheading-a-shared-heading-2">A shared heading</h3>')
+      # Finally the last occurence will get a prefix, but no number as it's in a different section
+      expect(output).to include('<h3 id="another-subheading-a-shared-heading">A shared heading</h3>')
+    end
+  end
 end

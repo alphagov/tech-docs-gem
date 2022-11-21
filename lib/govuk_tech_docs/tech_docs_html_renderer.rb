@@ -1,4 +1,5 @@
 require "middleman-core/renderers/redcarpet"
+require "govuk_tech_docs/unique_identifier_generator"
 
 module GovukTechDocs
   class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
