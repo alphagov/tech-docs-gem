@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### New features
+
+The Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.4.1.
+
+Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases/) for more information.
+
 ### Fixes
 
 - [#242: Make scrollable area keyboard (and voice) focusable](https://github.com/alphagov/tech-docs-gem/pull/242) (thanks [@colinbm](https://github.com/colinbm))
