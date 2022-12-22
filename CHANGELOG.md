@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.3.0
+
 ### New features
 
 There are some steps you should follow as the Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.4.1.
