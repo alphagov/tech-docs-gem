@@ -2,11 +2,14 @@
 
 ## Unreleased
 
+## 3.3.0
+
 ### New features
 
-The Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.4.1.
+There are some steps you should follow as the Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.4.1.
 
-Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases/) for more information.
+1. Update your documentation site to use the latest template version. You can [follow the TDT guidance on using the latest template version](https://tdt-documentation.london.cloudapps.digital/maintain_project/use_latest_template/).
+2. Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases/) for more information, or [contact the GOV.UK Design System team](https://design-system.service.gov.uk/get-in-touch/).
 
 ### Fixes
 
