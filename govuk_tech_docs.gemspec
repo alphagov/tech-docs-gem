@@ -37,6 +37,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "autoprefixer-rails", "~> 10.2"
   spec.add_dependency "chronic", "~> 0.10.2"
+  spec.add_dependency "haml", "< 6.0.0"
   spec.add_dependency "middleman", "~> 4.0"
   spec.add_dependency "middleman-autoprefixer", "~> 2.10.0"
   spec.add_dependency "middleman-compass", ">= 4.0.0"
@@ -47,7 +48,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency "nokogiri"
   spec.add_dependency "openapi3_parser", "~> 0.9.0"
   spec.add_dependency "redcarpet", "~> 3.5.1"
-  spec.add_dependency "haml", "< 6.0.0"
 
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "capybara", "~> 3.32"
