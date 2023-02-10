@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 3.3.1
+
+### New features
+
+You can now have your tech-docs live in a subfolder of a repository (e.g. in a monorepo) - Add the following to your `config/tech-docs.yaml`
+
+```yaml
+github_subfolder: path/to/your/docs
+```
+
 ## 3.3.0
 
 ### New features
