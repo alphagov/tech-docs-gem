@@ -50,6 +50,7 @@ module GovukTechDocs
           keywords = {
             "api&gt;" => "default",
             "api_schema&gt;" => "schema",
+            "api_operation&gt;" => "operation",
           }
 
           regexp = keywords.map { |k, _| Regexp.escape(k) }.join("|")
@@ -71,6 +72,10 @@ module GovukTechDocs
               output = @render.path(text)
               # Render any schemas referenced in the above path
               output += @render.schemas_from_path(text)
+              output
+            elsif type == "operation"
+              output = @render.single_operation(text)
+              output += @render.schemas_from_path_and_operation(text)
               output
             else
               @render.schema(text)
