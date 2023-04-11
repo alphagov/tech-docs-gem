@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.3.1
+
 This change solves a potential security issue with HTML snippets. Pages indexed in search results have their entire contents indexed, including any HTML code snippets. These HTML snippets would appear in the search results unsanitised, making it possible to render arbitrary HTML or run arbitrary scripts.
 
 You can see more detail about this issue at [#323: Fix XSS vulnerability on search results page](https://github.com/alphagov/tech-docs-gem/pull/323)
