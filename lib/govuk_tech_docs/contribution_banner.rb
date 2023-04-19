@@ -58,7 +58,12 @@ module GovukTechDocs
 
     # As the last fallback link to the source file in this repository.
     def source_from_file
-      "#{repo_url}/blob/#{repo_branch}/source/#{current_page.file_descriptor[:relative_path]}"
+      repo_directory = config[:tech_docs][:repo_directory]
+      if repo_directory.nil?
+        "#{repo_url}/blob/#{repo_branch}/source/#{current_page.file_descriptor[:relative_path]}"
+      else
+        "#{repo_url}/blob/#{repo_branch}/#{repo_directory}/source/#{current_page.file_descriptor[:relative_path]}"
+      end
     end
 
     def locals
