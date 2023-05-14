@@ -2,7 +2,6 @@ require "json"
 require "capybara/rspec"
 require "govuk_tech_docs/api_reference/api_reference_renderer"
 
-
 RSpec.describe GovukTechDocs::ApiReference::Renderer do
   describe ".api_full" do
     before(:each) do

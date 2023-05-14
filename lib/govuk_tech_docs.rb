@@ -86,8 +86,8 @@ module GovukTechDocs
       def active_page(page_path)
         [
           page_path == "/" && current_page.path == "index.html",
-          ("/" + current_page.path) == page_path,
-          current_page.data.parent != nil && current_page.data.parent.to_s == page_path,
+          "/#{current_page.path}" == page_path,
+          !current_page.data.parent.nil? && current_page.data.parent.to_s == page_path,
         ].any?
       end
     end
@@ -109,9 +109,9 @@ module GovukTechDocs
         search.resources = [""]
 
         search.fields = {
-          title:   { boost: 100, store: true, required: true },
+          title: { boost: 100, store: true, required: true },
           content: { boost: 50, store: true },
-          url:     { index: false, store: true },
+          url: { index: false, store: true },
         }
 
         search.pipeline_remove = %w[stemmer stopWordFilter]

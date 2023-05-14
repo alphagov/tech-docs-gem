@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe GovukTechDocs::TableOfContents::HeadingTreeRenderer do
   describe "#html" do
-    let(:tree) {
+    let(:tree) do
       GovukTechDocs::TableOfContents::HeadingTree.new(
         heading: nil,
         children: [
@@ -19,9 +19,9 @@ describe GovukTechDocs::TableOfContents::HeadingTreeRenderer do
           ),
         ],
       )
-    }
+    end
 
-    let(:expected_html_with_all_headings) {
+    let(:expected_html_with_all_headings) do
       <<-EOF
   <li>
     <a href="#apples"><span>Apples</span></a>
@@ -35,9 +35,9 @@ describe GovukTechDocs::TableOfContents::HeadingTreeRenderer do
     <a href="#oranges"><span>Oranges</span></a>
   </li>
       EOF
-    }
+    end
 
-    let(:expected_html_with_max_heading_of_one) {
+    let(:expected_html_with_max_heading_of_one) do
       <<-EOF
   <li>
     <a href="#apples"><span>Apples</span></a>
@@ -46,7 +46,7 @@ describe GovukTechDocs::TableOfContents::HeadingTreeRenderer do
     <a href="#oranges"><span>Oranges</span></a>
   </li>
       EOF
-    }
+    end
 
     context "without a max_level" do
       it "returns a nested list of links to all headings in the tree" do
