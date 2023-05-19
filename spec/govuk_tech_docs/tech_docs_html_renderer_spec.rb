@@ -3,9 +3,9 @@ require "middleman-syntax/extension"
 RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
   let(:app) { double("app") }
   let(:context) { double("context") }
-  let(:processor) {
+  let(:processor) do
     Redcarpet::Markdown.new(described_class.new(context: context), tables: true, fenced_code_blocks: true)
-  }
+  end
 
   before :each do
     allow(context).to receive(:app) { app }
@@ -13,7 +13,7 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
   end
 
   describe "#render a table" do
-    let(:output) {
+    let(:output) do
       processor.render <<~MARKDOWN
         |  A   | B |
         |------|---|
@@ -21,7 +21,7 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
         |  E   | F |
         |# *G* | H |
       MARKDOWN
-    }
+    end
 
     it "treats cells in the heading row as headings" do
       expect(output).to include("<th>A</th>")
@@ -45,7 +45,7 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
   end
 
   describe "#render a code block" do
-    let(:output) {
+    let(:output) do
       processor.render <<~MARKDOWN
         Hello world:
 
@@ -55,12 +55,12 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
         end
         ```
       MARKDOWN
-    }
+    end
 
     context "without syntax highlighting" do
-      let(:processor) {
+      let(:processor) do
         Redcarpet::Markdown.new(described_class.new(context: context), fenced_code_blocks: true)
-      }
+      end
 
       it "sets tab index to 0" do
         expect(output).to include('<pre tabindex="0">')
@@ -73,14 +73,13 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
       end
     end
 
-
     context "with syntax highlighting" do
-      let(:processor) {
+      let(:processor) do
         renderer_class = described_class.clone.tap do |c|
           c.send :include, Middleman::Syntax::RedcarpetCodeRenderer
         end
         Redcarpet::Markdown.new(renderer_class.new(context: context), fenced_code_blocks: true)
-      }
+      end
 
       it "sets tab index to 0" do
         expect(output).to include('<pre class=" ruby" tabindex="0">')

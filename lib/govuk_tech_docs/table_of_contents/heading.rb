@@ -9,14 +9,14 @@ module GovukTechDocs
       end
 
       def size
-        @element_name.scan(/h(\d)/) && $1 && Integer($1)
+        @element_name.scan(/h(\d)/) && ::Regexp.last_match(1) && Integer(::Regexp.last_match(1))
       end
 
       def href
         if @page_url != "" && size == 1
           @page_url
         else
-          @page_url + "#" + @attributes["id"]
+          "#{@page_url}##{@attributes['id']}"
         end
       end
 
