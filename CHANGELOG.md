@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Fixes
+
+- You no longer need to downgrade Haml yourself, `bundle install` will now make sure Haml 6 is not installed (see issue [#318: Error: Filters is not a module](https://github.com/alphagov/tech-docs/gem/issues/318)).
+
 ## 3.3.1
 
 This change solves a potential security issue with HTML snippets. Pages indexed in search results have their entire contents indexed, including any HTML code snippets. These HTML snippets would appear in the search results unsanitised, making it possible to render arbitrary HTML or run arbitrary scripts.
