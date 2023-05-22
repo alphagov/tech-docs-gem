@@ -127,15 +127,15 @@ module GovukTechDocs
           properties.merge!(all_of_schema.properties.to_h)
         end
 
-        properties.each_with_object({}) do |(name, schema), memo|
-          memo[name] = case schema.type
-                       when "object"
-                         schema_properties(schema.items || schema)
-                       when "array"
-                         schema.items ? [schema_properties(schema.items)] : []
-                       else
-                         schema.example || schema.type
-                       end
+        properties.transform_values do |schema|
+          case schema.type
+          when "object"
+            schema_properties(schema.items || schema)
+          when "array"
+            schema.items ? [schema_properties(schema.items)] : []
+          else
+            schema.example || schema.type
+          end
         end
       end
 
@@ -174,7 +174,7 @@ module GovukTechDocs
       end
 
       def get_renderer(file)
-        template_path = File.join(File.dirname(__FILE__), "templates/" + file)
+        template_path = File.join(File.dirname(__FILE__), "templates/#{file}")
         template = File.open(template_path, "r").read
         ERB.new(template)
       end

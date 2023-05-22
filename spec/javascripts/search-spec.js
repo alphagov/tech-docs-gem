@@ -99,5 +99,11 @@ describe('Search', function () {
       var expectedResults = ' … This is <mark data-markjs="true">test</mark> sentence one … This is <mark data-markjs="true">test</mark> sentence two … This is <mark data-markjs="true">test</mark> sentence three … This is <mark data-markjs="true">test</mark> sentence four … This is <mark data-markjs="true">test</mark> sentence five … '
       expect(processedContent).toEqual(expectedResults)
     })
+
+    it('sanitises HTML in the search results', function () {
+      processedContent = module.processContent('It will render multiple `<input>` `<script>alert("uhoh")</script>` and its accompanying suggestions and `aria-live` region.', 'multi region')
+      var expectedResults = ' … It will render <mark data-markjs="true">multi</mark>ple `&lt;input&gt;` `&lt;script&gt;alert("uhoh")&lt;/script&gt;` and its accompanying suggestions and `aria-live` <mark data-markjs="true">region</mark> … '
+      expect(processedContent).toEqual(expectedResults)
+    })
   })
 })

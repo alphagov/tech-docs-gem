@@ -20,23 +20,23 @@ module GovukTechDocs
         output = ""
 
         if tree.heading
-          output += indentation + %{<a href="#{tree.heading.href}"><span>#{tree.heading.title}</span></a>\n}
+          output += indentation + %(<a href="#{tree.heading.href}"><span>#{tree.heading.title}</span></a>\n)
         end
 
         if tree.children.any? && level < @max_level
-          output += indentation + "<ul>\n" unless level.zero?
+          output += "#{indentation}<ul>\n" unless level.zero?
 
           tree.children.each do |child|
-            output += indentation + INDENTATION_INCREMENT + "<li>\n"
+            output += "#{indentation}#{INDENTATION_INCREMENT}<li>\n"
             output += render_tree(
               child,
               indentation: indentation + INDENTATION_INCREMENT * 2,
               level: level + 1,
             )
-            output += indentation + INDENTATION_INCREMENT + "</li>\n"
+            output += "#{indentation}#{INDENTATION_INCREMENT}</li>\n"
           end
 
-          output += indentation + "</ul>\n" unless level.zero?
+          output += "#{indentation}</ul>\n" unless level.zero?
         end
 
         output

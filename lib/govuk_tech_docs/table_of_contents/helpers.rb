@@ -32,7 +32,7 @@ module GovukTechDocs
         headings = HeadingsBuilder.new(html, url).headings
 
         if headings.none? { |heading| heading.size == 1 }
-          raise "No H1 tag found. You have to at least add one H1 heading to the page: " + url
+          raise "No H1 tag found. You have to at least add one H1 heading to the page: #{url}"
         end
 
         tree = HeadingTreeBuilder.new(headings).tree
@@ -67,12 +67,12 @@ module GovukTechDocs
             if config[:http_prefix].end_with?("/")
               config[:http_prefix]
             else
-              config[:http_prefix] + "/"
+              "#{config[:http_prefix]}/"
             end
 
           link_value = get_path_to_resource(config, resource, current_page)
           if resource.children.any? && resource.url != home_url
-            output += %{<li><a href="#{link_value}"><span>#{resource.data.title}</span></a>\n}
+            output += %(<li><a href="#{link_value}"><span>#{resource.data.title}</span></a>\n)
             output += render_page_tree(resource.children, current_page, config, current_page_html)
             output += "</li>\n"
           else
