@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## 3.4.0
+
+### New features
+
+- Footer and header links now work with relative links. Thanks to [@eddgrant](https://github.com/eddgrant) for contributing this feature.
+
+  See [pull request #325: Support sites deployed on a path other than "/" when generating header and footer links](https://github.com/alphagov/tech-docs-gem/pull/325) for more details.
+
 ### Fixes
 
 - You no longer need to downgrade Haml yourself, `bundle install` will now make sure Haml 6 is not installed (see issue [#318: Error: Filters is not a module](https://github.com/alphagov/tech-docs/gem/issues/318)).
