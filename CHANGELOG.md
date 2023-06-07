@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.4.0
+
 ### New features
 
 - Footer and header links now work with relative links. Thanks to [@eddgrant](https://github.com/eddgrant) for contributing this feature.
