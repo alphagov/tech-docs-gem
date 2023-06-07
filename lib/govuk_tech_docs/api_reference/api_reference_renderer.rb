@@ -54,26 +54,32 @@ module GovukTechDocs
         @template_schema.result(binding)
       end
 
+      def single_operation(text)
+        parts = text.split
+        endpoint = parts.first
+        operation_name = parts.second
+        path = @document.paths[endpoint]
+        operation = path[operation_name]
+        id = endpoint.parameterize
+        add_operation(operation_name, operation, id)
+      end
+
       def schemas_from_path(text)
         operations = get_operations(@document.paths[text])
         schemas = operations.flat_map do |_, operation|
-          operation.responses.inject([]) do |memo, (_, response)|
-            next memo unless response.content["application/json"]
-
-            schema = response.content["application/json"].schema
-
-            memo << schema.name if schema.name
-            memo + schemas_from_schema(schema)
-          end
+          schemas_from_operation(operation)
         end
 
-        # Render all referenced schemas
-        output = schemas.uniq.inject("") do |memo, schema_name|
-          memo + schema(schema_name)
-        end
+        render_schemas(schemas)
+      end
 
-        output.prepend('<h2 id="schemas">Schemas</h2>') unless output.empty?
-        output
+      def schemas_from_path_and_operation(text)
+        (path_name, operation_name) = text.split
+        path = @document.paths[path_name]
+        operation = path[operation_name]
+        schemas = schemas_from_operation(operation)
+
+        render_schemas(schemas)
       end
 
       def schemas_from_schema(schema)
@@ -89,10 +95,7 @@ module GovukTechDocs
 
       def operations(path, path_id)
         get_operations(path).inject("") do |memo, (key, operation)|
-          id = "#{path_id}-#{key.parameterize}"
-          parameters = parameters(operation, id)
-          responses = responses(operation, id)
-          memo + @template_operation.result(binding)
+          memo + add_operation(key, operation, path_id)
         end
       end
 
@@ -137,6 +140,33 @@ module GovukTechDocs
       end
 
     private
+
+      def render_schemas(schemas)
+        output = schemas.uniq.inject("") do |memo, schema_name|
+          memo + schema(schema_name)
+        end
+
+        output.prepend('<h2 id="schemas">Schemas</h2>') unless output.empty?
+        output
+      end
+
+      def schemas_from_operation(operation)
+        operation.responses.inject([]) do |memo, (_, response)|
+          next memo unless response.content["application/json"]
+
+          schema = response.content["application/json"].schema
+
+          memo << schema.name if schema.name
+          memo + schemas_from_schema(schema)
+        end
+      end
+
+      def add_operation(key, operation, path_id)
+        id = "#{path_id}-#{key.parameterize}"
+        parameters = parameters(operation, id)
+        responses = responses(operation, id)
+        @template_operation.result(binding)
+      end
 
       def build_redcarpet(app)
         renderer = GovukTechDocs::TechDocsHTMLRenderer.new(context: app.config_context)
