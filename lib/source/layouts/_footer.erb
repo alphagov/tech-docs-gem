@@ -6,7 +6,7 @@
         <ul class="govuk-footer__inline-list">
           <% config[:tech_docs][:footer_links].each do |title, path| %>
             <li class="govuk-footer__inline-list-item">
-              <a class="govuk-footer__link" href="<%= url_for path %>"><%= title %></a>
+              <a class="govuk-footer__link" href="<%= get_path_to_resource config, path, current_page %>"><%= title %></a>
             </li>
           <% end %>
         </ul>

@@ -129,6 +129,10 @@ describe GovukTechDocs::TableOfContents::Helpers do
           def add_children(children)
             @children.concat children
           end
+
+          def is_a?(klass)
+            klass.to_s == "Middleman::Sitemap::Resource"
+          end
         end,
       )
     end

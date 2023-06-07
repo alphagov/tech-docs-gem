@@ -2,7 +2,7 @@
   <div class="govuk-header__container govuk-header__container--full-width">
     <div class="govuk-header__logo">
       <% if config[:tech_docs][:service_link] %>
-      <a href="<%= url_for config[:tech_docs][:service_link] %>" class="govuk-header__link govuk-header__link--homepage">
+      <a href="<%= get_path_to_resource config, config[:tech_docs][:service_link], current_page %>" class="govuk-header__link govuk-header__link--homepage">
       <% else %>
       <span class="govuk-header__link govuk-header__link--homepage">
       <% end %>
@@ -46,7 +46,7 @@
         <ul id="navigation" class="govuk-header__navigation-list">
           <% config[:tech_docs][:header_links].each do |title, path| %>
             <li class="govuk-header__navigation-item<% if active_page(path) %> govuk-header__navigation-item--active<% end %>">
-              <a class="govuk-header__link" href="<%= url_for path %>"><%= title %></a>
+              <a class="govuk-header__link" href="<%= get_path_to_resource config, path, current_page %>"><%= title %></a>
             </li>
           <% end %>
         </ul>
