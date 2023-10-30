@@ -22,7 +22,7 @@ RSpec.describe GovukTechDocs::PathHelpers do
         }
 
         current_page_path = "/documentation/introduction/section-one/index.html"
-        current_page = double("current_page", path: current_page_path)
+        current_page = create_resource_double(url: current_page_path, path: current_page_path)
         resource = create_resource_double(url: resource_url, path: resource_url)
         resource_path = get_path_to_resource(config, resource, current_page)
 
@@ -49,7 +49,7 @@ RSpec.describe GovukTechDocs::PathHelpers do
         }
 
         url = "/documentation/introduction/index.html"
-        current_page = double("current_page", path: current_page_path)
+        current_page = create_resource_double(url: current_page_path, path: current_page_path)
         resource_path = get_path_to_resource(config, url, current_page)
 
         expect(resource_path).to eql("../../../documentation/introduction/index.html")

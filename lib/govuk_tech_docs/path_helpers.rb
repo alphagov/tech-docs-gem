@@ -1,26 +1,28 @@
 require "uri"
 module GovukTechDocs
   module PathHelpers
-    # Some useful notes from https://www.rubydoc.info/github/middleman/middleman/Middleman/Sitemap/Resource#url-instance_method :
-    # 'resource.path' is "The source path of this resource (relative to the source directory, without template extensions)."
-    # 'resource.destination_path', which is: "The output path in the build directory for this resource."
-    # 'resource.url' is based on 'resource.destination_path', but is further tweaked to optionally strip the index file and prefixed with any :http_prefix.
-
-    # Calculates the path to the sought resource, taking in to account whether the site has been configured
+    # Calculates the path to the sought #resource, taking in to account whether the site has been configured
     # to generate relative or absolute links.
     # Identifies whether the sought resource is an internal or external target: External targets are returned untouched. Path calculation is performed for internal targets.
     # Works for both "Middleman::Sitemap::Resource" resources and plain strings (which may be passed from the site configuration when generating header links).
     #
-    # @param [Object] config
-    # @param [Object] resource
-    # @param [Object] current_page
+    # Some useful notes from label[https://www.rubydoc.info/github/middleman/middleman/Middleman/Sitemap/Resource#url-instance_method] :
+    # * 'resource.path' is "The source path of this resource (relative to the source directory, without template extensions)."
+    # * 'resource.destination_path', which is: "The output path in the build directory for this resource."
+    # * 'resource.url' is based on 'resource.destination_path', but is further tweaked to optionally strip the index file and prefixed with any :http_prefix.
+    #
+    # @param [Object] config from Middleman::ConfigContext
+    # @param [Middleman::Sitemap::Resource, String] resource
+    # @param [Middleman::Sitemap::Resource, String] current_page
     def get_path_to_resource(config, resource, current_page)
+      current_page_path = current_page.is_a?(Middleman::Sitemap::Resource) ? current_page.path : current_page
+
       if resource.is_a?(Middleman::Sitemap::Resource)
-        config[:relative_links] ? get_resource_path_relative_to_current_page(config, current_page.path, resource.path) : resource.url
+        config[:relative_links] ? get_resource_path_relative_to_current_page(config, current_page_path, resource.path) : resource.url
       elsif external_url?(resource)
         resource
       elsif config[:relative_links]
-        get_resource_path_relative_to_current_page(config, current_page.path, resource)
+        get_resource_path_relative_to_current_page(config, current_page_path, resource)
       else
         resource
       end
