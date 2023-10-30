@@ -1,3 +1,4 @@
+require "govuk_tech_docs/doubles"
 require "spec_helper"
 
 describe GovukTechDocs::TableOfContents::Helpers do
@@ -224,11 +225,10 @@ describe GovukTechDocs::TableOfContents::Helpers do
       resources[5] = FakeResource.new("/1/5/6/e.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 60, "Sub page A", resources[0])
       resources[0].add_children [resources[1], resources[2], resources[3], resources[4], resources[5]]
 
-      current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
-                            url: "/1/2/3/index.html",
-                            path: "/1/2/3/index.html",
-                            metadata: { locals: {} })
+      current_page = create_resource_double(data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                                            url: "/1/2/3/index.html",
+                                            path: "/1/2/3/index.html",
+                                            metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>'
 
@@ -299,11 +299,10 @@ describe GovukTechDocs::TableOfContents::Helpers do
       resources[2] = FakeResource.new("/prefix/b.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>', 20, "Sub page B", resources[0])
       resources[0].add_children [resources[1], resources[2]]
 
-      current_page = double("current_page",
-                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
-                            url: "/prefix/index.html",
-                            path: "/prefix/index.html",
-                            metadata: { locals: {} })
+      current_page = create_resource_double(data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                                            url: "/prefix/index.html",
+                                            path: "/prefix/index.html",
+                                            metadata: { locals: {} })
 
       current_page_html = '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>'
 

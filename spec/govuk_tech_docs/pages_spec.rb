@@ -3,7 +3,7 @@ require "govuk_tech_docs/doubles"
 RSpec.describe GovukTechDocs::Pages do
   describe "#to_json" do
     it "returns the pages as JSON when using absolute links" do
-      current_page = double(path: "/api/pages.json")
+      current_page = create_resource_double(path: "/api/pages.json")
       sitemap = double(resources: [
         create_resource_double(url: "/a.html", data: double(title: "A thing", owner_slack: "#2ndline", last_reviewed_on: Date.yesterday, review_in: "0 days")),
         create_resource_double(url: "/b.html", data: double(title: "B thing", owner_slack: "#2ndline", last_reviewed_on: Date.yesterday, review_in: "2 days")),
@@ -18,7 +18,7 @@ RSpec.describe GovukTechDocs::Pages do
     end
 
     it "returns the pages as JSON when using relative links" do
-      current_page = double(path: "/api/pages.json")
+      current_page = create_resource_double(path: "/api/pages.json")
       sitemap = double(resources: [
         create_resource_double(url: "/a.html", path: "/a.html", data: double(title: "A thing", owner_slack: "#2ndline", last_reviewed_on: Date.yesterday, review_in: "0 days")),
         create_resource_double(url: "/b/c.html", path: "/b/c.html", data: double(title: "B thing", owner_slack: "#2ndline", last_reviewed_on: Date.yesterday, review_in: "2 days")),
