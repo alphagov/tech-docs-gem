@@ -51,7 +51,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "capybara", "~> 3.32"
-  spec.add_development_dependency "jasmine", "~> 3.5.0"
+  spec.add_development_dependency "jasmine", "~> 3.99.0"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.12.0"
   spec.add_development_dependency "rubocop-govuk", "~> 4.10.0"
