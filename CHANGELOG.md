@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Breaking change: Update minimum ruby requirements to 3.1.4
+
 ## 3.4.0
 
 ### New features
