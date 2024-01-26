@@ -39,7 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "chronic", "~> 0.10.2"
   spec.add_dependency "haml", "< 6.0.0"
   spec.add_dependency "middleman", "~> 4.0"
-  spec.add_dependency "middleman-autoprefixer", "~> 2.10.0"
+  spec.add_dependency "middleman-autoprefixer", "~> 3.0.0"
   spec.add_dependency "middleman-compass", ">= 4.0.0"
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-search-gds"
