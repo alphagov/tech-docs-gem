@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### New features
+
+- Update the Crown logo and govuk-frontend
+
+  See [pull request #344: Upgrade govuk-frontend and the crown logo](https://github.com/alphagov/tech-docs-gem/pull/344) for more details.
+
+https://github.com/alphagov/tech-docs-gem/pull/344
+
 ## 3.4.0
 
 ### New features
