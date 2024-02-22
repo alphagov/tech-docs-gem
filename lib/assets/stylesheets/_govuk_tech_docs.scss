@@ -1,3 +1,10 @@
+// IE8 support is removed in govuk-frontend v5
+// but as we still use IE8 mixin and generate a
+// separate stylesheet, we'll supress the warning for now
+// https://frontend.design-system.service.gov.uk/sass-api-reference/#govuk-suppressed-warnings
+$govuk-suppressed-warnings: (
+  ie8
+);
 $govuk-assets-path: "/assets/govuk/assets/" !default;
 
 // Include only the bits of GOV.UK Frontend we need
@@ -20,3 +27,9 @@ $govuk-new-link-styles: true;
 
 @import "core";
 @import "vendor/fixedsticky";
+
+// manual Tudor Crown spacing adjustment from govuk-frontend 4.8
+.govuk-header__logotype-crown[width="32"] {
+  top: -3px;
+  margin-right: 2px;
+}
