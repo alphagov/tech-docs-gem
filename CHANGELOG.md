@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+Updates to dependencies including:
+
+- Redcarpet to v3.6.0, removing warnings that appear in Tech Docs sites running Ruby 3.2+
+
 ## 3.5.0
 
 ### New features
