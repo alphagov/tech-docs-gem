@@ -36,7 +36,10 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = ">= 3.1.0"
 
   spec.add_dependency "autoprefixer-rails", "~> 10.2"
+  spec.add_dependency "base64" # TODO: remove once middleman-sprockets declares this itself.
+  spec.add_dependency "bigdecimal" # TODO: remove once activesupport declares this itself.
   spec.add_dependency "chronic", "~> 0.10.2"
+  spec.add_dependency "csv" # TODO: remove once tilt declares this itself.
   spec.add_dependency "haml", "~> 6.0"
   spec.add_dependency "middleman", "~> 4.0"
   spec.add_dependency "middleman-autoprefixer", "~> 2.10"
@@ -45,6 +48,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-search-gds"
   spec.add_dependency "middleman-sprockets", "~> 4.0.0"
   spec.add_dependency "middleman-syntax", "~> 3.4"
+  spec.add_dependency "mutex_m" # TODO: remove once activesupport declares this itself.
   spec.add_dependency "nokogiri"
   spec.add_dependency "openapi3_parser", "~> 0.9.0"
   spec.add_dependency "redcarpet", "~> 3.6"
