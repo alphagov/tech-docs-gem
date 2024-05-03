@@ -33,26 +33,26 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = %w[lib]
 
-  spec.required_ruby_version = ">= 2.7.0"
+  spec.required_ruby_version = ">= 3.1.0"
 
   spec.add_dependency "autoprefixer-rails", "~> 10.2"
   spec.add_dependency "chronic", "~> 0.10.2"
-  spec.add_dependency "haml", "< 6.0.0"
+  spec.add_dependency "haml", "~> 6.0"
   spec.add_dependency "middleman", "~> 4.0"
-  spec.add_dependency "middleman-autoprefixer", "~> 2.10.0"
-  spec.add_dependency "middleman-compass", ">= 4.0.0"
+  spec.add_dependency "middleman-autoprefixer", "~> 2.10"
+  spec.add_dependency "middleman-compass", "~> 4.0"
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-search-gds"
-  spec.add_dependency "middleman-sprockets", "~> 4.0.0"
-  spec.add_dependency "middleman-syntax", "~> 3.2.0"
+  spec.add_dependency "middleman-sprockets", "~> 4.1"
+  spec.add_dependency "middleman-syntax", "~> 3.4"
   spec.add_dependency "nokogiri"
   spec.add_dependency "openapi3_parser", "~> 0.9.0"
-  spec.add_dependency "redcarpet", "~> 3.5.1"
+  spec.add_dependency "redcarpet", "~> 3.6"
 
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "capybara", "~> 3.32"
-  spec.add_development_dependency "jasmine", "~> 3.5.0"
+  spec.add_development_dependency "jasmine", "~> 3.5"
   spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.9.0"
-  spec.add_development_dependency "rubocop-govuk", "~> 4.10.0"
+  spec.add_development_dependency "rspec", "~> 3.9"
+  spec.add_development_dependency "rubocop-govuk", "~> 4.10"
 end
