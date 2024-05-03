@@ -43,7 +43,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-compass", "~> 4.0"
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-search-gds"
-  spec.add_dependency "middleman-sprockets", "~> 4.1"
+  spec.add_dependency "middleman-sprockets", "~> 4.0.0"
   spec.add_dependency "middleman-syntax", "~> 3.4"
   spec.add_dependency "nokogiri"
   spec.add_dependency "openapi3_parser", "~> 0.9.0"
