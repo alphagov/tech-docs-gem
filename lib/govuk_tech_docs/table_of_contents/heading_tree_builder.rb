@@ -11,7 +11,7 @@ module GovukTechDocs
         @headings.each do |heading|
           move_to_depth(heading.size)
 
-          @pointer.children << HeadingTree.new(parent: @pointer, heading: heading)
+          @pointer.children << HeadingTree.new(parent: @pointer, heading:)
         end
 
         @tree

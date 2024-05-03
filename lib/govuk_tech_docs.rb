@@ -44,7 +44,7 @@ module GovukTechDocs
                 renderer: TechDocsHTMLRenderer.new(
                   with_toc_data: true,
                   api: true,
-                  context: context,
+                  context:,
                 ),
                 fenced_code_blocks: true,
                 tables: true,

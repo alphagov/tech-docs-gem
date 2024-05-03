@@ -25,7 +25,7 @@ RSpec.describe GovukTechDocs::SourceUrls do
   def generate_config(repo, host)
     {
       tech_docs: {
-        host: host,
+        host:,
         github_repo: repo,
       },
     }
@@ -33,8 +33,8 @@ RSpec.describe GovukTechDocs::SourceUrls do
 
   def generate_current_page(title, url)
     OpenStruct.new(
-      data: OpenStruct.new(title: title),
-      url: url,
+      data: OpenStruct.new(title:),
+      url:,
     )
   end
 end

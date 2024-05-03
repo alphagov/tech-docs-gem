@@ -4,7 +4,7 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
   let(:app) { double("app") }
   let(:context) { double("context") }
   let(:processor) do
-    Redcarpet::Markdown.new(described_class.new(context: context), tables: true, fenced_code_blocks: true)
+    Redcarpet::Markdown.new(described_class.new(context:), tables: true, fenced_code_blocks: true)
   end
 
   before :each do
@@ -59,7 +59,7 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
 
     context "without syntax highlighting" do
       let(:processor) do
-        Redcarpet::Markdown.new(described_class.new(context: context), fenced_code_blocks: true)
+        Redcarpet::Markdown.new(described_class.new(context:), fenced_code_blocks: true)
       end
 
       it "sets tab index to 0" do
@@ -78,7 +78,7 @@ RSpec.describe GovukTechDocs::TechDocsHTMLRenderer do
         renderer_class = described_class.clone.tap do |c|
           c.send :include, Middleman::Syntax::RedcarpetCodeRenderer
         end
-        Redcarpet::Markdown.new(renderer_class.new(context: context), fenced_code_blocks: true)
+        Redcarpet::Markdown.new(renderer_class.new(context:), fenced_code_blocks: true)
       end
 
       it "sets tab index to 0" do
