@@ -19,7 +19,10 @@ footer_links:
   Accessibility: /hidden-page.html
   Hidden Page: /hidden-page.html
 
-# Tracking ID from Google Analytics (e.g. UA-XXXX-Y)
+# Tracking ID (if using GA4 e.g G-XXXXXX)
+ga4_tracking_id:
+
+# Tracking ID from Google Universal Analytics (e.g. UA-XXXX-Y)
 ga_tracking_id:
 
 # Enable multipage navigation in the sidebar
