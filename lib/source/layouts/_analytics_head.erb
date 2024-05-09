@@ -1,0 +1,10 @@
+<% if config[:tech_docs][:ga4_tracking_id].is_a?(String) && !config[:tech_docs][:ga4_tracking_id].empty? %>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=<%= config[:tech_docs][:ga4_tracking_id]%>"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '<%= config[:tech_docs][:ga4_tracking_id] %>');
+  </script>
+<% end %>
