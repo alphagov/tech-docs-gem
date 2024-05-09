@@ -12,7 +12,7 @@ module GovukTechDocs
 
       def single_page_table_of_contents(html, url: "", max_level: nil)
         output = "<ul>\n"
-        output += list_items_from_headings(html, url: url, max_level: max_level)
+        output += list_items_from_headings(html, url:, max_level:)
         output += "</ul>\n"
 
         output
@@ -36,7 +36,7 @@ module GovukTechDocs
         end
 
         tree = HeadingTreeBuilder.new(headings).tree
-        HeadingTreeRenderer.new(tree, max_level: max_level).html
+        HeadingTreeRenderer.new(tree, max_level:).html
       end
 
       def render_page_tree(resources, current_page, config, current_page_html)
