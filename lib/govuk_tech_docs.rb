@@ -34,10 +34,12 @@ module GovukTechDocs
 
     context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/dist")
     context.sprockets.append_path File.join(__dir__, "./source")
+    context.sprockets.append_path File.join(__dir__, "./assets/javascripts")
 
     context.activate :syntax
 
     context.files.watch :source, path: "#{__dir__}/source"
+    context.files.watch :source, path: "#{__dir__}/assets/javascripts"
 
     context.set :markdown_engine, :redcarpet
     context.set :markdown,
