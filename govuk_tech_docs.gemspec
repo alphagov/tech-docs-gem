@@ -7,7 +7,7 @@ require "govuk_tech_docs/version"
 `npm install`
 abort "npm install failed" unless $CHILD_STATUS.success?
 
-unless File.exist?("node_modules/govuk-frontend/govuk/all.scss")
+unless File.exist?("node_modules/govuk-frontend/dist/govuk/all.scss")
   abort "govuk-frontend npm package not installed"
 end
 
@@ -25,8 +25,10 @@ Gem::Specification.new do |spec|
   files_in_git = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
 
   # Include assets from GOV.UK Frontend library in the distributed gem
-  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js,woff,woff2,png,svg,ico}"]
-
+  govuk_frontend_js_css = Dir["node_modules/govuk-frontend/dist/govuk/*.{scss,js}"]
+  govuk_frontend_fonts = Dir["node_modules/govuk-frontend/dist/govuk/assets/fonts/*.{woff,woff2}"]
+  govuk_frontend_images = Dir["node_modules/govuk-frontend/dist/govuk/images/fonts/*.{png,svg,ico}"]
+  govuk_frontend_assets = govuk_frontend_js_css + govuk_frontend_fonts + govuk_frontend_images
   spec.files         = files_in_git + govuk_frontend_assets
 
   spec.bindir        = "exe"
