@@ -3,13 +3,15 @@
   "name": "tech-docs-gem",
   "license": "MIT",
   "scripts": {
-    "lint": "standard"
+    "lint": "standard",
+    "build": "gulp"
   },
   "dependencies": {
     "govuk-frontend": "5.6.0"
   },
   "devDependencies": {
-    "standard": "^14.3.4"
+    "standard": "^14.3.4",
+    "gulp": "5.0.0"
   },
   "standard": {
     "globals": [

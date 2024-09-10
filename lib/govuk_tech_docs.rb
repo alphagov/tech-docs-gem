@@ -1,8 +1,6 @@
 require "govuk_tech_docs/version"
 
 require "middleman"
-require "middleman-autoprefixer"
-require "middleman-sprockets"
 require "middleman-livereload"
 require "middleman-syntax"
 require "middleman-search"
@@ -30,16 +28,16 @@ module GovukTechDocs
   # @option options [Hash] livereload Options to pass to the `livereload`
   #   extension. Hash with symbols as keys.
   def self.configure(context, options = {})
-    context.activate :sprockets
+    # context.activate :sprockets
 
-    context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/dist")
-    context.sprockets.append_path File.join(__dir__, "./source")
-    context.sprockets.append_path File.join(__dir__, "./assets/javascripts")
+    # context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/dist")
+    # context.sprockets.append_path File.join(__dir__, "./source")
+    # context.sprockets.append_path File.join(__dir__, "./assets/javascripts")
 
     context.activate :syntax
 
-    context.files.watch :source, path: "#{__dir__}/source"
-    context.files.watch :source, path: "#{__dir__}/assets/javascripts"
+    # context.files.watch :source, path: "#{__dir__}/source"
+    # context.files.watch :source, path: "#{__dir__}/assets/javascripts"
 
     context.set :markdown_engine, :redcarpet
     context.set :markdown,
@@ -57,10 +55,16 @@ module GovukTechDocs
       activate :livereload, options[:livereload].to_h
     end
 
-    context.configure :build do
-      activate :autoprefixer
-      activate :minify_javascript, ignore: ["/raw_assets/*"]
-    end
+    # context.configure :build do
+    #   activate :autoprefixer
+    #   activate :minify_javascript, ignore: ["/raw_assets/*"]
+    # end
+
+    context.activate :external_pipeline,
+      :name => 'gulp',
+      :command => (context.build? ? 'npm run build': 'gulp watch'),
+      :source => '../tmp',
+      :latency => 1
 
     config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")
     context.config[:tech_docs] = YAML.load_file(config_file).with_indifferent_access
