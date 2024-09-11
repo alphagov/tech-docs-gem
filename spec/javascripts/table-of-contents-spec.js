@@ -12,7 +12,7 @@ describe('Table of contents', function () {
   beforeAll(function () {
     $html = $('html')
     $tocBase = $(
-      '<div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">' +
+      '<div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents">' +
         '<div class="search" data-module="search" data-path-to-site-root="/">' +
           '<form action="/search/index.html" method="get" role="search" class="search__form govuk-!-margin-bottom-4">' +
             '<label class="govuk-label search__label" for="search">Search this documentation</label>' +
@@ -111,6 +111,12 @@ describe('Table of contents', function () {
         $html.removeClass('mobile-size')
       })
 
+      it("the table of contents should have a role of 'dialog'", function () {
+        $(window).trigger('resize')
+
+        expect($toc.attr('role')).toEqual('dialog')
+      })
+
       it('if the table of contents is closed, it should mark the buttons as not expanded', function () {
         // the table of contents is closed by default, set by CSS styles
 
@@ -132,6 +138,14 @@ describe('Table of contents', function () {
       })
     })
 
+    it('on a desktop-size screen, the table of contents should have no role', function () {
+      module = new GOVUK.Modules.TableOfContents()
+      module.start($toc)
+
+      $(window).trigger('resize')
+
+      expect($toc.attr('role')).toEqual(undefined)
+    })
   })
 
   describe('if the open button is clicked', function () {
