@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   # Include assets from GOV.UK Frontend library in the distributed gem
   govuk_frontend_js_css = Dir["node_modules/govuk-frontend/dist/govuk/*.{scss,js}"]
   govuk_frontend_fonts = Dir["node_modules/govuk-frontend/dist/govuk/assets/fonts/*.{woff,woff2}"]
-  govuk_frontend_images = Dir["node_modules/govuk-frontend/dist/govuk/images/fonts/*.{png,svg,ico}"]
+  govuk_frontend_images = Dir["node_modules/govuk-frontend/dist/govuk/assets/images/*.{png,svg,ico}"]
   govuk_frontend_assets = govuk_frontend_js_css + govuk_frontend_fonts + govuk_frontend_images
   spec.files         = files_in_git + govuk_frontend_assets
 
