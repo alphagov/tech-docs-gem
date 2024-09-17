@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   files_in_git = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
 
   # Include assets from GOV.UK Frontend library in the distributed gem
-  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js,woff,woff2,png,svg,ico}"]
+  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js,mjs,woff,woff2,png,svg,ico}"]
 
   spec.files         = files_in_git + govuk_frontend_assets
 
@@ -52,6 +52,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "nokogiri"
   spec.add_dependency "openapi3_parser", "~> 0.9.0"
   spec.add_dependency "redcarpet", "~> 3.6"
+  spec.add_dependency "terser", "~> 1.2.3"
 
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "capybara", "~> 3.32"
