@@ -57,6 +57,7 @@ module GovukTechDocs
 
     context.configure :build do
       activate :autoprefixer
+      activate :minify_javascript, compressor: Terser.new
       # activate :minify_javascript, ignore: ["/raw_assets/*"]
     end
 
