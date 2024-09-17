@@ -300,4 +300,138 @@ describe('Table of contents', function () {
       expect(scrollTopSpy).toHaveBeenCalledWith(399)
     })
   })
+
+  describe('Prevent table of contents open button overlapping focused elements', function () {
+    var _getBoundingClientRect
+    var _addEventListener
+    var _scrollTop
+    var $link
+    var $tocStickyHeader
+
+    beforeEach(function () {
+      _getBoundingClientRect = Element.prototype.getBoundingClientRect
+      _addEventListener = Document.prototype.addEventListener
+      _scrollTop = $.fn.scrollTop
+
+      $tocStickyHeader = $('.toc-show')
+      $link = $('<a href="">Test link</a>')
+      $('body').append($link)
+    })
+
+    afterEach(function () {
+      Element.prototype.getBoundingClientRect = _getBoundingClientRect
+      Document.prototype.addEventListener = _addEventListener
+      $.fn.extend({ scrollTop: _scrollTop })
+
+      $link.remove()
+    })
+
+    it('if an element is focused while being overlaped by the table of contents sticky header, the screen should scroll to reveal it', function () {
+      var tocStickyHeaderBottomPos = 50
+      var linkTopPos = 30
+      var windowScrollPos = 300
+      var scrollTopSpy = jasmine.createSpy('scrollTop')
+
+      $html.addClass('mobile-size') // the open button only appears on mobile-size screens
+
+      module = new GOVUK.Modules.TableOfContents()
+      module.start($toc)
+
+      // stub DOM APIs used to work out if an element is overlaped
+      Element.prototype.getBoundingClientRect = function () {
+        if (this === $tocStickyHeader.get(0)) {
+          return {
+            bottom: tocStickyHeaderBottomPos
+          }
+        }
+        if (this === $link.get(0)) {
+          return {
+            top: linkTopPos
+          }
+        }
+      }
+      $.fn.scrollTop = function (yPos) {
+        if (this.get(0) !== window) { return _scrollTop(arguments) }
+        if (yPos === undefined) { // call for current scrollTop position
+          return windowScrollPos
+        } else {
+          scrollTopSpy(yPos)
+        }
+      }
+
+      // replicating a real event requires us to focus the element and fire the event ourselves
+      $link.focus()
+      $link.get(0).dispatchEvent(new Event('focus'))
+
+      expect(scrollTopSpy).toHaveBeenCalledWith(windowScrollPos - (tocStickyHeaderBottomPos - linkTopPos))
+
+      $html.removeClass('mobile-size')
+    })
+
+    it('if the table of contents sticky header isn\'t shown, no focus tracking should happen', function () {
+      var scrollTopSpy = jasmine.createSpy('scrollTop')
+      var getBoundingClientRectSpy = jasmine.createSpy('getBoundingClientRectSpy')
+
+      module = new GOVUK.Modules.TableOfContents()
+      module.start($toc)
+
+      // stub out web APIs used if focus tracking runs
+      Element.prototype.getBoundingClientRect = function () {
+        if ((this === $tocStickyHeader.get(0)) || (this === $link.get(0))) {
+          getBoundingClientRectSpy()
+          return {
+            bottom: 50,
+            top: 30
+          }
+        }
+      }
+      $.fn.scrollTop = function (yPos) {
+        if (this.get(0) !== window) { return _scrollTop(arguments) }
+        scrollTopSpy(arguments)
+      }
+
+      // replicating a real event requires us to focus the element and fire the event ourselves
+      $link.focus()
+      $link.get(0).dispatchEvent(new Event('focus'))
+
+      expect(getBoundingClientRectSpy).not.toHaveBeenCalled()
+      expect(scrollTopSpy).not.toHaveBeenCalled()
+    })
+
+    it('if the table of contents sticky header shows but then is hidden when the screen resizes, no focus tracking should happen', function () {
+      var scrollTopSpy = jasmine.createSpy('scrollTop')
+      var getBoundingClientRectSpy = jasmine.createSpy('getBoundingClientRectSpy')
+
+      $html.addClass('mobile-size') // the open button only appears on mobile-size screens
+
+      module = new GOVUK.Modules.TableOfContents()
+      module.start($toc)
+
+      // simulate screen resizing to desktop-size
+      $html.removeClass('mobile-size')
+      $(window).trigger('resize')
+
+      // stub out web APIs used if focus tracking runs
+      Element.prototype.getBoundingClientRect = function () {
+        if ((this === $tocStickyHeader.get(0)) || (this === $link.get(0))) {
+          getBoundingClientRectSpy()
+          return {
+            bottom: 50,
+            top: 30
+          }
+        }
+      }
+      $.fn.scrollTop = function (yPos) {
+        if (this.get(0) !== window) { return _scrollTop(arguments) }
+        scrollTopSpy(arguments)
+      }
+
+      // replicating a real event requires us to focus the element and fire the event ourselves
+      $link.focus()
+      $link.get(0).dispatchEvent(new Event('focus'))
+
+      expect(getBoundingClientRectSpy).not.toHaveBeenCalled()
+      expect(scrollTopSpy).not.toHaveBeenCalled()
+    })
+  })
 })
