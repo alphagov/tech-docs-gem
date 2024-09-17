@@ -57,7 +57,7 @@ module GovukTechDocs
 
     context.configure :build do
       activate :autoprefixer
-      activate :minify_javascript, ignore: ["/raw_assets/*"]
+      # activate :minify_javascript, ignore: ["/raw_assets/*"]
     end
 
     config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")

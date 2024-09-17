@@ -1,1 +1,1 @@
-//= require govuk_frontend
+//= require govuk_frontend_all
