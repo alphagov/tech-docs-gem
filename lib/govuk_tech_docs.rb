@@ -10,6 +10,7 @@ require "middleman-search"
 require "nokogiri"
 require "chronic"
 require "active_support/all"
+require "terser"
 
 require "govuk_tech_docs/redirects"
 require "govuk_tech_docs/table_of_contents/helpers"
@@ -57,7 +58,7 @@ module GovukTechDocs
 
     context.configure :build do
       activate :autoprefixer
-      activate :minify_javascript, ignore: ["/raw_assets/*"]
+      activate :minify_javascript, compressor: Terser.new, ignore: ["/raw_assets/*"]
     end
 
     config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")
