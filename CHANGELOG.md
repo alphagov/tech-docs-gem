@@ -5,6 +5,7 @@
 - BREAKING: drop support for end-of-life Ruby versions 2.7 and 3.0. The minimum Ruby version is now 3.1.
 - Update gem dependencies.
 - Declare some missing indirect dependencies to prepare for Ruby 3.4. This also resolves some warnings about this at build time.
+- Remove aria-hidden from search label to let assistive technologies see its accessible name
 
 ## 3.5.0
 
