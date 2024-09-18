@@ -2,11 +2,11 @@
 <div class="search" data-module="search" data-path-to-site-root="<%= path_to_site_root config, current_page.path %>">
   <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
     <input type="hidden" name="as_sitesearch" value="<%= config[:tech_docs][:host] %>"/>
-    <label class="govuk-label search__label" for="search" aria-hidden="true">
+    <label class="govuk-label search__label" for="search">
       Search (via Google)
     </label>
     <input
-      type="text"
+      type="search"
       id="search" name="q"
       class="govuk-input govuk-!-margin-bottom-0 search__input"
       aria-controls="search-results"
