@@ -32,7 +32,7 @@ module GovukTechDocs
   def self.configure(context, options = {})
     context.activate :sprockets
 
-    context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/")
+    context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/dist")
     context.sprockets.append_path File.join(__dir__, "./source")
 
     context.activate :syntax
