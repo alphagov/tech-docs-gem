@@ -27,9 +27,3 @@ $govuk-new-link-styles: true;
 
 @import "core";
 @import "vendor/fixedsticky";
-
-// manual Tudor Crown spacing adjustment from govuk-frontend 4.8
-.govuk-header__logotype-crown[width="32"] {
-  top: -3px;
-  margin-right: 2px;
-}
