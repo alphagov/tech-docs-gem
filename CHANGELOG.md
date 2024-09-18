@@ -8,6 +8,7 @@
 - Remove aria-hidden from search label to let assistive technologies see its accessible name
 - Use hidden attribute to show/hide expiry notices instead of just CSS
 - Only use dialog role for table of contents when it behaves like one (accessibility fix)
+- Prevent interactive elements being obscured by sticky table of contents header
 
 ## 3.5.0
 
