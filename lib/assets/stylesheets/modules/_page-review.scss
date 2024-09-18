@@ -24,8 +24,6 @@
 }
 
 .page-expiry--expired {
-  display: none;
-
   padding: govuk-spacing(3);
   margin-top: govuk-spacing(9);
   border: govuk-spacing(1) solid $govuk-error-colour;
