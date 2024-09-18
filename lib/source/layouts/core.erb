@@ -10,6 +10,11 @@
     <%= stylesheet_link_tag :manifest %>
 
     <link rel="canonical" href="<%= meta_tags.canonical_url %>">
+    <link rel="icon" sizes="48x48" href="/assets/govuk/assets/images/favicon.ico">
+    <link rel="icon" sizes="any" href="/assets/govuk/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="mask-icon" href="/assets/govuk/assets/images/govuk-icon-mask.svg" color="#0b0c0c">
+    <link rel="apple-touch-icon" href="/assets/govuk/assets/images/govuk-icon-180.png">
+    <link rel="manifest" href="/assets/govuk/assets/manifest.json">
 
     <% meta_tags.tags.each do |name, content| %>
       <%= tag :meta, name: name, content: content %>
