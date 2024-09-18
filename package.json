@@ -13,11 +13,13 @@
   },
   "standard": {
     "globals": [
+      "jasmine",
       "describe",
       "before",
       "after",
       "beforeEach",
       "afterEach",
+      "beforeAll",
       "it",
       "assert",
       "expect",

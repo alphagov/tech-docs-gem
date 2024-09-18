@@ -7,6 +7,7 @@
 - Declare some missing indirect dependencies to prepare for Ruby 3.4. This also resolves some warnings about this at build time.
 - Remove aria-hidden from search label to let assistive technologies see its accessible name
 - Use hidden attribute to show/hide expiry notices instead of just CSS
+- Only use dialog role for table of contents when it behaves like one (accessibility fix)
 
 ## 3.5.0
 
