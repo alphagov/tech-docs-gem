@@ -53,6 +53,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "openapi3_parser", "~> 0.9.0"
   spec.add_dependency "redcarpet", "~> 3.6"
   spec.add_dependency "terser", "~> 1.2.3"
+  spec.add_dependency "sassc-embedded", "~> 1.78.0"
 
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "capybara", "~> 3.32"

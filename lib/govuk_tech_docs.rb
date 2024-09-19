@@ -11,6 +11,7 @@ require "nokogiri"
 require "chronic"
 require "active_support/all"
 require "terser"
+require "sassc-embedded"
 
 require "govuk_tech_docs/redirects"
 require "govuk_tech_docs/table_of_contents/helpers"
@@ -50,6 +51,9 @@ module GovukTechDocs
                 fenced_code_blocks: true,
                 tables: true,
                 no_intra_emphasis: true
+
+    # this doesnt seem to work
+    context.set :sass, { output_style: "nested", quiet_deps: true }
 
     # Reload the browser automatically whenever files change
     context.configure :development do
