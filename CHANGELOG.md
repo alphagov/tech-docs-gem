@@ -1,6 +1,14 @@
 # Changelog
 
 ## Unreleased
+- Upgrade to govuk-frontend v5.6.0 and introduce new Javascript entry point
+
+You need to
+  - create a `govuk_frontend.js` file your project’s `source/assets/javascripts` directory
+  - add `//= require govuk_frontend_all` into it
+
+Note: In stylesheet compilation you'll see some warnings. At the moment we are unable to silence them.
+Your stylesheet will compile as normal.
 
 - BREAKING: drop support for end-of-life Ruby versions 2.7 and 3.0. The minimum Ruby version is now 3.1.
 - Update gem dependencies.
