@@ -25,6 +25,18 @@ require "govuk_tech_docs/unique_identifier_generator"
 require "govuk_tech_docs/warning_text_extension"
 require "govuk_tech_docs/api_reference/api_reference_extension"
 
+module SassWarningSupressor
+  def warn(message)
+    if message.to_s.match?(/Sass|dart-sass/i)
+      # suppress dart sass warnings
+    else
+      super
+    end
+  end
+end
+
+Warning.extend(SassWarningSupressor)
+
 module GovukTechDocs
   # Configure the tech docs template
   #
