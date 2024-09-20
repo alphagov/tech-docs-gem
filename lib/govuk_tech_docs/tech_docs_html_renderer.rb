@@ -20,7 +20,7 @@ module GovukTechDocs
     end
 
     def image(link, title, alt_text)
-      if alt_text
+      if alt_text && !alt_text.strip.empty?
         %(<a href="#{link}" rel="noopener noreferrer">#{super}</a>)
       else
         super
