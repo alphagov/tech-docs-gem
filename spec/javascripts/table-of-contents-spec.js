@@ -7,6 +7,7 @@ describe('Table of contents', function () {
   var $toc
   var $closeButton
   var $openButton
+  var $tocStickyHeader
   var module
 
   beforeAll(function () {
@@ -64,13 +65,18 @@ describe('Table of contents', function () {
 
     $closeButton = $toc.find('.js-toc-close')
     $openButton = $html.find('.js-toc-show')
+
+    $tocStickyHeader = $html.find('.toc-show')
   })
 
   afterEach(function () {
     // clear up any classes left on <html>
-    $html.removeClass('.toc-open')
+    $html.removeClass('toc-open')
     $html.find('body #toc-heading').remove()
     $html.find('body .toc').remove()
+    if ($tocStickyHeader && $tocStickyHeader.length) {
+      $tocStickyHeader.remove()
+    }
   })
 
   describe('when the module is started', function () {
