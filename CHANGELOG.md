@@ -15,6 +15,7 @@ You need to
 - Use hidden attribute to show/hide expiry notices instead of just CSS
 - Only use dialog role for table of contents when it behaves like one (accessibility fix)
 - Prevent interactive elements being obscured by sticky table of contents header
+- Only wrap images with alt text in hyperlinks
 
 ## 3.5.0
 
