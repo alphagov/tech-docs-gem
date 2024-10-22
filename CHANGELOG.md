@@ -1,14 +1,21 @@
 # Changelog
 
 ## Unreleased
+
+## 4.0.0
+
+### Breaking
+
 - Upgrade to govuk-frontend v5.6.0 and introduce new Javascript entry point
-  BREAKING: drop support for IE8
+- BREAKING: drop support for
+- BREAKING: drop support for end-of-life Ruby versions 2.7 and 3.0. The minimum Ruby version is now 3.1.
 
 You need to
   - create a `govuk_frontend.js` file your project’s `source/assets/javascripts` directory
   - add `//= require govuk_frontend_all` into it
 
-- BREAKING: drop support for end-of-life Ruby versions 2.7 and 3.0. The minimum Ruby version is now 3.1.
+### Fixes
+
 - Update gem dependencies.
 - Declare some missing indirect dependencies to prepare for Ruby 3.4. This also resolves some warnings about this at build time.
 - Remove aria-hidden from search label to let assistive technologies see its accessible name
@@ -72,22 +79,22 @@ You can now [configure your Tech Docs Template (TDT) to build your documentation
 
 Thanks [@eddgrant](https://github.com/eddgrant) for contributing this feature and the associated fixes.
 
-This change was introduced in [pull request #291: Support sites deployed on paths other than "/" (by generating relative links)](https://github.com/alphagov/tech-docs-gem/pull/291). 
+This change was introduced in [pull request #291: Support sites deployed on paths other than "/" (by generating relative links)](https://github.com/alphagov/tech-docs-gem/pull/291).
 
 ## 3.1.0
 
 ### New features
 
-There are some steps you should follow as the Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.0.0. 
+There are some steps you should follow as the Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.0.0.
 
 1. Update your documentation site to use the latest template version. You can [follow the TDT guidance on using the latest template version](https://tdt-documentation.london.cloudapps.digital/maintain_project/use_latest_template/).
-2. Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend 4.0.0 release note](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for more information. 
+2. Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend 4.0.0 release note](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for more information.
 
 ## 3.0.1
 
 ### Fixes
 
-We’ve made the following fixes to the tech docs gem in [pull request #281: Don't break TOC when OpenAPI description includes headers](https://github.com/alphagov/tech-docs-gem/pull/281): 
+We’ve made the following fixes to the tech docs gem in [pull request #281: Don't break TOC when OpenAPI description includes headers](https://github.com/alphagov/tech-docs-gem/pull/281):
 
 * we now render OpenAPI Markdown with the same Markdown renderer as other documents
 * table of contents (TOC) uses `TechDocsHTMLRenderer` to render the headings with IDs
