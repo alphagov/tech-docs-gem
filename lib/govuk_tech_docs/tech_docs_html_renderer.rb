@@ -19,8 +19,12 @@ module GovukTechDocs
       %(<h#{level} id="#{anchor}">#{text}</h#{level}>\n)
     end
 
-    def image(link, *args)
-      %(<a href="#{link}" rel="noopener noreferrer">#{super}</a>)
+    def image(link, title, alt_text)
+      if alt_text && !alt_text.strip.empty?
+        %(<a href="#{link}" rel="noopener noreferrer">#{super}</a>)
+      else
+        super
+      end
     end
 
     def table(header, body)
