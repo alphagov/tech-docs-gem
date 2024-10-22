@@ -48,7 +48,7 @@ module GovukTechDocs
     attr_reader :config, :current_page
 
     def page_image
-      "#{host}/images/govuk-large.png"
+      "#{host}/assets/govuk/assets/images/govuk-opengraph-image.png"
     end
 
     def site_name

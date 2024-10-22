@@ -10,6 +10,8 @@ require "middleman-search"
 require "nokogiri"
 require "chronic"
 require "active_support/all"
+require "terser"
+require "sassc-embedded"
 
 require "govuk_tech_docs/redirects"
 require "govuk_tech_docs/table_of_contents/helpers"
@@ -23,6 +25,18 @@ require "govuk_tech_docs/unique_identifier_generator"
 require "govuk_tech_docs/warning_text_extension"
 require "govuk_tech_docs/api_reference/api_reference_extension"
 
+module SassWarningSupressor
+  def warn(message)
+    if message.to_s.match?(/Sass|dart-sass/i)
+      # suppress dart sass warnings
+    else
+      super
+    end
+  end
+end
+
+Warning.extend(SassWarningSupressor)
+
 module GovukTechDocs
   # Configure the tech docs template
   #
@@ -32,7 +46,7 @@ module GovukTechDocs
   def self.configure(context, options = {})
     context.activate :sprockets
 
-    context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/")
+    context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/dist")
     context.sprockets.append_path File.join(__dir__, "./source")
 
     context.activate :syntax
@@ -50,6 +64,9 @@ module GovukTechDocs
                 tables: true,
                 no_intra_emphasis: true
 
+    # this doesnt seem to work
+    context.set :sass, { output_style: "nested", quiet_deps: true }
+
     # Reload the browser automatically whenever files change
     context.configure :development do
       activate :livereload, options[:livereload].to_h
@@ -57,7 +74,7 @@ module GovukTechDocs
 
     context.configure :build do
       activate :autoprefixer
-      activate :minify_javascript, ignore: ["/raw_assets/*"]
+      activate :minify_javascript, compressor: Terser.new, ignore: ["/raw_assets/*"]
     end
 
     config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")

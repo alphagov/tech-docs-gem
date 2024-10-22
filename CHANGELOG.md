@@ -1,6 +1,12 @@
 # Changelog
 
 ## Unreleased
+- Upgrade to govuk-frontend v5.6.0 and introduce new Javascript entry point
+  BREAKING: drop support for IE8
+
+You need to
+  - create a `govuk_frontend.js` file your project’s `source/assets/javascripts` directory
+  - add `//= require govuk_frontend_all` into it
 
 - BREAKING: drop support for end-of-life Ruby versions 2.7 and 3.0. The minimum Ruby version is now 3.1.
 - Update gem dependencies.
