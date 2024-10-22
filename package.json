@@ -6,7 +6,7 @@
     "lint": "standard"
   },
   "dependencies": {
-    "govuk-frontend": "~5.6.0"
+    "govuk-frontend": "~5.7.1"
   },
   "devDependencies": {
     "standard": "^14.3.4"
