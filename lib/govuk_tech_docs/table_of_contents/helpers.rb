@@ -19,10 +19,18 @@ module GovukTechDocs
       end
 
       def multi_page_table_of_contents(resources, current_page, config, current_page_html = nil)
+        # Determine
+        home_url =
+          if config[:http_prefix].end_with?("/")
+            config[:http_prefix]
+          else
+            config[:http_prefix] + "/"
+          end
+
         # Only parse top level html files
         # Sorted by weight frontmatter
         resources = resources
-        .select { |r| r.path.end_with?(".html") && (r.parent.nil? || r.parent.url == "/") }
+        .select { |r| r.path.end_with?(".html") && (r.parent.nil? || r.parent.url == home_url) }
         .sort_by { |r| [r.data.weight ? 0 : 1, r.data.weight || 0] }
 
         render_page_tree(resources, current_page, config, current_page_html)
