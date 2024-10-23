@@ -1,6 +1,9 @@
 ## Unreleased
 
+## 4.1.0
+
 - [Fix missing manifest.json from govuk-frontend](https://github.com/alphagov/tech-docs-gem/pull/376)
+- [Stable soft for left navigation](https://github.com/alphagov/tech-docs-gem/pull/374)
 
 ## 4.0.0
 
