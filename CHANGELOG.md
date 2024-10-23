@@ -1,5 +1,7 @@
 ## Unreleased
 
+- [Fix missing manifest.json from govuk-frontend](https://github.com/alphagov/tech-docs-gem/pull/376)
+
 ## 4.0.0
 
 ### Breaking
