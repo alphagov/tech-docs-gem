@@ -1,7 +1,7 @@
 # Changelog
 
 ## Unreleased
-- Upgrade to govuk-frontend v5.6.0 and introduce new Javascript entry point
+- Upgrade to govuk-frontend v5.7.1 and introduce new Javascript entry point
   BREAKING: drop support for IE8
 
 You need to
