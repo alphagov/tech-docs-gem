@@ -1,5 +1,9 @@
-## Unreleased
+## 4.1.1
+
+## Fixes
+
 - [Disable focus outline on navigation link](https://github.com/alphagov/tech-docs-gem/pull/379)
+- [Warning text extension fix for govuk-frontend v5.7.1](https://github.com/alphagov/tech-docs-gem/pull/378)
 
 ## 4.1.0
 
