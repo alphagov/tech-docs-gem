@@ -1,4 +1,5 @@
 ## Unreleased
+- [Disable focus outline on navigation link](https://github.com/alphagov/tech-docs-gem/pull/379)
 
 ## 4.1.0
 
