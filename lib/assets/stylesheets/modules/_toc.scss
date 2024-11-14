@@ -43,6 +43,7 @@
 
         a:focus {
           text-decoration: none;
+          outline: none;
 
           span {
             @include govuk-focused-text;
