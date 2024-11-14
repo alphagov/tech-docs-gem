@@ -123,7 +123,7 @@ module GovukTechDocs
         if ok && File.exist?(output_path)
           File.read(output_path)
         else
-          "<pre>#{code}</pre>"
+          %Q{<pre tabindex="0">#{code}</pre>}
         end
       end
     end
