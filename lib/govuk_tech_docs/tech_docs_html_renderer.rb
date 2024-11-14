@@ -123,7 +123,7 @@ module GovukTechDocs
         if ok && File.exist?(output_path)
           File.read(output_path)
         else
-          %Q{<pre tabindex="0">#{code}</pre>}
+          %({<pre tabindex="0">#{code}</pre>)
         end
       end
     end
@@ -133,7 +133,7 @@ module GovukTechDocs
       begin
         Timeout.timeout(timeout) do
           Process.waitpid(pid, 0)
-          $?.exitstatus.zero?
+          $CHILD_STATUS.exitstatus.zero?
         end
       rescue Timeout::Error
         Process.kill(15, -Process.getpgid(pid))
