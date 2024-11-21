@@ -1,4 +1,5 @@
 require "middleman-core/renderers/redcarpet"
+require "govuk_tech_docs/unique_identifier_generator"
 
 module GovukTechDocs
   class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
@@ -10,12 +11,18 @@ module GovukTechDocs
       super
     end
 
+    def preprocess(document)
+      @unique_identifier_generator = UniqueIdentifierGenerator.new
+
+      document
+    end
+
     def paragraph(text)
       @app.api("<p>#{text.strip}</p>\n")
     end
 
     def header(text, level)
-      anchor = UniqueIdentifierGenerator.instance.create(text, level)
+      anchor = @unique_identifier_generator.create(text, level)
       %(<h#{level} id="#{anchor}">#{text}</h#{level}>\n)
     end
 
