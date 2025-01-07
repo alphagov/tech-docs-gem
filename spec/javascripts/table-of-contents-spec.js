@@ -197,7 +197,8 @@ describe('Table of contents', function () {
   })
 
   describe('if the close button is clicked', function () {
-    var clickEvt
+    var openClickEvt
+    var closeClickEvt
 
     beforeEach(function () {
       $html.addClass('mobile-size')
@@ -206,8 +207,11 @@ describe('Table of contents', function () {
       module.start($toc)
 
       // tocIsVisible = false // controls what $toc.is(':visible') returns, which will be controlled by CSS in a web page
-      clickEvt = new $.Event('click')
-      $closeButton.trigger(clickEvt)
+      openClickEvt = new $.Event('click')
+      closeClickEvt = new $.Event('click')
+
+      $openButton.trigger(openClickEvt)
+      $closeButton.trigger(closeClickEvt)
     })
 
     afterEach(function () {
@@ -215,11 +219,15 @@ describe('Table of contents', function () {
     })
 
     it('the click event should be cancelled', function () {
-      expect(clickEvt.isDefaultPrevented()).toBe(true)
+      expect(closeClickEvt.isDefaultPrevented()).toBe(true)
     })
 
     it('the table of contents should be hidden', function () {
       expect($toc.attr('aria-hidden')).toEqual('true')
+    })
+
+    it('the button that triggered the dialog is refocused', function () {
+      expect(document.activeElement).toBe($openButton.get(0))
     })
   })
 
