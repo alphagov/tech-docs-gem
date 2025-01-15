@@ -37,7 +37,7 @@ describe('Search', function () {
     // Change the default search index location to use the search index from the example app
     module.downloadSearchIndex = function downloadSearchIndex () {
       $.ajax({
-        url: 'example/build/search.json',
+        url: '/__src__/example/build/search.json', // use config.srcDir mapping, which points to the repo root, to get index data
         async: false,
         cache: true,
         method: 'GET',

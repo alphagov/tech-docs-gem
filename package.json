@@ -3,12 +3,16 @@
   "name": "tech-docs-gem",
   "license": "MIT",
   "scripts": {
-    "lint": "standard"
+    "lint": "standard",
+    "test": "jasmine-browser-runner runSpecs --config=spec/javascripts/support/jasmine-browser.mjs",
+    "test-server": "jasmine-browser-runner serve --config=spec/javascripts/support/jasmine-browser.mjs"
   },
   "dependencies": {
     "govuk-frontend": "~5.7.1"
   },
   "devDependencies": {
+    "jasmine-browser-runner": "^2.5.0",
+    "jasmine-core": "^5.5.0",
     "standard": "^14.3.4"
   },
   "standard": {
@@ -37,7 +41,9 @@
       "GOVUKFrontend"
     ],
     "ignore": [
-      "lib/assets/javascripts/_vendor/**"
+      "lib/assets/javascripts/_vendor/**",
+      "spec/javascripts/helpers/**",
+      "spec/javascripts/support/**"
     ]
   }
 }

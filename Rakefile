@@ -4,7 +4,16 @@ require "jasmine"
 
 RSpec::Core::RakeTask.new(:spec)
 
-load "jasmine/tasks/jasmine.rake"
+namespace :jasmine do
+  desc "Test JavaScript with headless browser"
+  task :ci do
+    sh "npm test"
+  end
+  desc "Test JavaScript in browser"
+  task :server do
+    sh "npm run test-server"
+  end
+end
 
 desc "Lint Ruby and JavaScript"
 task :lint do
