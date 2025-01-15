@@ -5,6 +5,7 @@ describe('Table of contents', function () {
   var $html
   var $tocBase
   var $toc
+  var $mainContentPane
   var $closeButton
   var $openButton
   var $tocStickyHeader
@@ -13,28 +14,33 @@ describe('Table of contents', function () {
   beforeAll(function () {
     $html = $('html')
     $tocBase = $(
-      '<div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents">' +
-        '<div class="search" data-module="search" data-path-to-site-root="/">' +
-          '<form action="/search/index.html" method="get" role="search" class="search__form govuk-!-margin-bottom-4">' +
-            '<label class="govuk-label search__label" for="search">Search this documentation</label>' +
-            '<input type="text" id="search" name="q" class="govuk-input govuk-!-margin-bottom-0 search__input" aria-controls="search-results" placeholder="Search">' +
-            '<button type="submit" class="search__button">Search</button>' +
-          '</form>' +
+      '<div class="app-pane__toc">' +
+        '<div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents">' +
+          '<div class="search" data-module="search" data-path-to-site-root="/">' +
+            '<form action="/search/index.html" method="get" role="search" class="search__form govuk-!-margin-bottom-4">' +
+              '<label class="govuk-label search__label" for="search">Search this documentation</label>' +
+              '<input type="text" id="search" name="q" class="govuk-input govuk-!-margin-bottom-0 search__input" aria-controls="search-results" placeholder="Search">' +
+              '<button type="submit" class="search__button">Search</button>' +
+            '</form>' +
+          '</div>' +
+          '<button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>' +
+          '<nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading" data-module="collapsible-navigation">' +
+            '<ul>' +
+              '<li>' +
+                '<a href="/"><span>Technical Documentation Template</span></a>' +
+              '</li>' +
+              '<li>' +
+                '<a href="/"><span>Get started</span></a>' +
+              '</li>' +
+              '<li>' +
+                '<a href="/"><span>Configure your documentation site</span></a>' +
+              '</li>' +
+            '</ul>' +
+          '</nav>' +
         '</div>' +
-        '<button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>' +
-        '<nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading" data-module="collapsible-navigation">' +
-          '<ul>' +
-            '<li>' +
-              '<a href="/"><span>Technical Documentation Template</span></a>' +
-            '</li>' +
-            '<li>' +
-              '<a href="/"><span>Get started</span></a>' +
-            '</li>' +
-            '<li>' +
-              '<a href="/"><span>Configure your documentation site</span></a>' +
-            '</li>' +
-          '</ul>' +
-        '</nav>' +
+      '</div>' +
+      '<div class="app-pane__content toc-open-disabled" aria-label="content">' +
+        '<main id="content"></main>' +
       '</div>'
     )
 
@@ -51,7 +57,7 @@ describe('Table of contents', function () {
   })
 
   beforeEach(function () {
-    $toc = $tocBase.clone()
+    var $tocClone = $tocBase.clone()
 
     $html.find('body')
       .append(
@@ -61,8 +67,10 @@ describe('Table of contents', function () {
           '</button>' +
         '</div>'
       )
-      .append($toc)
+      .append($tocClone)
 
+    $toc = $tocClone.eq(0).find('.toc')
+    $mainContentPane = $tocClone.eq(1)
     $closeButton = $toc.find('.js-toc-close')
     $openButton = $html.find('.js-toc-show')
 
@@ -73,14 +81,15 @@ describe('Table of contents', function () {
     // clear up any classes left on <html>
     $html.removeClass('toc-open')
     $html.find('body #toc-heading').remove()
-    $html.find('body .toc').remove()
+    $html.find('body .app-pane__toc').remove()
+    $html.find('body .app-pane__content').remove()
     if ($tocStickyHeader && $tocStickyHeader.length) {
       $tocStickyHeader.remove()
     }
   })
 
   describe('when the module is started', function () {
-    it('on a mobile-size screen, it should mark the table of contents as hidden', function () {
+    it('on a mobile-size screen, it should hide the table of contents and stop the main content pane being focusable', function () {
       // styles applied by this test simulate the styles media-queries will apply on real web pages
       // the .mobile-size class hides the table of contents and the open button
       $html.addClass('mobile-size') // simulate the styles media-queries will apply on real web pages
@@ -89,11 +98,12 @@ describe('Table of contents', function () {
       module.start($toc)
 
       expect($toc.attr('aria-hidden')).toEqual('true')
+      expect($mainContentPane.get(0).hasAttribute('tabindex')).toBe(false)
 
       $html.removeClass('mobile-size')
     })
 
-    it('on a desktop-size screen, it should mark the table of contents as visible', function () {
+    it('on a desktop-size screen, it should show the table of contents and make the main content pane focusable', function () {
       // styles applied by this test simulate the styles media-queries will apply on real web pages
       // by default, they show the table of contents
 
@@ -101,6 +111,7 @@ describe('Table of contents', function () {
       module.start($toc)
 
       expect($toc.attr('aria-hidden')).toEqual('false')
+      expect($mainContentPane.attr('tabindex')).toEqual('0')
     })
   })
 
@@ -156,8 +167,13 @@ describe('Table of contents', function () {
 
   describe('if the open button is clicked', function () {
     beforeEach(function () {
+      $html.addClass('mobile-size')
       module = new GOVUK.Modules.TableOfContents()
       module.start($toc)
+    })
+
+    afterEach(function () {
+      $html.removeClass('toc-open mobile-size')
     })
 
     it('the click event should be cancelled', function () {
@@ -168,7 +184,7 @@ describe('Table of contents', function () {
       expect(clickEvt.isDefaultPrevented()).toBe(true)
     })
 
-    it('the table of contents should show and be focused', function () {
+    it('the table of contents should show and be focused and the main content hidden', function () {
       // detecting focus has proved unreliable so track calls to $toc.focus instead
       var _focus = $.fn.focus
       var tocFocusSpy = jasmine.createSpy('tocFocusSpy')
@@ -188,6 +204,7 @@ describe('Table of contents', function () {
       $openButton.trigger(clickEvt)
 
       expect($toc.attr('aria-hidden')).toEqual('false')
+      expect($mainContentPane.attr('aria-hidden')).toEqual('true')
 
       expect(tocFocusSpy).toHaveBeenCalled()
 
@@ -197,7 +214,8 @@ describe('Table of contents', function () {
   })
 
   describe('if the close button is clicked', function () {
-    var clickEvt
+    var openClickEvt
+    var closeClickEvt
 
     beforeEach(function () {
       $html.addClass('mobile-size')
@@ -206,8 +224,11 @@ describe('Table of contents', function () {
       module.start($toc)
 
       // tocIsVisible = false // controls what $toc.is(':visible') returns, which will be controlled by CSS in a web page
-      clickEvt = new $.Event('click')
-      $closeButton.trigger(clickEvt)
+      openClickEvt = new $.Event('click')
+      closeClickEvt = new $.Event('click')
+
+      $openButton.trigger(openClickEvt)
+      $closeButton.trigger(closeClickEvt)
     })
 
     afterEach(function () {
@@ -215,15 +236,23 @@ describe('Table of contents', function () {
     })
 
     it('the click event should be cancelled', function () {
-      expect(clickEvt.isDefaultPrevented()).toBe(true)
+      expect(closeClickEvt.isDefaultPrevented()).toBe(true)
     })
 
     it('the table of contents should be hidden', function () {
       expect($toc.attr('aria-hidden')).toEqual('true')
     })
+
+    it('the button that triggered the dialog is refocused', function () {
+      expect(document.activeElement).toBe($openButton.get(0))
+    })
+
+    it('the main content area should be shown', function () {
+      expect($mainContentPane.attr('aria-hidden')).toEqual('false')
+    })
   })
 
-  it('on mobile-size screens, when the table of contents is open and the escape key is activated, the table of contents should be hidden', function () {
+  it('on mobile-size screens, when the table of contents is open and the escape key is activated, the table of contents should be hidden and the main content shown', function () {
     $html.addClass('mobile-size')
 
     module = new GOVUK.Modules.TableOfContents()
@@ -236,6 +265,8 @@ describe('Table of contents', function () {
     }))
 
     expect($html.hasClass('toc-open')).toBe(false)
+    expect($toc.attr('aria-hidden')).toEqual('true')
+    expect($mainContentPane.attr('aria-hidden')).toEqual('false')
 
     $html.removeClass('mobile-size')
   })

@@ -61,3 +61,10 @@
   }
 }
 
+.app-pane__content:focus-visible,
+.app-pane__content:has(main:focus-visible) {
+  outline: $govuk-focus-width solid transparent;
+  box-shadow:
+    0 0 0 4px $govuk-focus-colour,
+    0 0 0 8px $govuk-focus-text-colour;
+}
