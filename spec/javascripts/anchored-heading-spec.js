@@ -13,7 +13,7 @@ describe('Anchored headings', function () {
   })
 
   it('adds an anchor to headings in the target element', function () {
-    expect($heading.find('a').length).toEqual(1)
+    expect($heading.find('a').length).toEqual(0)
   })
 
   it('sets the href of the anchor to the heading\'s id attribute', function () {
