@@ -39,6 +39,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "base64" # TODO: remove once middleman-sprockets declares this itself.
   spec.add_dependency "bigdecimal" # TODO: remove once activesupport declares this itself.
   spec.add_dependency "chronic", "~> 0.10.2"
+  spec.add_dependency "concurrent-ruby", "1.3.4" # 1.3.5 introduced a change that breaks activesupport, and so middleman
   spec.add_dependency "csv" # TODO: remove once tilt declares this itself.
   spec.add_dependency "haml", "~> 6.0"
   spec.add_dependency "middleman", "~> 4.0"
