@@ -37,6 +37,7 @@ RSpec.describe GovukTechDocs::MetaTags do
         host: "https://www.example.org",
         service_name: "Foo",
         full_service_name: "Test Site",
+        show_govuk_logo: true,
       )
 
       current_page = double("current_page",
@@ -51,6 +52,31 @@ RSpec.describe GovukTechDocs::MetaTags do
         "twitter:card" => "summary",
         "twitter:domain" => "www.example.org",
         "twitter:image" => "https://www.example.org/assets/govuk/assets/images/govuk-opengraph-image.png",
+        "twitter:title" => "The Title - Test Site",
+        "twitter:url" => "https://www.example.org/foo.html",
+      )
+    end
+
+    it "returns standard meta tag with non GOV.UK twitter image" do
+      config = generate_config(
+        host: "https://www.example.org",
+        service_name: "Foo",
+        full_service_name: "Test Site",
+        show_govuk_logo: false,
+      )
+
+      current_page = double("current_page",
+                            data: { description: "The description.", title: "The Title" },
+                            url: "/foo.html",
+                            metadata: { locals: {} })
+
+      tags = GovukTechDocs::MetaTags.new(config, current_page).tags
+
+      expect(tags).to eql(
+        "description" => "The description.",
+        "twitter:card" => "summary",
+        "twitter:domain" => "www.example.org",
+        "twitter:image" => "https://www.example.org/images/opengraph-image.png",
         "twitter:title" => "The Title - Test Site",
         "twitter:url" => "https://www.example.org/foo.html",
       )
@@ -128,6 +154,7 @@ RSpec.describe GovukTechDocs::MetaTags do
         host: "https://www.example.org",
         service_name: "Foo",
         full_service_name: "Test Site",
+        show_govuk_logo: true,
       )
 
       current_page = double("current_page",
@@ -140,6 +167,31 @@ RSpec.describe GovukTechDocs::MetaTags do
       expect(og_tags).to eql(
         "og:description" => "The description.",
         "og:image" => "https://www.example.org/assets/govuk/assets/images/govuk-opengraph-image.png",
+        "og:site_name" => "Test Site",
+        "og:title" => "The Title",
+        "og:type" => "object",
+        "og:url" => "https://www.example.org/foo.html",
+      )
+    end
+
+    it "returns a custom opengraph meta tag image" do
+      config = generate_config(
+        host: "https://www.example.org",
+        service_name: "Foo",
+        full_service_name: "Test Site",
+        show_govuk_logo: false,
+      )
+
+      current_page = double("current_page",
+                            data: { description: "The description.", title: "The Title" },
+                            url: "/foo.html",
+                            metadata: { locals: {} })
+
+      og_tags = GovukTechDocs::MetaTags.new(config, current_page).opengraph_tags
+
+      expect(og_tags).to eql(
+        "og:description" => "The description.",
+        "og:image" => "https://www.example.org/images/opengraph-image.png",
         "og:site_name" => "Test Site",
         "og:title" => "The Title",
         "og:type" => "object",
