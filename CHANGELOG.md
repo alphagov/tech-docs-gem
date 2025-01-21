@@ -1,3 +1,9 @@
+## 4.1.2
+
+## Fixes
+
+- [Fix focus issues with table of contents and main content pane](https://github.com/alphagov/tech-docs-gem/pull/381)
+
 ## 4.1.1
 
 ## Fixes
