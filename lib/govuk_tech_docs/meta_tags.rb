@@ -48,7 +48,11 @@ module GovukTechDocs
     attr_reader :config, :current_page
 
     def page_image
-      "#{host}/assets/govuk/assets/images/govuk-opengraph-image.png"
+      if config[:tech_docs][:show_govuk_logo]
+        "#{host}/assets/govuk/assets/images/govuk-opengraph-image.png"
+      else
+        "#{host}/images/opengraph-image.png"
+      end
     end
 
     def site_name

@@ -1,3 +1,11 @@
+## Unreleased
+
+- [Allow non-GOV.UK favicon and opengraph assets](https://github.com/alphagov/tech-docs-gem/pull/387)
+
+To use a non-crown assets, you need to 
+- add `favicon.ico`, `favicon.svg` and `opengraph-image.png` to your `source/images` folder.
+- set `show_govuk_logo: false`
+
 ## 4.1.2
 
 ## Fixes
