@@ -1,4 +1,6 @@
-## Unreleased
+## 4.2.0
+
+## New features
 
 - [Allow non-GOV.UK favicon and opengraph assets](https://github.com/alphagov/tech-docs-gem/pull/387)
 
