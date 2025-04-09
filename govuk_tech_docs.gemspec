@@ -42,7 +42,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "concurrent-ruby", "1.3.4" # 1.3.5 introduced a change that breaks activesupport, and so middleman
   spec.add_dependency "csv" # TODO: remove once tilt declares this itself.
   spec.add_dependency "haml", "~> 6.0"
-  spec.add_dependency "middleman", "~> 4.0"
+  spec.add_dependency "middleman", "4.5.1" # remove pin once https://github.com/middleman/middleman/issues/2818 is fixed
   spec.add_dependency "middleman-autoprefixer", "~> 2.10"
   spec.add_dependency "middleman-compass", "~> 4.0"
   spec.add_dependency "middleman-livereload"
