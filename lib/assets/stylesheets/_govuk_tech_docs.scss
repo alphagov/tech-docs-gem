@@ -7,6 +7,9 @@ $govuk-suppressed-warnings: (
 );
 $govuk-assets-path: "/assets/govuk/assets/" !default;
 
+// legacy palette is getting deprecated so new one needs to be used
+$govuk-new-organisation-colours: true;
+
 // Include only the bits of GOV.UK Frontend we need
 $govuk-new-link-styles: true;
 @import "govuk/base";
