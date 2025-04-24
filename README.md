@@ -3,7 +3,7 @@
 This repo contains the Ruby gem that distributes the [Tech Docs Template][tdt-template]. The Tech Docs Template is a [middleman template][mmt] that
 you can use to build technical documentation using a GOV.UK style.
 
-To find out more about setting up and managing content for a website using this template, see the [Tech Docs Template documentation][tdt-docs].
+To find out more about setting up and managing content for a website using this template, see the [Tech Docs Template documentation][tdt-docs]. 
 
 ## Contributing
 
