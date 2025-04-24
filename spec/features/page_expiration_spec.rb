@@ -1,7 +1,7 @@
-require "rack/file"
+require "rack/files"
 require "capybara/rspec"
 
-Capybara.app = Rack::File.new("example/build")
+Capybara.app = Rack::Files.new("example/build")
 
 RSpec.describe "Page expiration" do
   include Capybara::DSL
