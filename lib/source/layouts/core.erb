@@ -11,11 +11,18 @@
 
     <link rel="canonical" href="<%= meta_tags.canonical_url %>">
     <% if config[:tech_docs][:show_govuk_logo] %>
-      <link rel="icon" sizes="48x48" href="/assets/govuk/assets/images/favicon.ico">
-      <link rel="icon" sizes="any" href="/assets/govuk/assets/images/favicon.svg" type="image/svg+xml">
-      <link rel="mask-icon" href="/assets/govuk/assets/images/govuk-icon-mask.svg" color="#0b0c0c">
-      <link rel="apple-touch-icon" href="/assets/govuk/assets/images/govuk-icon-180.png">
-      <link rel="manifest" href="/assets/govuk/assets/manifest.json">
+      <%
+        service_link = config[:tech_docs][:service_link] || '/'
+        # ensure service_link ends with a trailing '/'
+        if service_link[-1, 1] != '/'
+          service_link += '/'
+        end
+      %>
+      <link rel="icon" sizes="48x48" href="<%= service_link %>assets/govuk/assets/images/favicon.ico">
+      <link rel="icon" sizes="any" href="<%= service_link %>assets/govuk/assets/images/favicon.svg" type="image/svg+xml">
+      <link rel="mask-icon" href="<%= service_link %>assets/govuk/assets/images/govuk-icon-mask.svg" color="#0b0c0c">
+      <link rel="apple-touch-icon" href="<%= service_link %>assets/govuk/assets/images/govuk-icon-180.png">
+      <link rel="manifest" href="<%= service_link %>assets/govuk/assets/images/manifest.json">
     <% else %>
       <link rel="icon" sizes="48x48" href="/images/favicon.ico">
       <link rel="icon" sizes="any" href="/images/favicon.svg" type="image/svg+xml">
