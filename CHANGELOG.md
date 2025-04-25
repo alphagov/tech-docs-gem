@@ -2,6 +2,8 @@
 
 - [Bump govuk-frontend to v5.9.0 and pin middleman to v4.5.1](https://github.com/alphagov/tech-docs-gem/pull/390)
 
+- [Fix: Update Rack::File to Rack::Files in test specs](https://github.com/alphagov/tech-docs-gem/pull/394)
+
 ## 4.2.0
 
 ## New features
