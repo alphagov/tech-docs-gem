@@ -4,6 +4,8 @@
 
 - [Fix: Update Rack::File to Rack::Files in test specs](https://github.com/alphagov/tech-docs-gem/pull/394)
 
+- [Fix: Use the service link as the start of the path to the favicon images](https://github.com/alphagov/tech-docs-gem/pull/391)
+
 ## 4.2.0
 
 ## New features
