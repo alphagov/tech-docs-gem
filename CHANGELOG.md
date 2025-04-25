@@ -1,3 +1,7 @@
+## Unreleased
+
+- [Bump govuk-frontend to v5.9.0 and pin middleman to v4.5.1](https://github.com/alphagov/tech-docs-gem/pull/390)
+
 ## 4.2.0
 
 ## New features
