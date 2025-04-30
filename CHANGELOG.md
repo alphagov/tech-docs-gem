@@ -1,3 +1,7 @@
+## 4.3.1
+
+- Revert [Fix: Use the service link as the start of the path to the favicon images](https://github.com/alphagov/tech-docs-gem/pull/391)
+
 ## 4.3.0
 
 - [Bump govuk-frontend to v5.9.0 and pin middleman to v4.5.1](https://github.com/alphagov/tech-docs-gem/pull/390)
