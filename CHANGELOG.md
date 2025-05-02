@@ -1,6 +1,8 @@
-## Unreleased
+## 4.4.0
 
-- [Fix: Use the service link as the start of the path to the favicon images if required](https://github.com/alphagov/tech-docs-gem/pull/399)
+### New features
+
+- [Use the service link as the start of the path to the favicon images if required](https://github.com/alphagov/tech-docs-gem/pull/399)
 
 To use the service_link at the start of the path to the favicon images, you need to
 - set `use_service_link_for_favicon: true`
