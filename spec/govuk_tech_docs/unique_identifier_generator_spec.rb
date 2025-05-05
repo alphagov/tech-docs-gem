@@ -1,6 +1,5 @@
 RSpec.describe GovukTechDocs::UniqueIdentifierGenerator do
-  subject { described_class.instance }
-  before { subject.reset }
+  subject { described_class.new }
 
   describe "#create" do
     it "lower-cases the text" do
@@ -64,15 +63,6 @@ RSpec.describe GovukTechDocs::UniqueIdentifierGenerator do
           expect(second_heading).to eq "the-same-heading-2"
         end
       end
-    end
-  end
-
-  describe "#reset" do
-    it "clears the list of existing anchors" do
-      subject.create("An Anchor", 1)
-      expect(subject.anchors).to_not be_empty
-      subject.reset
-      expect(subject.anchors).to be_empty
     end
   end
 end
