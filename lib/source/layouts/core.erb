@@ -66,7 +66,7 @@
       <div class="app-pane__body"<%= " data-module=\"#{yield_content(:toc_module)}\"" if content_for? :toc_module %>>
         <% if content_for? :sidebar %>
           <div class="app-pane__toc">
-            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents">
+            <div class="toc" data-module="table-of-contents" tabindex="-1">
               <%= partial "layouts/search" %>
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading"<%= " data-module=\"collapsible-navigation\"" if config[:tech_docs][:collapsible_nav] %>>
@@ -76,7 +76,7 @@
           </div>
         <% end %>
 
-        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+        <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
             <%= yield %>
             <%= partial "layouts/page_review" %>
