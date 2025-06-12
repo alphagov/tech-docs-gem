@@ -1,3 +1,13 @@
+## Unreleased
+
+### New features
+
+- [Apply brand refresh to tech docs using `show_govuk_logo`](https://github.com/alphagov/tech-docs-gem/pull/415)
+
+The GOV.UK brand refresh introduced in [GOV.UK Frontend 5.10.0](https://github.com/alphagov/govuk-frontend/releases/tag/v5.10.0) will be applied to your tech docs if `show_govuk_logo` is set to `true` in your tech docs config.
+
+Please do not deploy this change to production before 25th June 2025.
+
 ## 4.4.0
 
 ### New features
