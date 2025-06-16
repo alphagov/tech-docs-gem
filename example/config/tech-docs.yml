@@ -40,6 +40,9 @@ google_site_verification: dstbao8TVS^DRVDS&rv76
 
 enable_search: true
 
+# Enable hoverable anchor links next to every heading
+enable_anchored_headings: true
+
 show_contribution_banner: true
 
 github_repo: alphagov/example-repo

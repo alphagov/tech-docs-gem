@@ -76,8 +76,8 @@
           </div>
         <% end %>
 
-        <div class="app-pane__content toc-open-disabled">
-          <main id="content" class="technical-documentation" data-module="anchored-headings">
+        <div class="app-pane__content toc-open-disabled" aria-label="Content">
+          <main id="content" class="technical-documentation"<% if config[:tech_docs][:enable_anchored_headings] != false %> data-module="anchored-headings"<% end %>>
             <%= yield %>
             <%= partial "layouts/page_review" %>
           </main>
