@@ -40,7 +40,7 @@
         <ul id="navigation" class="govuk-header__navigation-list">
           <% config[:tech_docs][:header_links].each do |title, path| %>
             <li class="govuk-header__navigation-item<% if active_page(path) %> govuk-header__navigation-item--active<% end %>">
-              <a class="govuk-header__link" href="<%= get_path_to_resource config, path, current_page %>"><%= title %></a>
+              <a class="govuk-header__link" href="<%= get_path_to_resource config, path, current_page %>"<% if active_page(path) %> aria-current="page"<% end %>><%= title %></a>
             </li>
           <% end %>
         </ul>
