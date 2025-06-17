@@ -1,12 +1,26 @@
 ## Unreleased
 
+## 5.0.0
+
 ### Breaking
 
 - [Apply brand refresh to tech docs using `show_govuk_logo`](https://github.com/alphagov/tech-docs-gem/pull/415)
 
-BREAKING: The GOV.UK brand refresh introduced in [GOV.UK Frontend 5.10.0](https://github.com/alphagov/govuk-frontend/releases/tag/v5.10.0) will be applied to your tech docs if `show_govuk_logo` is set to `true` in your tech docs config.
+  BREAKING: The GOV.UK brand refresh introduced in [GOV.UK Frontend 5.10.0](https://github.com/alphagov/govuk-frontend/releases/tag/v5.10.0) will be applied to your tech docs if `show_govuk_logo` is set to `true` in your tech docs config.
 
-Please do not deploy this change to production before 25th June 2025.
+  Please do not deploy this change to production before 25th June 2025.
+
+### New features
+
+- [Add option to toggle off anchor in headings](https://github.com/alphagov/tech-docs-gem/pull/407)
+
+  Set `enable_anchored_headings: false` to prevent the rendering of anchor in headings to improve accessibility.
+
+### Fixes
+
+- [Add aria-current to active header menu link](https://github.com/alphagov/tech-docs-gem/pull/406)
+- [Remove ARIA labels from containers](https://github.com/alphagov/tech-docs-gem/pull/405)
+
 
 ## 4.4.0
 
