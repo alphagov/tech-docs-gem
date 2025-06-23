@@ -151,5 +151,16 @@ RSpec.describe "The tech docs template" do
     expect(page).to have_css ".govuk-logo-dot"
     # Check for crown svg in footer
     expect(page).to have_css ".govuk-footer__crown"
+    # Check for favicons and other meta tags
+    # <link rel="icon" sizes="48x48" href="<%= path_prefix %>assets/govuk/assets/rebrand/images/favicon.ico">
+    expect(page).to have_css 'link[rel="icon"][sizes="48x48"][href$="assets/govuk/assets/rebrand/images/favicon.ico"]', visible: false
+    # <link rel="icon" sizes="any" href="<%= path_prefix %>assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
+    expect(page).to have_css 'link[rel="icon"][sizes="any"][type="image/svg+xml"][href$="assets/govuk/assets/rebrand/images/favicon.svg"]', visible: false
+    # <link rel="mask-icon" href="<%= path_prefix %>assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
+    expect(page).to have_css 'link[rel="mask-icon"][href$="assets/govuk/assets/rebrand/images/govuk-icon-mask.svg"][color="#0b0c0c"]', visible: false
+    # <link rel="apple-touch-icon" href="<%= path_prefix %>assets/govuk/assets/rebrand/images/govuk-icon-180.png">
+    expect(page).to have_css 'link[rel="apple-touch-icon"][href$="assets/govuk/assets/rebrand/images/govuk-icon-180.png"]', visible: false
+    # <link rel="manifest" href="<%= path_prefix %>assets/govuk/assets/rebrand/manifest.json">
+    expect(page).to have_css 'link[rel="manifest"][href$="assets/govuk/assets/rebrand/manifest.json"]', visible: false
   end
 end

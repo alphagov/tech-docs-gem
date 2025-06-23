@@ -49,7 +49,7 @@ module GovukTechDocs
 
     def page_image
       if config[:tech_docs][:show_govuk_logo]
-        "#{host}/assets/govuk/assets/images/govuk-opengraph-image.png"
+        "#{host}/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png"
       else
         "#{host}/images/opengraph-image.png"
       end
