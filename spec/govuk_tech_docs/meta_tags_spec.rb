@@ -51,7 +51,7 @@ RSpec.describe GovukTechDocs::MetaTags do
         "description" => "The description.",
         "twitter:card" => "summary",
         "twitter:domain" => "www.example.org",
-        "twitter:image" => "https://www.example.org/assets/govuk/assets/images/govuk-opengraph-image.png",
+        "twitter:image" => "https://www.example.org/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png",
         "twitter:title" => "The Title - Test Site",
         "twitter:url" => "https://www.example.org/foo.html",
       )
@@ -166,7 +166,7 @@ RSpec.describe GovukTechDocs::MetaTags do
 
       expect(og_tags).to eql(
         "og:description" => "The description.",
-        "og:image" => "https://www.example.org/assets/govuk/assets/images/govuk-opengraph-image.png",
+        "og:image" => "https://www.example.org/assets/govuk/assets/rebrand/images/govuk-opengraph-image.png",
         "og:site_name" => "Test Site",
         "og:title" => "The Title",
         "og:type" => "object",

@@ -3,6 +3,7 @@
 ### Fixes
 
 - [Update logo SVG in header](https://github.com/alphagov/tech-docs-gem/pull/418)
+- [Update path to GOV.UK Frontend assets when using GOV.UK logo](https://github.com/alphagov/tech-docs-gem/pull/419)
 
 ## 5.0.0
 
