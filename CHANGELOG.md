@@ -1,5 +1,7 @@
 ## Unreleased
 
+## 5.0.1
+
 ### Fixes
 
 - [Update logo SVG in header](https://github.com/alphagov/tech-docs-gem/pull/418)
