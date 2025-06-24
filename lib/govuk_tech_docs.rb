@@ -20,7 +20,6 @@ require "govuk_tech_docs/meta_tags"
 require "govuk_tech_docs/page_review"
 require "govuk_tech_docs/pages"
 require "govuk_tech_docs/tech_docs_html_renderer"
-require "govuk_tech_docs/unique_identifier_extension"
 require "govuk_tech_docs/unique_identifier_generator"
 require "govuk_tech_docs/warning_text_extension"
 require "govuk_tech_docs/api_reference/api_reference_extension"
@@ -79,7 +78,6 @@ module GovukTechDocs
 
     config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")
     context.config[:tech_docs] = YAML.load_file(config_file).with_indifferent_access
-    context.activate :unique_identifier
     context.activate :warning_text
     context.activate :api_reference
 
