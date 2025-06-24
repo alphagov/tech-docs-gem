@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Fixes
+
+- [Fix copy of manifest.json into build](https://github.com/alphagov/tech-docs-gem/pull/423)
+
 ## 5.0.1
 
 ### Fixes
