@@ -39,6 +39,11 @@ RSpec.describe "The tech docs template" do
     then_there_is_a_robots_noindex_metatag
   end
 
+  it "copies all of GOV.UK Frontend's assets", focus: true do
+    when_the_site_is_created
+    then_govuk_frontend_assets_are_copied
+  end
+
   # Based on the example config having show_govuk_logo set to true
   it "uses the GOV.UK brand refresh if the GOV.UK logo is used" do
     when_the_site_is_created
@@ -142,6 +147,21 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_a_robots_noindex_metatag
     expect(page).to have_css 'meta[name="robots"][content="noindex"]', visible: false
+  end
+
+  def then_govuk_frontend_assets_are_copied
+    print 
+    build_assets_path = 'example/build/assets'
+    govuk_frontend_dist_path = 'node_modules/govuk-frontend/dist'
+    Dir[File.join(govuk_frontend_dist_path,"/govuk/assets/**/*")].each do |govuk_frontend_asset_path|
+      file = Pathname.new(govuk_frontend_asset_path)
+      unless file.directory?
+        asset_path = file.relative_path_from(govuk_frontend_dist_path)
+        built_file = Pathname(File.join(build_assets_path, asset_path))
+        
+        expect(built_file).to exist
+      end
+    end
   end
 
   def then_the_brand_refresh_is_enabled
