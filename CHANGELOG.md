@@ -1,5 +1,12 @@
 ## Unreleased
 
+### New Features
+
+- [Adds support for GA4 as a separate tracking parameter from Universal Analytics](https://github.com/alphagov/tech-docs-gem/pull/350)
+
+NB: [Universal Analytics is now gone](https://support.google.com/analytics/answer/11583528?hl=en) so anyone still using the older approach is likely facing broken analytics, or has developed a workaround.
+We'll return at a later date with a major breaking change that deprecates UA code.
+
 ## 5.0.2
 
 ### Fixes
