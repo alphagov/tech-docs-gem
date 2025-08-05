@@ -1,5 +1,12 @@
 ## Unreleased
 
+### New Features
+
+- [Adds support for GA4 as a separate tracking parameter from Universal Analytics](https://github.com/alphagov/tech-docs-gem/pull/350)
+
+NB: [Universal Analytics is now gone](https://support.google.com/analytics/answer/11583528?hl=en) so anyone still using the older approach is likely facing broken analytics, or has developed a workaround.
+We'll return at a later date with a major breaking change that deprecates UA code.
+
 ## 5.0.2
 
 ### Fixes
@@ -60,7 +67,7 @@ To use the service_link at the start of the path to the favicon images, you need
 
 - [Allow non-GOV.UK favicon and opengraph assets](https://github.com/alphagov/tech-docs-gem/pull/387)
 
-To use a non-crown assets, you need to 
+To use a non-crown assets, you need to
 - add `favicon.ico`, `favicon.svg` and `opengraph-image.png` to your `source/images` folder.
 - set `show_govuk_logo: false`
 
@@ -158,22 +165,22 @@ You can now [configure your Tech Docs Template (TDT) to build your documentation
 
 Thanks [@eddgrant](https://github.com/eddgrant) for contributing this feature and the associated fixes.
 
-This change was introduced in [pull request #291: Support sites deployed on paths other than "/" (by generating relative links)](https://github.com/alphagov/tech-docs-gem/pull/291). 
+This change was introduced in [pull request #291: Support sites deployed on paths other than "/" (by generating relative links)](https://github.com/alphagov/tech-docs-gem/pull/291).
 
 ## 3.1.0
 
 ### New features
 
-There are some steps you should follow as the Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.0.0. 
+There are some steps you should follow as the Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.0.0.
 
 1. Update your documentation site to use the latest template version. You can [follow the TDT guidance on using the latest template version](https://tdt-documentation.london.cloudapps.digital/maintain_project/use_latest_template/).
-2. Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend 4.0.0 release note](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for more information. 
+2. Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend 4.0.0 release note](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for more information.
 
 ## 3.0.1
 
 ### Fixes
 
-We’ve made the following fixes to the tech docs gem in [pull request #281: Don't break TOC when OpenAPI description includes headers](https://github.com/alphagov/tech-docs-gem/pull/281): 
+We’ve made the following fixes to the tech docs gem in [pull request #281: Don't break TOC when OpenAPI description includes headers](https://github.com/alphagov/tech-docs-gem/pull/281):
 
 * we now render OpenAPI Markdown with the same Markdown renderer as other documents
 * table of contents (TOC) uses `TechDocsHTMLRenderer` to render the headings with IDs
