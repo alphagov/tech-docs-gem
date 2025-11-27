@@ -58,7 +58,7 @@ This repository contains automated JavaScript tests that use the [Jasmine test f
 
 You can run these tests and see the results in your browser.
 
-1. Run `bundle exec rake jasmine`.
+1. Run `bundle exec rake jasmine:server`.
 2. Go to `http://localhost:8888` in your browser.
 
 To run the tests and see the results in your terminal, run:
