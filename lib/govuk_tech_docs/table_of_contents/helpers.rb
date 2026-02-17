@@ -35,12 +35,12 @@ module GovukTechDocs
           .select { |r| r.path.end_with?(".html") && (r.parent.nil? || r.parent.url == "/") }
       end
 
-      def multi_page_table_of_contents(resources, current_page, config, current_page_html = nil)
+      def multi_page_table_of_contents(resources, current_page, config, current_page_html = nil, include_child_resources: true)
         resources = sort_resources_stably(
           select_top_level_html_files(resources),
         )
 
-        render_page_tree(resources, current_page, config, current_page_html)
+        render_page_tree(resources, current_page, config, current_page_html, include_child_resources:)
       end
 
       def list_items_from_headings(html, url: "", max_level: nil)
@@ -54,7 +54,7 @@ module GovukTechDocs
         HeadingTreeRenderer.new(tree, max_level:).html
       end
 
-      def render_page_tree(resources, current_page, config, current_page_html)
+      def render_page_tree(resources, current_page, config, current_page_html, include_child_resources: true)
         resources = sort_resources_stably(resources)
 
         output = "<ul>\n"
@@ -84,7 +84,7 @@ module GovukTechDocs
             end
 
           link_value = get_path_to_resource(config, resource, current_page)
-          if resource.children.any? && resource.url != home_url
+          if resource.children.any? && resource.url != home_url && include_child_resources
             output += %(<li><a href="#{link_value}"><span>#{resource.data.title}</span></a>\n)
             output += render_page_tree(resource.children, current_page, config, current_page_html)
             output += "</li>\n"
