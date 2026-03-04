@@ -51,7 +51,7 @@ wrap_layout :core do
 
   content_for :sidebar do
     if use_multipage_nav %>
-      <%= multi_page_table_of_contents(sitemap.resources, current_page, config, yield) %>
+      <%= multi_page_table_of_contents(sitemap.resources[1], current_page, config, yield, include_child_resources: false) %>
     <% else %>
       <%= single_page_table_of_contents(yield, max_level: config[:tech_docs][:max_toc_heading_level]) %>
     <% end %>
