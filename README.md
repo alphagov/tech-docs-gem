@@ -17,6 +17,52 @@ This gem uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend), par
 
 We use `npm` to download the govuk-frontend package. To update to a new version, change the version in the [package.json file](package.json) and run `npm update`.
 
+## Use layouts to structure your Table of Contents
+
+You can use layouts to group pages and customise your Table of Contents (ToC).  To create a template create a new ruby file in the `source/layouts` directory, for example `source/layouts/live_support_layout.erb`.  You can apply the template by including it in the frontmatter block of your required pages, for example:
+
+```diff
+    ---
+    title: Live support rota
+    weight: 1
+    last_reviewed_on: 1970-01-01
+    review_in: 3 months
++   layout: live_support_layout 
+    ---
+```
+
+
+This gem has helper functions to render your ToC.  You should use:
+
+- `single_page_table_of_contents` to create a ToC from the headings on the current page
+- `multi_page_table_of_contents` to create a ToC for a group of pages, opened at the current page
+
+The `multi_page_table_of_contents`  helper function takes [an optional `include_child_resources`](https://github.com/alphagov/tech-docs-gem/pull/439) parameter to help with your custom ToC.  The default value of `include_child_resources` is `true`.
+
+Below is an example of using the helper functions in a custom layout:
+
+```
+<%
+wrap_layout :core do
+
+  content_for(:toc_module, "in-page-navigation")
+
+  use_multipage_nav = current_page.data.fetch(:multipage_nav, config[:tech_docs][:multipage_nav])
+
+  content_for :sidebar do
+    if use_multipage_nav %>
+      <%= multi_page_table_of_contents(sitemap.resources, current_page, config, yield) %>
+    <% else %>
+      <%= single_page_table_of_contents(yield, max_level: config[:tech_docs][:max_toc_heading_level]) %>
+    <% end %>
+  <%
+  end
+
+  html
+end
+%>
+```
+
 ## Developing locally
 
 There are 2 ways to develop with this gem. You can see your changes on either:
