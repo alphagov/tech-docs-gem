@@ -17,6 +17,61 @@ This gem uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend), par
 
 We use `npm` to download the govuk-frontend package. To update to a new version, change the version in the [package.json file](package.json) and run `npm update`.
 
+## Table of contents helper functions
+
+With `Middleman` you can apply layouts to group pages and customise sites. This gem has the following additional helper functions to manage the table of contents (ToC):
+
+- `single_page_table_of_contents` to create a ToC from the headings on the current page
+- `multi_page_table_of_contents` to create a ToC for a group of pages, opened at the current page
+
+### Single page table of contents
+
+The `single_page_table_of_contents` helper has the following parameters:
+
+| Parameter   | Description                                                                            | 
+|-------------|----------------------------------------------------------------------------------------|
+| `html`      | The html of the current page.                                                          | 
+| `url`       | Optional parameter used to override the url of the page heading. Defaults to `""`.     | 
+| `max_level` | Optional parameter used to set the depth of the table of contents.  Defaults to `nil`. |  
+
+Below is an example of using `single_page_table_of_contents` in a layout file:
+
+```
+<%
+wrap_layout :core do
+  content_for :sidebar do
+      <%= single_page_table_of_contents(html, max_level: 2) %>
+  end
+end
+%>
+```
+
+This example will create a ToC containing the current page title, and nested headings to a depth of 2. 
+
+### Multi page table of contents
+
+The `multi_page_table_of_contents`  has the following parameters:
+
+| Parameter                 | Description                                                                                                                                                         |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `resources`               | An array of middleman site resources for the pages to be included in the ToC.                                                                                       |
+| `current_page`            | The resource object found in the [middleman current_page](https://www.rubydoc.info/gems/middleman-core/Middleman/TemplateContext#current_resource-instance_method). |
+| `config`                  | Site settings defined in `/config/tech-docs.yaml`.                                                                                                                  |
+| `current_page_html`       | Optional html of the current page.  Defaults to `nil`.                                                                                                              |
+| `include_child_resources` | Optional setting used to include child resources when creating a ToC.  Defaults to `true`.                                                                          |
+Below is an example of using `multi_page_table_of_contents` in a layout file:
+
+```
+<%
+wrap_layout :core do
+  content_for :sidebar do
+      <%= multi_page_table_of_contents(sitemap.resources, current_page, config, yield, include_child_resources: true) %>
+  end
+end
+%>
+```
+This example will create a ToC containing the page title of each resource, as a heading.  Each heading can be expanded to show nested headings to the depth defined in the site config.  If `include_child_resources` is set to `true`, child resources will also be included.
+
 ## Developing locally
 
 There are 2 ways to develop with this gem. You can see your changes on either:

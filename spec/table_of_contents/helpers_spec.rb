@@ -393,5 +393,45 @@ describe GovukTechDocs::TableOfContents::Helpers do
 
       expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
     end
+
+    it "builds a table of contents from a single page resource when include_child_resources is set to false" do
+      resources = []
+      resources[0] = FakeResource.new("/index.html", '<h1 id="heading-one">Parent heading one</h1><h2 id="heading-two">Parent heading two</h2>', 10, "Index")
+      resources[1] = FakeResource.new("/1/2/a.html", '<h1 id="heading-one">Child heading one</h1><h2 id="heading-two">Child heading two</h2>', 20, "Sub page A", resources[0])
+      resources[2] = FakeResource.new("/1/2/3/b.html", '<h1 id="heading-one">Second child heading one</h1><h2 id="heading-two">Second child heading two</h2>', 30, "Sub page A", resources[0])
+
+      resources[0].add_children [resources[1], resources[2]]
+
+      current_page = double("current_page",
+                            data: double("page_frontmatter", description: "The description.", title: "The Title"),
+                            url: "/index.html",
+                            path: "/index.html",
+                            metadata: { locals: {} })
+
+      current_page_html = '<h1 id="heading-one">Parent heading one</h1><h2 id="heading-two">Parent heading two</h2>'
+
+      config = {
+        http_prefix: "/",
+        tech_docs: {
+          max_toc_heading_level: 3,
+          multipage_nav: true,
+        },
+      }
+
+      expected_multi_page_table_of_contents = %(
+<ul>
+  <li>
+    <a href="/index.html"><span>Parent heading one</span></a>
+    <ul>
+      <li>
+        <a href="/index.html#heading-two"><span>Parent heading two</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+      )
+
+      expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html, include_child_resources: false).strip).to eq(expected_multi_page_table_of_contents.strip)
+    end
   end
 end
