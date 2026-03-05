@@ -59,6 +59,7 @@ The `multi_page_table_of_contents`  has the following parameters:
 | `config`                  | Site settings defined in `/config/tech-docs.yaml`.                                                                                                                  |
 | `current_page_html`       | Optional html of the current page.  Defaults to `nil`.                                                                                                              |
 | `include_child_resources` | Optional setting used to include child resources when creating a ToC.  Defaults to `true`.                                                                          |
+
 Below is an example of using `multi_page_table_of_contents` in a layout file:
 
 ```
