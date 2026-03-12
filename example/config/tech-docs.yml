@@ -7,7 +7,7 @@ service_name: My First Service
 service_link: /
 phase: Beta
 
-# Links to show on right-hand-side of header
+# Links to show in service navigation
 header_links:
   Documentation: /
   Expired page: /expired-page.html

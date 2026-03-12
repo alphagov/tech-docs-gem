@@ -82,7 +82,7 @@ RSpec.describe "The tech docs template" do
   end
 
   def then_the_page_highlighted_in_the_navigation_is(link_label)
-    page.find("#navigation li.govuk-header__navigation-item--active a", text: link_label)
+    page.find("#navigation li.govuk-service-navigation__item--active a", text: link_label)
   end
 
   def then_there_are_navigation_headings_from_other_pages
