@@ -24,6 +24,9 @@ require "govuk_tech_docs/unique_identifier_extension"
 require "govuk_tech_docs/unique_identifier_generator"
 require "govuk_tech_docs/warning_text_extension"
 require "govuk_tech_docs/api_reference/api_reference_extension"
+require "govuk_tech_docs/extension"
+require "govuk_tech_docs/renderer"
+
 
 module SassWarningSupressor
   def warn(message)
@@ -48,7 +51,8 @@ module GovukTechDocs
 
     context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/dist")
     context.sprockets.append_path File.join(__dir__, "./source")
-
+    
+    context.activate :your_design_system
     context.activate :syntax
 
     context.files.watch :source, path: "#{__dir__}/source"

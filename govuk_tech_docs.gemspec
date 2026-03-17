@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   files_in_git = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
 
   # Include assets from GOV.UK Frontend library in the distributed gem
-  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js,mjs,woff,woff2,png,svg,ico}", "node_modules/govuk-frontend/dist/govuk/assets/**/*.json"]
+  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js,mjs,woff,woff2,png,svg,ico,njk}", "node_modules/govuk-frontend/dist/govuk/assets/**/*.json"]
 
   spec.files         = files_in_git + govuk_frontend_assets
 
@@ -55,7 +55,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "redcarpet", "~> 3.6"
   spec.add_dependency "terser", "~> 1.2.3"
   spec.add_dependency "sassc-embedded", "~> 1.78.0"
-
+  spec.add_dependency "schmooze", "~> 0.2.0"
   spec.add_development_dependency "byebug"
   spec.add_development_dependency "capybara", "~> 3.32"
   spec.add_development_dependency "rake", "~> 13.0"
