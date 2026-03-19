@@ -5,7 +5,6 @@ RSpec.describe GovukTechDocs::CustomMethodMissingHandler do
 
   before do
     extension.instance_variable_set(:@renderer, mock_renderer)
-    # @govuk_button_html = 
   end
 
   describe "when a custom method is called it" do

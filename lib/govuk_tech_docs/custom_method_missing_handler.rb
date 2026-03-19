@@ -17,7 +17,6 @@ module GovukTechDocs
               raise RuntimeError, e.to_s
             end
         else
-          puts "<<<<<<<<<<< #{method_name} not recognised"
           return super
         end       
       

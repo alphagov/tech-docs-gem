@@ -39,9 +39,7 @@ module GovukTechDocs
             NJK
       render_nunjucks_template(nunjucks_template_string, { 'templateData' => templateData }, search_paths)
     rescue => e
-      # Catch JS errors and make them readable in Ruby
-      puts "Nunjucks Render Error: #{e.message}"
-      "".html_safe
+      raise RuntimeError, e.to_s
     end
   end
 end
