@@ -1,3 +1,7 @@
+## 5.3.0
+
+- [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
+
 ## 5.2.1
 
 - [Add option to not render child resources when creating a table of contents](https://github.com/alphagov/tech-docs-gem/pull/439/changes)
