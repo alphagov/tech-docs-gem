@@ -28,7 +28,7 @@ RSpec.describe GovukTechDocs::GovukNunjuckComponenetRenderer do
       # We mock the Schmooze 'method' call to avoid needing real Node/Nunjucks
       expect(subject).to receive(:render_nunjucks_template).with(
         include("import govukButton"), # Verifies the Macro import line
-        { "template_data" => data },    # Verifies the data wrap
+        { "template_data" => data }, # Verifies the data wrap
         instance_of(Array), # Verifies search paths are passed
       ).and_return("<button>Success</button>")
 
