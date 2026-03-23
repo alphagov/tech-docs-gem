@@ -10,7 +10,7 @@ updates:
     directory: "/" 
     schedule:
       interval: "weekly"
-      day: "tuesday"
+      day: "monday"
       time: "06:00"
     commit-message:
       prefix: chore
@@ -26,7 +26,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "tuesday"
+      day: "monday"
       time: "06:00"
     commit-message:
       prefix: chore
@@ -38,7 +38,7 @@ updates:
     directory: "/" 
     schedule:
       interval: "weekly"
-      day: "tuesday"
+      day: "monday"
       time: "06:00"
     open-pull-requests-limit: 5
     
