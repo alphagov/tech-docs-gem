@@ -6,6 +6,9 @@ module GovukTechDocs
       super
     end
 
+      
+
+    helpers do 
       def method_missing(method_name, *args, &block)
         case
           when method_name.to_s.start_with?('govuk')
@@ -26,10 +29,7 @@ module GovukTechDocs
       def respond_to_missing?(method_name, include_private = false)
         method_name.to_s.start_with?('govuk') || super
       end
-
-    # helpers do 
-
-    # end
+    end
   end
 end
 ::Middleman::Extensions.register(:custom_method_missing_handler, GovukTechDocs::CustomMethodMissingHandler)
