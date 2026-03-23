@@ -24,6 +24,7 @@ RSpec.describe GovukTechDocs::CustomMethodMissingHandler do
       expect { helper_context.jam({}) }.to raise_error(NoMethodError)
     end
 
+    RSpec::Expectations.configuration.on_potential_false_positives = :nothing
     it "recognises a method with the prefix `govuk` and doesn't throw a NoMethodError" do
       expect(helper_context).to receive(:method_missing)
       expect { helper_context.govukTest }.to_not raise_error(NoMethodError)
