@@ -55,7 +55,7 @@ RSpec.describe "The tech docs template" do
   def when_the_site_is_created
     rebuild_site!
   end
-  
+
   def when_the_site_is_created_without_govuk_components
     rebuild_site!(overrides: { "enable_govuk_components" => false })
   end

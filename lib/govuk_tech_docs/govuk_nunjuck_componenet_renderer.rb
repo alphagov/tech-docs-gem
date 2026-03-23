@@ -1,8 +1,8 @@
-require 'schmooze'
+require "schmooze"
 
 module GovukTechDocs
   class GovukNunjuckComponenetRenderer < Schmooze::Base
-    dependencies nunjucks: 'nunjucks'
+    dependencies nunjucks: "nunjucks"
 
     def initialize(gem_root)
       super(gem_root) # Pass it up to Schmooze so it finds node_modules
@@ -27,19 +27,19 @@ module GovukTechDocs
                   .downcase
     end
 
-    def render_govuk_component(component_name, templateData)
+    def render_govuk_component(component_name, template_data)
       # 1. Logic for search paths belongs here now
-      
-      search_paths = [File.join(@gem_root, 'node_modules/govuk-frontend/dist')]
+
+      search_paths = [File.join(@gem_root, "node_modules/govuk-frontend/dist")]
       component_template_name = get_component_template_name(component_name)
       # 2. Call the JS method defined above
       nunjucks_template_string = <<~NJK
               {% from "govuk/components/#{component_template_name}/macro.njk" import #{component_name} %}
-              {{ #{component_name}(templateData) }}
-            NJK
-      render_nunjucks_template(nunjucks_template_string, { 'templateData' => templateData }, search_paths)
-    rescue => e
-      raise RuntimeError, e.to_s
+              {{ #{component_name}(template_data) }}
+      NJK
+      render_nunjucks_template(nunjucks_template_string, { "template_data" => template_data }, search_paths)
+    rescue StandardError => e
+      raise e.to_s.to_s
     end
   end
 end

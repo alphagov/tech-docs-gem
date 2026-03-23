@@ -27,7 +27,6 @@ require "govuk_tech_docs/api_reference/api_reference_extension"
 require "govuk_tech_docs/custom_method_missing_handler"
 require "govuk_tech_docs/govuk_nunjuck_componenet_renderer"
 
-
 module SassWarningSupressor
   def warn(message)
     if message.to_s.match?(/Sass|dart-sass/i)
@@ -36,7 +35,7 @@ module SassWarningSupressor
       super
     end
   end
-end 
+end
 
 Warning.extend(SassWarningSupressor)
 
@@ -51,7 +50,7 @@ module GovukTechDocs
 
     context.sprockets.append_path File.join(__dir__, "../node_modules/govuk-frontend/dist")
     context.sprockets.append_path File.join(__dir__, "./source")
-    
+
     context.activate :syntax
 
     context.files.watch :source, path: "#{__dir__}/source"
@@ -145,6 +144,5 @@ module GovukTechDocs
     if context.config[:tech_docs][:enable_govuk_components]
       context.activate :custom_method_missing_handler
     end
-
   end
 end
