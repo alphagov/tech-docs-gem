@@ -1,0 +1,5 @@
+.govuk-service-navigation > .govuk-width-container {
+  max-width: 100%;
+  @include govuk-responsive-margin(6, "left");
+  @include govuk-responsive-margin(6, "right");
+}

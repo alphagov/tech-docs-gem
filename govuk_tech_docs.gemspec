@@ -7,7 +7,7 @@ require "govuk_tech_docs/version"
 `npm ci`
 abort "npm ci failed" unless $CHILD_STATUS.success?
 
-unless File.exist?("node_modules/govuk-frontend/dist/govuk/all.scss")
+unless File.exist?("node_modules/govuk-frontend/dist/govuk/_base.scss")
   abort "govuk-frontend npm package not installed"
 end
 

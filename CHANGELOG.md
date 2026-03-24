@@ -1,3 +1,14 @@
+## 6.0.0
+
+- [Bump Design System to V6](https://github.com/alphagov/tech-docs-gem/pull/442), which brings in:
+  - changes to the colour palette
+  - replacement of the smallest font size, used for smaller screens, with next one up
+  - introduction of service navigation component, with header links moved to it
+  - all changes listed in https://github.com/alphagov/govuk-frontend/releases/tag/v6.0.0
+
+Note: whereas before all tech docs could optionally turn on the new branding, this removes that
+ability, we're marking it as a major bump.
+
 ## 5.2.1
 
 - [Add option to not render child resources when creating a table of contents](https://github.com/alphagov/tech-docs-gem/pull/439/changes)
