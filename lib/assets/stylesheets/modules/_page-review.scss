@@ -4,8 +4,7 @@
   padding: govuk-spacing(3);
   margin-top: govuk-spacing(6);
   margin-bottom: govuk-spacing(6);
-  background-color: $govuk-brand-colour;
-  color: govuk-colour("white");
+  border: govuk-spacing(1) solid $govuk-brand-colour;
 
   @include govuk-media-query(tablet) {
     padding: govuk-spacing(6);
