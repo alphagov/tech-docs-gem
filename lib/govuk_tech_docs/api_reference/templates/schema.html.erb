@@ -27,3 +27,11 @@
 </tbody>
 </table>
 <% end %>
+<% if schema.enum %>
+<p>This schema can be any one of the following <%= schema.type.pluralize %>:</p>
+<ul class='<%= id.parameterize %>-enum'>
+<% schema.enum.sort.each do |value| %>
+<li><%= value %></li>
+<% end %>
+</ul>
+<% end %>
