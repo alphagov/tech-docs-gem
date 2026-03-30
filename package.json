@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "jasmine-browser-runner": "^3.0.0",
-    "jasmine-core": "^5.13.0",
+    "jasmine-core": "^6.1.0",
     "standard": "^14.3.4"
   },
   "standard": {
