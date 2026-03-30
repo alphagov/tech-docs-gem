@@ -4,6 +4,11 @@
 - [Bump jasmine-core from 5.5.0 to 5.13.0](https://github.com/alphagov/tech-docs-gem/pull/448)
 - [Disable npm pre and post install scripts](https://github.com/alphagov/tech-docs-gem/pull/453)
 
+## 5.2.2
+
+- [Unpin middleman](https://github.com/alphagov/tech-docs-gem/pull/457)
+
+
 ## 5.2.1
 
 - [Add option to not render child resources when creating a table of contents](https://github.com/alphagov/tech-docs-gem/pull/439/changes)
