@@ -1,3 +1,9 @@
+# 5.3.0
+
+- [Bump jasmine-browser-runner from 2.5.0 to 3.0.0](https://github.com/alphagov/tech-docs-gem/pull/450)
+- [Bump jasmine-core from 5.5.0 to 5.13.0](https://github.com/alphagov/tech-docs-gem/pull/448)
+- [Disable npm pre and post install scripts](https://github.com/alphagov/tech-docs-gem/pull/453)
+
 ## 5.2.1
 
 - [Add option to not render child resources when creating a table of contents](https://github.com/alphagov/tech-docs-gem/pull/439/changes)
