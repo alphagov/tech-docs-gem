@@ -1,8 +1,5 @@
 # 5.3.0
-
-- [Bump jasmine-browser-runner from 2.5.0 to 3.0.0](https://github.com/alphagov/tech-docs-gem/pull/450)
-- [Bump jasmine-core from 5.5.0 to 5.13.0](https://github.com/alphagov/tech-docs-gem/pull/448)
-- [Disable npm pre and post install scripts](https://github.com/alphagov/tech-docs-gem/pull/453)
+- [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
 
 ## 5.2.2
 

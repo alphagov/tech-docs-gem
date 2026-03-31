@@ -24,6 +24,8 @@ require "govuk_tech_docs/unique_identifier_extension"
 require "govuk_tech_docs/unique_identifier_generator"
 require "govuk_tech_docs/warning_text_extension"
 require "govuk_tech_docs/api_reference/api_reference_extension"
+require "govuk_tech_docs/custom_method_missing_handler"
+require "govuk_tech_docs/govuk_nunjuck_componenet_renderer"
 
 module SassWarningSupressor
   def warn(message)
@@ -161,6 +163,10 @@ module GovukTechDocs
       end
     else
       context.ignore "search/*"
+    end
+
+    if context.config[:tech_docs][:enable_govuk_components]
+      context.activate :custom_method_missing_handler
     end
   end
 end

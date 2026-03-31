@@ -1,6 +1,9 @@
 # Host to use for canonical URL generation (without trailing slash)
 host: https://docs.example.com
 
+# Enable GOV.UK Design System nunjucks components (https://design-system.service.gov.uk/components)
+enable_govuk_components: true
+
 # Header-related options
 show_govuk_logo: true
 service_name: My First Service
