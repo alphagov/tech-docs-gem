@@ -7,6 +7,9 @@
 ## 5.2.2
 
 - [Unpin middleman](https://github.com/alphagov/tech-docs-gem/pull/457)
+- [Bump jasmine-browser-runner from 2.5.0 to 3.0.0 #450](- https://github.com/alphagov/tech-docs-gem/pull/450)
+- [Bump jasmine-core from 5.5.0 to 5.13.0 #448](https://github.com/alphagov/tech-docs-gem/pull/448)
+- [Ban pre|post-install NPM scripts #453](https://github.com/alphagov/tech-docs-gem/pull/453)
 
 
 ## 5.2.1
