@@ -120,7 +120,7 @@ module GovukTechDocs
 
         # If we have a nested directory structure that matches a navigation link e.g  Active pages: /active-pages/
         if current_page.url.start_with?(page_path)
-          # feels like a weird check, but stops fals positive where "/" for root is also the start of "/active-pages"
+          # feels like a weird check, but stops false positive where "/" for root is also the start of "/active-pages"
           if page_path == "/"
             return current_page.url == "/"
           end
