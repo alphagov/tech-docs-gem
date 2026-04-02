@@ -1,4 +1,9 @@
-## 6.0.0
+## 6.0.1.beta
+
+- [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
+- [Fix inconsistent active tab behaviour](https://github.com/alphagov/tech-docs-gem/pull/452)
+
+## 6.0.0.beta
 
 - [Bump Design System to V6](https://github.com/alphagov/tech-docs-gem/pull/442), which brings in:
   - changes to the colour palette
