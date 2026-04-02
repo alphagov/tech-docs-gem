@@ -11,8 +11,8 @@
     "govuk-frontend": "^6.0.0"
   },
   "devDependencies": {
-    "jasmine-browser-runner": "^2.5.0",
-    "jasmine-core": "^5.5.0",
+    "jasmine-browser-runner": "^3.0.0",
+    "jasmine-core": "^5.13.0",
     "standard": "^14.3.4"
   },
   "standard": {
