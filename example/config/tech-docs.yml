@@ -2,7 +2,8 @@
 host: https://docs.example.com
 
 # Header-related options
-show_govuk_logo: true
+show_govuk_logo: false
+logo_html: <img src="/images/GDS_Informal_Shorthand_AquaBlock.svg" alt="GDS [logo]" width="100" class="govuk-header__logotype">
 service_name: My First Service
 service_link: /
 phase: Beta
