@@ -5,7 +5,7 @@
   margin: govuk-spacing(3);
   max-width: 40em;
 
-  color:  $govuk-text-colour;
+  color:  govuk-functional-colour(text);
 
   @include govuk-media-query(tablet) {
     margin: 0 govuk-spacing(6) govuk-spacing(6);
@@ -98,10 +98,10 @@
 
   blockquote {
     @include govuk-font($size: 19);
-    background: govuk-colour("light-grey");
+    background: govuk-colour("black", $variant: "tint-95");
     padding: govuk-spacing(3);
     margin: govuk-spacing(3);
-    border-left: govuk-spacing(2) solid govuk-colour("mid-grey");
+    border-left: govuk-spacing(2) solid govuk-colour("black", $variant: "tint-80");
   }
 
   // http://code.iamkate.com/html-and-css/fixing-browsers-broken-monospace-font-handling/
@@ -125,8 +125,8 @@
 
     &:focus {
       padding: $padding - ($govuk-focus-width - $border-width);
-      border: $govuk-focus-width solid $govuk-focus-text-colour;
-      outline: $govuk-focus-width solid $govuk-focus-colour;
+      border: $govuk-focus-width solid govuk-functional-colour(focus-text);
+      outline: $govuk-focus-width solid govuk-functional-colour(focus);
     }
   }
 
@@ -169,7 +169,7 @@
   h1, h2, h3, h4, h5, h6 {
     code {
       font-size: inherit;
-      color: $govuk-text-colour;
+      color: govuk-functional-colour(text);
       background: none;
       padding: 0;
     }
@@ -204,7 +204,7 @@
     padding: govuk-spacing(2) govuk-spacing(4) govuk-spacing(2) 0;
 
     background-color: transparent;
-    border-bottom: 1px solid $govuk-border-colour;
+    border-bottom: 1px solid govuk-functional-colour(border);
     border-width: 0 0 1px 0;
 
     @include govuk-font($size: 16);

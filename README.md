@@ -112,14 +112,22 @@ For more information on previewing your documentation locally, see the [Tech Doc
 
 ## Tests
 
-This repository contains automated JavaScript tests that use the [Jasmine test framework][jas].
+Use this command to run the linting and tests for the Ruby and JavaScript code:
 
-You can run these tests and see the results in your browser.
+```sh
+bundle exec rake
+```
+
+### JavaScript tests
+
+The JavaScript tests use the [Jasmine test framework][jas].
+
+You can run these tests on their own and see the results in your browser.
 
 1. Run `bundle exec rake jasmine:server`.
 2. Go to `http://localhost:8888` in your browser.
 
-To run the tests and see the results in your terminal, run:
+To run the JavaScript tests and see the results in your terminal, run:
 
 ```
 bundle exec rake jasmine:ci

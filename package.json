@@ -8,7 +8,7 @@
     "test-server": "jasmine-browser-runner serve --config=spec/javascripts/support/jasmine-browser.mjs"
   },
   "dependencies": {
-    "govuk-frontend": "~5.11.0",
+    "govuk-frontend": "^6.0.0",
     "nunjucks": "~3.2.4"
   },
   "devDependencies": {

@@ -1,6 +1,13 @@
-# 5.3.0
-- [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
-- [Fix inconsistent active tab behaviour](https://github.com/alphagov/tech-docs-gem/pull/452)
+## 6.0.0
+
+- [Bump Design System to V6](https://github.com/alphagov/tech-docs-gem/pull/442), which brings in:
+  - changes to the colour palette
+  - replacement of the smallest font size, used for smaller screens, with next one up
+  - introduction of service navigation component, with header links moved to it
+  - all changes listed in https://github.com/alphagov/govuk-frontend/releases/tag/v6.0.0
+
+Note: whereas before all tech docs could optionally turn on the new branding, this removes that
+ability, we're marking it as a major bump.
 
 ## 5.2.2
 
