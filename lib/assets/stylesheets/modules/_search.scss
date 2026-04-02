@@ -42,7 +42,7 @@ $input-size: 40px;
   text-indent: -5000px;
   overflow: hidden;
   &:focus {
-    outline: $govuk-focus-width solid $govuk-focus-colour;
+    outline: $govuk-focus-width solid govuk-functional-colour(focus);
     outline-offset: 0;
     box-shadow: inset 0 0 0 $govuk-border-width-form-element * 2 govuk-colour("black");
   }
@@ -87,12 +87,12 @@ $input-size: 40px;
 }
 .search-results__inner {
   background: govuk-colour("white");
-  border-top: 1px solid govuk-colour("mid-grey");
+  border-top: 1px solid govuk-colour("black", $variant: "tint-80");
   max-width: 40rem;
   padding: 15px;
   @include govuk-media-query(tablet) {
     padding: 15px 200px 50px 40px;
-    border: 1px solid govuk-colour("mid-grey");
+    border: 1px solid govuk-colour("black", $variant: "tint-80");
     &::after {
       content: '';
       position: absolute;

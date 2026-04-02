@@ -1,9 +1,21 @@
+## 6.0.0
+
+- [Bump Design System to V6](https://github.com/alphagov/tech-docs-gem/pull/442), which brings in:
+  - changes to the colour palette
+  - replacement of the smallest font size, used for smaller screens, with next one up
+  - introduction of service navigation component, with header links moved to it
+  - all changes listed in https://github.com/alphagov/govuk-frontend/releases/tag/v6.0.0
+
+Note: whereas before all tech docs could optionally turn on the new branding, this removes that
+ability, we're marking it as a major bump.
+
 ## 5.2.2
 
 - [Unpin middleman](https://github.com/alphagov/tech-docs-gem/pull/457)
 - [Bump jasmine-browser-runner from 2.5.0 to 3.0.0 #450](- https://github.com/alphagov/tech-docs-gem/pull/450)
 - [Bump jasmine-core from 5.5.0 to 5.13.0 #448](https://github.com/alphagov/tech-docs-gem/pull/448)
 - [Ban pre|post-install NPM scripts #453](https://github.com/alphagov/tech-docs-gem/pull/453)
+
 
 ## 5.2.1
 

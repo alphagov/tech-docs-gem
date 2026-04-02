@@ -30,9 +30,9 @@
 
           @include govuk-media-query(tablet) {
             &.toc-link--in-view  {
-              color: $govuk-link-hover-colour;
-              border-left-color: $govuk-link-hover-colour;
-              background-color: govuk-colour("light-grey");
+              color: govuk-functional-colour(link-hover);
+              border-left-color: govuk-functional-colour(link-hover);
+              background-color: govuk-colour("black", $variant: "tint-95");
             }
           }
         }
@@ -131,15 +131,15 @@
           width: 100%;
           padding: govuk-spacing(3) govuk-spacing(3) 10px;
 
-          background: govuk-colour("light-grey");
+          background: govuk-colour("black", $variant: "tint-95");
           @supports(backdrop-filter: blur(2px)) {
-            background: transparentize(govuk-colour("light-grey"), 0.05);
+            background: transparentize(govuk-colour("black", $variant: "tint-95"), 0.05);
             backdrop-filter: blur(2px);
           }
           border: 0;
-          border-bottom: 1px solid govuk-colour("mid-grey");
+          border-bottom: 1px solid govuk-colour("black", $variant: "tint-80");
           box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-          color:  $govuk-text-colour;
+          color: govuk-functional-colour(text);
           text-decoration: none;
           text-align: left;
 
@@ -189,16 +189,16 @@
         }
 
         &:focus {
-          background-color: $govuk-focus-colour;
+          background-color: govuk-functional-colour(focus);
           outline: $govuk-focus-width solid transparent;
-          box-shadow: inset 0 0 0 1px $govuk-focus-colour;
+          box-shadow: inset 0 0 0 1px govuk-functional-colour(focus);
         }
 
         &:focus:not(:active):not(:hover) {
-          border-color: $govuk-focus-colour;
-          color: $govuk-focus-text-colour;
-          background-color: $govuk-focus-colour;
-          box-shadow: 0 2px 0 $govuk-focus-text-colour;
+          border-color: govuk-functional-colour(focus);
+          color: govuk-functional-colour(focus-text);
+          background-color: govuk-functional-colour(focus);
+          box-shadow: 0 2px 0 govuk-functional-colour(focus-text);
         }
       }
 

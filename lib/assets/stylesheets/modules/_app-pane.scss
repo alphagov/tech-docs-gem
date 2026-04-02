@@ -40,7 +40,7 @@
     .app-pane__toc {
       flex: 0 0 auto;
       width: $toc-width;
-      border-right: 1px solid $govuk-border-colour;
+      border-right: 1px solid govuk-functional-colour(border);
     }
 
     .app-pane__content {
@@ -65,6 +65,6 @@
 .app-pane__content:has(main:focus-visible) {
   outline: $govuk-focus-width solid transparent;
   box-shadow:
-    0 0 0 4px $govuk-focus-colour,
-    0 0 0 8px $govuk-focus-text-colour;
+    0 0 0 4px govuk-functional-colour(focus),
+    0 0 0 8px govuk-functional-colour(focus-text);
 }

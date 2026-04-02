@@ -39,13 +39,6 @@ RSpec.describe "The tech docs template" do
     then_there_is_a_robots_noindex_metatag
   end
 
-  # Based on the example config having show_govuk_logo set to true
-  it "uses the GOV.UK brand refresh if the GOV.UK logo is used" do
-    when_the_site_is_created
-    and_i_visit_the_homepage
-    then_the_brand_refresh_is_enabled
-  end
-
   def when_the_site_is_created
     rebuild_site!
   end
@@ -82,7 +75,7 @@ RSpec.describe "The tech docs template" do
   end
 
   def then_the_page_highlighted_in_the_navigation_is(link_label)
-    page.find("#navigation li.govuk-header__navigation-item--active a", text: link_label)
+    page.find("#navigation li.govuk-service-navigation__item--active a", text: link_label)
   end
 
   def then_there_are_navigation_headings_from_other_pages
@@ -142,25 +135,5 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_a_robots_noindex_metatag
     expect(page).to have_css 'meta[name="robots"][content="noindex"]', visible: false
-  end
-
-  def then_the_brand_refresh_is_enabled
-    # Check for class in header
-    expect(page).to have_css ".govuk-template--rebranded"
-    # Check for new header logo
-    expect(page).to have_css ".govuk-logo-dot"
-    # Check for crown svg in footer
-    expect(page).to have_css ".govuk-footer__crown"
-    # Check for favicons and other meta tags
-    # <link rel="icon" sizes="48x48" href="<%= path_prefix %>assets/govuk/assets/rebrand/images/favicon.ico">
-    expect(page).to have_css 'link[rel="icon"][sizes="48x48"][href$="assets/govuk/assets/rebrand/images/favicon.ico"]', visible: false
-    # <link rel="icon" sizes="any" href="<%= path_prefix %>assets/govuk/assets/rebrand/images/favicon.svg" type="image/svg+xml">
-    expect(page).to have_css 'link[rel="icon"][sizes="any"][type="image/svg+xml"][href$="assets/govuk/assets/rebrand/images/favicon.svg"]', visible: false
-    # <link rel="mask-icon" href="<%= path_prefix %>assets/govuk/assets/rebrand/images/govuk-icon-mask.svg" color="#0b0c0c">
-    expect(page).to have_css 'link[rel="mask-icon"][href$="assets/govuk/assets/rebrand/images/govuk-icon-mask.svg"][color="#0b0c0c"]', visible: false
-    # <link rel="apple-touch-icon" href="<%= path_prefix %>assets/govuk/assets/rebrand/images/govuk-icon-180.png">
-    expect(page).to have_css 'link[rel="apple-touch-icon"][href$="assets/govuk/assets/rebrand/images/govuk-icon-180.png"]', visible: false
-    # <link rel="manifest" href="<%= path_prefix %>assets/govuk/assets/rebrand/manifest.json">
-    expect(page).to have_css 'link[rel="manifest"][href$="assets/govuk/assets/rebrand/manifest.json"]', visible: false
   end
 end
