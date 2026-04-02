@@ -1,4 +1,4 @@
-## 6.0.1.beta
+## 6.1.0.beta
 
 - [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
 - [Fix inconsistent active tab behaviour](https://github.com/alphagov/tech-docs-gem/pull/452)
