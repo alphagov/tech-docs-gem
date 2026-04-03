@@ -4,7 +4,7 @@
   padding: govuk-spacing(3);
   margin-top: govuk-spacing(6);
   margin-bottom: govuk-spacing(6);
-  background-color: $govuk-brand-colour;
+  background-color: govuk-functional-colour(brand);
   color: govuk-colour("white");
 
   @include govuk-media-query(tablet) {
@@ -19,14 +19,14 @@
   }
 
   a:active {
-    color: $govuk-link-active-colour;
+    color: govuk-functional-colour(link-active);
   }
 }
 
 .page-expiry--expired {
   padding: govuk-spacing(3);
   margin-top: govuk-spacing(9);
-  border: govuk-spacing(1) solid $govuk-error-colour;
+  border: govuk-spacing(1) solid govuk-functional-colour(error);
   background-color: govuk-colour("white");
-  color: $govuk-text-colour;
+  color: govuk-functional-colour(text);
 }

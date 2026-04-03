@@ -10,13 +10,14 @@ service_name: My First Service
 service_link: /
 phase: Beta
 
-# Links to show on right-hand-side of header
+# Links to show in service navigation
 header_links:
   Documentation: /
   Expired page: /expired-page.html
   Expired with owner: /expired-page-with-owner.html
   Not expired page: /not-expired-page.html
   Single page nav: /single-page-nav.html
+  Active pages: /active-pages/
 
 footer_links:
   Accessibility: /hidden-page.html
