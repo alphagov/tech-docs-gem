@@ -24,6 +24,8 @@ require "govuk_tech_docs/unique_identifier_extension"
 require "govuk_tech_docs/unique_identifier_generator"
 require "govuk_tech_docs/warning_text_extension"
 require "govuk_tech_docs/api_reference/api_reference_extension"
+require "govuk_tech_docs/custom_method_missing_handler"
+require "govuk_tech_docs/govuk_nunjuck_componenet_renderer"
 
 module SassWarningSupressor
   def warn(message)
@@ -101,11 +103,35 @@ module GovukTechDocs
       end
 
       def active_page(page_path)
-        [
-          page_path == "/" && current_page.path == "index.html",
-          "/#{current_page.path}" == page_path,
-          !current_page.data.parent.nil? && current_page.data.parent.to_s == page_path,
-        ].any?
+        # if we are on the homepage e.g  Documentation: /
+        if page_path == "/" && current_page.url == "/"
+          return true
+        end
+
+        # if we are on a single page the header links point to e.g Expired page: /expired-page.html
+        if "/#{current_page.path}" == page_path
+          return true
+        end
+
+        # If the doc maintainer has set the parent data in the frontmatter for the current page,
+        # and it matches the value in the config e.g
+        # Expired page: /expired-page.html (config) and parent: /expired-page.html (child-of-expired-page.html)
+        if !current_page.data.parent.nil? && current_page.data.parent.to_s == page_path
+          return true
+        end
+
+        # If we have a nested directory structure that matches a navigation link e.g  Active pages: /active-pages/
+        if current_page.url.start_with?(page_path)
+          # feels like a weird check, but stops false positive where "/" for root is also the start of "/active-pages"
+          if page_path == "/"
+            return current_page.url == "/"
+          end
+
+          # safe to return true, since we aren't in the situation above
+          return true
+        end
+        # no other reason to believe we're active
+        false
       end
     end
 
@@ -137,6 +163,10 @@ module GovukTechDocs
       end
     else
       context.ignore "search/*"
+    end
+
+    if context.config[:tech_docs][:enable_govuk_components]
+      context.activate :custom_method_missing_handler
     end
   end
 end

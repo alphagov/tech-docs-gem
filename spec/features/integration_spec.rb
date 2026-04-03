@@ -13,6 +13,7 @@ RSpec.describe "The tech docs template" do
     then_there_is_a_search_form
     then_there_is_a_sidebar
     then_there_is_a_source_footer
+    then_the_button_component_is_rendered
     then_the_page_highlighted_in_the_navigation_is("Documentation")
     then_there_are_navigation_headings_from_other_pages
 
@@ -39,8 +40,18 @@ RSpec.describe "The tech docs template" do
     then_there_is_a_robots_noindex_metatag
   end
 
+  it "does not use the GOV.UK design system components if the setting is disabled" do
+    when_the_site_is_created_without_govuk_components
+    and_i_visit_the_homepage
+    then_there_is_no_button
+  end
+
   def when_the_site_is_created
     rebuild_site!
+  end
+
+  def when_the_site_is_created_without_govuk_components
+    rebuild_site!(overrides: { "enable_govuk_components" => false })
   end
 
   def and_i_visit_the_homepage
@@ -72,6 +83,11 @@ RSpec.describe "The tech docs template" do
     ].each do |url|
       expect(page).to have_link(nil, href: url)
     end
+  end
+
+  def then_there_is_no_button
+    expect(page).to_not have_content "Click me!"
+    expect(page).to_not have_css "button.govuk-button"
   end
 
   def then_the_page_highlighted_in_the_navigation_is(link_label)
@@ -135,5 +151,10 @@ RSpec.describe "The tech docs template" do
 
   def then_there_is_a_robots_noindex_metatag
     expect(page).to have_css 'meta[name="robots"][content="noindex"]', visible: false
+  end
+
+  def then_the_button_component_is_rendered
+    expect(page).to have_content "Click me!"
+    expect(page).to have_css "button.govuk-button"
   end
 end

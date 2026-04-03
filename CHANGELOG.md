@@ -1,4 +1,9 @@
-## 6.0.0
+## 6.1.0.beta
+
+- [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
+- [Fix inconsistent active tab behaviour](https://github.com/alphagov/tech-docs-gem/pull/452)
+
+## 6.0.0.beta
 
 - [Bump Design System to V6](https://github.com/alphagov/tech-docs-gem/pull/442), which brings in:
   - changes to the colour palette
@@ -15,7 +20,6 @@ ability, we're marking it as a major bump.
 - [Bump jasmine-browser-runner from 2.5.0 to 3.0.0 #450](- https://github.com/alphagov/tech-docs-gem/pull/450)
 - [Bump jasmine-core from 5.5.0 to 5.13.0 #448](https://github.com/alphagov/tech-docs-gem/pull/448)
 - [Ban pre|post-install NPM scripts #453](https://github.com/alphagov/tech-docs-gem/pull/453)
-
 
 ## 5.2.1
 
