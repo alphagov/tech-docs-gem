@@ -39,7 +39,8 @@ RSpec.describe "The tech docs template" do
     when_i_view_a_page_with_prevent_indexing
     then_there_is_a_robots_noindex_metatag
   end
-it "does not use the GOV.UK design system components if the setting is disabled" do
+
+  it "does not use the GOV.UK design system components if the setting is disabled" do
     when_the_site_is_created_without_govuk_components
     and_i_visit_the_homepage
     then_there_is_no_button
@@ -156,5 +157,4 @@ it "does not use the GOV.UK design system components if the setting is disabled"
     expect(page).to have_content "Click me!"
     expect(page).to have_css "button.govuk-button"
   end
-
 end
