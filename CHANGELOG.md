@@ -2,6 +2,7 @@
 
 - [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
 - [Fix inconsistent active tab behaviour](https://github.com/alphagov/tech-docs-gem/pull/452)
+- Update version of `openapi3_parser` allowing support for Ruby 4.0.
 
 ## 6.0.0.beta
 
