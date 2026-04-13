@@ -1,3 +1,7 @@
+## Unreleased
+
+- Update version of `openapi3_parser` allowing support for Ruby 4.0.
+
 ## 5.2.2
 
 - [Unpin middleman](https://github.com/alphagov/tech-docs-gem/pull/457)

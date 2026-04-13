@@ -51,7 +51,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-syntax", "~> 3.6"
   spec.add_dependency "mutex_m" # TODO: remove once activesupport declares this itself.
   spec.add_dependency "nokogiri"
-  spec.add_dependency "openapi3_parser", "~> 0.9.0"
+  spec.add_dependency "openapi3_parser", "~> 0.10.1"
   spec.add_dependency "redcarpet", "~> 3.6"
   spec.add_dependency "sassc-embedded", "~> 1.78.0"
   spec.add_dependency "terser", "~> 1.2.3"
