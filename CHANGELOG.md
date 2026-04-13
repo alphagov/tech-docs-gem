@@ -1,3 +1,7 @@
+## Unreleased
+
+- Update version of `openapi3_parser` allowing support for Ruby 4.0.
+
 ## 6.0.0
 
 - [Bump Design System to V6](https://github.com/alphagov/tech-docs-gem/pull/442), which brings in:
