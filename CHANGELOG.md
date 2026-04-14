@@ -2,6 +2,11 @@
 
 - Update version of `openapi3_parser` allowing support for Ruby 4.0.
 
+> Note:
+> openapi3_parser ~> 0.10.1 has a delcares a depndancy on commonmarker >= 1.0
+> commonmarker >= 1.0 declares required_ruby_version >= 3.3.22
+> If you are using an older ruby verion this may cause issues in your environment. We recommend upgrading to a version >= 3.
+
 ## 6.0.0
 
 - [Bump Design System to V6](https://github.com/alphagov/tech-docs-gem/pull/442), which brings in:
