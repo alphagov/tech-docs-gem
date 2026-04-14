@@ -15,6 +15,8 @@ Find out how to [contribute](https://tdt-documentation.london.cloudapps.digital/
 
 This gem uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend), part of the [GOV.UK Design System](https://design-system.service.gov.uk/).
 
+This gem can also use [GOV.UK Design System nunjucks components](https://design-system.service.gov.uk/components/).  It is recommended that you use these as they are user researched and accessibility tested.  An example using the `govukButton` component is available in the [example site in this gem](./example/source/index.html.md.erb).
+
 We use `npm` to download the govuk-frontend package. To update to a new version, change the version in the [package.json file](package.json) and run `npm update`.
 
 ## Table of contents helper functions
@@ -158,9 +160,8 @@ The documentation is [© Crown copyright][copyright] and available under the ter
 [mit]: LICENCE
 [copyright]: http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
 [ogl]: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
-[tdt-docs]: https://tdt-documentation.london.cloudapps.digital
+[tdt-docs]: https://github.com/alphagov/tdt-documentation/
 [tdt-template]: https://github.com/alphagov/tech-docs-template
-[tdt-readme]: https://github.com/alphagov/tech-docs-template/blob/main/README.md
 [mmt]: https://middlemanapp.com/advanced/project_templates/
 
 [jas]: https://jasmine.github.io/

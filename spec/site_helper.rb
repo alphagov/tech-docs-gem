@@ -6,13 +6,17 @@ module_function
 
   # Build the example site using middleman
 
+  def tech_docs_config
+    @tech_docs_config
+  end
+
   def rebuild_site!(config: "config/tech-docs.yml", overrides: {})
     config_file = Tempfile.new("tech_docs_config")
 
     begin
       Dir.chdir("example") do
-        new_config = YAML.load_file(config).merge(overrides)
-        config_file.write(YAML.dump(new_config))
+        @tech_docs_config = YAML.load_file(config).merge(overrides).freeze
+        config_file.write(YAML.dump(tech_docs_config.to_h))
         config_file.close
         command = [
           "rm -rf build",
