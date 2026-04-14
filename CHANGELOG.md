@@ -1,4 +1,4 @@
-## Unreleased
+## 5.2.3
 
 - Update version of `openapi3_parser` allowing support for Ruby 4.0.
 
