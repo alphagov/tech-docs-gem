@@ -14,7 +14,7 @@ module GovukTechDocs
             @renderer ||= GovukTechDocs::GovukNunjuckComponenetRenderer.new(File.expand_path("../../", __dir__))
             @renderer.render_govuk_component(method_name, data).html_safe
           rescue StandardError => e
-            raise e.to_s.to_s
+            raise e
           end
         else
           super

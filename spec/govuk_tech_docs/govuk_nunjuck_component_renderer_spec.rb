@@ -37,11 +37,11 @@ RSpec.describe GovukTechDocs::GovukNunjuckComponenetRenderer do
     end
 
     context "when the JS rendering throws an error" do
-      it "rescues the error and returns an empty safe string" do
+      it "raises a runtime error" do
         # Force the Schmooze-defined method to explode
         error_message = "Computer says NO!!!!!"
         allow(subject).to receive(:render_nunjucks_template).and_raise(StandardError, error_message)
-        expect { subject.render_govuk_component(component_name, data) }.to raise_error(RuntimeError, error_message)
+        expect { subject.render_govuk_component(component_name, data) }.to raise_error(RuntimeError)
       end
     end
   end

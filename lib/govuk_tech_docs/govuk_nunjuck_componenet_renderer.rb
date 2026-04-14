@@ -11,12 +11,8 @@ module GovukTechDocs
 
     method :render_nunjucks_template, <<~JS
       (templateString, templateData, searchPaths) => {
-        try {
           const env = nunjucks.configure(searchPaths, { autoescape: true });
           return env.renderString(templateString, templateData);
-        } catch (err) {
-          return "ERROR: " + err.message + ":: template string" + templateString;
-        }
       }
     JS
 
@@ -39,7 +35,7 @@ module GovukTechDocs
       NJK
       render_nunjucks_template(nunjucks_template_string, { "template_data" => template_data }, search_paths)
     rescue StandardError => e
-      raise e.to_s.to_s
+      raise "Could not load GOV.UK component #{component_name} with data #{template_data}."
     end
   end
 end
