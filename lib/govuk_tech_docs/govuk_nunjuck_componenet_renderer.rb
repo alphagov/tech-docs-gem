@@ -35,7 +35,7 @@ module GovukTechDocs
       NJK
       render_nunjucks_template(nunjucks_template_string, { "template_data" => template_data }, search_paths)
     # rubocop:disable Lint/UselessAssignment
-    rescue StandardError => e 
+    rescue StandardError => e
       raise "Could not load GOV.UK component #{component_name} with data #{template_data}."
     end
     # rubocop:enable Lint/UselessAssignment
