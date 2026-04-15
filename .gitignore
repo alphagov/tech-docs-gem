@@ -31,4 +31,6 @@
 /example/build
 /example/.bundle
 /example/.sass-cache
+
+Gemfile.lock
 node_modules
