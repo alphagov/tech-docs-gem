@@ -48,8 +48,6 @@ Gem::Specification.new do |spec|
 =begin
 middleman-sprockets is very old and out of date.  V4.1.0 has a breaking change.  Will look to replace with gem "dartsass-sprockets" or uses sass in the package.json
 =end
-
-
   spec.add_dependency "middleman-sprockets", "4.0.0"
   spec.add_dependency "middleman-syntax"
   spec.add_dependency "mutex_m" # TODO: remove once activesupport declares this itself.
@@ -57,14 +55,14 @@ middleman-sprockets is very old and out of date.  V4.1.0 has a breaking change. 
   spec.add_dependency "openapi3_parser"
   spec.add_dependency "redcarpet"
   spec.add_dependency "sassc-embedded"
-
-  spec.add_development_dependency "benchmark"
   spec.add_dependency "schmooze", "~> 0.2.0"
   spec.add_dependency "terser", "~> 1.2.3"
+
+  spec.add_development_dependency "benchmark"
   spec.add_development_dependency "byebug"
-  spec.add_development_dependency "capybara", "~> 3.32"
+  spec.add_development_dependency "capybara"
   spec.add_development_dependency "ostruct"
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.9"
-  spec.add_development_dependency "rubocop-govuk", "~> 4.10"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rubocop-govuk"
 end
