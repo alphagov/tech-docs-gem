@@ -1,4 +1,4 @@
-## Unreleased changes
+## 6.2.0
 
 - Remove support for Ruby 3.2, by updating `required_ruby_version` to  `>= 3.3.0`
 - Unpin ruby gem versions
