@@ -1,3 +1,10 @@
+# Unreleased changes
+
+- Update gemspec `spec.required_ruby_version = ">= 3.2.6"`
+- Unpin ruby gem versions 
+- Bump `.nvmrc` to use npm version 22
+- Updates `package.json` and `package-lock.json` to patch security vulnerabilities
+
 # 6.1.0
 
 - [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
