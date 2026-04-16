@@ -1,16 +1,16 @@
-# Unreleased changes
+## 6.2.0
 
-- Update gemspec `spec.required_ruby_version = ">= 3.2.6"`
-- Unpin ruby gem versions 
+- Remove support for Ruby 3.2, by updating `required_ruby_version` to  `>= 3.3.0`
+- Unpin ruby gem versions
 - Bump `.nvmrc` to use npm version 22
 - Updates `package.json` and `package-lock.json` to patch security vulnerabilities
 
-# 6.1.0
+## 6.1.0
 
 - [Add custom extensions to render GOV.UK Design System nunjucks components](https://github.com/alphagov/tech-docs-gem/pull/443/changes)
 - [Fix inconsistent active tab behaviour](https://github.com/alphagov/tech-docs-gem/pull/452)
 
-# 6.0.1
+## 6.0.1
 
 - Update version of `openapi3_parser` allowing support for Ruby 4.0.
 
