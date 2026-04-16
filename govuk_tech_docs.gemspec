@@ -33,35 +33,36 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = %w[lib]
 
-  spec.required_ruby_version = ">= 3.1.0"
+  spec.required_ruby_version = ">= 3.2.6"
 
-  spec.add_dependency "autoprefixer-rails", "~> 10.2"
-  spec.add_dependency "base64" # TODO: remove once middleman-sprockets declares this itself.
-  spec.add_dependency "bigdecimal" # TODO: remove once activesupport declares this itself.
-  spec.add_dependency "chronic", "~> 0.10.2"
-  spec.add_dependency "concurrent-ruby", "1.3.4" # 1.3.5 introduced a change that breaks activesupport, and so middleman
+  spec.add_dependency "autoprefixer-rails"
+  spec.add_dependency "chronic"
+  spec.add_dependency "concurrent-ruby"
   spec.add_dependency "csv" # TODO: remove once tilt declares this itself.
-  spec.add_dependency "haml", "~> 6.0"
-  spec.add_dependency "middleman", "~> 4.6.1"
-  spec.add_dependency "middleman-autoprefixer", "~> 2.10"
-  spec.add_dependency "middleman-compass", "~> 4.0"
+  spec.add_dependency "haml", "~> 6.0" # middleman-core (4.6.3) depends on haml (>= 4.0.5, < 7)
+  spec.add_dependency "middleman"
+  spec.add_dependency "middleman-autoprefixer"
+  spec.add_dependency "middleman-compass"
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-search-gds"
-  spec.add_dependency "middleman-sprockets", "~> 4.0.0"
-  spec.add_dependency "middleman-syntax", "~> 3.6"
+=begin
+middleman-sprockets is very old and out of date.  V4.1.0 has a breaking change.  Will look to replace with gem "dartsass-sprockets" or uses sass in the package.json
+=end
+  spec.add_dependency "middleman-sprockets", "4.0.0"
+  spec.add_dependency "middleman-syntax"
   spec.add_dependency "mutex_m" # TODO: remove once activesupport declares this itself.
   spec.add_dependency "nokogiri"
-  spec.add_dependency "openapi3_parser", "~> 0.10.1"
-  spec.add_dependency "redcarpet", "~> 3.6"
-  spec.add_dependency "sassc-embedded", "~> 1.78.0"
-
-  spec.add_development_dependency "benchmark"
+  spec.add_dependency "openapi3_parser"
+  spec.add_dependency "redcarpet"
+  spec.add_dependency "sassc-embedded"
   spec.add_dependency "schmooze", "~> 0.2.0"
   spec.add_dependency "terser", "~> 1.2.3"
+
+  spec.add_development_dependency "benchmark"
   spec.add_development_dependency "byebug"
-  spec.add_development_dependency "capybara", "~> 3.32"
+  spec.add_development_dependency "capybara"
   spec.add_development_dependency "ostruct"
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.9"
-  spec.add_development_dependency "rubocop-govuk", "~> 4.10"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec"
+  spec.add_development_dependency "rubocop-govuk"
 end

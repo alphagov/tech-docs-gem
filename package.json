@@ -12,9 +12,9 @@
     "nunjucks": "~3.2.4"
   },
   "devDependencies": {
-    "jasmine-browser-runner": "^3.0.0",
-    "jasmine-core": "^5.13.0",
-    "standard": "^14.3.4"
+    "jasmine-browser-runner": "^4.0.0",
+    "jasmine-core": "^6.0.0",
+    "standard": "^17.0.0"
   },
   "standard": {
     "globals": [
