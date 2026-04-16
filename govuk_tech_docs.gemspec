@@ -38,7 +38,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "autoprefixer-rails"
   spec.add_dependency "chronic"
   spec.add_dependency "concurrent-ruby"
-  # spec.add_dependency "csv" # TODO: remove once tilt declares this itself.
+  spec.add_dependency "csv" # TODO: remove once tilt declares this itself.
   spec.add_dependency "haml", "~> 6.0" # middleman-core (4.6.3) depends on haml (>= 4.0.5, < 7)
   spec.add_dependency "middleman"
   spec.add_dependency "middleman-autoprefixer"
