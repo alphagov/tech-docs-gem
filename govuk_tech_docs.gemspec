@@ -4,8 +4,12 @@ lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "govuk_tech_docs/version"
 
-`npm ci`
-abort "npm ci failed" unless $CHILD_STATUS.success?
+if ENV["DEPENDABOT_JOB"] == "true" # dependabot will only evaluate the bundler, and will not allow npm
+  warn "Skipping npm ci due to DEPENDABOT_JOB=true"
+else
+  system("npm ci")
+  abort "npm ci failed" unless $CHILD_STATUS.success?
+end
 
 unless File.exist?("node_modules/govuk-frontend/dist/govuk/_base.scss")
   abort "govuk-frontend npm package not installed"
@@ -45,9 +49,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-compass"
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-search-gds"
-=begin
-middleman-sprockets is very old and out of date.  V4.1.0 has a breaking change.  Will look to replace with gem "dartsass-sprockets" or uses sass in the package.json
-=end
+  # middleman-sprockets is very old and out of date.  V4.1.0 has a breaking change.  Will look to replace with gem "dartsass-sprockets" or uses sass in the package.json
   spec.add_dependency "middleman-sprockets", "4.0.0"
   spec.add_dependency "middleman-syntax"
   spec.add_dependency "mutex_m" # TODO: remove once activesupport declares this itself.

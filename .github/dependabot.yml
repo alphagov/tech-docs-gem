@@ -12,13 +12,10 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "06:00"
+    env:
+      DEPENDABOT_JOB: "true"
     commit-message:
       prefix: chore
-    # TODO - add labels
-    # labels:
-    #   - "dependencies"
-    #   - "ruby"
-    #   - "automated-pr"
     open-pull-requests-limit: 5
 
   # 2. Update GitHub Actions (keeps your CI workflows secure)
