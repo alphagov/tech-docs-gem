@@ -4,12 +4,8 @@ lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "govuk_tech_docs/version"
 
-if ENV["DEPENDABOT_JOB"] == "true" # dependabot will only evaluate the bundler, and will not allow npm
-  warn "Skipping npm ci due to DEPENDABOT_JOB=true"
-else
-  system("npm ci")
-  abort "npm ci failed" unless $CHILD_STATUS.success?
-end
+`npm ci`
+abort "npm ci failed" unless $CHILD_STATUS.success?
 
 unless File.exist?("node_modules/govuk-frontend/dist/govuk/_base.scss")
   abort "govuk-frontend npm package not installed"
