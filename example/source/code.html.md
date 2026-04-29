@@ -17,6 +17,7 @@ An example of a table with a `code` element within it.
 An example of a code block with a long line length
 
 ```ruby
+# Example comment to check syntax highlighting for comments
 RSpec.describe ContentItem do
   subject { described_class.new(base_path) }
   let(:base_path) { "/search/news-and-communications" }

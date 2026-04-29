@@ -1,3 +1,7 @@
+## 6.2.1
+
+- [Fix comments in code blocks being hard to read](https://github.com/alphagov/tech-docs-gem/pull/477) 
+
 ## 6.2.0
 
 - Remove support for Ruby 3.2, by updating `required_ruby_version` to  `>= 3.3.0`
