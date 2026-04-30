@@ -342,6 +342,24 @@ describe GovukTechDocs::TableOfContents::Helpers do
       expect(subject.multi_page_table_of_contents(resources, current_page, config, current_page_html).strip).to eq(expected_multi_page_table_of_contents.strip)
     end
 
+    it "selects top-level pages whose parent URL matches the http prefix" do
+      prefix_root = FakeResource.new("/prefix/", "")
+      resources = []
+      resources[0] = FakeResource.new("/prefix/index.html", '<h1 id="heading-one">Heading one</h1>', 10, "Index", prefix_root)
+      resources[1] = FakeResource.new("/prefix/a.html", '<h1 id="heading-one">Heading one</h1>', 20, "Page A", prefix_root)
+
+      config = {
+        http_prefix: "/prefix",
+        tech_docs: {
+          max_toc_heading_level: 3,
+        },
+      }
+
+      result = subject.select_top_level_html_files(resources, config)
+
+      expect(result).to eq(resources)
+    end
+
     it "builds a table of contents from a single page resources" do
       resources = []
       resources.push FakeResource.new("/index.html", '<h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2><h1 id="heading-one">Heading one</h1><h2 id="heading-two">Heading two</h2>')

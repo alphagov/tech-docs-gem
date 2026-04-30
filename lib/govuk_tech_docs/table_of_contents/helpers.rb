@@ -30,14 +30,16 @@ module GovukTechDocs
           .to_a
       end
 
-      def select_top_level_html_files(resources)
+      def select_top_level_html_files(resources, config)
+        home_url = config[:http_prefix].end_with?("/") ? config[:http_prefix] : "#{config[:http_prefix]}/"
+
         resources
-          .select { |r| r.path.end_with?(".html") && (r.parent.nil? || r.parent.url == "/") }
+          .select { |r| r.path.end_with?(".html") && (r.parent.nil? || r.parent.url == home_url) }
       end
 
       def multi_page_table_of_contents(resources, current_page, config, current_page_html = nil, include_child_resources: true)
         resources = sort_resources_stably(
-          select_top_level_html_files(resources),
+          select_top_level_html_files(resources, config),
         )
 
         render_page_tree(resources, current_page, config, current_page_html, include_child_resources:)
