@@ -4,11 +4,17 @@ lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "govuk_tech_docs/version"
 
-`npm ci`
-abort "npm ci failed" unless $CHILD_STATUS.success?
-
-unless File.exist?("node_modules/govuk-frontend/dist/govuk/_base.scss")
-  abort "govuk-frontend npm package not installed"
+# npm is not necessarily expected in a gemspec, this makes a big assumption about the environment
+# Additionally, for actions such as evaluating the gemspec (e.g. for vulnerability patching) we do not actaully want npm packages
+# We will move these sections into specific rake tasks when we get a chance
+if system("which npm > /dev/null 2>&1")
+  `npm ci`
+  abort "npm ci failed to run" unless $CHILD_STATUS.success?
+  unless File.exist?("node_modules/govuk-frontend/dist/govuk/_base.scss")
+    abort "govuk-frontend and other npm packages not installed"
+  end
+else
+  warn "npm is not available, no assets will be generated.  If you did not expect this please confirm your environment settings."
 end
 
 Gem::Specification.new do |spec|
