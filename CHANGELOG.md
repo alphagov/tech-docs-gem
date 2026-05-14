@@ -1,3 +1,7 @@
+## 6.2.2
+
+- Update [govuk_tech_docs.gemspec](govuk_tech_docs.gemspec) to only run `npm` if `npm` is installed.  Allows gem versions scans to complete properly.
+
 ## 6.2.1
 
 - [Fix comments in code blocks being hard to read](https://github.com/alphagov/tech-docs-gem/pull/477) 
