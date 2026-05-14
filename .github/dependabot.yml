@@ -7,7 +7,8 @@ version: 2
 updates:
   # 1. Update Ruby dependencies (Gemfile/gemspec) in the root
   - package-ecosystem: "bundler"
-    directory: "/" 
+    directory: "/"
+    target-branch: "hotfix/only-call-npm-when-building"
     schedule:
       interval: "weekly"
       day: "monday"
