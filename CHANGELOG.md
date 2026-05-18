@@ -1,3 +1,7 @@
+## 6.2.3
+
+- [Fix TOC sidebar not scrolling to active item on page load](https://github.com/alphagov/tech-docs-gem/pull/480)
+
 ## 6.2.2
 
 - Update [govuk_tech_docs.gemspec](govuk_tech_docs.gemspec) to only run `npm` if `npm` is installed.  Allows gem versions scans to complete properly.
