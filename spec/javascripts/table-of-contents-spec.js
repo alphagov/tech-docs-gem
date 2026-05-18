@@ -472,3 +472,56 @@ describe('Table of contents', function () {
     })
   })
 })
+
+describe('In page navigation', function () {
+  'use strict'
+
+  var $element
+  var $tocList
+  var module
+  var _requestAnimationFrame
+  var _Modernizr
+
+  beforeEach(function () {
+    _requestAnimationFrame = window.requestAnimationFrame
+    _Modernizr = window.Modernizr
+    window.Modernizr = { history: true }
+
+    $element = $('<div><div class="app-pane__content"></div></div>')
+    $tocList = $(
+      '<nav class="js-toc-list">' +
+        '<a href="' + window.location.href + '">Current page</a>' +
+      '</nav>'
+    )
+    $('body').append($element).append($tocList)
+  })
+
+  afterEach(function () {
+    window.requestAnimationFrame = _requestAnimationFrame
+    window.Modernizr = _Modernizr
+    $element.remove()
+    $tocList.remove()
+  })
+
+  it('defers initial TOC highlighting using requestAnimationFrame', function () {
+    var rafSpy = jasmine.createSpy('requestAnimationFrame')
+    window.requestAnimationFrame = rafSpy
+
+    module = new GOVUK.Modules.InPageNavigation()
+    module.start($element)
+
+    expect(rafSpy).toHaveBeenCalled()
+  })
+
+  it('calls scrollIntoView on the active TOC link', function () {
+    var scrollIntoViewSpy = jasmine.createSpy('scrollIntoView')
+    $tocList.find('a').get(0).scrollIntoView = scrollIntoViewSpy
+
+    window.requestAnimationFrame = function (callback) { callback() }
+
+    module = new GOVUK.Modules.InPageNavigation()
+    module.start($element)
+
+    expect(scrollIntoViewSpy).toHaveBeenCalledWith({ block: 'nearest', inline: 'nearest' })
+  })
+})
