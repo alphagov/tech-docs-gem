@@ -4,9 +4,6 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
-permissions:
-  contents: read
-  pull-requests: write
 updates:
   # 1. Update Ruby dependencies (Gemfile/gemspec) in the root
   - package-ecosystem: "bundler"

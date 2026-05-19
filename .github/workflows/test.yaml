@@ -7,6 +7,11 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+permissions:
+  contents: read          # Allows the action to check out your repository code
+  pull-requests: write    # Allows the action to comment on or update the Dependabot PR
+  statuses: write         # Allows the action to post pass/fail build statuses
+
 jobs:
   test:
     name: Test
