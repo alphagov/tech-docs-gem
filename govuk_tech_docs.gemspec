@@ -52,7 +52,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-search-gds"
   # middleman-sprockets is very old and out of date.  V4.1.0 has a breaking change.  Will look to replace with gem "dartsass-sprockets" or uses sass in the package.json
-  spec.add_dependency "middleman-sprockets", "4.0.0"
+  spec.add_dependency "middleman-sprockets", "4.1.1"
   spec.add_dependency "middleman-syntax"
   spec.add_dependency "mutex_m" # TODO: remove once activesupport declares this itself.
   spec.add_dependency "nokogiri"
