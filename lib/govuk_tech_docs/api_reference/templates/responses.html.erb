@@ -10,21 +10,23 @@
 <td><%= key %></td>
 <td>
 <%= render_markdown(response.description) %>
-<% if response.content['application/json']
-if response.content['application/json']["example"]
-  request_body = json_prettyprint(response.content['application/json']["example"])
+<% response.content.each do |content_type, media_type| %>
+<% request_body = nil
+if media_type["example"]
+  request_body = json_prettyprint(media_type["example"])
 else
-  request_body = json_output(response.content['application/json'].schema)
-end
+  request_body = json_output(media_type.schema)
 end %>
 <% if !request_body.blank? %>
+<p><em><%= content_type %></em></p>
 <pre><code><%= request_body %></code></pre>
+<% end %>
 <% end %>
 </td>
 <td>
-<%= if response.content['application/json']
-  get_schema_link(response.content['application/json'].schema)
-end %>
+<% response.content.each do |content_type, media_type| %>
+<%= get_schema_link(media_type.schema) %>
+<% end %>
 </td>
 </tr>
 <% end %>
