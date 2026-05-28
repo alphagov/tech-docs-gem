@@ -33,6 +33,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Pets"
+            text/plain:
+              schema:
+                type: string
+              example: "1: Fido, 2: Buddy, 3: Max"
         default:
           description: unexpected error
           content:
