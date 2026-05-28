@@ -1,3 +1,7 @@
+## 6.2.4
+
+- Support non-JSON response content types in OpenAPI renderer.
+
 ## 6.2.3
 
 - [Fix TOC sidebar not scrolling to active item on page load](https://github.com/alphagov/tech-docs-gem/pull/480)
