@@ -22,7 +22,6 @@ RSpec.describe GovukTechDocs::ApiReference::Renderer do
   end
 
   describe ".api_full" do
-
     it "renders the description" do
       document = Openapi3Parser.load(@spec)
 
