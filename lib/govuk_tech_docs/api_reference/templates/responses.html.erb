@@ -24,7 +24,7 @@ elsif media_type["example"]
 end %>
 <% if !request_body.blank? %>
 <p><em><%= content_type %></em></p>
-<pre><code><%= request_body %></code></pre>
+<pre><code><%= ERB::Util.html_escape(request_body) %></code></pre>
 <% end %>
 <% end %>
 <% end %>
