@@ -58,10 +58,12 @@ module GovukTechDocs
         operations = get_operations(@document.paths[text])
         schemas = operations.flat_map do |_, operation|
           operation.responses.inject([]) do |memo, (_, response)|
-            response.content.values.inject(memo) do |memo, media_type|
+            next memo unless response.content
+
+            response.content.values.inject(memo) do |inner_memo, media_type|
               schema = media_type.schema
-              memo << schema.name if schema.name
-              memo + schemas_from_schema(schema)
+              inner_memo << schema.name if schema.name
+              inner_memo + schemas_from_schema(schema)
             end
           end
         end
@@ -128,7 +130,6 @@ module GovukTechDocs
           when "object"
             schema_properties(schema.items || schema)
           when "array"
-#             schema.example || (schema.items ? [schema_properties(schema.items)] : [])
             schema.items ? [schema_properties(schema.items)] : []
           else
             schema.example || schema.type
