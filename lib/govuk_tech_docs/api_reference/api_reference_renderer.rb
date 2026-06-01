@@ -58,12 +58,13 @@ module GovukTechDocs
         operations = get_operations(@document.paths[text])
         schemas = operations.flat_map do |_, operation|
           operation.responses.inject([]) do |memo, (_, response)|
-            next memo unless response.content["application/json"]
+            next memo unless response.content
 
-            schema = response.content["application/json"].schema
-
-            memo << schema.name if schema.name
-            memo + schemas_from_schema(schema)
+            response.content.values.inject(memo) do |inner_memo, media_type|
+              schema = media_type.schema
+              inner_memo << schema.name if schema.name
+              inner_memo + schemas_from_schema(schema)
+            end
           end
         end
 
