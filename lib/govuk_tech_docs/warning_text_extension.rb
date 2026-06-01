@@ -5,6 +5,7 @@ module GovukTechDocs
     end
 
     helpers do
+      warn("This functionality is deprecated and will be removed in a future release. \n You should use the GOV.UK warning text component instead.")
       def warning_text(text)
         <<~EOS
         <div class="govuk-warning-text">
