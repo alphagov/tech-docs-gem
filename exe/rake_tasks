@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require "rake"
+
+Rake.application.init
+
+Dir.glob(File.join(__dir__, "../lib/tasks/*.rake")).each { |r| load r }
+
+Rake.application.top_level
