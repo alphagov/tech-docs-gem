@@ -48,6 +48,10 @@ RSpec.describe "OpenAPI reference" do
     expect(page).to have_css("table", text: /\b(How many items to return at one time)\b/)
     # Link to schema
     expect(page).to have_css('table a[href="#schema-error"]')
+    # Multiple content types rendered
+    expect(page).to have_css("em", text: "application/json")
+    expect(page).to have_css("em", text: "text/plain")
+    expect(page).to have_css("pre code", text: "1: Fido, 2: Buddy, 3: Max")
   end
 
   def then_there_is_correct_api_schema_content
