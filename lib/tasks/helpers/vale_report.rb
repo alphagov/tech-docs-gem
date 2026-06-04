@@ -122,7 +122,7 @@ private
     begin
       rows_json = JSON.parse(@linter_raw_output)
     rescue JSON::ParserError
-      puts "\e[Error parsing Vale payload:\e[0m\n#{stdout}"
+      puts "\e[Error parsing Vale payload:\e[0m\n#{@linter_raw_output}"
       exit 1
     end
 
