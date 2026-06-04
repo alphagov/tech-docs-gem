@@ -2,8 +2,8 @@ class LinterReport
   attr_accessor :linter_raw_output, :linter_summary_report, :linter_full_report
 
   def initialize(raw_output)
-     puts "#{self.class} initialized."
-     @linter_raw_output = raw_output
+    puts "#{self.class} initialized."
+    @linter_raw_output = raw_output
   end
 
   def format_linter_output
@@ -12,6 +12,7 @@ class LinterReport
 
   def get_raw_output
     raise "No raw output available.  Check you have run the linter task correctly" unless @linter_raw_output
+
     @linter_raw_output
   end
 
@@ -21,6 +22,7 @@ class LinterReport
 
   def get_linter_summary_report
     raise "No output summary available.  Check you have called set_linter_summary_report" unless @linter_summary_report
+
     @linter_summary_report
   end
 
@@ -30,6 +32,7 @@ class LinterReport
 
   def get_linter_full_report
     raise "No output detail available.  Check you have called set_linter_full_report" unless @linter_full_report
+
     @linter_full_report
   end
 

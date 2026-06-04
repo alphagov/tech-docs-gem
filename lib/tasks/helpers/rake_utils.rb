@@ -1,4 +1,3 @@
-
 def get_gem_root
   Gem::Specification.find_by_name("govuk_tech_docs").gem_dir
 end

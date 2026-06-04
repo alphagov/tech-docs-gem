@@ -10,7 +10,7 @@ namespace :lint do
   task :vale, [:target, :clean_build, :full_output] do |_t, args|
     args.with_defaults(target: "./build", clean_build: "true", full_output: "true")
     puts Dir.pwd
-    
+
     sh "bundle exec vale sync --config='#{vale_config_path}'"
 
     if args.clean_build == "true"
