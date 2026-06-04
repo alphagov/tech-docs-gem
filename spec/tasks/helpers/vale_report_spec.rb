@@ -12,23 +12,23 @@ RSpec.describe ValeLinterReport do
           "Line" => 1,
           "Severity" => "error",
           "Message" => "Bad thing",
-          "Check" => "Style.Rule"
+          "Check" => "Style.Rule",
         },
         {
           "Line" => 2,
           "Severity" => "warning",
           "Message" => "Less bad thing",
-          "Check" => "Style.Rule"
-        }
+          "Check" => "Style.Rule",
+        },
       ],
       "file2.md" => [
         {
           "Line" => 3,
           "Severity" => "suggestion",
           "Message" => "Suggestion here",
-          "Check" => "Style.Rule"
-        }
-      ]
+          "Check" => "Style.Rule",
+        },
+      ],
     }.to_json
   end
 
@@ -45,7 +45,7 @@ RSpec.describe ValeLinterReport do
         expect(report.linter_severity_totals).to eq(
           "error" => 0,
           "warning" => 0,
-          "suggestion" => 0
+          "suggestion" => 0,
         )
       end
     end
@@ -63,7 +63,7 @@ RSpec.describe ValeLinterReport do
         expect(report.linter_severity_totals).to eq(
           "error" => 1,
           "warning" => 1,
-          "suggestion" => 1
+          "suggestion" => 1,
         )
       end
 
@@ -73,7 +73,7 @@ RSpec.describe ValeLinterReport do
         expect(json).to eq(
           "error" => 1,
           "warning" => 1,
-          "suggestion" => 1
+          "suggestion" => 1,
         )
       end
 
@@ -116,15 +116,15 @@ RSpec.describe ValeLinterReport do
             "Line" => 1,
             "Severity" => "warning",
             "Message" => "Duplicate message",
-            "Check" => "tech-writing-style-guide.acronyms"
+            "Check" => "tech-writing-style-guide.acronyms",
           },
           {
             "Line" => 2,
             "Severity" => "warning",
             "Message" => "Duplicate message",
-            "Check" => "tech-writing-style-guide.acronyms"
-          }
-        ]
+            "Check" => "tech-writing-style-guide.acronyms",
+          },
+        ],
       }.to_json
     end
 
