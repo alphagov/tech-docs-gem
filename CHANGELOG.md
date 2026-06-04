@@ -1,3 +1,11 @@
+## 6.3.0.beta
+
+- Add `exe/tech_docs_jobs` to allow executable `Rake` commands
+- Add `rake task` for style guide linting
+- Add `lib/tasks/helpers/linter_report.rb` and `lib/tasks/helpers/vale_report.rb` for formatting output
+- Add `.vale.ini` to include [`tech-docs-linter`](https://github.com/alphagov/tech-docs-linter/tree/main#rules) rules
+- Update `README.md`
+
 ## 6.2.4
 
 - Support non-JSON response content types in OpenAPI renderer.
