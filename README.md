@@ -1,9 +1,11 @@
 # Tech Docs Template - gem
 
-This repo contains the Ruby gem that distributes the [Tech Docs Template][tdt-template]. The Tech Docs Template is a [middleman template][mmt] that
+This repo contains the Ruby gem that distributes the [Tech Docs Template][tdt-template]. The Tech Docs Template is
+a [middleman template][mmt] that
 you can use to build technical documentation using a GOV.UK style.
 
-To find out more about setting up and managing content for a website using this template, see the [Tech Docs Template documentation][tdt-docs].
+To find out more about setting up and managing content for a website using this template, see
+the [Tech Docs Template documentation][tdt-docs].
 
 ## Contributing
 
@@ -11,17 +13,54 @@ Everybody who uses this project is encouraged to contribute.
 
 Find out how to [contribute](https://tdt-documentation.london.cloudapps.digital/support/#contribute).
 
+## Rake tasks
+
+This gem contains `Rake` tasks that you can use to run the linter against your middleman build. To list the available
+jobs you can run the command:
+
+```shell
+bundle exec tech_docs_jobs -T
+```
+
+### Tech-docs-linter
+
+The `tech-docs-linter` is a set of `Vale` linting rules which can help you check your content meets the gov.uk style
+guide. To find out more about the linter visit the [GitHub repository](https://github.com/alphagov/tech-docs-linter).
+`Vale` is designed to evaluate written content, and does not recommend auto-fixing. You should review the output report
+and manually resolve alerts where appropriate.
+
+The `vale:lint` task returns a 0 exit code unless there is an `Exception`.  This allows you to run the linter without interrupting your `CI/CD workflows`.
+
+You can run the linting task from your project root with the command:
+
+```shell
+bundle exec tech_docs_jobs vale:lint
+```
+
+The linting job can take the following optional parameters:
+
+| Name          | Definition                                                                                  | Default   |
+|---------------|---------------------------------------------------------------------------------------------|-----------|
+| `target`      | Directory of your middleman build, relative to the root of your project.                    | './build' |
+| `clean_build` | If true runs `bundle exec middleman build` to create a clean build.                         | 'true'    |
+| `full_output` | If true the full report is printed to the console, otherwise only the summary is displayed. | 'true'    |
+
 ## GOV.UK frontend
 
-This gem uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend), part of the [GOV.UK Design System](https://design-system.service.gov.uk/).
+This gem uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend), part of
+the [GOV.UK Design System](https://design-system.service.gov.uk/).
 
-This gem can also use [GOV.UK Design System nunjucks components](https://design-system.service.gov.uk/components/).  It is recommended that you use these as they are user researched and accessibility tested.  An example using the `govukButton` component is available in the [example site in this gem](./example/source/index.html.md.erb).
+This gem can also use [GOV.UK Design System nunjucks components](https://design-system.service.gov.uk/components/). It
+is recommended that you use these as they are user researched and accessibility tested. An example using the
+`govukButton` component is available in the [example site in this gem](./example/source/index.html.md.erb).
 
-We use `npm` to download the govuk-frontend package. To update to a new version, change the version in the [package.json file](package.json) and run `npm update`.
+We use `npm` to download the govuk-frontend package. To update to a new version, change the version in
+the [package.json file](package.json) and run `npm update`.
 
 ## Table of contents helper functions
 
-With `Middleman` you can apply layouts to group pages and customise sites. This gem has the following additional helper functions to manage the table of contents (ToC):
+With `Middleman` you can apply layouts to group pages and customise sites. This gem has the following additional helper
+functions to manage the table of contents (ToC):
 
 - `single_page_table_of_contents` to create a ToC from the headings on the current page
 - `multi_page_table_of_contents` to create a ToC for a group of pages, opened at the current page
@@ -48,7 +87,7 @@ end
 %>
 ```
 
-This example will create a ToC containing the current page title, and nested headings to a depth of 2. 
+This example will create a ToC containing the current page title, and nested headings to a depth of 2.
 
 ### Multi page table of contents
 
@@ -73,7 +112,10 @@ wrap_layout :core do
 end
 %>
 ```
-This example will create a ToC containing the page title of each resource, as a heading.  Each heading can be expanded to show nested headings to the depth defined in the site config.  If `include_child_resources` is set to `true`, child resources will also be included.
+
+This example will create a ToC containing the page title of each resource, as a heading. Each heading can be expanded to
+show nested headings to the depth defined in the site config. If `include_child_resources` is set to `true`, child
+resources will also be included.
 
 ## Developing locally
 
@@ -90,9 +132,11 @@ To see how your changes to the gem affect your website, point your website's Gem
 gem 'govuk_tech_docs', path: '../tech-docs-gem'
 ```
 
-To preview your documentation changes locally, see the [Tech Docs Template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
+To preview your documentation changes locally, see
+the [Tech Docs Template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
 
-If you experience [the FFI gem issue for Mojave users](https://github.com/alphagov/tech-docs-gem/issues/254), you should refer to this [list of possible fixes](#issue-with-ffi-on-osx-mohave).
+If you experience [the FFI gem issue for Mojave users](https://github.com/alphagov/tech-docs-gem/issues/254), you should
+refer to this [list of possible fixes](#issue-with-ffi-on-osx-mohave).
 
 ### Use the example in this repo
 
@@ -106,19 +150,44 @@ bundle exec middleman server
 
 See your website on `http://localhost:4567` in your browser.
 
-If you experience [the FFI gem issue for Mojave users](https://github.com/alphagov/tech-docs-gem/issues/254), you should refer to this [list of possible fixes](#issue-with-ffi-on-osx-mohave).
+If you experience [the FFI gem issue for Mojave users](https://github.com/alphagov/tech-docs-gem/issues/254), you should
+refer to this [list of possible fixes](#issue-with-ffi-on-osx-mohave).
 
-For more information on previewing your documentation locally, see the [Tech Docs template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
+For more information on previewing your documentation locally, see
+the [Tech Docs template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
 
 ## Tests
 
-Use this command to run the linting and tests for the Ruby and JavaScript code:
+### Ruby tests and linting
+
+You can run the Ruby test suite with the following command:
+
+```shell
+bundle exec rspec
+```
+
+To test a specific file include the filepath after `rspec`.
+
+You can lint the ruby code with the command:
+
+```shell
+bundle exec rubocop
+```
+
+Rubocop can automatically fix some linting issues. If the above command has suggestions that you automatically fix them
+with:
+
+```shell
+bundle exec rubocop -a 
+
+
+### JavaScript tests and linting
+
+Use this command to run the linting and tests for the JavaScript code:
 
 ```sh
 bundle exec rake
 ```
-
-### JavaScript tests
 
 The JavaScript tests use the [Jasmine test framework][jas].
 
@@ -140,28 +209,38 @@ Users on OSX Mojave (10.14) may get this error when running `bundle exec middlem
 There are 3 possible ways to solve this. From best to worst, you can:
 
 * upgrade to macOS 10.15 (Catalina) or higher
-* tell rubygems not to use the system ffi by running `gem install ffi -- --disable-system-libffi` in the command line when the error shows
+* tell rubygems not to use the system ffi by running `gem install ffi -- --disable-system-libffi` in the command line
+  when the error shows
 * pin the ffi version back to 1.12.2 by editing the Gemfile of your app
 
 ## Releasing new versions
 
-To release a new version, create a new pull request (PR) that updates [version.rb](lib/govuk_tech_docs/version.rb) and [CHANGELOG.md](CHANGELOG.md).
+To release a new version, create a new pull request (PR) that updates [version.rb](lib/govuk_tech_docs/version.rb)
+and [CHANGELOG.md](CHANGELOG.md).
 
-Do not include other changes in your pull request, as this makes it easier to find out what was released when. See an example of a [PR for releasing a new version](https://github.com/alphagov/tech-docs-gem/pull/15).
+Do not include other changes in your pull request, as this makes it easier to find out what was released when. See an
+example of a [PR for releasing a new version](https://github.com/alphagov/tech-docs-gem/pull/15).
 
 Travis will automatically release a [new version to Rubygems.org](https://rubygems.org/gems/govuk_tech_docs).
 
 ## Licence
 
-Unless stated otherwise, the codebase is released under [the MIT License][mit]. This covers both the codebase and any sample code in the documentation.
+Unless stated otherwise, the codebase is released under [the MIT License][mit]. This covers both the codebase and any
+sample code in the documentation.
 
-The documentation is [© Crown copyright][copyright] and available under the terms of the [Open Government 3.0][ogl] licence.
+The documentation is [© Crown copyright][copyright] and available under the terms of the [Open Government 3.0][ogl]
+licence.
 
 [mit]: LICENCE
+
 [copyright]: http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/
+
 [ogl]: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
+
 [tdt-docs]: https://github.com/alphagov/tdt-documentation/
+
 [tdt-template]: https://github.com/alphagov/tech-docs-template
+
 [mmt]: https://middlemanapp.com/advanced/project_templates/
 
 [jas]: https://jasmine.github.io/
