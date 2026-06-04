@@ -22,12 +22,12 @@ namespace :lint do
     linter_report = ValeLinterReport.new(stdout)
     linter_report.format_linter_output
     if args.full_output == "true"
-      puts linter_report.get_output_detail
+      puts linter_report.get_linter_full_report
     end
-    puts linter_report.get_output_summary
+    puts linter_report.get_linter_summary_report
 
     # finish with a Ci friendly json string
-    linter_report.get_output_summary_json
+    linter_report.linter_summary_report_json
     # Always exit 0 so individual project pipelines can evaluate the data themselves
     exit 0
   end

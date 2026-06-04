@@ -1,52 +1,36 @@
 class LinterReport
-  attr_accessor :linter_name, :linter_raw_output, :output_summary, :output_detail, :output_summary_json, :output_detail_json
+  attr_accessor :linter_raw_output, :linter_summary_report, :linter_full_report
 
-  def initialize
-    raise NotImplementedError, "Subclass must set @linter_name in #initialize"
+  def initialize(raw_output)
+     puts "#{self.class} initialized."
+     @linter_raw_output = raw_output
   end
 
   def format_linter_output
     raise NotImplementedError, "Subclass must implement #format_linter_output"
   end
 
-  def set_raw_output
-    warn "Subclass must implement #set_raw_output"
-  end
-
   def get_raw_output
     raise "No raw output available.  Check you have run the linter task correctly" unless @linter_raw_output
-
     @linter_raw_output
   end
 
-  def set_output_summary
-    warn "Subclass must implement #set_output_summary"
+  def set_linter_summary_report
+    raise "Subclass must implement #set_linter_summary_report"
   end
 
-  def get_output_summary
-    raise "No output summary available.  Check you have called set_output_summary" unless @output_summary
-
-    @output_summary.join("\n")
+  def get_linter_summary_report
+    raise "No output summary available.  Check you have called set_linter_summary_report" unless @linter_summary_report
+    @linter_summary_report
   end
 
-  def set_output_summary_json
-    warn "Subclass must implement #set_output_summary_json"
+  def set_linter_full_report
+    raise "Subclass must implement #set_linter_full_report"
   end
 
-  def get_output_summary_json
-    raise "No output summary json available.  Check you have called set_output_summary_json" unless @output_summary_json
-
-    @output_summary_json
-  end
-
-  def set_output_detail(_output_detail)
-    warn "Subclass must implement #set_output_detail"
-  end
-
-  def get_output_detail
-    raise "No output detail available.  Check you have called set_output_detail" unless @output_detail
-
-    @output_detail.join("\n")
+  def get_linter_full_report
+    raise "No output detail available.  Check you have called set_linter_full_report" unless @linter_full_report
+    @linter_full_report
   end
 
 protected

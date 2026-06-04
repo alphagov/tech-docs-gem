@@ -2,32 +2,27 @@ require_relative "./linter_report"
 require "json"
 
 class ValeLinterReport < LinterReport
-  attr_accessor :table_rows, :linter_severity_totals, :table_column_widths, :formatter
-
-  def initialize(raw_output)
-    @linter_name = "Vale"
-    @linter_raw_output = raw_output
-  end
+  attr_accessor :table_rows, :linter_severity_totals, :table_column_widths, :formatter, :linter_summary_report_json, :linter_full_report_json
 
   def format_linter_output
     if @linter_raw_output.strip.empty?
       @table_rows = []
-      @totals = { "error" => 0, "warning" => 0, "suggestion" => 0 }
+      @linter_severity_totals = { "error" => 0, "warning" => 0, "suggestion" => 0 }
     else
       set_table_rows
       set_linter_severity_totals_from_rows
     end
 
-    set_output_detail
-    set_output_summary
-    set_output_summary_json
+    set_linter_full_report
+    set_linter_summary_report
+    set_linter_summary_report_json
   end
 
-  def set_output_detail
+  def set_linter_full_report
     add_formatted_rows_to_detail_output
   end
 
-  def set_output_summary
+  def set_linter_summary_report
     if @linter_severity_totals.nil?
       set_linter_severity_totals_from_rows
     end
@@ -36,22 +31,23 @@ class ValeLinterReport < LinterReport
     warning = @linter_severity_totals["warning"]
     suggestion = @linter_severity_totals["suggestion"]
 
-    @output_summary = []
+    @linter_summary_report = []
 
-    @output_summary << "\n#{'=' * [0, 40].max}"
-    @output_summary << "\e[1m Vale summary\e[0m"
-    @output_summary << "-" * [0, 40].max
-    @output_summary << "  Errors:      #{error.positive? ? set_output_text_color(error, 'error') : error}"
-    @output_summary << "  Warnings:    #{warning.positive? ? set_output_text_color(warning, 'warning') : warning}"
-    @output_summary << "  Suggestions: #{suggestion.positive? ? set_output_text_color(suggestion, 'suggestion') : suggestion}"
-    @output_summary << "-" * [0, 40].max
+    @linter_summary_report << "\n#{'=' * [0, 40].max}"
+    @linter_summary_report << "\e[1m Vale summary\e[0m"
+    @linter_summary_report << "-" * [0, 40].max
+    @linter_summary_report << "  Errors:      #{error.positive? ? set_output_text_color(error, 'error') : error}"
+    @linter_summary_report << "  Warnings:    #{warning.positive? ? set_output_text_color(warning, 'warning') : warning}"
+    @linter_summary_report << "  Suggestions: #{suggestion.positive? ? set_output_text_color(suggestion, 'suggestion') : suggestion}"
+    @linter_summary_report << "-" * [0, 40].max
+    @linter_summary_report.join("\n")
   end
 
-  def set_output_summary_json
+  def set_linter_summary_report_json
     if @linter_severity_totals.nil?
       set_linter_severity_totals_from_rows
     end
-    @output_summary_json = JSON.generate(@linter_severity_totals)
+    @linter_summary_report_json = JSON.generate(@linter_severity_totals)
   end
 
 private
@@ -75,14 +71,14 @@ private
   end
 
   def add_formatted_header_to_detail_output
-    if @output_detail.nil?
-      @output_detail = []
+    if @linter_full_report.nil?
+      @linter_full_report = []
     end
 
     header = sprintf(@formatter, "File", "Line", "Severity", "Message", "Rule")
-    @output_detail << "\e[1m🔍 Vale Style Linting Report\e[0m\n\n"
-    @output_detail << "\e[1m#{header}\e[0m"
-    @output_detail << "-" * header.length
+    @linter_full_report << "\e[1m🔍 Vale Style Linting Report\e[0m\n\n"
+    @linter_full_report << "\e[1m#{header}\e[0m"
+    @linter_full_report << "-" * header.length
   end
 
   def add_formatted_rows_to_detail_output
@@ -91,8 +87,9 @@ private
     add_formatted_header_to_detail_output
 
     @table_rows.each do |row|
-      @output_detail << format_row(row)
+      @linter_full_report << format_row(row)
     end
+    @linter_full_report.join("\n")
   end
 
   def set_linter_severity_totals_from_rows
