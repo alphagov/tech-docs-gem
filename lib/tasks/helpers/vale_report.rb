@@ -67,7 +67,7 @@ private
     if @table_column_widths.nil?
       set_table_column_widths
     end
-    @formatter = "%-#{@table_column_widths[:file]}s | %-#{@table_column_widths[:line]}s | %-#{@table_column_widths[:severity]}s | %-#{@table_column_widths[:message]}s | %s"
+    @formatter = "%-#{@table_column_widths[:file]}s | %-#{@table_column_widths[:line]}s | %-#{@table_column_widths[:severity]}s | %-#{@table_column_widths[:message]}s | %-#{@table_column_widths[:rule]}s"
   end
 
   def add_formatted_header_to_detail_output
@@ -78,7 +78,7 @@ private
     header = sprintf(@formatter, "File", "Line", "Severity", "Message", "Rule")
     @linter_full_report << "\e[1m🔍 Vale Style Linting Report\e[0m\n\n"
     @linter_full_report << "\e[1m#{header}\e[0m"
-    @linter_full_report << "-" * header.length
+    @linter_full_report << "-" * header.gsub(/\e\[[0-9;]*m/, "").length
   end
 
   def add_formatted_rows_to_detail_output
