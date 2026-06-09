@@ -1,0 +1,8 @@
+extends: substitution
+message: "The GOV.UK style guide recommends using '%s' instead of '%s'"
+level: error
+ignorecase: true
+action:
+  name: replace
+swap:
+  OneLogin: One Login

@@ -1,0 +1,76 @@
+extends: conditional
+message: "'%s' must be defined in the first instance"
+level: error
+scope: text
+ignorecase: false
+first: '(?<!/)\b([A-Z]{3,5})\b(?!/\b)(?!-\d)'
+second: '(?:\b[A-Za-z-]+ )+\(([A-Z]{3,5})\)'
+exceptions:
+# Departmental
+- DSIT
+- GDS
+- CDDO
+- HMRC
+- DVLA
+- DVA
+- NHS
+- DBS
+- NCSC
+
+# GOV.UK specific
+- GOV
+
+# GOV.UK One Login specific
+- ADR
+- RFC
+
+# Networking
+- DNS
+- VPN
+- SSH
+- TLS
+
+# Security
+- RSA
+- GPG
+
+# Accessibility Products
+- JAWS
+- NVDA
+- WAVE
+
+# Internet
+- API
+- REST
+- URL
+- URI
+- HTTP
+- HTTPS
+- HTML
+- CSS
+- SCSS
+- UUID
+- SDK
+
+# Configuration
+- YAML
+- JSON
+- YYYY
+
+# Generic
+- AWS
+- MIT
+- SMS
+- TODO
+- NFC
+- ASCII
+- GDPR
+- ISO
+- SLA
+- UML
+- UTC
+- PDF
+- CPU
+
+# Amazon products
+- SSM
