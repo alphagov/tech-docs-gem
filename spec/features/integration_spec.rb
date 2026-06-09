@@ -59,7 +59,7 @@ RSpec.describe "The tech docs template" do
   end
 
   def then_there_is_a_heading
-    expect(page).to have_css "h1", text: "Hello, World!"
+    expect(page).to have_css "h1", text: "Technical Documentation Template"
   end
 
   def then_there_is_a_search_form
