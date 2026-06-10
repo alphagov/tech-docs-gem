@@ -1,7 +1,7 @@
 require "rack/files"
 require "capybara/rspec"
 
-Capybara.app = Rack::Files.new("test-site/build")
+Capybara.app = Rack::Files.new("spec/test-site/build")
 
 RSpec.describe "The tech docs template" do
   include Capybara::DSL
