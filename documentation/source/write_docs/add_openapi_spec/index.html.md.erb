@@ -1,0 +1,48 @@
+---
+title: Convert an OpenAPI specification into documentation
+weight: 42
+last_reviewed_on: 2021-07-06
+review_in: 1 year
+---
+
+# Convert an OpenAPI specification into documentation
+
+OpenAPI is an API description format for REST APIs. The government's Open Standards Board [recommends using OpenAPI][use-openapi].
+
+You can convert an OpenAPI file into an API reference page in your documentation.
+
+Your OpenAPI file must be both:
+
+- [version 3](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.0.md)
+- in YAML format
+
+1. Add the following to your `config/tech-docs.yml` file:
+
+    ```yaml
+    api_path: <OPENAPI_FILE>
+    ```
+
+    where `<OPENAPI_FILE>` is your OpenAPI file, for example `/openapi/openapi.yaml`.
+
+2. Add the following in your documentation to convert the OpenAPI file into an API reference:
+
+    ```markdown
+    api>
+    ```
+
+For `api_path` you can also use:
+
+- a relative path, for example `./openapi/openapi.yaml`
+- an external file, for example `https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.yaml`
+
+## Convert a specific endpoint
+
+You can convert a specific endpoint using the following in your documentation: 
+
+```markdown
+api> <ENDPOINT>
+```
+
+where `<ENDPOINT>` is your endpoint, for example `/pets`.
+
+<%= partial "partials/links" %>

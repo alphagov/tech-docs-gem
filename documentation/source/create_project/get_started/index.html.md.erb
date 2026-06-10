@@ -1,0 +1,58 @@
+---
+title: Get started
+weight: 21
+last_reviewed_on: 2021-07-01
+review_in: 1 year
+---
+
+# Get started
+
+You must install:
+
+- Xcode command line tools
+- Node.js
+- Ruby
+- Middleman
+
+## Install Xcode command line tools
+
+You should install the Xcode command line tools using your organisation’s software centre if you have one.
+
+You can also install the tools manually.
+
+1. Go to [Apple Developer Downloads].
+2. Search for 'Xcode'.
+3. Select the appropriate __Command Line Tools (macOS x.x) for Xcode x.x__ for your version of macOS, and download the file.
+4. Install the file.
+
+## Install Node.js
+
+You can install [Node.js][node] anywhere on your computer.
+
+## Install Ruby
+
+You can install Ruby anywhere on your computer, using [Ruby Version Manager][rvm] (RVM).
+
+1. Run the following in the command line to install RVM:
+
+    ```shell
+    \curl -sSL https://get.rvm.io | bash -s stable --ruby
+    ```
+
+2. Go to the [Ruby downloads page][ruby-downloads] and get the version number of the most recent Ruby 2.7.x release.
+
+3. Run `rvm install ruby-x.x.x`, where `x.x.x` is the version number. For example, `rvm install ruby-2.7.7`.
+
+You can also install Ruby using other tools such as [rbenv].
+
+## Install Middleman
+
+You can install [Middleman][middleman] anywhere on your computer.
+
+Run the following in the command line to install Middleman:
+
+```shell
+gem install middleman
+```
+
+<%= partial "partials/links" %>

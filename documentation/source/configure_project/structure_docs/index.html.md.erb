@@ -1,0 +1,117 @@
+---
+title: Structure your documentation
+weight: 32
+last_reviewed_on: 2020-07-01
+review_in: 1 year
+---
+
+# Structure your documentation
+
+When you [create a new project][create-project], that project has a source folder containing:
+
+- a `documentation/index.md` content file
+- an `index.html.md.erb` file
+
+The `index.html.md.erb` file contains a `partial` that refers to the `documentation/index.md` content file.
+
+To structure your documentation, add content directly to the `index.html.md.erb` file.
+
+For example, an `index.html.md.erb` file with the following sections:
+
+- an introduction
+- a "Who this documentation is for" section
+- a "Set up the API client" section
+
+That `index.html.md.erb` file could look like this:
+
+```html
+---
+title: Tech Docs
+---
+
+# Introduction
+
+CONTENT
+
+# Who is this documentation for?
+
+CONTENT
+
+# Set up the API client
+
+CONTENT
+
+```
+
+When you build or preview your documentation site with this `index.html.md.erb`, the site will be a single page site with the following structure:
+
+- Introduction
+- Who is this documentation for?
+- Set up the client
+
+## Build a multipage documentation site
+
+You can create a technical documentation site that splits its content across multiple pages.
+
+This is suitable for documentation sites that have too much content for the single page format.
+
+Examples include the:
+
+- [GOV.UK Platform as a Service (PaaS) technical documentation][paas-docs]
+- [GOV.UK Pay technical documentation][pay-docs]
+
+You should [use the search feature][search-feature] with multipage documentation sites.
+
+### Amend the tech-docs.yml file
+
+Add the following code to your project’s `config/tech-docs.yml` file if necessary:
+
+```yaml
+multipage_nav: true
+```
+
+### Create the multipage folder structure
+
+Each folder inside the `source` folder represents one documentation page.
+
+For each page, create a content folder and put an `index.html.md.erb` file into that folder. This `index.html.md.erb` file is the [content file][write-content].
+
+### Amend the index.html.md.erb files
+
+Add a weight argument and value to the frontmatter of each .html.md.erb file. This builds the structure of the multipage documentation.
+
+For example:
+
+```yaml
+---
+title: Product Technical Documentation
+---
+```
+
+becomes
+
+```yaml
+---
+title: Product Technical Documentation
+weight: 10
+---
+```
+
+Higher weights mean the content is lower down in the documentation hierarchy. A way to remember this is to think “heavier pages sink to the bottom”.
+
+Make sure every individual page starts with an H1 heading.
+
+### Nest pages within pages (optional)
+
+You can nest pages within each other.
+
+To do this, create content folders inside content folders with `index.html.md.erb` content files.
+
+Each `.html.md.erb` file inside a nested folder must have a weight value that preserves the overall hierarchy both within the nested content and compared to the other non-nested content.
+
+An example of this content structure is the GOV.UK Pay technical documentation on switching to live:
+
+- [documentation pages][nested-example]
+- [GitHub folder][nested-example-code]
+
+<%= partial "partials/links" %>
