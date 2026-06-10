@@ -1,0 +1,29 @@
+name: ✨ New or updated feature
+description: Suggest a new feature or improvement
+title: "[Documentation]: "
+labels: ["documentation"]
+body:
+  - type: checkboxes
+    id: documentation-type
+    attributes:
+      label: Is this
+      options:
+        - label: a suggestion for new content
+          required: false
+        - label: an update to existing content
+          required: false
+        - label: a suggestion to remove content
+          required: false
+
+  - type: textarea
+    id: user-need
+    attributes:
+      label: User need
+      description: Do you have evidence that the change will meet the needs of users? Let us know about any user research or testing you’ve done
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Optional — describe how you think this would look or link to a draft
+
