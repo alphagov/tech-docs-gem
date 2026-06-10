@@ -9,7 +9,6 @@ namespace :lint do
   desc "Run tech-docs-linter to check content against GOV.UK style guide."
   task :vale, [:target, :clean_build, :full_output] do |_t, args|
     args.with_defaults(target: "./build", clean_build: "true", full_output: "true")
-    puts Dir.pwd
 
     sh "bundle exec vale sync --config='#{vale_config_path}'"
 

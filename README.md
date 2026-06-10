@@ -34,7 +34,7 @@ The `vale:lint` task returns a 0 exit code unless there is an `Exception`.  This
 You can run the linting task from your project root with the command:
 
 ```shell
-bundle exec tech_docs_jobs vale:lint
+bundle exec tech_docs_jobs lint:vale
 ```
 
 The linting job can take the following optional parameters:
