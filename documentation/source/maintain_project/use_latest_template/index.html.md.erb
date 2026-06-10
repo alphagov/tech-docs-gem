@@ -1,0 +1,34 @@
+---
+title: Use the latest template version
+weight: 10
+last_reviewed_on: 2020-07-01
+review_in: 1 year
+---
+
+# Use the latest template version
+
+To have your project use the latest version of the Tech Docs Template, update your `govuk_tech_docs` gem to use the latest version.
+
+For example, you can update the Ruby gems in your project [using Bundler][bundle-update] in your command line interface:
+
+```shell
+cd my-documentation-project
+bundle update
+```
+
+The output will be similar to:
+
+```shell
+Fetching gem metadata from https://rubygems.org/.............
+Fetching gem metadata from https://rubygems.org/.
+Resolving dependencies.......
+<...>
+Fetching govuk_tech_docs 2.0.11 (was 2.0.10)
+Installing govuk_tech_docs 2.0.11 (was 2.0.10)
+<...>
+Bundle updated!
+```
+
+This updates all the Ruby gems that your project uses, including the `govuk_tech_docs` gem.
+
+<%= partial "partials/links" %>

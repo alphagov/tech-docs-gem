@@ -1,0 +1,44 @@
+---
+title: Deploy and host your documentation site
+weight: 71
+last_reviewed_on: 2020-07-01
+review_in: 1 year
+---
+
+# Deploy and host your documentation site
+
+The Tech Docs Template is built on Middleman, which is a static
+site generator. You can therefore deploy your site anywhere that supports
+static sites.
+
+## GitHub Pages
+
+With some modification, you can also deploy your site with [GitHub Pages][gh-pages], but we do not support this. To do this, you could for example use the [`middleman-gh-pages` tool][middleman-gh-pages], which we do not support.
+
+We also cannot guarantee that all features of the template will work if you deploy your site with GitHub Pages.
+
+The [Ministry of Justice cloud platform documentation][gh-pages-example] uses GitHub Pages.
+
+## Add basic authentication
+
+There are many ways to add basic authentication to your documentation site.
+
+The following instructions apply if you want to deploy your documentation site on any platform using the [Cloud Foundry open source cloud application platform][cf].
+
+This method relies on adding a `Staticfile.auth` file to the `build` folder because building the documentation doesn't automatically add the `Staticfile.auth` file. If you added `Staticfile.auth` once and run the build command again, the file will disappear. You need to add `Staticfile.auth` again to enable basic authentication for the new build.
+
+1. In the command line, navigate to your local documentation repo.
+
+1. If required, run `bundle exec middleman build` to create a `build` folder.
+
+1. Create a new `Staticfile.auth` file in the `build` folder.
+
+1. Go to the [Htpasswd Generator].
+
+1. Complete the __Username__ and __Password__ fields, and select __Create .htpasswd file__.
+
+1. Copy the generated username and password hash into the `Staticfile.auth` file and save.
+
+1. Deploy your documentation site in line with your normal process.
+
+<%= partial "partials/links" %>
