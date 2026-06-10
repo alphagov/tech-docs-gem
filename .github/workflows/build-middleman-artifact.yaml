@@ -27,6 +27,7 @@ jobs:
         with:
           bundler-cache: true
           working-directory: documentation
+          ruby-version: '3'
       - name: Install gems
         run: bundle install
       - name: Build
