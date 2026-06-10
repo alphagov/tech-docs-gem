@@ -7,6 +7,14 @@ The documentation covers:
 - creating and updating a site with the tech docs template
 - examples of how to use the gem helpers
 
+To start the documentation in this repo, run:
+
+```sh
+cd documentation
+bundle install
+bundle exec middleman server
+```
+
 ## Publishing changes
 
 GitHub Actions automatically publishes changes merged into the main branch of this repository to [https://alphagov.github.io/tech-docs-gem/](https://alphagov.github.io/tdt-documentation/).
