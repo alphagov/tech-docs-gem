@@ -179,7 +179,7 @@ with:
 
 ```shell
 bundle exec rubocop -a 
-
+```
 
 ### JavaScript tests and linting
 
@@ -210,7 +210,7 @@ There are 3 possible ways to solve this. From best to worst, you can:
 
 * upgrade to macOS 10.15 (Catalina) or higher
 * tell rubygems not to use the system ffi by running `gem install ffi -- --disable-system-libffi` in the command line
-  when the error shows
+when the error shows
 * pin the ffi version back to 1.12.2 by editing the Gemfile of your app
 
 ## Releasing new versions
