@@ -36,5 +36,11 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
 
-      - name: Run tests
-        run: bundle exec rake
+      - name: Lint Ruby and javascript files
+        run: bundle exec rake lint
+
+      - name: Run Ruby unit tests
+        run: bundle exec rake spec
+
+      - name: Run Javascript tests
+        run: bundle exec rake jasmine:ci
