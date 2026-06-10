@@ -14,7 +14,6 @@ module_function
     config_file = Tempfile.new("tech_docs_config")
 
     begin
-      puts ">>>>>PWD #{Dir.pwd}"
       Dir.chdir("spec/test-site") do
         @tech_docs_config = YAML.load_file(config).merge(overrides).freeze
         config_file.write(YAML.dump(tech_docs_config.to_h))
