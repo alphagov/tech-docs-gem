@@ -4,7 +4,7 @@ require "tempfile"
 module Helpers
 module_function
 
-  # Build the example site using middleman
+  # Build the test site using middleman
 
   def tech_docs_config
     @tech_docs_config
@@ -14,7 +14,7 @@ module_function
     config_file = Tempfile.new("tech_docs_config")
 
     begin
-      Dir.chdir("example") do
+      Dir.chdir("spec/test-site") do
         @tech_docs_config = YAML.load_file(config).merge(overrides).freeze
         config_file.write(YAML.dump(tech_docs_config.to_h))
         config_file.close

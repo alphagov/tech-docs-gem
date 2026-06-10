@@ -16,7 +16,7 @@ end
 
 desc "Lint Ruby and JavaScript"
 task :lint do
-  sh "rubocop example lib spec Rakefile"
+  sh "rubocop spec/example documentation lib spec Rakefile"
   sh "npm run lint --silent"
 end
 

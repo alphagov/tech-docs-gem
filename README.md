@@ -52,7 +52,7 @@ the [GOV.UK Design System](https://design-system.service.gov.uk/).
 
 This gem can also use [GOV.UK Design System nunjucks components](https://design-system.service.gov.uk/components/). It
 is recommended that you use these as they are user researched and accessibility tested. An example using the
-`govukButton` component is available in the [example site in this gem](./example/source/index.html.md.erb).
+`govukButton` component is available in the [example site in this gem](spec/example/source/index.html.md.erb).
 
 We use `npm` to download the govuk-frontend package. To update to a new version, change the version in
 the [package.json file](package.json) and run `npm update`.
@@ -122,7 +122,7 @@ resources will also be included.
 There are 2 ways to develop with this gem. You can see your changes on either:
 
 - your own Tech Docs Template website
-- the example in this repository
+- the documentation in this repository
 
 ### Use your own Tech Docs Template website
 
@@ -138,12 +138,12 @@ the [Tech Docs Template documentation on previewing your documentation](https://
 If you experience [the FFI gem issue for Mojave users](https://github.com/alphagov/tech-docs-gem/issues/254), you should
 refer to this [list of possible fixes](#issue-with-ffi-on-osx-mohave).
 
-### Use the example in this repo
+### Use the documentation in this repo
 
-To start the example in this repo, run:
+To start the documentation in this repo, run:
 
 ```sh
-cd example
+cd documentation
 bundle install
 bundle exec middleman server
 ```

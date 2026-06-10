@@ -3,8 +3,8 @@ require "capybara/rspec"
 
 # want to be able to test directory indexes without the .html extension
 Capybara.app = Rack::Builder.new do
-  use Rack::Static, urls: [""], root: "example/build", index: "index.html"
-  run Rack::Files.new("example/build")
+  use Rack::Static, urls: [""], root: "test-site/build", index: "index.html"
+  run Rack::Files.new("test-site/build")
 end
 
 #   Documentation: /

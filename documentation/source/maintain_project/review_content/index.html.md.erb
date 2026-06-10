@@ -1,0 +1,45 @@
+---
+title: Review content regularly
+weight: 30
+last_reviewed_on: 2020-07-01
+review_in: 1 year
+---
+
+# Set up regular content reviews
+
+Make it easier to keep documentation up to date by configuring the page expiry notifier, Daniel the Manual Spaniel.
+
+## How it works
+
+[Daniel the Manual Spaniel][daniel-github] checks for pages that are due for review. It looks at the `review_by` dates in your `/api/pages.json` file, which is generated when you build your documentation.
+
+The Tech Docs Template calculates `review_by` from the [page expiry parameters][review-in] you set in the page frontmatter.
+
+When `review_by` is in the past, the page is due for review, and Daniel the Manual Spaniel sends a Slack notification to the page owner:
+
+<%= image_tag "daniel-the-manual-spaniel-screenshot.svg",
+{ :alt => "Screenshot of a Slack notification from Daniel the Manual Spaniel. The user has a spaniel cartoon profile picture. The message says hello followed by a paw prints emoji, and then announces: this is your friendly manual spaniel. I've found a page that is due for review: Support (today)" } %>
+
+The page owner can be a Slack group or a Slack user. You can configure owners for:
+
+- the [whole documentation site][global-config] by editing the `config/tech-docs.yml` file
+- [individual pages][frontmatter] by editing the page frontmatter
+
+When defining the owners, frontmatter configuration overrides global configuration.
+
+Daniel the Manual Spaniel will continue notifying the page owner every weekday until `review_by` is in the future.
+
+## Requirements
+
+For Daniel the Manual Spaniel to be able to scan your documentation you must set:
+
+* page expiry parameters in the frontmatter
+* owners for your documentation
+
+## Set up the page expiry notifier
+
+There's guidance on [setting up Daniel the Manual Spaniel to scan your documentation](https://github.com/alphagov/tech-docs-monitor) in the alphagov/tech-docs-monitor GitHub repo.
+
+See an [example pull request to set up Daniel the Manual Spaniel][daniel-set-up-pr].
+
+<%= partial "partials/links" %>
