@@ -1,3 +1,7 @@
+## Unreleased changes
+
+- Bugfix - fix page layout structure to remove whitespace on short pages  
+
 ## 6.3.0.beta
 
 - Add `exe/tech_docs_jobs` to allow executable `Rake` commands
