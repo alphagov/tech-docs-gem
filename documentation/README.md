@@ -17,7 +17,7 @@ bundle exec middleman server
 
 ## Publishing changes
 
-GitHub Actions automatically publishes changes merged into the main branch of this repository to [https://alphagov.github.io/tech-docs-gem/](https://alphagov.github.io/tdt-documentation/).
+GitHub Actions automatically publishes changes merged into the main branch of this repository to [https://alphagov.github.io/tech-docs-gem/](https://alphagov.github.io/tech-docs-gem/).
 
 ## Code of conduct
 
