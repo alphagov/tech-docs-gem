@@ -1,3 +1,7 @@
+## Unreleased changes
+
+- Bugfix - fix page layout structure to remove whitespace on short pages  
+
 ## 6.3.0.beta
 
 - Add `exe/tech_docs_jobs` to allow executable `Rake` commands
@@ -227,7 +231,7 @@ You can see more detail about this issue at [#323: Fix XSS vulnerability on sear
 
 There are some steps you should follow as the Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.4.1.
 
-1. Update your documentation site to use the latest template version. You can [follow the TDT guidance on using the latest template version](https://tdt-documentation.london.cloudapps.digital/maintain_project/use_latest_template/).
+1. Update your documentation site to use the latest template version. You can [follow the TDT guidance on using the latest template version](https://alphagov.github.io/tech-docs-gem/maintain_project/use_latest_template/).
 2. Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend release notes](https://github.com/alphagov/govuk-frontend/releases/) for more information, or [contact the GOV.UK Design System team](https://design-system.service.gov.uk/get-in-touch/).
 
 ### Fixes
@@ -244,7 +248,7 @@ There are some steps you should follow as the Technical Documentation Template (
 
 ### New features
 
-You can now [configure your Tech Docs Template (TDT) to build your documentation site to use relative links to pages and assets](https://tdt-documentation.london.cloudapps.digital/configure_project/global_configuration/#build-your-site-using-relative-links).
+You can now [configure your Tech Docs Template (TDT) to build your documentation site to use relative links to pages and assets](https://alphagov.github.io/tech-docs-gem/configure_project/global_configuration/#build-your-site-using-relative-links).
 
 Thanks [@eddgrant](https://github.com/eddgrant) for contributing this feature and the associated fixes.
 
@@ -256,7 +260,7 @@ This change was introduced in [pull request #291: Support sites deployed on path
 
 There are some steps you should follow as the Technical Documentation Template (TDT) now uses GOV.UK Frontend 4.0.0.
 
-1. Update your documentation site to use the latest template version. You can [follow the TDT guidance on using the latest template version](https://tdt-documentation.london.cloudapps.digital/maintain_project/use_latest_template/).
+1. Update your documentation site to use the latest template version. You can [follow the TDT guidance on using the latest template version](https://alphagov.github.io/tech-docs-gem/maintain_project/use_latest_template/).
 2. Check your documentation site displays correctly. If your site does not display correctly, you can refer to the [GOV.UK Frontend 4.0.0 release note](https://github.com/alphagov/govuk-frontend/releases/tag/v4.0.0) for more information.
 
 ## 3.0.1
@@ -465,7 +469,7 @@ Fixes bug where search results disappear when opening results in a new tab, maki
 
 Adds a `show_expiry` config option to allow you to choose whether to show the review due date and expired banner from your pages. Find out more about the [page expiry and review feature][expiry].
 
-[expiry]: https://tdt-documentation.london.cloudapps.digital/page-expiry.html#page-expiry-and-review
+[expiry]: https://alphagov.github.io/tech-docs-gem/page-expiry.html#page-expiry-and-review
 
 ## 1.8.1
 

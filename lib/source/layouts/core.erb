@@ -50,13 +50,19 @@
 
   <body class="govuk-template__body">
     <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+    <header class="govuk-template__header app-header" role="banner" data-module="govuk-header">
+      <%= partial 'layouts/header' %>
+    </header>
+    <% if config[:tech_docs][:header_links] %>
+      <div class="govuk-service-navigation app-pane__navigation" data-module="govuk-service-navigation">
+        <%= partial 'layouts/service_navigation' %>
+      </div>
+    <% end %>
 
-    <div class="app-pane">
+
       <%= partial 'layouts/cookie_banner' %>
       <div class="app-pane__header toc-open-disabled">
         <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
-        <%= partial 'layouts/header' %>
-        <%= partial 'layouts/service_navigation' %>
       </div>
 
       <% if content_for? :sidebar %>
@@ -81,7 +87,7 @@
         <% end %>
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content">
-          <main id="content" class="technical-documentation"<% if config[:tech_docs][:enable_anchored_headings] != false %> data-module="anchored-headings"<% end %>>
+          <main id="content" class="govuk-main-wrapper technical-documentation"<% if config[:tech_docs][:enable_anchored_headings] != false %> data-module="anchored-headings"<% end %>>
             <%= yield %>
             <%= partial "layouts/page_review" %>
           </main>
@@ -95,11 +101,13 @@
               </ul>
             <% end %>
           </aside>
-
-          <%= partial "layouts/footer" %>
         </div>
       </div>
-    </div>
+
+
+    <footer class="govuk-template__footer">
+      <%= partial "layouts/footer" %>
+    </footer>
 
     <%= partial 'layouts/analytics' %>
     <%= javascript_include_tag :govuk_frontend, :type => "module" %>

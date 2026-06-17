@@ -1,10 +1,10 @@
 # Host to use for canonical URL generation (without trailing slash)
-host: https://alphagov.github.io/tdt-documentation
+host: https://alphagov.github.io/tech-docs-gem
 
 # Header-related options
 show_govuk_logo: false
 service_name: Tech docs template
-service_link: https://alphagov.github.io/tdt-documentation
+service_link: https://alphagov.github.io/tech-docs-gem
 phase: Beta
 
 # Uncomment if you do not want to activate the GOV.UK Design System component extension

@@ -11,7 +11,7 @@ the [Tech Docs Template documentation][tdt-docs].
 
 Everybody who uses this project is encouraged to contribute.
 
-Find out how to [contribute](https://tdt-documentation.london.cloudapps.digital/support/#contribute).
+Find out how to [contribute](https://alphagov.github.io/tech-docs-gem/support/#contribute).
 
 ## Rake tasks
 
@@ -133,7 +133,7 @@ gem 'govuk_tech_docs', path: '../tech-docs-gem'
 ```
 
 To preview your documentation changes locally, see
-the [Tech Docs Template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
+the [Tech Docs Template documentation on previewing your documentation](https://alphagov.github.io/tech-docs-gem/create_project/preview/#preview-your-documentation).
 
 If you experience [the FFI gem issue for Mojave users](https://github.com/alphagov/tech-docs-gem/issues/254), you should
 refer to this [list of possible fixes](#issue-with-ffi-on-osx-mohave).
@@ -154,7 +154,7 @@ If you experience [the FFI gem issue for Mojave users](https://github.com/alphag
 refer to this [list of possible fixes](#issue-with-ffi-on-osx-mohave).
 
 For more information on previewing your documentation locally, see
-the [Tech Docs template documentation on previewing your documentation](https://tdt-documentation.london.cloudapps.digital/create_project/preview/#preview-your-documentation).
+the [Tech Docs template documentation on previewing your documentation](https://alphagov.github.io/tech-docs-gem/create_project/preview/#preview-your-documentation).
 
 ## Tests
 
@@ -237,7 +237,7 @@ licence.
 
 [ogl]: http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/
 
-[tdt-docs]: https://github.com/alphagov/tdt-documentation/
+[tdt-docs]: https://alphagov.github.io/tech-docs-gem/
 
 [tdt-template]: https://github.com/alphagov/tech-docs-template
 
