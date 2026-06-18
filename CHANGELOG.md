@@ -1,6 +1,7 @@
-## Unreleased changes
+## 6.3.0
 
-- Bugfix - fix page layout structure to remove whitespace on short pages  
+- Bugfix [issue 258](https://github.com/alphagov/tech-docs-template/issues/258) - page layout structure to remove whitespace on short pages ([pull request 513](https://github.com/alphagov/tech-docs-gem/pull/513))  
+- [6.3.0.beta](#630beta) 
 
 ## 6.3.0.beta
 
