@@ -128,6 +128,7 @@
       border: $govuk-focus-width solid govuk-functional-colour(focus-text);
       outline: $govuk-focus-width solid govuk-functional-colour(focus);
     }
+    code {white-space: pre-wrap;}
   }
 
   pre code {
@@ -137,7 +138,6 @@
   }
 
   code {
-    white-space: pre-wrap;
     background: $code-01;
     padding: 3px govuk-spacing(1);
     border-radius: 1px;
