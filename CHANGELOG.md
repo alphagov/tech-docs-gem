@@ -1,3 +1,8 @@
+## 6.3.1
+
+- Accessibility fix [issue 503](https://github.com/alphagov/tech-docs-gem/issues/503) - add `white-space: pre-wrap;` to [code block styles](lib/assets/stylesheets/modules/_technical-documentation.scss).
+- Bump `govuk-frontend` from 6.2.0 to 6.3.0
+
 ## 6.3.0
 
 - Bugfix [issue 258](https://github.com/alphagov/tech-docs-template/issues/258) - page layout structure to remove whitespace on short pages ([pull request 513](https://github.com/alphagov/tech-docs-gem/pull/513))  
