@@ -7,10 +7,10 @@
 <%=
 
 govukHeader({
-  url: homepage_url || "",
+  homepageUrl: homepage_url || "",
   productName: config[:tech_docs][:product_name] ? config[:tech_docs][:product_name] : "",
   containerClasses: defined?(headerContainerClasses) ? headerContainerClasses : "",
-  classesClasses: defined?(headerClasses) ? headerClasses : "",
+  classes: defined?(headerClasses) ? headerClasses : "",
   attributes: defined?(headerAttributes) ? headerAttributes :  {}
 })
 

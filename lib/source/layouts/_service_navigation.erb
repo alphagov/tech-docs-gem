@@ -1,22 +1,24 @@
- <div class="govuk-width-container">
-    <div class="govuk-service-navigation__container">
-      <nav aria-label="Menu" class="govuk-service-navigation__wrapper">
-        <button type="button" class="govuk-service-navigation__toggle govuk-js-service-navigation-toggle" aria-controls="navigation" hidden aria-hidden="true">
-          Menu
-        </button>
-        <ul class="govuk-service-navigation__list" id="navigation">
-          <% config[:tech_docs][:header_links].each do |title, path| %>
-            <li class="govuk-service-navigation__item <% if active_page(path) %> govuk-service-navigation__item--active<% end %>">
-              <a class="govuk-service-navigation__link" href="<%= get_path_to_resource config, path, current_page %>"<% if active_page(path) %> aria-current="page"<% end %>>
-              <% if active_page(path) %>
-                <strong class="govuk-service-navigation__active-fallback"><%= title %></strong>
-              <% else %>
-                <%= title %>
-              <% end %>
-              </a>
-            </li>
-          <% end %>
-        </ul>
-      </nav>
-    </div>
-  </div>
+<%
+
+  navigation = []
+  config[:tech_docs][:header_links].each do |title, path|
+    navigation.append << {
+      href: path,
+      text: title,
+      active: active_page(path)
+    }
+  end
+
+%>
+
+
+<%=
+  govukServiceNavigation({
+       navigation: navigation,
+       serviceUrl: config[:tech_docs][:service_link] ,
+       serviceName: config[:tech_docs][:service_name],
+       navigationClasses: defined?(navigationContainerClasses) ? navigationContainerClasses : "",
+       classes: defined?(navigationClasses) ? navigationClasses : "",
+       attributes: defined?(navigationAttributes) ? navigationAttributes :  {}
+  })
+%>
