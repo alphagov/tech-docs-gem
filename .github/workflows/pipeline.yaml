@@ -1,9 +1,9 @@
 name: pipeline
 on:
   pull_request:
-    branches: [ "main", "github/ci-pipeline" ]
+    branches: [ "main"]
   push:
-    branches: [ "main", "github/ci-pipeline" ]
+    branches: [ "main"]
 
 jobs:
   dependency-review:
