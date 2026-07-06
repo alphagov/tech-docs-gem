@@ -50,13 +50,11 @@
 
   <body class="govuk-template__body">
     <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
-    <header class="govuk-template__header app-header" role="banner" data-module="govuk-header">
+    <header class="govuk-template__header app-header">
       <%= partial 'layouts/header' %>
     </header>
     <% if config[:tech_docs][:header_links] %>
-      <div class="govuk-service-navigation app-pane__navigation" data-module="govuk-service-navigation">
         <%= partial 'layouts/service_navigation' %>
-      </div>
     <% end %>
 
 
