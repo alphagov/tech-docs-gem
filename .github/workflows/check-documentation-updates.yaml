@@ -1,0 +1,32 @@
+name: check-documentation-updates
+
+on:
+  workflow_call:
+    outputs:
+      documentation-updated:
+        value: ${{ jobs.check-documentation-updates.outputs.documentation-updated }}
+
+
+jobs:
+  check-documentation-updates:
+    runs-on: ubuntu-latest
+    outputs:
+      documentation-updated: ${{ steps.documentation_updated.outputs.documentation-updated }}
+
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          show-progress: false
+
+      - uses: ruby/setup-ruby@9eb537ca036ebaed86729dcb9309076e4c5c3b74 # v1.314.0
+        with:
+          ruby-version: '3'
+
+      - name: Documentation updated
+        id: documentation_updated
+        run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^documentation/'; then
+            echo "documentation-updated=true" >> $GITHUB_OUTPUT
+          else
+            echo "documentation-updated=false" >> $GITHUB_OUTPUT
+          fi

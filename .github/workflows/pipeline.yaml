@@ -1,0 +1,38 @@
+name: pipeline
+on:
+  pull_request:
+    branches: [ "main", "github/ci-pipeline" ]
+  push:
+    branches: [ "main", "github/ci-pipeline" ]
+
+jobs:
+  dependency-review:
+    uses: ./.github/workflows/dependency-review.yaml
+
+  test:
+    needs: dependency-review
+    uses: ./.github/workflows/test.yaml
+
+  check-gem-version:
+    needs: test
+    uses: ./.github/workflows/check-gem-version.yaml
+
+  publish-gem:
+    needs: check-gem-version
+    if: github.event_name == 'push' && needs.check-gem-version.outputs.version-changed == 'true'
+    with:
+      new-gem-version: true
+    uses: ./.github/workflows/publish.yaml
+
+  check-documentation-updates:
+     needs: publish-gem
+     if: |
+       github.event_name == 'push' && 
+       always() && 
+       (needs.publish-gem.result == 'success' || needs.publish-gem.result == 'skipped')
+     uses: ./.github/workflows/check-documentation-updates.yaml
+
+  publish-github-pages:
+    needs: check-documentation-updates
+    if: github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
+    uses: ./.github/workflows/publish-github-pages.yaml

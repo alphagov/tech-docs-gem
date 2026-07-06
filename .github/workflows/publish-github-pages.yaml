@@ -1,8 +1,7 @@
-name: 'Deploy to GitHub Pages'
+name: Publish GitHub pages
 on:
-  push:
-    branches: ["main", "feature/publish-documentation"]
-    paths: ['documentation/**']
+  workflow_call:
+
 
 permissions:
   contents: read

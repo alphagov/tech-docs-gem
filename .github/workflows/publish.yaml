@@ -1,51 +1,22 @@
 name: Publish
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      new-gem-version:
+        default: false
+        type: boolean
 
 concurrency: rubygems
 
 jobs:
-  pre:
-    name: Pre-flight checks
-    runs-on: ubuntu-latest
-    outputs:
-      go: ${{ steps.gem_version.outputs.new_version }}
-
-    steps:
-      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-        with:
-          show-progress: false
-
-      - uses: ruby/setup-ruby@9eb537ca036ebaed86729dcb9309076e4c5c3b74 # v1.314.0
-        with:
-          ruby-version: '3'
-
-      - name: Check if new version to release
-        id: gem_version
-        run: |
-          gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('govuk_tech_docs.gemspec').version")
-          echo "gem_version=$gem_version" >> "$GITHUB_OUTPUT"
-
-          if git fetch origin "refs/tags/v$gem_version" >/dev/null 2>&1
-          then
-            echo "Tag 'v$gem_version' already exists"
-            echo "new_version=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "new_version=true" >> "$GITHUB_OUTPUT"
-          fi
-
   deploy:
     name: Publish Ruby Gem
     environment: rubygems
     permissions:
       contents: write  # needed to be able to tag the release
     runs-on: ubuntu-latest
-    needs: pre
-    if: needs.pre.outputs.go == 'true'
+    if: inputs.new-gem-version
 
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0

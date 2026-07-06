@@ -1,0 +1,36 @@
+name: check-gem-version
+on:
+  workflow_call:
+    outputs:
+      version-changed:
+        value: ${{ jobs.check-gem-version.outputs.version-changed }}
+
+
+jobs:
+  check-gem-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version-changed: ${{ steps.gem_version.outputs.version-changed }}
+
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          show-progress: false
+
+      - uses: ruby/setup-ruby@9eb537ca036ebaed86729dcb9309076e4c5c3b74 # v1.314.0
+        with:
+          ruby-version: '3'
+
+      - name: Gem version changed
+        id: gem_version
+        run: |
+          gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('govuk_tech_docs.gemspec').version")
+          echo "gem_version=$gem_version" >> "$GITHUB_OUTPUT"
+  
+          if git fetch origin "refs/tags/v$gem_version" >/dev/null 2>&1
+          then
+            echo "Tag 'v$gem_version' already exists"
+            echo "version-changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "version-changed=true" >> "$GITHUB_OUTPUT"
+          fi
