@@ -29,6 +29,8 @@ jobs:
     with:
       new-gem-version: true
     uses: ./.github/workflows/publish-gem.yaml
+    permissions:
+      contents: write  # needed to be able to tag the release
 
   check-documentation-updates:
      needs: publish-gem
