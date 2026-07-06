@@ -1,11 +1,7 @@
 name: Test
 
 on:
-  pull_request:
-    branches: [ "main" ]
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
+  workflow_call:
 
 permissions:
   contents: read          # Allows the action to check out your repository code
@@ -18,6 +14,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      max-parallel: 1
       matrix:
         ruby: ['3.3', '3.4', '4.0']
 

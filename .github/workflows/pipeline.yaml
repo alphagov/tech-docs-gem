@@ -1,0 +1,50 @@
+name: pipeline
+on:
+  pull_request:
+    branches: [ "main"]
+  push:
+    branches: [ "main"]
+
+jobs:
+  dependency-review:
+    uses: ./.github/workflows/dependency-review.yaml
+    permissions:
+      contents: read
+
+  test:
+    needs: dependency-review
+    uses: ./.github/workflows/test.yaml
+    permissions:
+      contents: read          # Allows the action to check out your repository code
+      pull-requests: write    # Allows the action to comment on or update the Dependabot PR
+      statuses: write         # Allows the action to post pass/fail build statuses
+
+  check-gem-version:
+    needs: test
+    uses: ./.github/workflows/check-gem-version.yaml
+
+  publish-gem:
+    needs: check-gem-version
+    if: github.event_name == 'push' && needs.check-gem-version.outputs.version-changed == 'true'
+    with:
+      new-gem-version: true
+    uses: ./.github/workflows/publish-gem.yaml
+    permissions:
+      contents: write  # needed to be able to tag the release
+
+  check-documentation-updates:
+     needs: publish-gem
+     if: |
+       github.event_name == 'push' && 
+       always() && 
+       (needs.publish-gem.result == 'success' || needs.publish-gem.result == 'skipped')
+     uses: ./.github/workflows/check-documentation-updates.yaml
+
+  publish-github-pages:
+    needs: check-documentation-updates
+    if: github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
+    uses: ./.github/workflows/publish-github-pages.yaml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
