@@ -3,14 +3,12 @@ host: https://alphagov.github.io/tech-docs-gem
 
 # Header-related options
 show_govuk_logo: false
+product_name:
 service_name: Tech docs template
 service_link: https://alphagov.github.io/tech-docs-gem
 phase: Beta
 
-# Uncomment if you do not want to activate the GOV.UK Design System component extension
-enable_govuk_components: true
-
-# Links to show on right-hand-side of header
+# Links to show on service navigation below header
 header_links:
   Template: https://github.com/alphagov/tech-docs-template
   Ruby gem: https://github.com/alphagov/tech-docs-gem
