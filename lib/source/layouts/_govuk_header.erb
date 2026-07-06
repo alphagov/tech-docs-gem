@@ -1,0 +1,17 @@
+<%
+  service_link = config[:tech_docs][:service_link]
+  homepage_url = service_link ? get_path_to_resource(config, service_link, current_page) : nil
+
+%>
+
+<%=
+
+govukHeader({
+  url: homepage_url || "",
+  productName: config[:tech_docs][:product_name] ? config[:tech_docs][:product_name] : "",
+  containerClasses: defined?(headerContainerClasses) ? headerContainerClasses : "",
+  classesClasses: defined?(headerClasses) ? headerClasses : "",
+  attributes: defined?(headerAttributes) ? headerAttributes :  {}
+})
+
+%>
