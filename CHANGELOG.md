@@ -1,3 +1,8 @@
+## Unreleased changes
+
+- Update[ template html syntax](https://github.com/alphagov/tech-docs-gem/pull/520) to more closely match gov.uk design template
+- bump govuk-frontend from [6.2.0 to 6.3.0](https://github.com/alphagov/tech-docs-gem/pull/517)
+
 ## 6.3.0
 
 - Bugfix [issue 258](https://github.com/alphagov/tech-docs-template/issues/258) - page layout structure to remove whitespace on short pages ([pull request 513](https://github.com/alphagov/tech-docs-gem/pull/513))  
