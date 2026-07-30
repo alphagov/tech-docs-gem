@@ -1,15 +1,11 @@
-require "singleton"
-
 module GovukTechDocs
   class UniqueIdentifierGenerator
-    include Singleton
-
     Anchor = Struct.new(:id, :level)
 
     attr_reader :anchors
 
     def initialize
-      reset
+      @anchors = []
     end
 
     def create(id, level)
@@ -26,10 +22,6 @@ module GovukTechDocs
       @anchors << Anchor.new(anchor, level)
 
       anchor
-    end
-
-    def reset
-      @anchors = []
     end
 
   private
