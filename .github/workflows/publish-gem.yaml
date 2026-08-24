@@ -6,6 +6,13 @@ on:
       new-gem-version:
         default: false
         type: boolean
+  
+  workflow_dispatch:
+    inputs:
+      new-gem-version:
+        description: 'Force publish gem?'
+        default: false
+        type: boolean
 
 concurrency: rubygems
 
