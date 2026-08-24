@@ -8,13 +8,17 @@ permissions:
   pull-requests: write    # Allows the action to comment on or update the Dependabot PR
   statuses: write         # Allows the action to post pass/fail build statuses
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
 
     strategy:
-      max-parallel: 1
+      fail-fast: false
       matrix:
         ruby: ['3.3', '3.4', '4.0']
 
