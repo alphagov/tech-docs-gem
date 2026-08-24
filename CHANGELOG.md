@@ -1,5 +1,8 @@
 ## Unreleased changes
 
+## 6.3.1.beta
+
+- [Remove govuk wrapper class](https://github.com/alphagov/tech-docs-gem/pull/530) that introduced extra padding 
 - Update[ template html syntax](https://github.com/alphagov/tech-docs-gem/pull/520) to more closely match gov.uk design template
 - bump govuk-frontend from [6.2.0 to 6.3.0](https://github.com/alphagov/tech-docs-gem/pull/517)
 
