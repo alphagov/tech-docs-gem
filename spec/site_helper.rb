@@ -1,8 +1,8 @@
 require "yaml"
 require "tempfile"
-require 'fileutils'
+require "fileutils"
 module Helpers
-  module_function
+module_function
 
   # Build the test site using middleman
 
@@ -12,15 +12,20 @@ module Helpers
 
   def rebuild_site!(config: "config/tech-docs.yml", overrides: {})
     Dir.chdir("spec/test-site") do
-      @tech_docs_config = YAML.load_file(config).merge(overrides).freeze
+      current_config = { config_path: config, overrides: overrides }.to_s
+      config_cache_file = ".last_build_cache"
 
       build_exists = Dir.exist?("build")
-      config_changed = ($last_build_config != @tech_docs_config)
+
+      # It changed if the file doesn't exist, or the contents don't match our key
+      config_changed = !File.exist?(config_cache_file) || File.read(config_cache_file) != current_config
 
       if build_exists && !config_changed
         puts "New build not required"
         return
       end
+
+      @tech_docs_config = YAML.load_file(config).merge(overrides).freeze
 
       config_file = Tempfile.new("config")
       max_retries = 3
@@ -37,7 +42,11 @@ module Helpers
             File.rename("build", trash_path)
             FileUtils.rm_rf(trash_path)
           rescue StandardError
-            FileUtils.rm_rf("build") rescue nil
+            begin
+              FileUtils.rm_rf("build")
+            rescue StandardError
+              nil
+            end
           end
         end
 
@@ -45,7 +54,7 @@ module Helpers
         # We rely on Middleman's --clean flag to handle leftover artifacts
         command = [
           "bundle check || bundle install --quiet",
-          "CONFIG_FILE=#{config_file.path} NO_CONTRACTS=true middleman build --clean --bail --show-exceptions"
+          "CONFIG_FILE=#{config_file.path} NO_CONTRACTS=true middleman build --clean --bail --show-exceptions",
         ].join(" && ")
 
         # 3. Execute with Retry Logic
@@ -54,8 +63,7 @@ module Helpers
         end
 
         # Cache the successful config
-        $last_build_config = @tech_docs_config
-
+        File.write(config_cache_file, current_config)
       rescue StandardError => e
         retries += 1
         if retries <= max_retries
