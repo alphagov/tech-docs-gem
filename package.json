@@ -12,8 +12,8 @@
     "nunjucks": "~3.2.4"
   },
   "devDependencies": {
-    "jasmine-browser-runner": "^4.0.0",
-    "jasmine-core": "^6.3.0",
+    "jasmine-browser-runner": "^5.0.0",
+    "jasmine-core": "^7.0.2",
     "standard": "^17.0.0"
   },
   "standard": {
