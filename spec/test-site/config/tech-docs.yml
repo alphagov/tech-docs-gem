@@ -6,6 +6,11 @@ show_govuk_logo: true
 service_name: My First Service
 service_link: /
 phase: Beta
+product_name:
+headerContainerClasses:
+headerClasses:
+navigationContainerClasses:
+navigationClasses:
 
 # Links to show in service navigation
 header_links:
