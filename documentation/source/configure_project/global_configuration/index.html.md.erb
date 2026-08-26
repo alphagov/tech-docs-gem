@@ -16,10 +16,23 @@ When you create your documentation project, the template creates a `tech-docs.ym
 host:
 
 # Header-related options
+product_name: GOV.UK Product
 show_govuk_logo: true
 service_name: My First Service
 service_link: https://www.larry-the-cat.service.gov.uk
 phase: Beta
+
+#These can be used to add custom classes to the GOV.UK header, footer and service navigation components. You can find more detail about these on the component documentation at:
+#https://design-system.service.gov.uk/components/header/
+#https://design-system.service.gov.uk/components/service-navigation/
+#https://design-system.service.gov.uk/components/footer/
+
+headerContainerClasses:
+headerClasses:
+navigationContainerClasses:
+navigationClasses:
+footerContainerClasses:
+footerClasses:
 
 # Links to show on right-hand-side of header
 header_links:
@@ -51,15 +64,17 @@ prevent_indexing: false
 show_contribution_banner: true
 github_repo: alphagov/YOUR_REPO
 github_branch: main
+
 ```
 
-<%= warning_text('All of these settings are optional. However, you should enable or disable settings to increase the usability of your documentation or because of best practice.') %>
+<%= govukWarningText({text: "All of these settings are optional. However, you should enable or disable settings to increase the usability of your documentation or because of best practice.", iconFallbackText: "Warning"}) %>
 
 You must wrap a value in quotes if it contains a colon, unless the value is a URL. For example:
 
 ```
 description: "GDS: My amazing documentation"
 ```
+
 
 If you are not sure which settings to enable or disable, [contact the Government Digital Service (GDS) technical writing team][contact-email].
 
@@ -85,6 +100,18 @@ Enables and disables the GOV.UK crown logo in the top left corner of the site. D
 show_govuk_logo: true
 ```
 
+<%= govukWarningText({text: "This setting is deprecated and will be replaced in version 7 by the generic header and custom logo options.", iconFallbackText: "Warning"}) %>
+
+### product_name
+
+Used for the `productName` value in the [GOV.UK header component](https://design-system.service.gov.uk/components/header/).  It is used when the product name follows on directly from ‘GOV.UK’. For example, GOV.UK Pay or GOV.UK Design System. In most circumstances, you should use the Service navigation component.
+
+```yaml
+product_name: "Great new product"
+```
+
+
+
 ### service_name
 
 Defines the service name in the header. Defaults to "My First Service" if you do not define it when creating your project.
@@ -109,6 +136,34 @@ Defines the phase of the service that the documentation is attached to. Defaults
 phase: "Beta"
 ```
 
+### Header and footer custom styles
+
+If you have set `show_gouk_logo` to `true` the header, service navigation and footer will use GOV.UK components.
+
+#### Container classes
+
+Classes for the container, useful if you want to make the header fixed width. The container settings you can configure are:
+
+- `headerContainerClasses:`
+- `navigationContainerClasses:`
+- `footerContainerClasses:`
+
+```yaml
+headerContainerClasses: ".my-custom-container-style"
+```
+
+You can add custom classes to the components in the same way.  The settings you can configure are:
+
+- `headerClasses:`
+- `navigationClasses:`
+- `footerClasses:`
+
+```yaml
+footerClasses: ".my-custom-footer-style"
+```
+
+There is more detail on the [GOV.UK Design System](https://design-system.service.gov.uk/components) documentation site.
+
 ### Govuk components
 
 The `tech-docs-gem` contains a custom extension to allow you to use [GOV.UK Design System components](https://design-system.service.gov.uk/components).  You can include these in your content by creating a `ruby` codeblock, and calling the component as described in the GOV.UK Design System documentation.  For example, you can include a [GOV.UK Button](https://design-system.service.gov.uk/components/button/):
@@ -120,7 +175,7 @@ The `tech-docs-gem` contains a custom extension to allow you to use [GOV.UK Desi
 This would be a short introduction, but now we need a button!
 
 
-<%%= govukButton({
+<%= govukButton({
   text: "Click me!"
 }) %>
 

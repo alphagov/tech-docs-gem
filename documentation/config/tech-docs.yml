@@ -7,16 +7,19 @@ product_name:
 service_name: Tech docs template
 service_link: https://alphagov.github.io/tech-docs-gem
 phase: Beta
-#
-#These can be used to add custom classes to the header and service navigation components. You can find more detail about these on the component documentation at:
+
+
+#These can be used to add custom classes to the GOV.UK header, footer and service navigation components. You can find more detail about these on the component documentation at:
 #https://design-system.service.gov.uk/components/header/
 #https://design-system.service.gov.uk/components/service-navigation/
+#https://design-system.service.gov.uk/components/footer/
 
 headerContainerClasses:
 headerClasses:
 navigationContainerClasses:
 navigationClasses:
-
+footerContainerClasses:
+footerClasses:
 
 # Links to show on service navigation below header
 header_links:
