@@ -156,9 +156,16 @@ refer to this [list of possible fixes](#issue-with-ffi-on-osx-mohave).
 For more information on previewing your documentation locally, see
 the [Tech Docs template documentation on previewing your documentation](https://alphagov.github.io/tech-docs-gem/create_project/preview/#preview-your-documentation).
 
-## Tests
 
-### Ruby tests and linting
+## Linting
+
+You should run the linter before pushing any changes to GitHub to check for errors and correct formatting.  You can run linter jobs for ruby by running `bundle exec rubocop`. If you would like the linter to try and automatically fix any errors use `bundle exec rubocop -a`.  
+
+You can lint javascript files with the command `npm run lint`.  If only want to see the final result and not the full output use `npm run lint --silent`.
+
+You can also use the `Rakefile` job to run both together by running `bundle exec rake lint`.  See the [Rakefile](./Rakefile) for more detail.
+
+### Ruby tests
 
 You can run the Ruby test suite with the following command:
 
@@ -166,28 +173,9 @@ You can run the Ruby test suite with the following command:
 bundle exec rake spec
 ```
 
-To test a specific file include the filepath after `rspec`.
+To test a specific file use Rake's `SPEC` variable and set it to your filepath or directory.  For example `bundle exec rake spec SPEC=spec/govuk_tech_docs/meta_tags_spec.rb`
 
-You can lint the ruby code with the command:
-
-```shell
-bundle exec rubocop
-```
-
-Rubocop can automatically fix some linting issues. If the above command has suggestions that you automatically fix them
-with:
-
-```shell
-bundle exec rubocop -a 
-```
-
-### JavaScript tests and linting
-
-Use this command to run the linting and tests for the JavaScript code:
-
-```sh
-bundle exec rake
-```
+### JavaScript tests
 
 The JavaScript tests use the [Jasmine test framework][jas].
 
