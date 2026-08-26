@@ -17,8 +17,7 @@
        navigation: navigation,
        serviceUrl: config[:tech_docs][:service_link] ,
        serviceName: config[:tech_docs][:service_name],
-       navigationClasses: defined?(navigationContainerClasses) ? navigationContainerClasses : "",
-       classes: defined?(navigationClasses) ? navigationClasses : "",
-       attributes: defined?(navigationAttributes) ? navigationAttributes :  {}
+       navigationClasses: config[:tech_docs][:navigationContainerClasses] ? config[:tech_docs][:navigationContainerClasses] : "",
+       classes: config[:tech_docs][:navigationClasses] ? config[:tech_docs][:navigationClasses] : ""
   })
 %>

@@ -50,9 +50,11 @@
 
   <body class="govuk-template__body">
     <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
-    <header class="govuk-template__header app-header">
-      <%= partial 'layouts/header' %>
-    </header>
+  <!-- .app-header aligns the header component properly with the in page navigation   -->
+    <div class="app-header" role="banner" data-module="govuk-header">
+      <%= partial 'layouts/govuk_header' %>
+    </div>
+
     <% if config[:tech_docs][:header_links] %>
         <%= partial 'layouts/service_navigation' %>
     <% end %>
@@ -85,7 +87,7 @@
         <% end %>
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content">
-          <main id="content" class="technical-documentation"<% if config[:tech_docs][:enable_anchored_headings] != false %> data-module="anchored-headings"<% end %>>
+          <main id="content" class="govuk-main-wrapper technical-documentation"<% if config[:tech_docs][:enable_anchored_headings] != false %> data-module="anchored-headings"<% end %>>
             <%= yield %>
             <%= partial "layouts/page_review" %>
           </main>
@@ -104,7 +106,7 @@
 
 
     <footer class="govuk-template__footer">
-      <%= partial "layouts/footer" %>
+      <%= partial "layouts/govuk_footer" %>
     </footer>
 
     <%= partial 'layouts/analytics' %>

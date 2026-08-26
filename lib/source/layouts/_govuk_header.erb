@@ -9,9 +9,9 @@
 govukHeader({
   homepageUrl: homepage_url || "",
   productName: config[:tech_docs][:product_name] ? config[:tech_docs][:product_name] : "",
-  containerClasses: defined?(headerContainerClasses) ? headerContainerClasses : "",
-  classes: defined?(headerClasses) ? headerClasses : "",
-  attributes: defined?(headerAttributes) ? headerAttributes :  {}
+  containerClasses: config[:tech_docs][:headerContainerClasses] ? config[:tech_docs][:headerContainerClasses] : "govuk-header__container--full-width",
+  classes: config[:tech_docs][:headerClasses] ? config[:tech_docs][:headerClasses] : ""
+
 })
 
 %>
