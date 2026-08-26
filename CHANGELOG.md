@@ -19,7 +19,7 @@
 ### Deprecation warning
 
 - `show_govuk_logo:` setting will be removed in v7.x.x in to be replaced by the generic header and custom logo settings
-- `warning_text` custom extension will be removed in v7.x.x.  This was [marked as deprecated on 1st June 2026](https://github.com/alphagov/tech-docs-gem/commit/304230ba9c49759471a9a8f2daa425e37f846364#diff-2a7ef696e418f6044e5b18ae22c9cff4cac18481ae6fd0c1360ef978087b6cc9R8-R9).  You should now use the GOV.UK warning text component. 
+- `warning_text` custom extension will be removed in v7.x.x.  This was [marked as deprecated on 1st June 2026](https://github.com/alphagov/tech-docs-gem/commit/304230ba9c49759471a9a8f2daa425e37f846364#diff-2a7ef696e418f6044e5b18ae22c9cff4cac18481ae6fd0c1360ef978087b6cc9R8-R9).  You should now [use the GOV.UK warning text component](https://alphagov.github.io/tech-docs-gem/write_docs/content/#use-the-gov-uk-design-system). 
 
 
 ## 6.3.1.beta
