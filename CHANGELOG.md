@@ -5,7 +5,15 @@
 ### Changed
 
 - **potentially breaking**: `enable_govuk_components` has been removed from the config as these are now required for the header and footer.  If you are using this value for custom code or templates you should address this before updating.
-- added `product_name` variable to config to use in header where needed.  [Check the documentation](https://design-system.service.gov.uk/components/header/) to see if you should add this value into your site.
+- added config settings:
+  - `product_name`
+  - `headerContainerClasses`
+  - `headerClasses`
+  - `navigationContainerClasses`
+  - `navigationClasses`
+  
+[Check the documentation](https://design-system.service.gov.uk/components/header/) to see if you should add this value into your site.
+
 - updated header and footer layouts to use components
 
 ## 6.3.1.beta
