@@ -110,6 +110,8 @@ You must include alt text for an image if the image has not been explained in su
 
 ## Insert a warning
 
+<%= govukWarningText({text: "This setting is deprecated and will be removed in version 7.  You should use the GOV.UK warning text component.", iconFallbackText: "Warning"}) %>
+
 Use the warning text component when you need to warn users about something important, such as legal consequences of an action, or lack of action, that they might take.
 
 This warning text format is consistent with the [GOV.UK Design System warning text][design-system].
@@ -120,9 +122,23 @@ To insert a warning, use the following:
 <%= warning_text('insert warning text here') %>
 ```
 
+
 ## Use the GOV.UK Design System
 
-Use [GOV.UK Design System](https://design-system.service.gov.uk/) elements in your documentation to ensure your content complies with accessibility regulations.
+Use [GOV.UK Design System](https://design-system.service.gov.uk/) elements in your documentation to ensure your content complies with accessibility regulations.  To use a component from the design system call the component function inside a ruby block.  For example:
+
+```
+<%=
+govukPhaseBanner({
+  tag: {
+    text: "Alpha"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback by email</a>.'
+})
+%>
+```
+
+You do not need to import the function using `from "govuk/components/{COMPONENT_NAME}/macro.njk" import {COMPONENT_NAME}`.  The extension will do this automatically.
 
 
 <%= partial "partials/links" %>
