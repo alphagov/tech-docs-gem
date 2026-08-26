@@ -163,7 +163,7 @@ the [Tech Docs template documentation on previewing your documentation](https://
 You can run the Ruby test suite with the following command:
 
 ```shell
-bundle exec rspec
+bundle exec rake spec
 ```
 
 To test a specific file include the filepath after `rspec`.
