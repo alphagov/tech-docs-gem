@@ -2,6 +2,7 @@ name: Test
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 permissions:
   contents: read          # Allows the action to check out your repository code
