@@ -8,7 +8,7 @@ updates:
       day: "monday"
       time: "06:00"
     # Essential for gem projects without a Gemfile.lock:
-    versioning-strategy: "increase-versions"
+    versioning-strategy: "increase"
     commit-message:
       prefix: chore
     open-pull-requests-limit: 5
