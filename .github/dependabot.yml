@@ -1,8 +1,3 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
 updates:
   # 1. Update Ruby dependencies (Gemfile/gemspec) in the root
@@ -12,9 +7,11 @@ updates:
       interval: "weekly"
       day: "monday"
       time: "06:00"
+    # Essential for gem projects without a Gemfile.lock:
+    versioning-strategy: "increase"
     commit-message:
       prefix: chore
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 5
     groups:
       prod-safe-updates:
         dependency-type: "production"
@@ -23,9 +20,15 @@ updates:
         update-types:
           - "minor"
           - "patch"
+      dev-safe-updates:
+        dependency-type: "development"
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
-
-  # 2. Update GitHub Actions (keeps your CI workflows secure)
+  # 2. Update GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -39,15 +42,15 @@ updates:
         patterns:
           - "*"
 
+  # 3. Update npm dependencies
   - package-ecosystem: "npm"
-    directory: "/" 
+    directory: "/"
     schedule:
       interval: "weekly"
       day: "monday"
       time: "06:00"
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 5
     groups:
-      # Group all "development" dependencies (linters, test runners, etc.)
       dev-dependencies:
         dependency-type: "development"
         patterns:
@@ -55,8 +58,6 @@ updates:
         update-types:
           - "patch"
           - "minor"
-      # Group all "production" dependencies (react, express, etc.) 
-      # but ONLY for minor/patch versions to avoid breaking changes
       prod-safe-updates:
         dependency-type: "production"
         patterns:

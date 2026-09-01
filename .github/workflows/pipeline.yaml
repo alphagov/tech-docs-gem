@@ -6,13 +6,19 @@ on:
     branches: [ "main"]
 
 jobs:
-  dependency-review:
-    uses: ./.github/workflows/dependency-review.yaml
+  npm-vulnerability-scanner:
+    uses: ./.github/workflows/npm-vulnerability-scanner.yaml
+    permissions:
+      contents: read
+
+  ruby-vulnerability-scanner:
+    needs: npm-vulnerability-scanner
+    uses: ./.github/workflows/ruby-vulnerability-scanner.yaml
     permissions:
       contents: read
 
   test:
-    needs: dependency-review
+    needs: ruby-vulnerability-scanner
     uses: ./.github/workflows/test.yaml
     permissions:
       contents: read          # Allows the action to check out your repository code
