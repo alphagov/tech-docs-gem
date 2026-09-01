@@ -161,7 +161,7 @@ the [Tech Docs template documentation on previewing your documentation](https://
 
 You should run the linter before pushing any changes to GitHub to check for errors and correct formatting.  You can run linter jobs for ruby by running `bundle exec rubocop`. If you would like the linter to try and automatically fix any errors use `bundle exec rubocop -a`.  
 
-You can lint javascript files with the command `npm run lint`.  If only want to see the final result and not the full output use `npm run lint --silent`.
+You can lint javascript files with the command `npm run lint`.  If only want to see the final result and not the full output, use `npm run lint --silent`.
 
 You can also use the `Rakefile` job to run both together by running `bundle exec rake lint`.  See the [Rakefile](./Rakefile) for more detail.
 
@@ -173,7 +173,7 @@ You can run the Ruby test suite with the following command:
 bundle exec rake spec
 ```
 
-To test a specific file use Rake's `SPEC` variable and set it to your filepath or directory.  For example `bundle exec rake spec SPEC=spec/govuk_tech_docs/meta_tags_spec.rb`
+To test a specific file, use Rake's `SPEC` variable and set it to your filepath or directory.  For example `bundle exec rake spec SPEC=spec/govuk_tech_docs/meta_tags_spec.rb`
 
 ### JavaScript tests
 
