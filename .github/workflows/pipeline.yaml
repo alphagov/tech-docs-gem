@@ -11,14 +11,14 @@ jobs:
     permissions:
       contents: read
 
-  ruby-vulnerablity-scanner:
+  ruby-vulnerability-scanner:
     needs: npm-vulnerability-scanner
     uses: ./.github/workflows/ruby-vulnerability-scanner.yaml
     permissions:
       contents: read
 
   test:
-    needs: ruby-vulnerablity-scanner
+    needs: ruby-vulnerability-scanner
     uses: ./.github/workflows/test.yaml
     permissions:
       contents: read          # Allows the action to check out your repository code
