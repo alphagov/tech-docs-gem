@@ -1,5 +1,7 @@
 ## Unreleased changes
 
+- Fix desktop sidebar scrolling after the `.app-pane` wrapper was removed: keep the table of contents sticky and independently scrollable while the page (and full-width footer) scroll normally ([related to pull request 513](https://github.com/alphagov/tech-docs-gem/pull/513))
+
 ## 6.3.1.beta
 
 - [Remove govuk wrapper class](https://github.com/alphagov/tech-docs-gem/pull/530) that introduced extra padding 
