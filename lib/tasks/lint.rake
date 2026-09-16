@@ -9,7 +9,6 @@ namespace :lint do
   task :vale, [:target, :clean_build, :full_output] do |_t, args|
     args.with_defaults(target: "./build", clean_build: "true", full_output: "true")
 
-    # sh "bundle exec vale sync --config='#{vale_config_path}'"
     Rake::Task["middleman:build"].invoke if args.clean_build == "true"
 
     files = Dir.glob("#{args.target}/**/*.{html,md}")
@@ -58,21 +57,25 @@ namespace :lint do
   end
 
   desc "Debug Vale to find which rule hangs on a specific file."
-  task :debug do
+  require 'timeout'
 
-    style_prefix = 'tech-writing-style-guide'
+  desc "Debug specific Vale rules for regex hangs"
+  task :debug, [:rules] do |_, args|
+    # Accepts Rake args (rake "debug[Rule1,Rule2]") or ENV vars (rake debug RULES=Rule1,Rule2)
+    raw_input = args[:rules] || ENV['RULES']
+
+    if raw_input.nil? || raw_input.strip.empty?
+      abort "Please provide rules to test. \nUsage: rake \"debug[Rule1,Rule2]\" OR rake debug RULES=Rule1,Rule2"
+    end
+
+    # Split by comma, remove whitespace, and drop any empty strings
+    rules = raw_input.split(',').map(&:strip).reject(&:empty?)
+
+    style_prefix = 'style-guide'
     target_file = './build/search/index.html'
 
-    # ADD YOUR RULE NAMES HERE (without the style prefix or .yml extension)
-    rules = [
-      "acronyms", "brackets-in-headings", "common-misspellings","H4", "H5", "H6", "headings-length", "multiple-h1-tags",
-      "sentence-length","terminal-punctuation","words-to-avoid","words-to-avoid-unless",
-      "skipped-heading-levels",
-      "consecutive-headings",
-      "headings-with-no-content"
-    ]
-
-    puts "Hunting for the hanging regex in #{target_file}...\n\n"
+    puts "Hunting for the hanging regex in #{target_file}..."
+    puts "Testing #{rules.size} rule(s): #{rules.join(', ')}\n\n"
 
     rules.each do |rule_name|
       full_rule = "#{style_prefix}.#{rule_name}"
