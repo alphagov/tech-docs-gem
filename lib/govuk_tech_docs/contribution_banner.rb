@@ -19,7 +19,8 @@ module GovukTechDocs
     end
 
     def report_issue_url
-      url = config[:source_urls]&.[](:report_issue_url)
+      url = config[:tech_docs][:source_urls]&.[](:report_issue_url)
+      url ||= config[:source_urls]&.[](:report_issue_url)
       params = {
         body: "Problem with '#{current_page.data.title}' (#{config[:tech_docs][:host]}#{current_page.url})",
       }
