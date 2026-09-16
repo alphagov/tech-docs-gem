@@ -2,8 +2,9 @@
 
   navigation = []
   config[:tech_docs][:header_links].each do |title, path|
+    url = get_path_to_resource config, path, current_page
     navigation.append << {
-      href: path,
+      href: url,
       text: title,
       active: active_page(path)
     }
