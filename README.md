@@ -45,6 +45,9 @@ The linting job can take the following optional parameters:
 | `clean_build` | If true runs `bundle exec middleman build` to create a clean build.                         | 'true'    |
 | `full_output` | If true the full report is printed to the console, otherwise only the summary is displayed. | 'true'    |
 
+
+If running the linter causes timeouts or crashes, you can use `bundle exec tech_docs_jobs lint:debug`.  You should use this locally, not as part of a pipeline.
+
 ## GOV.UK frontend
 
 This gem uses [GOV.UK Frontend](https://github.com/alphagov/govuk-frontend), part of
