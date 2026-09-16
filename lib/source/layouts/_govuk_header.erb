@@ -1,0 +1,17 @@
+<%
+  service_link = config[:tech_docs][:service_link]
+  homepage_url = service_link ? get_path_to_resource(config, service_link, current_page) : nil
+
+%>
+
+<%=
+
+govukHeader({
+  homepageUrl: homepage_url || "",
+  productName: config[:tech_docs][:product_name] ? config[:tech_docs][:product_name] : "",
+  containerClasses: config[:tech_docs][:headerContainerClasses] ? config[:tech_docs][:headerContainerClasses] : "govuk-header__container--full-width",
+  classes: config[:tech_docs][:headerClasses] ? config[:tech_docs][:headerClasses] : ""
+
+})
+
+%>

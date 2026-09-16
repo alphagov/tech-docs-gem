@@ -14,15 +14,7 @@ $govuk-new-link-styles: true;
 @import "govuk/core";
 @import "govuk/objects";
 
-@import "govuk/components/cookie-banner";
-@import "govuk/components/footer";
-@import "govuk/components/header";
-@import "govuk/components/service-navigation";
-@import "govuk/components/inset-text";
-@import "govuk/components/input";
-@import "govuk/components/tag";
-@import "govuk/components/skip-link";
-@import "govuk/components/warning-text";
+@import "govuk/components";
 
 @import "govuk/utilities";
 @import "govuk/overrides";
