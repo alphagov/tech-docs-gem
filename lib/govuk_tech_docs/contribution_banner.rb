@@ -35,7 +35,18 @@ module GovukTechDocs
     end
 
     def repo_url
-      "https://github.com/#{config[:tech_docs][:github_repo]}"
+      github_repo = config[:tech_docs][:github_repo]
+      if github_repo.nil? || github_repo.empty?
+        raise ArgumentError, "github_repo must be configured when the contribution banner is enabled"
+      end
+
+      repo_url = if github_repo.match?(%r{\Ahttps://github\.com/}i)
+                   github_repo
+                 else
+                   "https://github.com/#{github_repo}"
+                 end
+
+      repo_url.delete_suffix("/")
     end
 
     def repo_branch
