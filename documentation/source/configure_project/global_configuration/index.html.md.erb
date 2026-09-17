@@ -21,7 +21,7 @@ service_name: My First Service
 service_link: https://www.larry-the-cat.service.gov.uk
 phase: Beta
 
-# Uncomment if you do not want to activate the GOV.UK Design System component extension 
+# Uncomment if you do not want to activate the GOV.UK Design System component extension
 # enable_govuk_components: false
 
 # Links to show on right-hand-side of header
@@ -56,13 +56,14 @@ github_repo: alphagov/YOUR_REPO
 github_branch: main
 ```
 
-<%= warning_text('All of these settings are optional. However, you should enable or disable settings to increase the usability of your documentation or because of best practice.') %>
+<%= govukWarningText({text: "All of these settings are optional. However, you should enable or disable settings to increase the usability of your documentation or because of best practice.", iconFallbackText: "Warning"}) %>
 
 You must wrap a value in quotes if it contains a colon, unless the value is a URL. For example:
 
 ```
 description: "GDS: My amazing documentation"
 ```
+
 
 If you are not sure which settings to enable or disable, [contact the Government Digital Service (GDS) technical writing team][contact-email].
 
@@ -87,6 +88,8 @@ Enables and disables the GOV.UK crown logo in the top left corner of the site. D
 ```yaml
 show_govuk_logo: true
 ```
+
+<%= govukWarningText({text: "This setting is deprecated and will be replaced in version 7 by the generic header and custom logo options.", iconFallbackText: "Warning"}) %>
 
 ### service_name
 
