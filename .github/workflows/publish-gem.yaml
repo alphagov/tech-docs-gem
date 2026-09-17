@@ -40,6 +40,15 @@ jobs:
           ruby-version: '3'
           bundler-cache: true
 
+      - name: Verify Secret Presence
+        run: |
+          if [ -z "${{ secrets.RUBYGEMS_API_KEY }}" ]; then
+            echo "Error: Secret is empty or missing from this context!"
+            exit 1
+          else
+            echo "Secret is populated."
+          fi
+
       - name: Publish
         env:
           RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
