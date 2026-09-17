@@ -513,15 +513,30 @@ describe('In page navigation', function () {
     expect(rafSpy).toHaveBeenCalled()
   })
 
-  it('calls scrollIntoView on the active TOC link', function () {
+  it('keeps the active TOC link in view by scrolling only the TOC pane', function () {
+    var $tocPane = $('<div class="app-pane__toc"></div>').css({
+      overflowY: 'auto',
+      height: '40px'
+    })
+    $tocList.appendTo($tocPane)
+    $('body').append($tocPane)
+    $tocList.css({ paddingTop: '200px', paddingBottom: '200px' })
+
     var scrollIntoViewSpy = jasmine.createSpy('scrollIntoView')
     $tocList.find('a').get(0).scrollIntoView = scrollIntoViewSpy
 
     window.requestAnimationFrame = function (callback) { callback() }
+    window.scrollTo(0, 250)
+    var scrollYBefore = window.scrollY || window.pageYOffset
 
     module = new GOVUK.Modules.InPageNavigation()
     module.start($element)
 
-    expect(scrollIntoViewSpy).toHaveBeenCalledWith({ block: 'nearest', inline: 'nearest' })
+    expect(scrollIntoViewSpy).not.toHaveBeenCalled()
+    expect($tocPane.get(0).scrollTop).toBeGreaterThan(0)
+    expect(window.scrollY || window.pageYOffset).toEqual(scrollYBefore)
+
+    window.scrollTo(0, 0)
+    $tocPane.remove()
   })
 })
