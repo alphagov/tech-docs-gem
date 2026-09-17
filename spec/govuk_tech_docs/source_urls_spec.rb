@@ -19,7 +19,7 @@ RSpec.describe GovukTechDocs::SourceUrls do
 
       expect { source_urls.repo_url }.to raise_error(
         ArgumentError,
-        "github_repo must be configured when the contribution banner is enabled",
+        "github_repo value not found in config/tech-docs.yml",
       )
     end
   end
