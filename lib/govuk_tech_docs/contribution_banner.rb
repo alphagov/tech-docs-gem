@@ -38,7 +38,7 @@ module GovukTechDocs
     def repo_url
       github_repo = config[:tech_docs][:github_repo]
       if github_repo.nil? || github_repo.empty?
-        raise ArgumentError, "github_repo must be configured when the contribution banner is enabled"
+        raise ArgumentError, "github_repo value not found in config/tech-docs.yml"
       end
 
       repo_url = if github_repo.match?(%r{\Ahttps://github\.com/}i)
@@ -51,7 +51,7 @@ module GovukTechDocs
     end
 
     def repo_branch
-      config[:tech_docs][:github_branch] || "master" # TODO: change this to 'main' in a future breaking release
+      config[:tech_docs][:github_branch] || "master"
     end
 
   private
