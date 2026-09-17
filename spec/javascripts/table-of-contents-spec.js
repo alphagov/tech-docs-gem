@@ -524,4 +524,27 @@ describe('In page navigation', function () {
 
     expect(scrollIntoViewSpy).toHaveBeenCalledWith({ block: 'nearest', inline: 'nearest' })
   })
+
+  it('marks the TOC link in view when the location is a clean URL for an index.html href', function () {
+    var originalPath = window.location.pathname + window.location.search + window.location.hash
+    $tocList.remove()
+    $tocList = $(
+      '<nav class="js-toc-list">' +
+        '<a href="/nested-page/child/index.html">Child page</a>' +
+      '</nav>'
+    )
+    $('body').append($tocList)
+
+    history.replaceState(null, '', '/nested-page/child/')
+    window.requestAnimationFrame = function (callback) { callback() }
+
+    var scrollIntoViewSpy = jasmine.createSpy('scrollIntoView')
+    $tocList.find('a').get(0).scrollIntoView = scrollIntoViewSpy
+
+    module = new GOVUK.Modules.InPageNavigation()
+    module.start($element)
+
+    expect($tocList.find('a').hasClass('toc-link--in-view')).toBe(true)
+    history.replaceState(null, '', originalPath)
+  })
 })
