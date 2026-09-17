@@ -1,6 +1,29 @@
 require "ostruct"
 
 RSpec.describe GovukTechDocs::SourceUrls do
+  describe "#repo_url" do
+    it "builds a GitHub URL from an owner and repository" do
+      source_urls = GovukTechDocs::SourceUrls.new(nil, generate_config("test/repo", nil))
+
+      expect(source_urls.repo_url).to eql("https://github.com/test/repo")
+    end
+
+    it "accepts a full GitHub URL" do
+      source_urls = GovukTechDocs::SourceUrls.new(nil, generate_config("https://github.com/test/repo/", nil))
+
+      expect(source_urls.repo_url).to eql("https://github.com/test/repo")
+    end
+
+    it "raises a helpful error when the repository is not configured" do
+      source_urls = GovukTechDocs::SourceUrls.new(nil, generate_config(nil, nil))
+
+      expect { source_urls.repo_url }.to raise_error(
+        ArgumentError,
+        "github_repo must be configured when the contribution banner is enabled",
+      )
+    end
+  end
+
   describe "#report_issue_url" do
     it "provides a GitHub issue link by default" do
       current_page = generate_current_page("title", "url")
