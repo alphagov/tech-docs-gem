@@ -1,6 +1,12 @@
 ## Unreleased changes
 
-## 6.3.1.beta
+## 6.4.1
+
+- Bugfix: [Issue 283](https://github.com/alphagov/tech-docs-gem/issues/283) - correctly read report issue url (backwards compatible)
+- Update: [Issue 543](https://github.com/alphagov/tech-docs-gem/issues/543) - allow full git urls as well as just repository name for report issue url
+- [PR 542](https://github.com/alphagov/tech-docs-gem/pull/542) to improve vale linter handling and output when using rake task
+
+## 6.4.0.beta
 
 - [Remove govuk wrapper class](https://github.com/alphagov/tech-docs-gem/pull/530) that introduced extra padding 
 - Update[ template html syntax](https://github.com/alphagov/tech-docs-gem/pull/520) to more closely match gov.uk design template

@@ -19,7 +19,8 @@ module GovukTechDocs
     end
 
     def report_issue_url
-      url = config[:source_urls]&.[](:report_issue_url)
+      url = config[:tech_docs][:source_urls]&.[](:report_issue_url)
+      url ||= config[:source_urls]&.[](:report_issue_url)
       params = {
         body: "Problem with '#{current_page.data.title}' (#{config[:tech_docs][:host]}#{current_page.url})",
       }
@@ -35,11 +36,22 @@ module GovukTechDocs
     end
 
     def repo_url
-      "https://github.com/#{config[:tech_docs][:github_repo]}"
+      github_repo = config[:tech_docs][:github_repo]
+      if github_repo.nil? || github_repo.empty?
+        raise ArgumentError, "github_repo value not found in config/tech-docs.yml"
+      end
+
+      repo_url = if github_repo.match?(%r{\Ahttps://github\.com/}i)
+                   github_repo
+                 else
+                   "https://github.com/#{github_repo}"
+                 end
+
+      repo_url.delete_suffix("/")
     end
 
     def repo_branch
-      config[:tech_docs][:github_branch] || "master" # TODO: change this to 'main' in a future breaking release
+      config[:tech_docs][:github_branch] || "master"
     end
 
   private

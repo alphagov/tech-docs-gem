@@ -29,7 +29,7 @@ collapsible_nav: true
 
 # Show links to contribute on GitHub
 show_contribution_banner: true
-github_repo: https://github.com/alphagov/tech-docs-gem/documentation
+github_repo: https://github.com/alphagov/tech-docs-gem
 
 # Enable search
 enable_search: true

@@ -211,10 +211,18 @@ show_contribution_banner: true
 
 ### github_repo
 
-Your documentation project's GitHub repository. You must enable this if you have enabled [show_contribution_banner].
+Your documentation project's GitHub repository. You must configure this if you have enabled [show_contribution_banner].
+
+Set this to either the repository's `owner/name` or its full GitHub URL. Link to the repository itself, rather than a file or directory, because the contribution banner builds its links relative to this URL.
 
 ```yaml
 github_repo: alphagov/example-repo
+```
+
+You can also use the full URL:
+
+```yaml
+github_repo: https://github.com/alphagov/example-repo
 ```
 
 ### github_branch
