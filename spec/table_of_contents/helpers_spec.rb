@@ -1,6 +1,60 @@
 require "spec_helper"
 
 describe GovukTechDocs::TableOfContents::Helpers do
+  describe "#page_navigation_links" do
+    subject(:helper) { Class.new { include GovukTechDocs::TableOfContents::Helpers }.new }
+
+    let(:sidebar) do
+      <<~HTML
+        <ul>
+          <li><a href="../index.html"><span>Home</span></a></li>
+          <li><a href="../guide/index.html"><span>Guide &amp; setup</span></a>
+            <ul>
+              <li><a href="../guide/index.html#install">Install</a></li>
+              <li><a href="../guide/preview.html"><span>Preview</span></a></li>
+            </ul>
+          </li>
+          <li><a href="../support.html"><span>Support</span></a></li>
+        </ul>
+      HTML
+    end
+
+    it "follows sidebar order through nested pages and ignores heading anchors" do
+      expect(helper.page_navigation_links(sidebar, "../guide/preview.html")).to eq(
+        previous: { href: "../guide/index.html", labelText: "Guide & setup" },
+        next: { href: "../support.html", labelText: "Support" },
+      )
+    end
+
+    it "only provides next on the first page" do
+      expect(helper.page_navigation_links(sidebar, "../index.html")).to eq(
+        next: { href: "../guide/index.html", labelText: "Guide & setup" },
+      )
+    end
+
+    it "only provides previous on the last page" do
+      expect(helper.page_navigation_links(sidebar, "../support.html")).to eq(
+        previous: { href: "../guide/preview.html", labelText: "Preview" },
+      )
+    end
+
+    it "does not provide navigation for pages absent from the sidebar" do
+      expect(helper.page_navigation_links(sidebar, "../hidden.html")).to eq({})
+    end
+
+    it "does not provide navigation for a single page or empty sidebar" do
+      expect(helper.page_navigation_links('<a href="/">Home</a>', "/")).to eq({})
+      expect(helper.page_navigation_links("", "/")).to eq({})
+    end
+
+    it "preserves prefixed absolute links and removes duplicates" do
+      sidebar = '<a href="/docs/">Home</a><a href="/docs/">Home</a><a href="/docs/guide/">Guide</a>'
+      expect(helper.page_navigation_links(sidebar, "/docs/")).to eq(
+        next: { href: "/docs/guide/", labelText: "Guide" },
+      )
+    end
+  end
+
   describe "#single_page_table_of_contents" do
     subject do
       subject_class = Class.new do

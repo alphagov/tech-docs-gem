@@ -6,13 +6,16 @@ wrap_layout :core do
 
   use_multipage_nav = current_page.data.fetch(:multipage_nav, config[:tech_docs][:multipage_nav])
 
-  content_for :sidebar do
-    if use_multipage_nav %>
-      <%= multi_page_table_of_contents(sitemap.resources, current_page, config, html) %>
-    <% else %>
-      <%= single_page_table_of_contents(html, max_level: config[:tech_docs][:max_toc_heading_level]) %>
-    <% end %>
-  <%
+  table_of_contents = if use_multipage_nav
+                        multi_page_table_of_contents(sitemap.resources, current_page, config, html)
+                      else
+                        single_page_table_of_contents(html, max_level: config[:tech_docs][:max_toc_heading_level])
+                      end
+  content_for(:sidebar, table_of_contents)
+
+  if use_multipage_nav && current_page.data.fetch(:show_page_navigation, config[:tech_docs][:show_page_navigation])
+    current_page_href = get_path_to_resource(config, current_page, current_page)
+    content_for(:page_navigation, render_page_navigation(table_of_contents, current_page_href))
   end
 
   html
