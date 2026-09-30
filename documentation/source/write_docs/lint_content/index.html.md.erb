@@ -1,0 +1,89 @@
+---
+title: Check content with the linter
+weight: 30
+last_reviewed_on: 2026-09-30
+review_in: 6 months
+---
+
+# Check content with the linter
+
+The Tech Docs Template includes a content linting task that uses [Vale](https://vale.sh/) and the [technical writing style guide rules](https://github.com/alphagov/tech-docs-linter). It checks your built HTML and Markdown for potential style problems and reports errors, warnings and suggestions.
+
+Review each alert before changing your content. The linter does not make changes automatically or replace a content review.
+
+## Set up the linter
+
+Start with a documentation project that you can [build locally](../../create_project/build/). Run these commands from the project root, where your `Gemfile` and `config.rb` are located.
+
+1. Install your project's dependencies with `bundle install`.
+2. [Install Vale](https://vale.sh/docs/install) and check that `vale --version` works in your terminal.
+3. Download the style rules using the configuration included in the installed gem:
+
+   ```shell
+   vale_config="$(bundle show govuk_tech_docs)/.vale.ini"
+   vale --config="$vale_config" sync
+   ```
+
+The task uses the gem's `.vale.ini`, not a `.vale.ini` in your project. Run the sync command again after upgrading the gem. Downloading the rules requires network access and permission to write to the gem's `styles` directory.
+
+To check that your version of the gem includes the task, run:
+
+```shell
+bundle exec tech_docs_jobs -T
+```
+
+Look for `lint:vale` in the output.
+
+## Run a content check
+
+```shell
+bundle exec tech_docs_jobs lint:vale
+```
+
+By default, this removes the existing `./build` directory, runs `bundle exec middleman build`, then checks the HTML and Markdown files under `./build`. It prints a detailed report followed by a summary of errors, warnings and suggestions.
+
+To check an existing build without rebuilding it:
+
+```shell
+bundle exec tech_docs_jobs 'lint:vale[./build,false,true]'
+```
+
+### Task options
+
+Pass options in this order: `target`, `clean_build`, `full_output`. Quote the whole task argument so your shell does not interpret the square brackets.
+
+| Option | Default | Purpose |
+| --- | --- | --- |
+| `target` | `./build` | Directory containing the HTML and Markdown files to check. |
+| `clean_build` | `true` | Run the clean Middleman build first. Use `false` to check an existing build. |
+| `full_output` | `true` | Print the detailed report. Use `false` to print only the summary. |
+
+For example, to check an existing custom output directory and show only the summary:
+
+```shell
+bundle exec tech_docs_jobs 'lint:vale[./site-output,false,false]'
+```
+
+Changing `target` does not change Middleman's build directory. Build your custom output directory separately and set `clean_build` to `false`.
+
+## Run in a pipeline
+
+After your pipeline has installed Ruby, Bundler, the project's dependencies and Vale, add these shell commands:
+
+```shell
+vale_config="$(bundle show govuk_tech_docs)/.vale.ini"
+vale --config="$vale_config" sync
+bundle exec middleman build
+bundle exec tech_docs_jobs 'lint:vale[./build,false,true]'
+```
+
+Keep the full output in your job logs so reviewers can see which files need attention.
+
+The `lint:vale` task is advisory: reported content alerts do not make it fail. A successful exit is not proof that the content has no errors. A file that takes more than 10 seconds is skipped and reported as `HUNG (Skipped due to timeout)`, so check the logs for incomplete checks too. Build failures or unhandled exceptions can still fail the task.
+
+## Troubleshoot checks
+
+- If `vale` cannot be found, install it and make sure it is on the same `PATH` used by the terminal or CI job.
+- If style rules are missing, repeat the sync command with the gem's configuration and check write permissions on its `styles` directory.
+- If the task reports zero files, check that `target` contains a completed build with HTML or Markdown files.
+- If a file is skipped after a timeout, investigate it before treating the report as complete. You can run Vale directly against that file with the same configuration to inspect its output.
