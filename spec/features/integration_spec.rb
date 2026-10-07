@@ -40,18 +40,8 @@ RSpec.describe "The tech docs template" do
     then_there_is_a_robots_noindex_metatag
   end
 
-  it "does not use the GOV.UK design system components if the setting is disabled" do
-    when_the_site_is_created_without_govuk_components
-    and_i_visit_the_homepage
-    then_there_is_no_button
-  end
-
   def when_the_site_is_created
     rebuild_site!
-  end
-
-  def when_the_site_is_created_without_govuk_components
-    rebuild_site!(overrides: { "enable_govuk_components" => false })
   end
 
   def and_i_visit_the_homepage
@@ -83,11 +73,6 @@ RSpec.describe "The tech docs template" do
     ].each do |url|
       expect(page).to have_link(nil, href: url)
     end
-  end
-
-  def then_there_is_no_button
-    expect(page).to_not have_content "Click me!"
-    expect(page).to_not have_css "button.govuk-button"
   end
 
   def then_the_page_highlighted_in_the_navigation_is(link_label)

@@ -84,6 +84,7 @@ module GovukTechDocs
     context.activate :unique_identifier
     context.activate :warning_text
     context.activate :api_reference
+    context.activate :custom_method_missing_handler
 
     context.helpers do
       include GovukTechDocs::PathHelpers
@@ -163,10 +164,6 @@ module GovukTechDocs
       end
     else
       context.ignore "search/*"
-    end
-
-    if context.config[:tech_docs][:enable_govuk_components]
-      context.activate :custom_method_missing_handler
     end
   end
 end

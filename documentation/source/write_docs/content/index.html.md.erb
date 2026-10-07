@@ -122,9 +122,23 @@ To insert a warning, use the following:
 <%= warning_text('insert warning text here') %>
 ```
 
+
 ## Use the GOV.UK Design System
 
-Use [GOV.UK Design System](https://design-system.service.gov.uk/) elements in your documentation to ensure your content complies with accessibility regulations.
+Use [GOV.UK Design System](https://design-system.service.gov.uk/) elements in your documentation to ensure your content complies with accessibility regulations.  To use a component from the design system call the component function inside a ruby block.  For example:
+
+```
+<%=
+govukPhaseBanner({
+  tag: {
+    text: "Alpha"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback by email</a>.'
+})
+%>
+```
+
+You do not need to import the function using `from "govuk/components/{COMPONENT_NAME}/macro.njk" import {COMPONENT_NAME}`.  The extension will do this automatically.
 
 
 <%= partial "partials/links" %>
