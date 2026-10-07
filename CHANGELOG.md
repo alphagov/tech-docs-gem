@@ -6,12 +6,12 @@
 
 - **potentially breaking**: `enable_govuk_components` has been removed from the config as these are now required for the header and footer.  If you are using this value for custom code or templates you should address this before updating.
 - added config settings:
-  - `product_name`
-  - `headerContainerClasses`
-  - `headerClasses`
-  - `navigationContainerClasses`
-  - `navigationClasses`
-  
+    - `product_name`
+    - `headerContainerClasses`
+    - `headerClasses`
+    - `navigationContainerClasses`
+    - `navigationClasses`
+
 [Check the documentation](https://design-system.service.gov.uk/components/header/) to see if you should add this value into your site.
 
 - updated header and footer layouts to use components
@@ -19,10 +19,17 @@
 ### Deprecation warning
 
 - `show_govuk_logo:` setting will be removed in v7.x.x in to be replaced by the generic header and custom logo settings
-- `warning_text` custom extension will be removed in v7.x.x.  This was [marked as deprecated on 1st June 2026](https://github.com/alphagov/tech-docs-gem/commit/304230ba9c49759471a9a8f2daa425e37f846364#diff-2a7ef696e418f6044e5b18ae22c9cff4cac18481ae6fd0c1360ef978087b6cc9R8-R9).  You should now [use the GOV.UK warning text component](https://alphagov.github.io/tech-docs-gem/write_docs/content/#use-the-gov-uk-design-system). 
+- `warning_text` custom extension will be removed in v7.x.x.  This was [marked as deprecated on 1st June 2026](https://github.com/alphagov/tech-docs-gem/commit/304230ba9c49759471a9a8f2daa425e37f846364#diff-2a7ef696e418f6044e5b18ae22c9cff4cac18481ae6fd0c1360ef978087b6cc9R8-R9).  You should now [use the GOV.UK warning text component](https://alphagov.github.io/tech-docs-gem/write_docs/content/#use-the-gov-uk-design-system).
 
 
-## 6.3.1.beta
+
+## 6.4.1
+
+- Bugfix: [Issue 283](https://github.com/alphagov/tech-docs-gem/issues/283) - correctly read report issue url (backwards compatible)
+- Update: [Issue 543](https://github.com/alphagov/tech-docs-gem/issues/543) - allow full git urls as well as just repository name for report issue url
+- [PR 542](https://github.com/alphagov/tech-docs-gem/pull/542) to improve vale linter handling and output when using rake task
+
+## 6.4.0.beta
 
 - [Remove govuk wrapper class](https://github.com/alphagov/tech-docs-gem/pull/530) that introduced extra padding 
 - Update[ template html syntax](https://github.com/alphagov/tech-docs-gem/pull/520) to more closely match gov.uk design template
