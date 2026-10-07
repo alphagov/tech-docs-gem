@@ -1,3 +1,5 @@
+require "nokogiri"
+require "govuk_tech_docs/govuk_nunjuck_componenet_renderer"
 require "govuk_tech_docs/path_helpers"
 require "govuk_tech_docs/table_of_contents/heading_tree_builder"
 require "govuk_tech_docs/table_of_contents/heading_tree_renderer"
@@ -52,6 +54,31 @@ module GovukTechDocs
 
         tree = HeadingTreeBuilder.new(headings).tree
         HeadingTreeRenderer.new(tree, max_level:).html
+      end
+
+      def render_page_navigation(table_of_contents, current_page_href)
+        navigation = page_navigation_links(table_of_contents, current_page_href)
+        return "" if navigation.empty?
+
+        @page_navigation_renderer ||= GovukNunjuckComponenetRenderer.new(File.expand_path("../../..", __dir__))
+        @page_navigation_renderer.render_govuk_component("govukPagination", navigation.merge(classes: "app-page-navigation"))
+      end
+
+      def page_navigation_links(table_of_contents, current_page_href)
+        pages = Nokogiri::HTML.fragment(table_of_contents).css("a[href]").filter_map { |link|
+          href = link["href"]
+          next if href.empty? || href.include?("#")
+
+          { href:, labelText: link.text.strip }
+        }.uniq { |page| page[:href] }
+
+        current_index = pages.index { |page| page[:href] == current_page_href.to_s }
+        return {} unless current_index
+
+        navigation = {}
+        navigation[:previous] = pages[current_index - 1] if current_index.positive?
+        navigation[:next] = pages[current_index + 1] if current_index < pages.length - 1
+        navigation
       end
 
       def render_page_tree(resources, current_page, config, current_page_html, include_child_resources: true)
