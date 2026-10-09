@@ -14,7 +14,6 @@
     .app-pane__toc {
       flex: 0 0 auto;
       width: $toc-width;
-      border-right: 1px solid govuk-functional-colour(border);
       position: sticky;
       top: 0;
       align-self: flex-start;
@@ -29,6 +28,7 @@
       flex: 1 1 auto;
       min-width: 0;
       overflow: visible;
+      border-left: 1px solid govuk-functional-colour(border);
     }
   }
 
