@@ -50,9 +50,23 @@
 
   <body class="govuk-template__body">
     <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
-    <header class="govuk-template__header app-header">
-      <%= partial 'layouts/header' %>
-    </header>
+  <!-- .app-header aligns the header component properly with the in page navigation   -->
+    <div class="app-header" role="banner" data-module="govuk-header">
+      <% if config[:tech_docs][:show_govuk_logo] %>
+         <%= partial 'layouts/govuk_header' %>
+      <% else %>
+        <%=
+          # if show govuk_logo is true we can just use the govuk component.
+          # If not we need to fall back temporarily to the old custom header to make sure we don't start
+          # showing logos everywhere, as there is no option in the component to turn it off.  This will be removed once the generic header and branding is in place.
+          # We will raise a deprecation warning to let people know this is imminent
+          warn("You have set show_govuk_logo to false or removed it from your config.  This setting wil be removed in version 7 to be replaced by the generic header and custom logo.  If you rely on this setting for custom code you should review this as soon as possible.")
+        %>
+        <%= partial 'layouts/header' %>
+      <% end %>
+
+    </div>
+
     <% if config[:tech_docs][:header_links] %>
         <%= partial 'layouts/service_navigation' %>
     <% end %>
@@ -102,9 +116,12 @@
         </div>
       </div>
 
-
     <footer class="govuk-template__footer">
-      <%= partial "layouts/footer" %>
+      <% if config[:tech_docs][:show_govuk_logo] %>
+        <%= partial "layouts/govuk_footer" %>
+      <% else %>
+        <%= partial "layouts/footer" %>
+      <% end %>
     </footer>
 
     <%= partial 'layouts/analytics' %>
