@@ -54,6 +54,7 @@ jobs:
       - run: |
           echo "event_name='${{ github.event_name }}'"
           echo "documentation-updated='${{ needs.check-documentation-updates.outputs.documentation-updated }}'"
+          echo "result='${{ needs.check-documentation-updates.result }}'"
 
 #  publish-github-pages:
 #    needs: check-documentation-updates
