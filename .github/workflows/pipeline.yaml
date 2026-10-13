@@ -48,20 +48,9 @@ jobs:
 
   publish-github-pages:
     needs: check-documentation-updates
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-      - run: |
-          echo "Output: '${{ needs.check-documentation-updates.outputs.documentation-updated }}'"
-          echo "Event: '${{ github.event_name }}'"
-          echo "Condition1: '${{ needs.check-documentation-updates.outputs.documentation-updated == 'true' }}'"
-          echo "Condition2: '${{ github.event_name == 'push' }}'"
-          echo "ConditionFull: '${{ github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true' }}'"
-          echo "result='${{ needs.check-documentation-updates.result }}'"
-
-#    if: github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
-#    uses: ./.github/workflows/publish-github-pages.yaml
-#    permissions:
-#      contents: read
-#      pages: write
-#      id-token: write
+    if: always() && github.event_name == 'push' && needs.check-documentation-updates.result == 'success' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
+    uses: ./.github/workflows/publish-github-pages.yaml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
