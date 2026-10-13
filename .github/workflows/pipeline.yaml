@@ -46,11 +46,20 @@ jobs:
        (needs.publish-gem.result == 'success' || needs.publish-gem.result == 'skipped')
      uses: ./.github/workflows/check-documentation-updates.yaml
 
-  publish-github-pages:
+  debug-documentation:
     needs: check-documentation-updates
-    if: github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
-    uses: ./.github/workflows/publish-github-pages.yaml
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - run: |
+          echo "event_name='${{ github.event_name }}'"
+          echo "documentation-updated='${{ needs.check-documentation-updates.outputs.documentation-updated }}'"
+
+#  publish-github-pages:
+#    needs: check-documentation-updates
+#    if: github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
+#    uses: ./.github/workflows/publish-github-pages.yaml
+#    permissions:
+#      contents: read
+#      pages: write
+#      id-token: write
