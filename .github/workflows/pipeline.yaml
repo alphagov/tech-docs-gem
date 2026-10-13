@@ -49,6 +49,7 @@ jobs:
   publish-github-pages:
     needs: check-documentation-updates
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - run: |
           echo "Output: '${{ needs.check-documentation-updates.outputs.documentation-updated }}'"
