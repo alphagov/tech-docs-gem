@@ -88,6 +88,7 @@
           <main id="content" class="technical-documentation"<% if config[:tech_docs][:enable_anchored_headings] != false %> data-module="anchored-headings"<% end %>>
             <%= yield %>
             <%= partial "layouts/page_review" %>
+            <%= yield_content :page_navigation if content_for? :page_navigation %>
           </main>
 
           <aside>

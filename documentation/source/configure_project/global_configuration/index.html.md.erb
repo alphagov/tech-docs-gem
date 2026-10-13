@@ -178,6 +178,18 @@ Enable multipage navigation in the sidebar. Defaults to `false`.
 multipage_nav: false
 ```
 
+### show_page_navigation
+
+Show Previous and Next links below the page content using the GOV.UK pagination component. Defaults to `false` and requires `multipage_nav: true`.
+
+```yaml
+show_page_navigation: true
+```
+
+Links follow the sidebar's page order, including nested pages and `weight` ordering. Pages hidden from the sidebar and redirect pages are excluded. The first page has no Previous link and the last page has no Next link.
+
+You can override this setting for an individual page by setting `show_page_navigation: false` in its frontmatter. This hides that page's pagination without removing the page from the navigation order. You do not need to enable `enable_govuk_components` to use this setting.
+
 ### collapsible_nav
 
 Enable collapsible navigation in the sidebar. Defaults to `false`.
