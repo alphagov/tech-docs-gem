@@ -1,6 +1,6 @@
 name: pipeline
 on:
-  pull_request:
+#  pull_request:
 #    branches: [ "main"]
   push:
     branches: [ "bugfix/github-publication-steps"]
