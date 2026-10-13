@@ -6,27 +6,27 @@ on:
     branches: [ "bugfix/github-publication-steps"]
 
 jobs:
-  npm-vulnerability-scanner:
-    uses: ./.github/workflows/npm-vulnerability-scanner.yaml
-    permissions:
-      contents: read
-
-  ruby-vulnerability-scanner:
-    needs: npm-vulnerability-scanner
-    uses: ./.github/workflows/ruby-vulnerability-scanner.yaml
-    permissions:
-      contents: read
-
-  test:
-    needs: ruby-vulnerability-scanner
-    uses: ./.github/workflows/test.yaml
-    permissions:
-      contents: read          # Allows the action to check out your repository code
-      pull-requests: write    # Allows the action to comment on or update the Dependabot PR
-      statuses: write         # Allows the action to post pass/fail build statuses
+#  npm-vulnerability-scanner:
+#    uses: ./.github/workflows/npm-vulnerability-scanner.yaml
+#    permissions:
+#      contents: read
+#
+#  ruby-vulnerability-scanner:
+#    needs: npm-vulnerability-scanner
+#    uses: ./.github/workflows/ruby-vulnerability-scanner.yaml
+#    permissions:
+#      contents: read
+#
+#  test:
+#    needs: ruby-vulnerability-scanner
+#    uses: ./.github/workflows/test.yaml
+#    permissions:
+#      contents: read          # Allows the action to check out your repository code
+#      pull-requests: write    # Allows the action to comment on or update the Dependabot PR
+#      statuses: write         # Allows the action to post pass/fail build statuses
 
   check-gem-version:
-    needs: test
+#    needs: test
     uses: ./.github/workflows/check-gem-version.yaml
 
   publish-gem:
@@ -48,9 +48,18 @@ jobs:
 
   publish-github-pages:
     needs: check-documentation-updates
-    if: github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
-    uses: ./.github/workflows/publish-github-pages.yaml
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Output: '${{ needs.check-documentation-updates.outputs.documentation-updated }}'"
+          echo "Event: '${{ github.event_name }}'"
+          echo "Condition1: '${{ needs.check-documentation-updates.outputs.documentation-updated == 'true' }}'"
+          echo "Condition2: '${{ github.event_name == 'push' }}'"
+          echo "ConditionFull: '${{ github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true' }}'"
+
+#    if: github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
+#    uses: ./.github/workflows/publish-github-pages.yaml
+#    permissions:
+#      contents: read
+#      pages: write
+#      id-token: write

@@ -27,7 +27,9 @@ jobs:
         id: documentation_updated
         run: |
           if git diff --name-only HEAD^ HEAD | grep -q '^documentation/'; then
+            echo "Setting documentation-updated=true"
             echo "documentation-updated=true" >> $GITHUB_OUTPUT
           else
+            echo "Setting documentation-updated=false"
             echo "documentation-updated=false" >> $GITHUB_OUTPUT
           fi
