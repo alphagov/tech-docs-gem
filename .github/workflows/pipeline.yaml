@@ -1,9 +1,9 @@
 name: pipeline
 on:
   pull_request:
-    branches: [ "main", "bugfix/github-publication-steps"]
-  push:
     branches: [ "main"]
+  push:
+    branches: [ "main", "bugfix/github-publication-steps"]
 
 jobs:
   npm-vulnerability-scanner:
