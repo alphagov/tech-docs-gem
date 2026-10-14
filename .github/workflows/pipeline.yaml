@@ -48,7 +48,7 @@ jobs:
 
   publish-github-pages:
     needs: check-documentation-updates
-    if: github.event_name == 'push' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
+    if: always() && github.event_name == 'push' && needs.check-documentation-updates.result == 'success' && needs.check-documentation-updates.outputs.documentation-updated == 'true'
     uses: ./.github/workflows/publish-github-pages.yaml
     permissions:
       contents: read

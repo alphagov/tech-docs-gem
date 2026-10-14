@@ -15,7 +15,10 @@
     @extend %govuk-heading-xl;
 
     &:first-of-type {
-      padding-top: govuk-spacing(6);
+      padding-top: govuk-spacing(4);
+      @include govuk-media-query(tablet) {
+        padding-top: govuk-spacing(8);
+      }
     }
   }
 
