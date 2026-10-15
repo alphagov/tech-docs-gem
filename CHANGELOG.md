@@ -1,6 +1,7 @@
 ## Unreleased changes
 
 - Fix sticky TOC fighting page scroll: keep the active nav item visible by scrolling only the sidebar pane, not the window, so a long table of contents no longer blocks reaching the footer
+- Keep the sidebar divider running down to the footer when the page is shorter than the table of contents
 - Fix desktop sidebar scrolling after the `.app-pane` wrapper was removed: keep the table of contents sticky and independently scrollable while the page (and full-width footer) scroll normally ([related to pull request 513](https://github.com/alphagov/tech-docs-gem/pull/513))
 
 ## 6.5.0
