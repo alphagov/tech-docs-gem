@@ -26,8 +26,11 @@
 
     .app-pane__content {
       flex: 1 1 auto;
+      align-self: stretch;
       min-width: 0;
       overflow: visible;
+      // The row is as tall as the TOC. Stretch this column so the divider
+      // reaches the footer when the page is shorter than the sidebar.
       border-left: 1px solid govuk-functional-colour(border);
     }
   }
