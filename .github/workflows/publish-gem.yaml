@@ -22,6 +22,7 @@ jobs:
     environment: rubygems
     permissions:
       contents: write  # needed to be able to tag the release
+      id-token: write
     runs-on: ubuntu-latest
     if: inputs.new-gem-version
 
@@ -41,21 +42,4 @@ jobs:
           bundler-cache: true
 
       - name: Publish
-        env:
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
-        run: |
-          mkdir -p ~/.gem
-
-          cat << EOF > ~/.gem/credentials
-          ---
-          :rubygems_api_key: ${RUBYGEMS_API_KEY}
-          EOF
-
-          chmod 0600 ~/.gem/credentials
-
-          # tag will be associated with github-actions bot user, see
-          # https://github.community/t/github-actions-bot-email-address/17204
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          bundle exec rake release
+        uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
