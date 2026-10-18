@@ -21,7 +21,14 @@ module GovukTechDocs
     end
 
     def last_reviewed_on
-      page.data.last_reviewed_on
+      date = page.data.last_reviewed_on
+      return date unless date.is_a?(String)
+
+      unless date.match?(/\A\d{4}-\d{2}-\d{2}\z/)
+        raise ArgumentError, "last_reviewed_on must use YYYY-MM-DD"
+      end
+
+      Date.strptime(date, "%Y-%m-%d")
     end
 
     def owner_slack
