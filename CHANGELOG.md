@@ -1,5 +1,7 @@
 ## Unreleased changes
 
+- Fix missing top-level pages in multipage navigation when a custom `http_prefix` is configured ([issue 488](https://github.com/alphagov/tech-docs-gem/issues/488)).
+
 ## 6.5.0
 
 ### Changed
