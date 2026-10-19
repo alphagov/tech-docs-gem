@@ -76,6 +76,16 @@ Each folder inside the `source` folder represents one documentation page.
 
 For each page, create a content folder and put an `index.html.md.erb` file into that folder. This `index.html.md.erb` file is the [content file][write-content].
 
+### Publish under a URL prefix (optional)
+
+If your site is served under a path such as `/docs/`, set Middleman's `http_prefix` in your project's `config.rb`:
+
+```ruby
+set :http_prefix, "/docs"
+```
+
+Multipage navigation uses this prefix to identify the site's top-level pages. Prefixes can contain more than one path segment, such as `/service/docs`, and can be set with or without a trailing slash.
+
 ### Amend the index.html.md.erb files
 
 Add a weight argument and value to the frontmatter of each .html.md.erb file. This builds the structure of the multipage documentation.

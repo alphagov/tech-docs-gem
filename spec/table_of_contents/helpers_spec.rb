@@ -1,6 +1,38 @@
 require "spec_helper"
 
 describe GovukTechDocs::TableOfContents::Helpers do
+  describe "#select_top_level_html_files" do
+    subject(:helpers) { Class.new { include GovukTechDocs::TableOfContents::Helpers }.new }
+
+    it "preserves the default root when called without configuration" do
+      parent = double("root", url: "/")
+      page = double("page", path: "guide.html", parent:)
+
+      expect(helpers.select_top_level_html_files([page])).to eq([page])
+    end
+
+    [nil, {}, { http_prefix: nil }, { http_prefix: "" }, { http_prefix: "/" }].each do |config|
+      it "uses the default root with configuration #{config.inspect}" do
+        page = double("page", path: "guide.html", parent: double("root", url: "/"))
+
+        expect(helpers.select_top_level_html_files([page], config)).to eq([page])
+      end
+    end
+
+    ["/docs", "/docs/", "/service/docs", "/service/docs/", "\\"].each do |prefix|
+      it "selects only top-level HTML pages under #{prefix.inspect}" do
+        root_url = prefix.end_with?("/") ? prefix : "#{prefix}/"
+        root = double("root", url: root_url)
+        page = double("page", path: "guide.html", parent: root, url: "#{root_url}guide.html")
+        orphan = double("orphan", path: "index.html", parent: nil)
+        child = double("child", path: "guide/child.html", parent: page)
+        asset = double("asset", path: "logo.svg", parent: root)
+
+        expect(helpers.select_top_level_html_files([page, orphan, child, asset], { http_prefix: prefix })).to eq([page, orphan])
+      end
+    end
+  end
+
   describe "#single_page_table_of_contents" do
     subject do
       subject_class = Class.new do
@@ -108,18 +140,15 @@ describe GovukTechDocs::TableOfContents::Helpers do
       stub_const(
         "FakeResource",
         Class.new do
-          attr_reader :url, :data, :parent, :children
+          attr_reader :url, :data, :parent, :children, :path
 
-          def initialize(url, html, weight = nil, title = nil, parent = nil, children = [])
+          def initialize(url, html, weight = nil, title = nil, parent = nil, children = [], path: nil)
             @url = url
             @html = html
             @parent = parent
             @children = children
             @data = FakeData.new(weight, title)
-          end
-
-          def path
-            @url
+            @path = path || url
           end
 
           def render(_layout)
@@ -135,6 +164,23 @@ describe GovukTechDocs::TableOfContents::Helpers do
           end
         end,
       )
+    end
+
+    ["/", "/docs", "/docs/", "/service/docs", "/service/docs/"].each do |prefix|
+      it "renders top-level pages and nested children once with http_prefix #{prefix.inspect}" do
+        root_url = prefix.end_with?("/") ? prefix : "#{prefix}/"
+        home = FakeResource.new(root_url, '<h1 id="home">Home</h1>', 0, "Home", path: "index.html")
+        guide = FakeResource.new("#{root_url}guide/", '<h1 id="guide">Guide</h1>', 1, "Guide", home, path: "guide/index.html")
+        child = FakeResource.new("#{root_url}guide/child/", '<h1 id="child">Child</h1>', 2, "Child", guide, path: "guide/child/index.html")
+        home.add_children([guide])
+        guide.add_children([child])
+        config = { http_prefix: prefix, tech_docs: { max_toc_heading_level: 3 } }
+
+        output = Nokogiri::HTML.fragment(subject.multi_page_table_of_contents([home, guide, child], home, config))
+
+        expect(output.xpath("./ul/li/a").map { |link| link["href"] }).to eq([root_url, "#{root_url}guide/"])
+        expect(output.css("a").map { |link| link["href"] }).to eq([root_url, "#{root_url}guide/", "#{root_url}guide/child/"])
+      end
     end
 
     it "builds a table of contents using absolute links from several page resources" do
