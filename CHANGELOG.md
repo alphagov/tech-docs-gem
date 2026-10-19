@@ -1,5 +1,13 @@
 ## Unreleased changes
 
+## 6.5.2
+
+- Pin GOV.UK front end to `6.4.0` to fix stylesheet issue
+
+## 6.5.1.*
+
+Unstable releases due to publishing issues with gem.  We suggest moving straight to 6.5.2.
+
 ## 6.5.0
 
 ### Changed
