@@ -14,7 +14,7 @@ $govuk-new-link-styles: true;
 @import "govuk/core";
 @import "govuk/objects";
 
-@import "govuk/components/_index.import.scss";
+@import "govuk/components";
 
 @import "govuk/utilities";
 @import "govuk/overrides";
