@@ -12,6 +12,14 @@ RSpec.describe "Page expiration" do
     then_i_see_that_the_page_expired
   end
 
+  it "renders the review banner for a quoted date" do
+    when_the_site_is_created
+    visit "/expired-page-with-owner.html"
+
+    then_i_see_that_the_page_expired
+    expect(page).to have_content "It needs to be reviewed again on 18 January 2001"
+  end
+
   it "hides the expiration date on the page when show_expiry is false" do
     when_the_site_is_created_hiding_expiry
     and_i_visit_an_expired_page

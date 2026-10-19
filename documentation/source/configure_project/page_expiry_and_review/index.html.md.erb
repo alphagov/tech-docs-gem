@@ -52,6 +52,10 @@ review_in: 6 weeks
 ---
 ```
 
+Use the `YYYY-MM-DD` format for `last_reviewed_on`. Both an unquoted YAML date
+and a quoted string, such as `last_reviewed_on: "2018-01-18"`, are supported.
+Invalid dates and other formats, such as `18/01/2018`, cause the build to fail.
+
 You can use this in combination with `owner_slack` or `default_owner_slack` to
 set an owner for the page.
 

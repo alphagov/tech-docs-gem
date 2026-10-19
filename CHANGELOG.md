@@ -1,5 +1,7 @@
 ## Unreleased changes
 
+- Accept quoted `YYYY-MM-DD` values for `last_reviewed_on` so page review banners render correctly. Existing YAML dates remain supported.
+
 ## 6.5.0
 
 ### Changed
