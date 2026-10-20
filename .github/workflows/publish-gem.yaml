@@ -45,5 +45,14 @@ jobs:
           ruby-version: '3'
           bundler-cache: true
 
-      - name: Publish
-        uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
+      - name: Debug - Check if node_modules exists
+        run: ls -la node_modules/
+
+      - name: Debug - Check inside the gem folder
+        run: ls -la node_modules/gem/ || echo "Folder node_modules/gem does not exist!"
+
+      - name: Debug - Test Gemspec evaluation
+        run: ruby -e "spec = eval(File.read(Dir['*.gemspec'].first)); puts 'FOUND ASSETS:', spec.files.grep(/node_modules/)"
+# TEMPORARILY DISABLED FOR DEBUGGING
+#      - name: Publish
+#        uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
