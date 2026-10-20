@@ -52,10 +52,36 @@ jobs:
         run: ls -la node_modules/
 
       - name: Debug - Check inside the gem folder
-        run: ls -la node_modules/gem/ || echo "Folder node_modules/gem does not exist!"
+        run: ls -la node_modules/govuk-frontend/ || echo "Folder node_modules/govuk-frontend does not exist!"
 
       - name: Debug - Test Gemspec evaluation
         run: ruby -e "spec = eval(File.read(Dir['*.gemspec'].first)); puts 'FOUND ASSETS:', spec.files.grep(/node_modules/)"
+
+      - name: Build the Gem manually
+        run: gem build *.gemspec
+
+      - name: Inspect packed contents in log
+        run: |
+          # Find the generated .gem file
+          GEM_FILE=$(ls *.gem | head -n 1)
+          echo "Unpacking $GEM_FILE..."
+          
+          # Unpack it to a folder
+          gem unpack $GEM_FILE
+          
+          # Go into the unpacked folder and list what it actually captured
+          UNPACKED_DIR=${GEM_FILE%.gem}
+          echo "Contents of node_modules/govuk-frontend inside the built gem:"
+          ls -la $UNPACKED_DIR/node_modules/govuk-frontend || echo "Directory missing from package!"
+
+      - name: Upload Gem as Artifact (Downloadable)
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-gem-package
+          path: "*.gem"
+
+
+
 # TEMPORARILY DISABLED FOR DEBUGGING
 #      - name: Publish
 #        uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
