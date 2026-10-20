@@ -23,7 +23,7 @@ permissions:
 jobs:
   deploy:
     name: Publish Ruby Gem
-    environment: rubygems
+#    environment: rubygems
     permissions:
       contents: write  # needed to be able to tag the release
       id-token: write
