@@ -1,3 +1,3 @@
 module GovukTechDocs
-  VERSION = "6.6.0.beta".freeze
+  VERSION = "6.6.0.rc.0".freeze
 end
