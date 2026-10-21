@@ -2,19 +2,58 @@ require "English"
 
 lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
 require "govuk_tech_docs/version"
 
-# npm is not necessarily expected in a gemspec, this makes a big assumption about the environment
-# Additionally, for actions such as evaluating the gemspec (e.g. for vulnerability patching) we do not actaully want npm packages
-# We will move these sections into specific rake tasks when we get a chance
-if system("which npm > /dev/null 2>&1")
-  `npm ci`
-  abort "npm ci failed to run" unless $CHILD_STATUS.success?
-  unless File.exist?("node_modules/govuk-frontend/dist/govuk/_base.scss")
-    abort "govuk-frontend and other npm packages not installed"
+npm_available = system(
+  "npm",
+  "--version",
+  out: File::NULL,
+  err: File::NULL
+)
+
+npm_runtime_files = []
+
+if npm_available
+  include_dev_dependencies =
+    ENV["INCLUDE_NPM_DEV_DEPENDENCIES"] == "true"
+
+  npm_install_args = %w[npm ci]
+  npm_install_args << "--omit=dev" unless include_dev_dependencies
+
+  system(*npm_install_args) ||
+    abort("#{npm_install_args.join(' ')} failed")
+
+  required_npm_files = %w[
+    node_modules/govuk-frontend/package.json
+    node_modules/govuk-frontend/dist/govuk/_base.scss
+    node_modules/govuk-frontend/dist/govuk/components/button/macro.njk
+    node_modules/nunjucks/package.json
+  ]
+
+  missing_npm_files = required_npm_files.reject do |file|
+    File.file?(file)
+  end
+
+  unless missing_npm_files.empty?
+    abort(
+      "Required npm files were not installed:\n" \
+        "#{missing_npm_files.join("\n")}"
+    )
+  end
+
+  npm_runtime_files = Dir.glob(
+    "node_modules/**/*",
+    File::FNM_DOTMATCH
+  ).select do |path|
+    File.file?(path) || File.symlink?(path)
   end
 else
-  warn "npm is not available, no assets will be generated.  If you did not expect this please confirm your environment settings."
+  warn(
+    "npm is not available, so npm runtime packages will not be included. " \
+      "This is expected when evaluating the gemspec, but npm must be " \
+      "available when building the distributable gem."
+  )
 end
 
 Gem::Specification.new do |spec|
@@ -23,20 +62,28 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Government Digital Service"]
   spec.email         = ["govuk-dev@digital.cabinet-office.gov.uk"]
 
-  spec.summary       = "Gem to distribute the GOV.UK Tech Docs Template"
-  spec.description   = "Gem to distribute the GOV.UK Tech Docs Template. See https://github.com/alphagov/tech-docs-gem for the project."
-  spec.homepage      = "https://github.com/alphagov/tech-docs-gem"
-  spec.license       = "MIT"
+  spec.summary = "Gem to distribute the GOV.UK Tech Docs Template"
+  spec.description = <<~DESCRIPTION.strip
+    Gem to distribute the GOV.UK Tech Docs Template.
+    See https://github.com/alphagov/tech-docs-gem for the project.
+  DESCRIPTION
 
-  files_in_git = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.homepage = "https://github.com/alphagov/tech-docs-gem"
+  spec.license  = "MIT"
 
-  # Include assets from GOV.UK Frontend library in the distributed gem
-  govuk_frontend_assets = Dir["node_modules/govuk-frontend/**/*.{scss,js,mjs,woff,woff2,png,svg,ico}", "node_modules/govuk-frontend/dist/govuk/assets/**/*.json"]
+  files_in_git = `git ls-files -z`
+                   .split("\x0")
+                   .reject do |file|
+    file.match?(%r{\A(?:test|spec|features|\.github|documentation)/})
+  end
 
-  spec.files         = files_in_git + govuk_frontend_assets
+  spec.files = (files_in_git + npm_runtime_files).uniq.sort
 
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.bindir = "exe"
+  spec.executables = spec.files
+                         .grep(%r{\Aexe/})
+                         .map { |file| File.basename(file) }
+
   spec.require_paths = %w[lib]
 
   spec.required_ruby_version = ">= 3.3.0"
@@ -44,17 +91,28 @@ Gem::Specification.new do |spec|
   spec.add_dependency "autoprefixer-rails"
   spec.add_dependency "chronic"
   spec.add_dependency "concurrent-ruby"
-  spec.add_dependency "csv" # TODO: remove once tilt declares this itself.
-  spec.add_dependency "haml", ">= 6", "< 8" # middleman-core (4.6.3) depends on haml (>= 4.0.5, < 7)
+
+  # TODO: remove once tilt declares this itself.
+  spec.add_dependency "csv"
+
+  # middleman-core 4.6.3 depends on haml >= 4.0.5 and < 7.
+  spec.add_dependency "haml", ">= 6", "< 8"
+
   spec.add_dependency "middleman"
   spec.add_dependency "middleman-autoprefixer"
   spec.add_dependency "middleman-compass"
   spec.add_dependency "middleman-livereload"
   spec.add_dependency "middleman-search-gds"
-  # middleman-sprockets is very old and out of date.  V4.1.0 has a breaking change.  Will look to replace with gem "dartsass-sprockets" or uses sass in the package.json
+
+  # middleman-sprockets is very old and out of date.
+  # Version 4.1.0 contains a breaking change.
   spec.add_dependency "middleman-sprockets", "4.0.0"
+
   spec.add_dependency "middleman-syntax"
-  spec.add_dependency "mutex_m" # TODO: remove once activesupport declares this itself.
+
+  # TODO: remove once Active Support declares this itself.
+  spec.add_dependency "mutex_m"
+
   spec.add_dependency "nokogiri"
   spec.add_dependency "openapi3_parser"
   spec.add_dependency "redcarpet"

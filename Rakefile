@@ -6,10 +6,12 @@ RSpec::Core::RakeTask.new(:spec)
 namespace :jasmine do
   desc "Test JavaScript with headless browser"
   task :ci do
+    sh "npm ci"
     sh "npm test"
   end
   desc "Test JavaScript in browser"
   task :server do
+    sh "npm ci"
     sh "npm run test-server"
   end
 end
