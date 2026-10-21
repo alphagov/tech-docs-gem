@@ -23,18 +23,16 @@ namespace :lint do
 
       # IO.popen runs the command and exposes the Process ID (PID)
       IO.popen(["vale", "--config=#{vale_config_path}", "--output=JSON", file]) do |io|
-        begin
-          # If a file takes longer than 10 seconds, raise a timeout
-          Timeout.timeout(10) do
-            file_output = io.read
-          end
-          # If we reach here, it finished safely
-          puts "\e[32mDone\e[0m"
-        rescue Timeout::Error
-          # The regex hung. Send a SIGKILL to the Vale process to stop it chewing CPU
-          Process.kill("KILL", io.pid)
-          puts "\e[31mHUNG (Skipped due to timeout)\e[0m" # Red text
+        # If a file takes longer than 10 seconds, raise a timeout
+        Timeout.timeout(10) do
+          file_output = io.read
         end
+        # If we reach here, it finished safely
+        puts "\e[32mDone\e[0m"
+      rescue Timeout::Error
+        # The regex hung. Send a SIGKILL to the Vale process to stop it chewing CPU
+        Process.kill("KILL", io.pid)
+        puts "\e[31mHUNG (Skipped due to timeout)\e[0m" # Red text
       end
 
       # Merge JSON only if we got a valid response (ignores timeouts)
@@ -57,22 +55,22 @@ namespace :lint do
   end
 
   desc "Debug Vale to find which rule hangs on a specific file."
-  require 'timeout'
+  require "timeout"
 
   desc "Debug specific Vale rules for regex hangs"
   task :debug, [:rules] do |_, args|
     # Accepts Rake args (rake "debug[Rule1,Rule2]") or ENV vars (rake debug RULES=Rule1,Rule2)
-    raw_input = args[:rules] || ENV['RULES']
+    raw_input = args[:rules] || ENV["RULES"]
 
     if raw_input.nil? || raw_input.strip.empty?
       abort "Please provide rules to test. \nUsage: rake \"debug[Rule1,Rule2]\" OR rake debug RULES=Rule1,Rule2"
     end
 
     # Split by comma, remove whitespace, and drop any empty strings
-    rules = raw_input.split(',').map(&:strip).reject(&:empty?)
+    rules = raw_input.split(",").map(&:strip).reject(&:empty?)
 
-    style_prefix = 'style-guide'
-    target_file = './build/search/index.html'
+    style_prefix = "style-guide"
+    target_file = "./build/search/index.html"
 
     puts "Hunting for the hanging regex in #{target_file}..."
     puts "Testing #{rules.size} rule(s): #{rules.join(', ')}\n\n"
@@ -84,24 +82,20 @@ namespace :lint do
 
       # Run Vale for just this single rule
       IO.popen(["vale", "--filter=#{filter_string}", "--output=line", target_file]) do |io|
-        begin
-          # If the regex loops catastrophically, it hits this 5-second limit
-          Timeout.timeout(5) do
-            io.read
-          end
-
-          # If it finishes within 5 seconds, the rule is safe
-          puts "\e[32mPassed (No hang)\e[0m"
-
-        rescue Timeout::Error
-          # The regex froze! Kill the underlying process to save CPU and flag it
-          Process.kill("KILL", io.pid)
-          puts "\e[31m💥 HUNG! (This is the broken regex)\e[0m"
+        # If the regex loops catastrophically, it hits this 5-second limit
+        Timeout.timeout(5) do
+          io.read
         end
+
+        # If it finishes within 5 seconds, the rule is safe
+        puts "\e[32mPassed (No hang)\e[0m"
+      rescue Timeout::Error
+        # The regex froze! Kill the underlying process to save CPU and flag it
+        Process.kill("KILL", io.pid)
+        puts "\e[31m💥 HUNG! (This is the broken regex)\e[0m"
       end
     end
 
     exit 0
   end
-
 end

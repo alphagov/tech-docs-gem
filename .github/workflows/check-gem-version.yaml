@@ -24,7 +24,7 @@ jobs:
       - name: Gem version changed
         id: gem_version
         run: |
-          gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('govuk_tech_docs.gemspec').version")
+          gem_version=$(ruby -Ilib -r govuk_tech_docs/version -e "puts GovukTechDocs::VERSION")
           echo "gem_version=$gem_version" >> "$GITHUB_OUTPUT"
   
           if git fetch origin "refs/tags/v$gem_version" >/dev/null 2>&1

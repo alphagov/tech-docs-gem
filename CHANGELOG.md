@@ -1,5 +1,12 @@
 ## Unreleased changes
 
+## 6.6.0.rc.1.local.tested
+
+- Updated gem packaging to include GOV.UK Frontend, Nunjucks and all required production npm dependencies.
+- Excluded development-only npm dependencies from the published gem.
+- Updated JavaScript test and lint tasks to install development dependencies explicitly.
+- Updated the release workflow to read the gem version without evaluating the gemspec.
+
 ## 6.5.2
 
 - Pin GOV.UK front end to `6.4.0` to fix stylesheet issue
