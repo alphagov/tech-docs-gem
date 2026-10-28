@@ -1,5 +1,19 @@
 ## Unreleased changes
 
+## 6.6.0
+
+- Use GOV.UK front end to `6.6.0`
+- Fix [spacing issue](https://github.com/alphagov/tech-docs-gem/pull/553) introduced by removing main wrapper
+
+- ** Bump 6.6.0.rc.1.local.tested to full release **
+
+> 6.6.0.rc.1.local.tested
+>
+> - Updated gem packaging to include GOV.UK Frontend, Nunjucks and all required production npm dependencies.
+> - Excluded development-only npm dependencies from the published gem.
+> - Updated JavaScript test and lint tasks to install development dependencies explicitly.
+> - Updated the release workflow to read the gem version without evaluating the gemspec.
+
 ## 6.6.0.rc.1.local.tested
 
 - Updated gem packaging to include GOV.UK Frontend, Nunjucks and all required production npm dependencies.
