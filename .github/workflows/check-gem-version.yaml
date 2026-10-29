@@ -17,14 +17,14 @@ jobs:
         with:
           show-progress: false
 
-      - uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
+      - uses: ruby/setup-ruby@651ff0d62c5c79bed6d53ec518387aae20e72c1a # v1.329.0
         with:
           ruby-version: '3'
 
       - name: Gem version changed
         id: gem_version
         run: |
-          gem_version=$(ruby -r rubygems -e "puts Gem::Specification::load('govuk_tech_docs.gemspec').version")
+          gem_version=$(ruby -Ilib -r govuk_tech_docs/version -e "puts GovukTechDocs::VERSION")
           echo "gem_version=$gem_version" >> "$GITHUB_OUTPUT"
   
           if git fetch origin "refs/tags/v$gem_version" >/dev/null 2>&1

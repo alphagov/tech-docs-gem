@@ -16,12 +16,17 @@ on:
 
 concurrency: rubygems
 
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   deploy:
     name: Publish Ruby Gem
     environment: rubygems
     permissions:
       contents: write  # needed to be able to tag the release
+      id-token: write
     runs-on: ubuntu-latest
     if: inputs.new-gem-version
 
@@ -30,32 +35,15 @@ jobs:
         with:
           show-progress: false
 
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
 
-      - uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
+      - uses: ruby/setup-ruby@651ff0d62c5c79bed6d53ec518387aae20e72c1a # v1.329.0
         with:
           ruby-version: '3'
           bundler-cache: true
 
-      - name: Publish
-        env:
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
-        run: |
-          mkdir -p ~/.gem
-
-          cat << EOF > ~/.gem/credentials
-          ---
-          :rubygems_api_key: ${RUBYGEMS_API_KEY}
-          EOF
-
-          chmod 0600 ~/.gem/credentials
-
-          # tag will be associated with github-actions bot user, see
-          # https://github.community/t/github-actions-bot-email-address/17204
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          bundle exec rake release
+      - name: Publish to rubygems.org
+        uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
