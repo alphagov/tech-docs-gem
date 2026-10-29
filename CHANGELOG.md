@@ -1,5 +1,33 @@
 ## Unreleased changes
 
+## 6.6.0
+
+- Use GOV.UK front end to `6.6.0`
+- Fix [spacing issue](https://github.com/alphagov/tech-docs-gem/pull/553) introduced by removing main wrapper
+
+- ** Bump 6.6.0.rc.1.local.tested to full release **
+
+> 6.6.0.rc.1.local.tested
+>
+> - Updated gem packaging to include GOV.UK Frontend, Nunjucks and all required production npm dependencies.  
+> - Excluded development-only npm dependencies from the published gem.  
+> - Updated JavaScript test and lint tasks to install development dependencies explicitly.  
+> - Updated the release workflow to read the gem version without evaluating the gemspec.  
+
+** Includes changes from 6.5.0 **
+
+- **potentially breaking**: `enable_govuk_components` has been removed from the config as these are now required for the header and footer.  If you are using this value for custom code or templates you should address this before updating.
+- added config settings:
+    - `product_name`
+    - `headerContainerClasses`
+    - `headerClasses`
+    - `navigationContainerClasses`
+    - `navigationClasses`
+
+[Check the documentation](https://design-system.service.gov.uk/components/header/) to see if you should add this value into your site.
+
+- updated header and footer layouts to use components
+
 ## 6.6.0.rc.1.local.tested
 
 - Updated gem packaging to include GOV.UK Frontend, Nunjucks and all required production npm dependencies.
@@ -7,13 +35,9 @@
 - Updated JavaScript test and lint tasks to install development dependencies explicitly.
 - Updated the release workflow to read the gem version without evaluating the gemspec.
 
-## 6.5.2
+## 6.5.*
 
-- Pin GOV.UK front end to `6.4.0` to fix stylesheet issue
-
-## 6.5.1.*
-
-Unstable releases due to publishing issues with gem.  We suggest moving straight to 6.5.2.
+Unstable releases due to publishing issues with gem.  We suggest moving straight to 6.6.0.
 
 ## 6.5.0
 
