@@ -37,6 +37,7 @@ max_toc_heading_level: 1
 # Multi-page options
 multipage_nav: true
 collapsible_nav: true
+show_govuk_pagination: true
 
 # Show links to contribute on GitHub
 show_contribution_banner: true

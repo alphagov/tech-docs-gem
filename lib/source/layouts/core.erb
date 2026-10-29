@@ -92,7 +92,8 @@
               <%= partial "layouts/search" %>
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading"<%= " data-module=\"collapsible-navigation\"" if config[:tech_docs][:collapsible_nav] %>>
-                <%= yield_content :sidebar %>
+                <% table_of_contents = yield_content(:sidebar) %>
+                <%= table_of_contents %>
               </nav>
             </div>
           </div>
@@ -102,6 +103,14 @@
           <main id="content" class="technical-documentation"<% if config[:tech_docs][:enable_anchored_headings] != false %> data-module="anchored-headings"<% end %>>
             <%= yield %>
             <%= partial "layouts/page_review" %>
+            <% if content_for?(:sidebar) &&
+                  current_page.data.fetch(:multipage_nav, config[:tech_docs][:multipage_nav]) &&
+                  current_page.data.fetch(:show_govuk_pagination, config[:tech_docs][:show_govuk_pagination])
+                 current_page_href = get_path_to_resource(config, current_page, current_page)
+                 navigation = page_navigation_links(table_of_contents, current_page_href)
+            %>
+              <%= govukPagination(navigation) unless navigation.empty? %>
+            <% end %>
           </main>
 
           <aside>
