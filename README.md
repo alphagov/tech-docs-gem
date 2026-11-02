@@ -24,12 +24,14 @@ bundle exec tech_docs_jobs -T
 
 ### Tech-docs-linter
 
+See the [content linting guide](documentation/source/write_docs/lint_content/index.html.md.erb) for setup, local checks and pipeline examples.
+
 The `tech-docs-linter` is a set of `Vale` linting rules which can help you check your content meets the gov.uk style
 guide. To find out more about the linter visit the [GitHub repository](https://github.com/alphagov/tech-docs-linter).
 `Vale` is designed to evaluate written content, and does not recommend auto-fixing. You should review the output report
 and manually resolve alerts where appropriate.
 
-The `vale:lint` task returns a 0 exit code unless there is an `Exception`.  This allows you to run the linter without interrupting your `CI/CD workflows`.
+The `lint:vale` task returns a 0 exit code unless there is an `Exception`.  This allows you to run the linter without interrupting your `CI/CD workflows`.
 
 You can run the linting task from your project root with the command:
 
