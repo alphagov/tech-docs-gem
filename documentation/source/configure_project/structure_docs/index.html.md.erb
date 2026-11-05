@@ -7,7 +7,7 @@ review_in: 1 year
 
 # Structure your documentation
 
-When you [create a new project][create-project], that project has a source folder containing:
+When you [create a new project](https://alphagov.github.io/tech-docs-gem/create_project/index.html), that project has a source folder containing:
 
 - a `documentation/index.md` content file
 - an `index.html.md.erb` file
@@ -53,14 +53,9 @@ When you build or preview your documentation site with this `index.html.md.erb`,
 
 You can create a technical documentation site that splits its content across multiple pages.
 
-This is suitable for documentation sites that have too much content for the single page format.
+This is suitable for documentation sites that have too much content for the single page format, for example, the [GOV.UK Pay technical documentation][pay-docs].
 
-Examples include the:
-
-- [GOV.UK Platform as a Service (PaaS) technical documentation][paas-docs]
-- [GOV.UK Pay technical documentation][pay-docs]
-
-You should [use the search feature][search-feature] with multipage documentation sites.
+You should [use the search feature](https://alphagov.github.io/tech-docs-gem/configure_project/global_configuration/index.html#enable-search) with multipage documentation sites.
 
 ### Amend the tech-docs.yml file
 
@@ -74,11 +69,11 @@ multipage_nav: true
 
 Each folder inside the `source` folder represents one documentation page.
 
-For each page, create a content folder and put an `index.html.md.erb` file into that folder. This `index.html.md.erb` file is the [content file][write-content].
+For each page, create a content folder and put an `index.html.md.erb` file into that folder. This `index.html.md.erb` file is the [content file](https://alphagov.github.io/tech-docs-gem/write_docs/content/index.html#write-your-content).
 
-### Amend the index.html.md.erb files
+### Amend the `index.html.md.erb` files
 
-Add a weight argument and value to the frontmatter of each .html.md.erb file. This builds the structure of the multipage documentation.
+Add a weight argument and value to the frontmatter of each `.html.md.erb` file. This builds the structure of the multipage documentation.
 
 For example:
 
