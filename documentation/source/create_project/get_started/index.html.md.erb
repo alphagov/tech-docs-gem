@@ -1,49 +1,63 @@
 ---
 title: Get started
 weight: 21
-last_reviewed_on: 2026-10-29
-review_in: 1 month
+last_reviewed_on: 2026-11-10
+review_in: 3 months
 ---
 
-# Get started
+# Get started with the tech-docs-template
 
-You must install:
+The `tech-docs-template` is a [middleman project template](https://middlemanapp.com/advanced/project-templates) which has the basic files and configurations you will need to create your first project.
+The template uses the [`tech-docs-gem`][tech-docs-gem] to include the GOV.UK styles and components, layout files and custom functionality.
 
-- Xcode command line tools
-- Node.js
-- Ruby
-- Middleman
+## Install tech-docs-template dependencies
 
-## Install Xcode command line tools
+Before you use the `tech-docs-gem` your environment needs to have some additional packages, known as dependencies, installed.  Your environment must have the dependencies in the table below.  You should check the documentation for the correct installation process to suit your environment.
 
-You should install the Xcode command line tools using your organisation’s software centre if you have one.
+| Name      | Version                                                                        | Documentation                                                                              |
+|-----------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| Ruby      | [>= 3.3.11](https://github.com/alphagov/tech-docs-gem/blob/main/.ruby-version) | [Ruby installation instructions](https://www.ruby-lang.org/en/documentation/installation/) |
+| Node.js   | [>= 22](https://github.com/alphagov/tech-docs-gem/blob/main/.nvmrc)            | [Node installation instructions](https://nodejs.org/en/download)                           |
+| Git       | latest                                                                         | [Git installation instructions](https://git-scm.com/install)                               |
+| Middleman | latest                                                                         | [Middleman installation instructions](https://middlemanapp.com/basics/install/)            |
 
-You can also install the tools manually.
+You will need access to a Command Line Interface (CLI) such as `bash` or `Powershell`, depending on the machine you are using. You may also need additional software such as `Xcode command line tools` if you are on a Mac. You should follow the installation process outlined by your organisation when installing or updating software.
 
-1. Go to [Apple Developer Downloads].
-2. Search for 'Xcode'.
-3. Select the appropriate __Command Line Tools (macOS x.x) for Xcode x.x__ for your version of macOS, and download the file.
-4. Install the file.
+If you are unsure check with your local IT or device management team, or technical colleagues.
 
-## Install Node.js
+## Create a new documentation project
 
-You can install [Node.js][node] anywhere on your computer.
+Once you have an environment with all your dependencies installed, you can follow these steps to create a new project.  During the installation process you will need to answer to [some questions](#installation-questions) to set up your site configuration.
 
-## Install Ruby
+1. Open your CLI and navigate to the folder you wish to create your project in
+
+2. Run the following in the command line:
+
+    ```shell
+    middleman init <project_name> -T alphagov/tech-docs-template
+    ```
+   replace `<project_name>` with the name of your documentation.  A new project folder will be created with this name.
+
+3. Answer the installation questions.
+
+4. When you see `Bundle complete!`, go to the new project folder and run `bundle install` to update the Ruby gems.
 
 
-You can install the `tech-docs-template` directly on your local machine, or in an environment such as a `Docker` container or  `CI/CD` pipeline.  You should check with your organisation's guidelines for the correct way to install or manage your `Ruby` version.
+### Installation questions
 
-You can find the latest minimum required version of Ruby on the [RubyGems `govuk_tech_docs` page](https://rubygems.org/gems/govuk_tech_docs).
+You should provide answers to the questions below during the installation process.  You will be able to change these settings later in your `config/tech-docs.yml` file.
 
-## Install Middleman
+|CLI Prompt| Setting | Description |Example |
+| --- |---| --- | --- |
+| `Documentation URL:` | `host` | The URL of your documentation.  This may not be the same as the service itself.| https://docs.data-sharing-service.gov.uk|
+|`Service Name:`| `service_name` | The name of the service or API your documentation is about.| Data sharing service|
+| `Service URL:` | `service_link`| The URL for the service your documentation is about.| https://data-sharing-service.gov.uk|
+| `Will you be using the GOV.UK logo?:` | `show_govuk_logo`| Controls the display of the GOV.UK logo in the documentation header.  You should only use this if your documentation falls under [the GOV.UK proposition](https://www.gov.uk/government/publications/govuk-proposition/govuk-proposition).| `Yes`, `No`|
 
-You can install [Middleman][middleman] anywhere on your computer.
+If you are running the installation script as part of an automated process, such as `Docker` environment or a `CI/CD` pipeline you can set environment variables to avoid CLI prompts.
+You can see an example of this in the [create-test-site.sh](https://github.com/alphagov/tech-docs-template/blob/main/create-test-site.sh).
 
-Run the following in the command line to install Middleman:
+If you are unsure how to set variables for your specific environment you should check with your IT or technical colleagues.
 
-```shell
-gem install middleman
-```
 
 <%= partial "partials/links" %>
