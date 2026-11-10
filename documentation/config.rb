@@ -1,8 +1,11 @@
 require "govuk_tech_docs"
 
+set :http_prefix, "/tech-docs-gem"
+
 # set :relative_links, true
 activate :relative_assets
 activate :directory_indexes
+
 
 GovukTechDocs.configure(self)
 
