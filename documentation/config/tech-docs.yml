@@ -8,6 +8,7 @@ service_name: Tech docs template
 service_link: https://alphagov.github.io/tech-docs-gem
 phase: Beta
 
+http_prefix: /tech-docs-gem
 
 #These can be used to add custom classes to the GOV.UK header, footer and service navigation components. You can find more detail about these on the component documentation at:
 #https://design-system.service.gov.uk/components/header/
