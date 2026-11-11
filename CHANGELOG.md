@@ -1,5 +1,8 @@
 ## Unreleased changes
 
+## 6.6.0.2.rc
+- Fix missing top-level pages in multipage navigation when a custom `http_prefix` is configured ([issue 488](https://github.com/alphagov/tech-docs-gem/issues/488)).
+
 ## 6.6.0.1
 
 - Fix sticky TOC fighting page scroll: keep the active nav item visible by scrolling only the sidebar pane, not the window, so a long table of contents no longer blocks reaching the footer
