@@ -76,13 +76,13 @@ hide_in_navigation: true
 ---
 ```
 
-### "last_reviewed_on" and "review_in"
+### last_reviewed_on and review_in
 
 These attributes determine the date when the page needs to be reviewed next.
 
 See [page expiry and review documentation][expiry] for more details.
 
-You can use this in combination with the [owner_slack variable](#owner-slack) to set an owner for the page.
+You can use this in combination with the [owner_slack variable](#owner_slack) to set an owner for the page.
 
 ### layout
 
@@ -128,7 +128,7 @@ layout: core
 This page does not have a sidebar.
 ```
 
-You can use layouts to group pages and customise your Table of Contents (ToC).  To create a layout, create a new ruby file in the `source/layouts` directory, for example `source/layouts/live_support.erb`.  
+You can use layouts to group pages and customise your Table of Contents (ToC).  To create a layout, create a new ruby file in the `source/layouts` directory, for example `source/layouts/live_support.erb`.
 
 Apply the template by including it in the frontmatter block of a page. In this example, we're applying the `live_support` layout to the page:
 
