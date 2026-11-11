@@ -80,6 +80,7 @@ module GovukTechDocs
     end
 
     config_file = ENV.fetch("CONFIG_FILE", "config/tech-docs.yml")
+    /<-- just set an env.config file path!/
     context.config[:tech_docs] = YAML.load_file(config_file).with_indifferent_access
     context.activate :unique_identifier
     context.activate :warning_text
