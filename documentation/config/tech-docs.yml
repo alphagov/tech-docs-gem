@@ -31,7 +31,7 @@ footer_links:
 # Table of contents depth – how many levels to include in the table of contents.
 # If your ToC is too long, reduce this number and we'll only show higher-level
 # headings.
-max_toc_heading_level: 1
+max_toc_heading_level: 2
 
 # Multi-page options
 multipage_nav: true
@@ -49,4 +49,4 @@ default_owner_slack: '#gds-technical-writing'
 owner_slack_workspace: gds
 
 redirects:
-  /create_project/create_new_project: /create_project/get_started
+  /create_project/create_new_project/index.html: /create_project/get_started/index.html
