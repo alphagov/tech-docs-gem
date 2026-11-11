@@ -74,6 +74,9 @@ For each page, create a content folder and put an `index.html.md.erb` file into 
 
 ### Publish under a URL prefix (optional)
 
+<%= govukWarningText({text: "This setting is available in version 6.0.2.rc.  This will be promoted to a full release after wider testing", iconFallbackText: "Warning"}) %>
+
+
 If your site is served under a path such as `/docs/`, set Middleman's `http_prefix` in your project's `config.rb`:
 
 ```ruby
