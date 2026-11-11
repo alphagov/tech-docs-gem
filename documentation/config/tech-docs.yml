@@ -49,7 +49,4 @@ default_owner_slack: '#gds-technical-writing'
 owner_slack_workspace: gds
 
 redirects:
-  page-expiry.html: configure_project/page_expiry_and_review/#set-review-date-for-pages
-  search.html: configure_project/global_configuration/#enable-search
-  content.html: write_docs/content/#write-your-content
-  create_new_project.html: create_project/create_new_project/#create-a-new-documentation-project
+  /create_project/create_new_project: /create_project/get_started
