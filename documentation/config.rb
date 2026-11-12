@@ -5,6 +5,10 @@ activate :relative_assets
 
 GovukTechDocs.configure(self)
 
+if ENV["HTTP_PREFIX"].present?
+  set :http_prefix, ENV["HTTP_PREFIX"]
+end
+
 
 configure :development do
   gem_root = File.expand_path("..", __dir__)
