@@ -1,8 +1,8 @@
 ---
 title: Write your content
 weight: 41
-last_reviewed_on: 2020-07-01
-review_in: 1 year
+last_reviewed_on: 2026-11-12
+review_in: 1 month
 ---
 # Write your content
 
@@ -118,8 +118,10 @@ This warning text format is consistent with the [GOV.UK Design System warning te
 
 To insert a warning, use the following:
 
+
+
 ```ruby
-<%= warning_text('insert warning text here') %>
+<%%= warning_text('insert warning text here') %>
 ```
 
 
@@ -127,8 +129,8 @@ To insert a warning, use the following:
 
 Use [GOV.UK Design System](https://design-system.service.gov.uk/) elements in your documentation to ensure your content complies with accessibility regulations.  To use a component from the design system call the component function inside a ruby block.  For example:
 
-```
-<%=
+```ruby
+<%%=
 govukPhaseBanner({
   tag: {
     text: "Alpha"
