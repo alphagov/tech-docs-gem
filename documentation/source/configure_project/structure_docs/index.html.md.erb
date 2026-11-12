@@ -74,16 +74,30 @@ For each page, create a content folder and put an `index.html.md.erb` file into 
 
 ### Publish under a URL prefix (optional)
 
-<%= govukWarningText({text: "This setting is available in version 6.0.2.rc.  This will be promoted to a full release after wider testing", iconFallbackText: "Warning"}) %>
+<%= govukWarningText({text: "This setting is available in version 6.0.0.2.rc.  This will be promoted to a full release after wider testing", iconFallbackText: "Warning"}) %>
 
 
-If your site is served under a path such as `/docs/`, set Middleman's `http_prefix` in your project's `config.rb`:
+If your site is served under a path such as `/docs/`, you can set Middleman's `http_prefix` in your project's `config.rb`:
 
 ```ruby
 set :http_prefix, "/docs"
 ```
 
-Multipage navigation uses this prefix to identify the site's top-level pages. Prefixes can contain more than one path segment, such as `/service/docs`, and can be set with or without a trailing slash.
+This will be used to create the Table of Contents (ToC) found on multipage navigation. Prefixes can contain more than one path segment, such as `/service/docs`, and can be set with or without a trailing slash.
+
+This setting does not automatically include the `http_prefix` in links you write in your Markdown.  You can use the middleman config object to access the `http_prefix`, for example:
+
+```ruby
+
+<%%
+  http_prefix = config&.[](:http_prefix).presence
+  link_prefix = http_prefix ? "#{http_prefix.chomp('/')}/" : "/"
+
+%>
+
+[create-project]: <%%= "#{link_prefix}create_project/create_new_project/" %>
+
+```
 
 ### Amend the `index.html.md.erb` files
 

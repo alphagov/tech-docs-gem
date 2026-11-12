@@ -31,6 +31,8 @@ jobs:
       - name: Install gems
         run: bundle install
       - name: Build
+        env:
+          HTTP_PREFIX: "/tech-docs-gem"
         run: bundle exec middleman build
       - name: Upload artifact
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v4.1.3

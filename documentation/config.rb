@@ -1,7 +1,7 @@
 require "govuk_tech_docs"
 
-set :relative_links, true
-activate :relative_assets
+# set :relative_links, true
+# activate :relative_assets
 
 GovukTechDocs.configure(self)
 
