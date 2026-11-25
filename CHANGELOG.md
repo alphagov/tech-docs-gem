@@ -1,5 +1,13 @@
 ## Unreleased changes
 
+## 6.6.0.3
+
+- Fix `govuk_frontend_all` import missing from final compiled JavaScript 
+
+### Included
+
+Changes from [6.6.0.2.rc](#6602rc)
+
 ## 6.6.0.2.rc
 - Fix missing top-level pages in multipage navigation when a custom `http_prefix` is configured ([issue 488](https://github.com/alphagov/tech-docs-gem/issues/488)).
 
